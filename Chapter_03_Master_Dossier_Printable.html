@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class 12 Physics | Chapter 3 - Current Electricity Master Dossier</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    /* Print Optimization Rules */
+    @page {
+      size: A4 portrait;
+      margin: 12mm 14mm 12mm 14mm;
+    }
+
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        font-size: 10.5pt !important;
+        line-height: 1.35 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .avoid-break {
+        page-break-inside: avoid;
+      }
+      .print-border {
+        border: 1px solid #1e293b !important;
+      }
+      .print-table th {
+        background-color: #f1f5f9 !important;
+        color: #000000 !important;
+        border: 1px solid #94a3b8 !important;
+      }
+      .print-table td {
+        border: 1px solid #cbd5e1 !important;
+        color: #000000 !important;
+      }
+      .formula-box {
+        background: #f8fafc !important;
+        border-left: 3px solid #0f172a !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Sticky Top Action Bar (Auto-hidden in Print/PDF) -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex flex-wrap justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <div>
+        <span class="text-lg font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+        <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Open Access</span>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-3 mt-2 sm:mt-0">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-indigo-600/30 active:scale-95 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>Save as PDF (Clean Vector)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Body Container -->
+  <main class="max-w-4xl mx-auto px-4 py-8 md:py-12 space-y-10 print:p-0 print:m-0 print:space-y-6">
+
+    <!-- Dossier Title Block -->
+    <div class="border-b-2 border-indigo-500/40 pb-5 print:border-black print:pb-3">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-indigo-400 print:text-black">CBSE Class XII • Unit 02 (Current Electricity)[cite: 12, 13]</p>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1 print:text-black print:text-2xl">
+            Chapter 03: Current Electricity
+          </h1>
+          <p class="text-slate-400 mt-1 text-sm print:text-gray-700">Master Revision Dossier • Transport Equations, Microscopic Ohm's Law, Cell Matrices & Bridge Laws</p>
+        </div>
+        <div class="hidden sm:block text-right text-xs text-slate-500 print:block print:text-black">
+          <p class="font-mono">Open Access Initiative</p>
+          <p class="font-mono">Unit I & II Bracket: 16 Marks[cite: 12]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: Master Formula & Physical Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        1. Definitive Formula & Physical Transport Matrix
+      </h2>
+      <div class="overflow-x-auto rounded-xl border border-slate-800 print:border-black">
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase tracking-wider border-b border-slate-800 font-semibold">
+            <tr>
+              <th class="p-2.5 border-r border-slate-800">Concept</th>
+              <th class="p-2.5 border-r border-slate-800">Mathematical Formulation</th>
+              <th class="p-2.5 border-r border-slate-800">SI Unit / Dim</th>
+              <th class="p-2.5">Boundary Conditions & Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/80 text-slate-300">
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Electric Current ($I$)[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$I = \frac{dQ}{dt} = n e A v_d\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\text{Ampere (A)}$<br>$[\text{A}]$</td>
+              <td class="p-2.5 text-[11px]">Scalar quantity (obeys algebraic addition, not vector law)[cite: 13]. Current density $\vec{J} = (I/A)\hat{n}$ is a true vector[cite: 13].</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Drift Velocity ($v_d$)[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\vec{v}_d = -\frac{e\vec{E}}{m}\tau \implies v_d = \frac{eE\tau}{m}\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\text{m/s}$<br>$[\text{LT}^{-1}]$</td>
+              <td class="p-2.5 text-[11px]">Net average velocity acquired against field $\vec{E}$[cite: 13]; order of magnitude $\approx 10^{-4}\text{ m/s}$ ($0.1\text{ mm/s}$)[cite: 13].</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Mobility ($\mu$)[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\mu = \frac{|\vec{v}_d|}{E} = \frac{e\tau}{m}\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\text{m}^2/\text{V}\cdot\text{s}$<br>$[\text{M}^{-1}\text{T}^2\text{A}]$</td>
+              <td class="p-2.5 text-[11px]">Defined as positive scalar[cite: 13]. Electron mobility $\mu_e$ is significantly higher than hole mobility $\mu_h$ ($m_e < m_h$).</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Resistivity ($\rho$) & $\sigma$[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\rho = \frac{m}{n e^2 \tau}, \quad \sigma = \frac{1}{\rho} = \frac{n e^2 \tau}{m}\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\rho: \Omega\cdot\text{m}$<br>$\sigma: \text{S}\cdot\text{m}^{-1}$</td>
+              <td class="p-2.5 text-[11px]">Independent of conductor dimensions ($l, A$)[cite: 13]; depends strictly on material and temperature[cite: 13].</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Microscopic Ohm's Law[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\vec{J} = \sigma \vec{E} = \frac{\vec{E}}{\rho}\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\vec{J}: \text{A/m}^2$</td>
+              <td class="p-2.5 text-[11px]">Universal vector form[cite: 13]. Macroscopic scalar equivalent: $V = IR$, where $R = \rho \frac{l}{A}$[cite: 13].</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Temperature Dependence[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$R_T = R_0[1 + \alpha(T - T_0)]\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\alpha: \text{K}^{-1} \text{ or } ^\circ\text{C}^{-1}$</td>
+              <td class="p-2.5 text-[11px]">Metals: $\alpha > 0$[cite: 13]; Semiconductors: $\alpha < 0$[cite: 13]; Standard Alloys (Manganin, Nichrome): $\alpha \approx 0$[cite: 13].</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Cell Terminal Voltage[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$V = \mathcal{E} - Ir \quad (\text{Discharge})\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\text{Volt (V)}$</td>
+              <td class="p-2.5 text-[11px]">Open circuit: $V = \mathcal{E}$[cite: 13]. During battery recharge: $V = \mathcal{E} + Ir$. Internal resistance $r = (\frac{\mathcal{E}}{V}-1)R$[cite: 13].</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Cells in Series[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\mathcal{E}_{\text{eq}} = \sum \mathcal{E}_i, \quad r_{\text{eq}} = \sum r_i\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\text{V}, \Omega$</td>
+              <td class="p-2.5 text-[11px]">If $m$ out of $n$ cells are reversed: $\mathcal{E}_{\text{eq}} = (n - 2m)\mathcal{E}$, while $r_{\text{eq}} = nr$ always.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Cells in Parallel[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\mathcal{E}_{\text{eq}} = \frac{\sum \mathcal{E}_i/r_i}{\sum 1/r_i}, \quad \frac{1}{r_{\text{eq}}} = \sum \frac{1}{r_i}\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\text{V}, \Omega$</td>
+              <td class="p-2.5 text-[11px]">For two cells: $\mathcal{E}_{\text{eq}} = \frac{\mathcal{E}_1 r_2 + \mathcal{E}_2 r_1}{r_1 + r_2}$, $r_{\text{eq}} = \frac{r_1 r_2}{r_1 + r_2}$[cite: 13].</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Wheatstone Bridge Balance[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\frac{P}{Q} = \frac{R}{S} \iff I_g = 0\text{[cite: 13]}$$</td>
+              <td class="p-2.5">Dimensionless</td>
+              <td class="p-2.5 text-[11px]">Galvanometer current is zero ($V_B = V_D$)[cite: 13]. Bridge retains balance if battery and detector are interchanged.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 2: Stepwise Derivations Blueprint -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        2. Core Derivations Blueprint (Step-by-Step Board Proofs)[cite: 13]
+      </h2>
+
+      <!-- Proof 1: I = neAvd -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 3.1: Relation between Electric Current and Drift Velocity ($I = n e A v_d$)[cite: 13]
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Consider a uniform conductor of cross-sectional area $A$, length $l$, and free electron density $n$[cite: 13].
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Under electric field $\vec{E}$, electrons drift with average speed $v_d$[cite: 13]. In time interval $\Delta t$, distance covered is $\Delta x = v_d \Delta t$[cite: 13].
+        </p>
+        <p class="text-slate-300 print:text-black">
+          3. Total volume of electrons crossing the plane in time $\Delta t$[cite: 13]: $\Delta V = A \cdot \Delta x = A (v_d \Delta t)$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          4. Total charge transported across the area[cite: 13]:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$\Delta Q = (\text{Total Electrons}) \times e = (n \cdot \Delta V) e = (n A v_d \Delta t) e$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          5. Dividing by time interval $\Delta t$ yields the fundamental relation[cite: 13]:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$I = \frac{\Delta Q}{\Delta t} = n e A v_d \implies \vec{J} = \frac{I}{A} = n e \vec{v}_d\text{[cite: 13]}$$
+        </div>
+      </div>
+
+      <!-- Proof 2: Deduction of Ohm's Law -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 3.2: Microscopic Deduction of Ohm's Law and Resistivity ($V = IR$, $\rho = \frac{m}{ne^2\tau}$)[cite: 13]
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Drift velocity expression under acceleration $\vec{a} = -\frac{e\vec{E}}{m}$ with mean relaxation time $\tau$[cite: 13]: $v_d = \frac{e E \tau}{m}$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Substitute $v_d$ into the transport current equation $I = n e A v_d$[cite: 13]:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$I = n e A \left(\frac{e E \tau}{m}\right) = \left(\frac{n e^2 \tau A}{m}\right) E$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. In a conductor of length $l$ across potential difference $V$, uniform electric field is $E = \frac{V}{l}$[cite: 13]:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$I = \left(\frac{n e^2 \tau A}{m l}\right) V \implies V = \left(\frac{m}{n e^2 \tau} \frac{l}{A}\right) I$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          4. At constant physical temperature, the bracketed term is a constant defined as Resistance $R$[cite: 13]:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$V = R I \quad \text{where } R = \rho \frac{l}{A} \quad \text{and} \quad \rho = \frac{m}{n e^2 \tau}\text{[cite: 13]}$$
+        </div>
+      </div>
+
+      <!-- Proof 3: Balanced Wheatstone Bridge -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 3.3: Balanced Wheatstone Bridge Condition via Kirchhoff's Rules ($P/Q = R/S$)[cite: 13]
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Apply KVL to Loop 1 ($ABDA$) containing resistors $P, R$ and galvanometer $G$:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$-I_1 P - I_g G + I_2 R = 0 \implies I_1 P + I_g G = I_2 R \quad \text{--- [Eq. 1]}$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          2. Apply KVL to Loop 2 ($BCDB$) containing resistors $Q, S$ and galvanometer $G$:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$-(I_1 - I_g)Q + (I_2 + I_g)S + I_g G = 0 \quad \text{--- [Eq. 2]}$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. At balanced condition, galvanometer current is zero: <strong class="text-white print:text-black">$I_g = 0$</strong> ($V_B = V_D$)[cite: 13].
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$\text{From Eq. 1: } I_1 P = I_2 R \qquad \text{From Eq. 2: } I_1 Q = I_2 S$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          4. Dividing the two resulting equations yields the balancing condition[cite: 13]:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\frac{I_1 P}{I_1 Q} = \frac{I_2 R}{I_2 S} \implies \frac{P}{Q} = \frac{R}{S}\text{[cite: 13]}$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: High-Yield Exam Trap Matrix -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-rose-400 print:text-black border-l-4 border-rose-500 print:border-black pl-2.5">
+        3. High-Yield "Red Alert" Exam Trap Matrix
+      </h2>
+
+      <!-- Material Temperature Behavior Table -->
+      <div class="rounded-xl border border-rose-900/40 print-border overflow-hidden">
+        <div class="bg-rose-950/40 print:bg-gray-100 p-2.5 border-b border-rose-900/40 print:border-black">
+          <p class="text-xs font-bold text-rose-300 print:text-black uppercase">
+            Master Trap 1: Temperature Dependence & Conduction Mechanisms[cite: 13]
+          </p>
+        </div>
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase font-semibold">
+            <tr>
+              <th class="p-2 border border-slate-800">Class of Material</th>
+              <th class="p-2 border border-slate-800">Thermal Coeff ($\alpha$)</th>
+              <th class="p-2 border border-slate-800">Microscopic Governing Factor</th>
+              <th class="p-2 border border-slate-800">Exam Trap Point</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Metals (Cu, Al)[cite: 13]</td>
+              <td class="p-2 text-emerald-400 print:text-black font-mono">Positive ($\alpha > 0$)[cite: 13]</td>
+              <td class="p-2">$n$ is fixed; lattice vibrations shorten relaxation time $\tau$ ($\rho \propto 1/\tau$)[cite: 13].</td>
+              <td class="p-2 text-[11px]">When cooled to $0\text{ K}$, resistivity approaches near zero (superconductivity).</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Semiconductors (Si, Ge)[cite: 13]</td>
+              <td class="p-2 text-rose-400 print:text-black font-mono">Negative ($\alpha < 0$)[cite: 13]</td>
+              <td class="p-2">Thermal generation makes $n$ surge exponentially, dominating any drop in $\tau$[cite: 13].</td>
+              <td class="p-2 text-[11px]">At $0\text{ K}$, semiconductors behave as perfect insulators ($R \to \infty$).</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Alloys (Manganin, Constantan)[cite: 13]</td>
+              <td class="p-2 text-amber-400 print:text-black font-mono">Nearly Zero ($\alpha \approx 0$)[cite: 13]</td>
+              <td class="p-2">High structural disorder causes extreme scattering regardless of temperature[cite: 13].</td>
+              <td class="p-2 text-[11px]">Chosen exclusively for standard resistance boxes and bridge wires[cite: 13].</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Critical Pitfalls Grid -->
+      <div class="grid sm:grid-cols-2 gap-3 text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 2: Terminal Voltage vs EMF Boundary States[cite: 13]</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            • <strong>Discharging (Delivering power):</strong> $V = \mathcal{E} - Ir < \mathcal{E}$[cite: 13]
+            <br>• <strong>Open Circuit ($I = 0$):</strong> $V = \mathcal{E}$[cite: 13]
+            <br>• <strong>Charging (Battery Charger active):</strong> $\mathbf{V = \mathcal{E} + Ir > \mathcal{E}}$
+            <br>• <strong>Short Circuit ($R = 0$):</strong> $V = 0$, $I_{\text{sc}} = \mathcal{E}/r$[cite: 13]
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 3: Wire Stretching Rules ($R \propto l^2$)</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            Volume $V = A \cdot l$ is conserved during stretching[cite: 13]. Thus, $A \propto 1/l \implies R = \rho \frac{l}{A} \propto l^2 \propto \frac{1}{r^4}$.
+            <br>• For small fractional changes ($< 5\%$): $\frac{\Delta R}{R} \approx 2\left(\frac{\Delta l}{l}\right)$.
+            <br>• If length is doubled ($l' = 2l$): $R' = 4R$ ($\mathbf{300\%}$ increase, NOT $100\%$)!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Handcrafted Exemplar Numericals -->
+    <section class="space-y-4 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-amber-400 print:text-black border-l-4 border-amber-500 print:border-black pl-2.5">
+        4. Handcrafted Exemplars (Analytical Numerical Solutions)
+      </h2>
+
+      <!-- Problem 1 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black">Problem 1: Platinum Thermometer Temperature Calibration[cite: 13]</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden">Exemplar 01</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          Resistance of a platinum thermometer is $5.00\text{ }\Omega$ at ice point ($0^\circ\text{C}$) and $5.39\text{ }\Omega$ at steam point ($100^\circ\text{C}$)[cite: 13]. When placed in a hot bath, resistance is $5.795\text{ }\Omega$. Determine bath temperature[cite: 13].
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> Given $R_0 = 5.00\text{ }\Omega$, $R_{100} = 5.39\text{ }\Omega$, $R_t = 5.795\text{ }\Omega$[cite: 13].</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$t = \frac{R_t - R_0}{R_{100} - R_0} \times 100^\circ\text{C} = \frac{5.795 - 5.00}{5.39 - 5.00} \times 100 = \frac{0.795}{0.39} \times 100$$
+          </div>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$t = 2.03846 \times 100 \approx 345.65^\circ\text{C}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black">Problem 2: Non-Identical Cells in Parallel with Back-Charging[cite: 13]</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden">Exemplar 02</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          Two cells $\mathcal{E}_1 = 2\text{ V}, r_1 = 1\text{ }\Omega$ and $\mathcal{E}_2 = 1\text{ V}, r_2 = 2\text{ }\Omega$ are connected in parallel and feed an external resistor $R = 10\text{ }\Omega$[cite: 13]. Find terminal voltage and branch currents[cite: 13].
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong></p>
+          <p class="text-slate-400 print:text-black">1. Equivalent cell parameters[cite: 13]:</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$r_{\text{eq}} = \frac{1 \times 2}{1 + 2} = \frac{2}{3}\text{ }\Omega, \quad \mathcal{E}_{\text{eq}} = \frac{\frac{2}{1} + \frac{1}{2}}{\frac{1}{1} + \frac{1}{2}} = \frac{2.5}{1.5} = \frac{5}{3}\text{ V}$$
+          </div>
+          <p class="text-slate-400 print:text-black">2. Total load current and terminal potential difference[cite: 13]:</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$I = \frac{\mathcal{E}_{\text{eq}}}{R + r_{\text{eq}}} = \frac{5/3}{10 + 2/3} = \frac{5}{32}\text{ A} \implies V = IR = \frac{50}{32} = 1.5625\text{ V}$$
+          </div>
+          <p class="text-slate-400 print:text-black">3. Individual branch currents: $I_1 = \frac{2 - 1.5625}{1} = +0.4375\text{ A}$ (discharging), $I_2 = \frac{1 - 1.5625}{2} = -0.28125\text{ A}$ (charging!).</p>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$V = 1.5625\text{ Volts}, \quad I_1 = 0.438\text{ A (Discharge)}, \quad I_2 = -0.281\text{ A (Recharging)}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Printable Cut-Out Flashcard Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        5. Printable Pocket Flashcard Grid
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Transport Current</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1">$I = n e A v_d$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Resistivity Formula</p>
+          <p class="font-bold text-white print:text-black text-xs mt-1">$\rho = \frac{m}{n e^2 \tau}$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Discharging Cell</p>
+          <p class="font-bold text-white print:text-black text-[11px] mt-1">$V = \mathcal{E} - Ir$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Wheatstone Null</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1">$\frac{P}{Q} = \frac{R}{S} \iff I_g=0$[cite: 13]</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Document Footer -->
+    <footer class="pt-6 border-t border-slate-800 text-center text-xs text-slate-500 print:text-black print:pt-3">
+      <p>AXIOM Physics Class 12 • Open Access Physics Initiative • Distributed under Creative Commons Free Access</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>

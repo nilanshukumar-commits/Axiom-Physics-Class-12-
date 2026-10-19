@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - de Broglie Hypothesis & Matter Waves</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError: false,
+      errorColor: '#cbd5e1'
+    });"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      letter-spacing: -0.011em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .font-mono, font-mono {
+      font-family: 'JetBrains Mono', monospace !important;
+    }
+
+    .katex {
+      font-size: 1.05em !important;
+      text-rendering: optimizeLegibility;
+    }
+    .katex-display {
+      margin: 0.6em 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 2px;
+    }
+
+    .math-formula-card {
+      background: radial-gradient(circle at top left, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(56, 189, 248, 0.15);
+    }
+
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; font-size: 10pt !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box, .math-formula-card { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400, .text-slate-500 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2.5 py-0.5 rounded-full ml-2 font-mono">Class 12 • Module 11.3</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-xl text-xs font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-xs font-bold font-mono text-indigo-400 tracking-wider uppercase">Unit 07: Modern Physics • Chapter 11</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">de Broglie Hypothesis, Matter Waves & Electron Wavelength</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base leading-relaxed">Universal symmetry postulate, momentum-wavelength duality ($\lambda = h/p$), voltage-accelerated charged particles, electron wavelength formulation ($\lambda = \frac{1.227}{\sqrt{V}}\text{ nm}$), thermal neutrons, and macroscopic wave invisibility.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2 font-mono">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed text-sm md:text-base">
+        Socho ek two-sided coin ko: agar nature ne light wave ko particle (photon) jaisa behave karne ki aazadi di hai (Photoelectric Effect & Compton Effect), toh kya nature particle (jaise electron ya cricket ball) ko wave jaisa behave karne ki aazadi nahi degi?
+        <br>1924 mein French physicist Louis de Broglie ne ek daring philosophical hypothesis rakha: <strong class="text-white font-semibold">"Nature loves symmetry!"</strong> Pure universe do hi cheezon se milkar bana hai—Matter aur Radiation. Agar radiation ke paas dual nature hai, toh moving matter ke paas bhi wave nature hona hi chahiye! 
+        Jab aap daudte hain, toh aapke sath bhi ek wave chalti hai, par aapka mass itna vishal ($m \approx 60\text{ kg}$) hota hai ki wavelength Planck's constant ($10^{-34}$) ki wajah se sub-atomic size se bhi choti ($10^{-36}\text{ m}$) hokar gayab ho jaati hai. Lekin ek nanhe electron ($m \sim 10^{-30}\text{ kg}$) ke liye yahi matter wave X-ray jitni badi ($\sim 1\text{ \AA}$) hokar physical crystal planes se diffract hone lagti hai!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-xs font-bold uppercase tracking-wider mb-1 font-mono">
+        <span>📐 02. The Core Law & Wavelength Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="math-formula-card p-5 rounded-2xl border border-slate-800/80 shadow-inner">
+          <h3 class="text-white font-semibold text-sm tracking-wide mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            1. de Broglie Relation in Different Forms
+          </h3>
+          <p class="text-xs text-slate-400 mb-3">Wavelength associated with a moving particle of mass $m$ and velocity $v$:</p>
+          <div class="py-2.5 px-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-cyan-300 font-mono text-center text-sm space-y-1">
+            <div>$$\lambda = \frac{h}{p} = \frac{h}{mv} = \frac{h}{\sqrt{2mK}}$$</div>
+            <div>$$\lambda = \frac{h}{\sqrt{2mqV}} \quad (\text{For charge } q \text{ accelerated through } V)$$</div>
+          </div>
+          <p class="text-[11px] text-slate-500 mt-3 leading-relaxed">
+            $\lambda \propto 1/v$ and $\lambda \propto 1/m$. Matter waves are NOT electromagnetic waves; they are not generated by accelerated charges and carry zero electric/magnetic vector oscillations.
+          </p>
+        </div>
+
+        <div class="math-formula-card p-5 rounded-2xl border border-slate-800/80 shadow-inner">
+          <h3 class="text-white font-semibold text-sm tracking-wide mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+            2. Special Particles & Thermal Matter Waves
+          </h3>
+          <p class="text-xs text-slate-400 mb-3">Direct numerical evaluation constants for competitive exams:</p>
+          <div class="py-2.5 px-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-indigo-300 font-mono text-center text-sm space-y-1">
+            <div>$$\text{Electron: } \lambda_e = \frac{1.227}{\sqrt{V}}\text{ nm} = \frac{12.27}{\sqrt{V}}\text{ \AA}$$</div>
+            <div>$$\text{Proton: } \lambda_p = \frac{0.286}{\sqrt{V}}\text{ \AA}, \quad \text{Alpha: } \lambda_\alpha = \frac{0.101}{\sqrt{V}}\text{ \AA}$$</div>
+            <div>$$\text{Thermal Neutron: } \lambda_n = \frac{h}{\sqrt{3mkT}} \quad (K = \frac{3}{2}kT)$$</div>
+          </div>
+          <p class="text-[11px] text-slate-500 mt-3 leading-relaxed">
+            Where $k = 1.38 \times 10^{-23}\text{ J/K}$ is Boltzmann's constant, and $T$ is absolute temperature in Kelvin.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Matter Wave Packet & Dual Particle Simulator) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-xs font-bold uppercase tracking-wider font-mono">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Real-Time Matter Wave Packet & de Broglie Simulator</span>
+        </div>
+        <div id="particleBadge" class="text-xs font-bold font-mono px-3 py-1 rounded-lg bg-indigo-950/70 text-indigo-300 border border-indigo-800/60 shadow-sm">
+          PARTICLE: ELECTRON (q = e, m = m_e)
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="matterWaveCanvas" width="800" height="390" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Accelerating Potential ($V$)</span>
+            <span id="voltVal" class="text-cyan-400 font-mono font-bold">100 V</span>
+          </div>
+          <input id="voltSlider" type="range" min="10" max="600" step="5" value="100" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Select Quantum Particle</span>
+            <span id="massLabel" class="text-amber-400 font-mono font-bold">Electron</span>
+          </div>
+          <select id="particleSelect" class="w-full bg-slate-900 border border-slate-700 text-xs text-white rounded p-1.5 font-mono cursor-pointer">
+            <option value="electron">Electron (e⁻)</option>
+            <option value="proton">Proton (p⁺)</option>
+            <option value="deuteron">Deuteron (²H⁺)</option>
+            <option value="alpha">Alpha Particle (α²⁺)</option>
+          </select>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Animation Controls</span>
+            <span class="text-emerald-400 font-mono font-bold">Pilot Wave</span>
+          </div>
+          <button id="toggleAnimBtn" type="button" class="w-full bg-slate-800 hover:bg-slate-700 text-xs py-1.5 rounded font-semibold text-slate-200 border border-slate-700 transition cursor-pointer">
+            Pause Motion
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">de Broglie Wavelength ($\lambda$):</span>
+          <div id="lambdaOut" class="text-cyan-400 font-bold text-sm mt-0.5">1.227 Å (0.123 nm)</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Kinetic Energy ($K = qV$):</span>
+          <div id="keOut" class="text-amber-400 font-bold text-sm mt-0.5">100 eV</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Momentum ($p = \sqrt{2mqV}$):</span>
+          <div id="momOut" class="text-emerald-400 font-bold text-sm mt-0.5">5.40 × 10⁻²⁴ kg·m/s</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Classical Velocity ($v$):</span>
+          <div id="velOut" class="text-rose-400 font-bold text-sm mt-0.5">5.93 × 10⁶ m/s</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>📝 04. Comprehensive Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: de Broglie wavelength of an Electron -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">Primary Board Derivation</span>
+          <h4 class="text-white font-semibold text-base mt-1">Deduction of de Broglie Wavelength of an Electron Accelerated Through Potential $V$</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Matter Wave Associated with an Electron -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 240" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-axis-mw" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+            </defs>
+
+            <!-- Propagation Axis -->
+            <line x1="60" y1="120" x2="580" y2="120" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arr-axis-mw)" />
+            <text x="500" y="105" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">Velocity v ➔</text>
+
+            <!-- Quantum Particle: Electron Sphere (Blue Glow) -->
+            <circle cx="180" cy="120" r="14" fill="#0284c7" stroke="#38bdf8" stroke-width="2.5" />
+            <circle cx="180" cy="120" r="6" fill="#ffffff" />
+            <text x="175" y="124" fill="#0369a1" font-size="10" font-weight="bold" font-family="monospace">e⁻</text>
+            <text x="140" y="90" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">Particle Core (m, v)</text>
+
+            <!-- Matter Wave Envelope Gaussian-like Wave Packet -->
+            <!-- Sinusoidal oscillations modulate the wave packet -->
+            <path d="M 60 120 
+                     Q 100 120, 140 95 
+                     T 180 120 
+                     T 220 145 
+                     T 260 120 
+                     T 300 80 
+                     T 340 120 
+                     T 380 160 
+                     T 420 120 
+                     T 460 90 
+                     T 500 120 
+                     T 560 120" 
+                  fill="none" stroke="#10b981" stroke-width="2.8" />
+
+            <!-- Wavelength Lambda Dimension Marker between crests -->
+            <line x1="300" y1="65" x2="380" y2="65" stroke="#fbbf24" stroke-width="1.8" />
+            <line x1="300" y1="58" x2="300" y2="72" stroke="#fbbf24" stroke-width="1.8" />
+            <line x1="380" y1="58" x2="380" y2="72" stroke="#fbbf24" stroke-width="1.8" />
+            <text x="325" y="55" fill="#fbbf24" font-size="11" font-weight="bold" font-family="monospace">λ = h/p</text>
+
+            <!-- Duality Callout Box -->
+            <rect x="220" y="175" width="280" height="45" fill="rgba(15, 23, 42, 0.9)" stroke="#10b981" stroke-width="1.2" rx="6" />
+            <text x="235" y="193" fill="#10b981" font-size="10" font-weight="bold" font-family="monospace">de Broglie Dual Relation</text>
+            <text x="235" y="209" fill="#cbd5e1" font-size="9" font-family="monospace">Wave aspect (λ) coupled to Particle momentum (p)</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 11.3A: Synthesis of matter-wave duality; localized quantum particle guided by de Broglie pilot wave packet of wavelength $\lambda = h/p$.</p>
+        </div>
+
+        <p>1. Consider an electron of rest mass $m$, charge $e$, initially at rest, accelerated through an electric potential difference of $V$ volts.</p>
+        <p>2. The work done by the electric field on the electron equals its acquired kinetic energy $K$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$K = e V$$
+        </div>
+        <p>3. If $v$ is the velocity acquired by the electron, its kinetic energy in terms of momentum $p$ is:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$K = \frac{1}{2}m v^2 = \frac{p^2}{2m} \implies p = \sqrt{2mK} = \sqrt{2m e V}$$
+        </div>
+        <p>4. According to de Broglie's fundamental hypothesis, the wavelength $\lambda$ associated with this electron is:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\lambda = \frac{h}{p} = \frac{h}{\sqrt{2m e V}}$$
+        </div>
+        <p>5. Substituting standard fundamental physical constants:</p>
+        <p class="text-slate-400">• Planck's constant $h = 6.626 \times 10^{-34}\text{ J}\cdot\text{s}$</p>
+        <p class="text-slate-400">• Mass of electron $m = 9.109 \times 10^{-31}\text{ kg}$</p>
+        <p class="text-slate-400">• Electronic charge $e = 1.602 \times 10^{-19}\text{ C}$</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\lambda = \frac{6.626 \times 10^{-34}}{\sqrt{2 \times (9.109 \times 10^{-31}) \times (1.602 \times 10^{-19}) \times V}} = \frac{6.626 \times 10^{-34}}{\sqrt{2.918 \times 10^{-49} \times V}} = \frac{6.626 \times 10^{-34}}{5.402 \times 10^{-25}\sqrt{V}}$$
+        </div>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$\lambda = \frac{1.227 \times 10^{-9}}{\sqrt{V}}\text{ m} = \frac{1.227}{\sqrt{V}}\text{ nm} = \frac{12.27}{\sqrt{V}}\text{ \AA}$$
+        </div>
+        <p class="text-slate-400"><em>Physical Consequence:</em> For an electron accelerated through typical laboratory potential $V = 120\text{ V}$, $\lambda = \frac{1.227}{\sqrt{120}} \approx 0.112\text{ nm} = 1.12\text{ \AA}$, which is identical to the interatomic spacing in crystals. Hence, electron waves can be directly diffracted by crystals, as experimentally verified by Davisson and Germer!</p>
+      </div>
+
+      <!-- Derivation 2: Macroscopic vs Microscopic Objects Comparison -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">Fundamental Limit</span>
+          <h4 class="text-white font-semibold text-base mt-1">Why Wave Nature is Not Observed in Everyday Macroscopic Bodies</h4>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4 text-xs pt-1">
+          <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg">
+            <p class="text-indigo-300 font-bold font-mono">1. Macroscopic Body (Cricket Ball)</p>
+            <p class="text-slate-400 mt-1">Mass $m = 0.15\text{ kg}$, Velocity $v = 30\text{ m/s}$ ($108\text{ km/h}$):</p>
+            <div class="py-1 font-mono text-cyan-300 text-center">
+              $$\lambda = \frac{6.63 \times 10^{-34}}{0.15 \times 30} \approx 1.47 \times 10^{-34}\text{ m}$$
+            </div>
+            <p class="text-slate-400 text-[11px]">This wavelength is $\approx 10^{20}$ times smaller than the diameter of an atomic nucleus ($10^{-14}\text{ m}$). No physical aperture or grating exists in the universe that small; hence, wave nature cannot be observed.</p>
+          </div>
+          <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg">
+            <p class="text-indigo-300 font-bold font-mono">2. Microscopic Body (Thermal Electron)</p>
+            <p class="text-slate-400 mt-1">Mass $m = 9.1 \times 10^{-31}\text{ kg}$, Voltage $V = 100\text{ V}$:</p>
+            <div class="py-1 font-mono text-emerald-400 text-center">
+              $$\lambda = \frac{1.227}{\sqrt{100}} = 0.123\text{ nm} = 1.23\text{ \AA}$$
+            </div>
+            <p class="text-slate-400 text-[11px]">This wavelength lies exactly in the X-ray regime and matches natural nickel crystal lattice spacing ($d \approx 0.91\text{ \AA}$), allowing distinct diffraction peaks.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Proton vs Alpha Particle Accelerated Through Same Potential $V$</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Favorite:* A proton and an $\alpha$-particle are accelerated from rest through the same potential $V$. Find the ratio of their de Broglie wavelengths $\lambda_p / \lambda_\alpha$.
+            <br>• Formula: $\lambda = \frac{h}{\sqrt{2mqV}} \implies \lambda \propto \frac{1}{\sqrt{m q}}$.
+            <br>• For proton: $m_p = m, q_p = e$.
+            <br>• For alpha: $m_\alpha = 4m, q_\alpha = 2e$.
+            $$\mathbf{\frac{\lambda_p}{\lambda_\alpha} = \sqrt{\frac{m_\alpha q_\alpha}{m_p q_p}} = \sqrt{\frac{4m \times 2e}{m \times e}} = \sqrt{8} = 2\sqrt{2} \approx 2.828}$$
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Proton vs Alpha Particle with Equal Kinetic Energy $K$</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Watch Out for the Wording:* If the question states <strong>"Same Kinetic Energy"</strong> instead of "Same Potential":
+            $$\lambda = \frac{h}{\sqrt{2mK}} \implies \lambda \propto \frac{1}{\sqrt{m}} \quad (\text{Charge } q \text{ is completely IRRELEVANT!})$$
+            $$\mathbf{\frac{\lambda_p}{\lambda_\alpha} = \sqrt{\frac{m_\alpha}{m_p}} = \sqrt{\frac{4m}{m}} = \sqrt{4} = 2 : 1}$$
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Are Matter Waves Electromagnetic Waves?</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Direct Viva & Board Trap:* Are matter waves electromagnetic in nature?
+            <br>*Correct Answer:* <strong class="text-white font-semibold">STRICTLY NO!</strong>
+            <br>1. EM waves are produced exclusively by accelerated electric charges; matter waves are associated with ANY moving material body (even neutral neutrons or uncharged atoms).
+            <br>2. EM waves travel at speed of light $c$ in vacuum; matter waves travel at velocity $v < c$ of the particle itself.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: de Broglie Wavelength of a Photon vs Electron</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            For a photon of energy $E$: $E = pc \implies \mathbf{\lambda_{\text{photon}} = \frac{hc}{E}}$.
+            <br>For an electron with the same kinetic energy $E$: $\mathbf{\lambda_{\text{electron}} = \frac{h}{\sqrt{2mE}}}$.
+            $$\frac{\lambda_{\text{photon}}}{\lambda_{\text{electron}}} = \frac{hc/E}{h/\sqrt{2mE}} = c\sqrt{\frac{2m}{E}} \gg 1$$
+            For the same energy, a photon always has a vastly larger wavelength than an electron!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-mono">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: An electron is accelerated through a potential difference of $100\text{ V}$. What is its de Broglie wavelength? What is the momentum associated with this electron?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> Accelerating potential $V = 100\text{ V}$.</p>
+          <p>1. de Broglie wavelength of electron:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\lambda = \frac{1.227}{\sqrt{V}}\text{ nm} = \frac{1.227}{\sqrt{100}} = \frac{1.227}{10} = 0.1227\text{ nm} = 1.227\text{ \AA}$$
+          </div>
+          <p>2. Momentum $p = h/\lambda$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$p = \frac{6.626 \times 10^{-34}\text{ J}\cdot\text{s}}{0.1227 \times 10^{-9}\text{ m}} \approx 5.40 \times 10^{-24}\text{ kg}\cdot\text{m/s}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: What is the de Broglie wavelength of a nitrogen molecule in air at $300\text{ K}$? Assume that the molecule moves with the root-mean-square speed of molecules at this temperature. (Atomic mass of nitrogen $= 14.0076\text{ u}, k = 1.38 \times 10^{-23}\text{ J/K}$).</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> Nitrogen molecule $N_2$ has molecular mass:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$m = 2 \times 14.0076 \times (1.66 \times 10^{-27}\text{ kg}) \approx 4.65 \times 10^{-26}\text{ kg}$$
+          </div>
+          <p>At temperature $T = 300\text{ K}$, average translational kinetic energy of a molecule is $K = \frac{3}{2}kT$. Therefore, thermal de Broglie wavelength:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\lambda = \frac{h}{\sqrt{2mK}} = \frac{h}{\sqrt{2m\left(\frac{3}{2}kT\right)}} = \frac{h}{\sqrt{3mkT}}$$
+          </div>
+          <div class="text-center font-mono text-indigo-300">
+            $$\lambda = \frac{6.63 \times 10^{-34}}{\sqrt{3 \times (4.65 \times 10^{-26}) \times (1.38 \times 10^{-23}) \times 300}} = \frac{6.63 \times 10^{-34}}{\sqrt{5.775 \times 10^{-46}}} = \frac{6.63 \times 10^{-34}}{2.403 \times 10^{-23}}$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\lambda \approx 2.76 \times 10^{-11}\text{ m} = 0.0276\text{ nm} = 0.276\text{ \AA}$$
+          </div>
+          <p class="text-slate-400"><em>Significance:</em> Even a neutral gas molecule at room temperature exhibits a de Broglie wavelength comparable to atomic dimensions!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 font-mono">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded font-mono">Core Relations</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">de Broglie Relation</p>
+          <p class="text-xs font-bold text-white mt-1 font-mono">$\lambda = \frac{h}{p} = \frac{h}{\sqrt{2mqV}}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Electron Constant</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1 font-mono">$\lambda_e = \frac{1.227}{\sqrt{V}}\text{ nm}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Thermal Neutrons</p>
+          <p class="text-xs font-bold text-amber-300 mt-1 font-mono">$\lambda = \frac{h}{\sqrt{3mkT}}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Proton / Alpha Ratio</p>
+          <p class="text-xs font-bold text-rose-400 mt-1 font-mono">$\frac{\lambda_p}{\lambda_\alpha} = 2\sqrt{2}$ (Same $V$)</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Matter Wave Packet Simulation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('matterWaveCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const voltSlider = document.getElementById('voltSlider');
+      const particleSelect = document.getElementById('particleSelect');
+      const toggleAnimBtn = document.getElementById('toggleAnimBtn');
+
+      const voltVal = document.getElementById('voltVal');
+      const massLabel = document.getElementById('massLabel');
+      const particleBadge = document.getElementById('particleBadge');
+
+      const lambdaOut = document.getElementById('lambdaOut');
+      const keOut = document.getElementById('keOut');
+      const momOut = document.getElementById('momOut');
+      const velOut = document.getElementById('velOut');
+
+      let isPaused = false;
+      let wavePhase = 0;
+      let particleX = 140;
+
+      toggleAnimBtn.addEventListener('click', () => {
+        isPaused = !isPaused;
+        toggleAnimBtn.textContent = isPaused ? 'Resume Motion' : 'Pause Motion';
+      });
+
+      // Particle physics constants (mass in kg, charge in Coulombs)
+      const particleData = {
+        electron: { name: 'Electron (e⁻)', mass: 9.109e-31, q: 1.602e-19, color: '#38bdf8', r: 8, label: 'e⁻' },
+        proton: { name: 'Proton (p⁺)', mass: 1.673e-27, q: 1.602e-19, color: '#10b981', r: 11, label: 'p⁺' },
+        deuteron: { name: 'Deuteron (²H⁺)', mass: 3.344e-27, q: 1.602e-19, color: '#f59e0b', r: 13, label: 'd⁺' },
+        alpha: { name: 'Alpha (α²⁺)', mass: 6.644e-27, q: 3.204e-19, color: '#ef4444', r: 15, label: 'α²⁺' }
+      };
+
+      function renderLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const V_volts = parseFloat(voltSlider.value);
+        const pKey = particleSelect.value;
+        const pInfo = particleData[pKey];
+
+        voltVal.textContent = `${V_volts.toFixed(0)} V`;
+        massLabel.textContent = pInfo.name.split(' ')[0];
+        particleBadge.textContent = `PARTICLE: ${pInfo.name.toUpperCase()}`;
+
+        // Physics Calculation
+        // K = q * V in Joules
+        const K_joules = pInfo.q * V_volts;
+        const K_eV = (pInfo.q / 1.602e-19) * V_volts;
+
+        // p = sqrt(2 * m * K)
+        const p_kgms = Math.sqrt(2 * pInfo.mass * K_joules);
+
+        // v = p / m
+        const vel_ms = p_kgms / pInfo.mass;
+
+        // lambda = h / p (m)
+        const h_const = 6.626e-34;
+        const lambda_m = h_const / p_kgms;
+        const lambda_nm = lambda_m * 1e9;
+        const lambda_ang = lambda_m * 1e10;
+
+        lambdaOut.textContent = `${lambda_ang.toFixed(3)} Å (${lambda_nm.toFixed(4)} nm)`;
+        keOut.textContent = `${K_eV.toFixed(0)} eV`;
+        momOut.textContent = `${(p_kgms).toExponential(2)} kg·m/s`;
+        velOut.textContent = `${(vel_ms).toExponential(2)} m/s`;
+
+        if (!isPaused) {
+          wavePhase += (0.04 + (Math.log10(vel_ms) - 3) * 0.015);
+          particleX += (1.4 + (Math.log10(vel_ms) - 3) * 0.4);
+          if (particleX > canvas.width - 100) {
+            particleX = 140;
+          }
+        }
+
+        renderMatterWaveScene(pInfo, lambda_ang, vel_ms, particleX, wavePhase, V_volts);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderMatterWaveScene(pInfo, lambda_ang, vel, pX, phase, V) {
+        const cy = canvas.height / 2;
+
+        // 1. Electric Accelerating Grid Plates on Left
+        const grid1X = 90;
+        const grid2X = 220;
+
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 2.5;
+        ctx.setLineDash([6, 6]);
+        // Anode plate 1
+        ctx.beginPath(); ctx.moveTo(grid1X, cy - 80); ctx.lineTo(grid1X, cy + 80); ctx.stroke();
+        // Anode plate 2
+        ctx.beginPath(); ctx.moveTo(grid2X, cy - 80); ctx.lineTo(grid2X, cy + 80); ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = '#64748b';
+        ctx.font = '10px monospace';
+        ctx.fillText('0V', grid1X - 8, cy - 90);
+        ctx.fillText(`+${V.toFixed(0)}V Grid`, grid2X - 25, cy - 90);
+
+        // Electric field acceleration arrows between grids
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.25)';
+        ctx.lineWidth = 1.2;
+        for (let y = cy - 60; y <= cy + 60; y += 30) {
+          ctx.beginPath();
+          ctx.moveTo(grid1X + 8, y);
+          ctx.lineTo(grid2X - 8, y);
+          ctx.stroke();
+        }
+
+        // 2. Central Classical Particle Trajectory Axis
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(50, cy);
+        ctx.lineTo(canvas.width - 50, cy);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // 3. Matter Wave Packet Guided Waveform
+        // Scale wavelength on canvas for visual appreciation
+        const visualWaveLen = Math.max(22, Math.min(110, lambda_ang * 28));
+        const envelopeWidth = 140;
+
+        ctx.strokeStyle = pInfo.color;
+        ctx.lineWidth = 2.8;
+        ctx.beginPath();
+
+        // Draw Gaussian wave packet centered at particleX
+        for (let x = 60; x <= canvas.width - 60; x += 2) {
+          const dx = x - pX;
+          // Gaussian envelope modulation
+          const envelope = Math.exp(-(dx * dx) / (2 * envelopeWidth * envelopeWidth));
+          // Sinusoidal matter wave oscillation
+          const k_vis = (2 * Math.PI) / visualWaveLen;
+          const yWave = cy + Math.sin(k_vis * (x - pX) - phase * 6) * 45 * envelope;
+
+          if (x === 60) ctx.moveTo(x, yWave);
+          else ctx.lineTo(x, yWave);
+        }
+        ctx.stroke();
+
+        // Glowing wave packet contour
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
+        ctx.lineWidth = 1.0;
+        ctx.stroke();
+
+        // 4. Moving Quantum Particle Core Sphere
+        ctx.fillStyle = pInfo.color;
+        ctx.beginPath();
+        ctx.arc(pX, cy, pInfo.r, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 9px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(pInfo.label, pX, cy + 3);
+
+        // 5. Wavelength Visual Bracket above packet
+        if (pX > 160 && pX < canvas.width - 180) {
+          const brkY = cy - 65;
+          ctx.strokeStyle = '#fbbf24';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(pX - visualWaveLen / 2, brkY);
+          ctx.lineTo(pX + visualWaveLen / 2, brkY);
+          ctx.moveTo(pX - visualWaveLen / 2, brkY - 5);
+          ctx.lineTo(pX - visualWaveLen / 2, brkY + 5);
+          ctx.moveTo(pX + visualWaveLen / 2, brkY - 5);
+          ctx.lineTo(pX + visualWaveLen / 2, brkY + 5);
+          ctx.stroke();
+
+          ctx.fillStyle = '#fbbf24';
+          ctx.font = 'bold 10px monospace';
+          ctx.fillText(`λ = ${lambda_ang.toFixed(2)} Å`, pX, brkY - 8);
+        }
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`de Broglie Dual Relation: λ = h/p = h/√(2mqV) | Higher accelerating voltage V ➔ Shorter de Broglie wavelength λ`, canvas.width / 2, canvas.height - 10);
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

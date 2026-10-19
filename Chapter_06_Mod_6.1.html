@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Faraday's & Lenz's Laws</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 6.1</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 04: Electromagnetic Induction • Chapter 06</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Magnetic Flux, Faraday's Laws & Lenz's Law</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Surface integral of magnetic field, rate of change of flux, induced EMF, opposition dynamics, and energy conservation.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek aisi spring ko jo badlav (change) se sakht nafrat karti hai: jab aap use andar push karte hain toh woh aapko bahar dhakelti hai, aur jab aap use bahar khinchte hain toh woh aapko wapas kheenchti hai. <strong class="text-white">Lenz's Law</strong> electrical circuits ka bilkul wahi universal inertia hai! Jab kisi coil ke paas magnet ka North pole aage badhta hai, toh coil turant apne samne North pole bana leti hai taaki use repel kar sake. Jab magnet door jaata hai, toh coil turant South pole bankar use attract karne lagti hai. Yeh virodh (opposition) koi accidental cheez nahi hai; agar yeh virodh na hota, toh bina koi mechanical work kiye free electricity create ho jaati, jo <strong class="text-white">Conservation of Energy</strong> ke khilaaf hoti!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Magnetic Flux ($\Phi_B$)</h3>
+          <p class="text-sm text-slate-400 mb-2">Dot product of magnetic field and area vector element:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\Phi_B = \int \vec{B}\cdot d\vec{A} = B A \cos\theta$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">SI Unit: $\text{Weber (Wb)} = \text{Tesla}\cdot\text{m}^2 = \text{V}\cdot\text{s}$. Scalar quantity (can be positive, negative, or zero).</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Faraday-Lenz Law of Induction</h3>
+          <p class="text-sm text-slate-400 mb-2">Induced EMF equals the negative time derivative of magnetic flux:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\mathcal{E} = -N \frac{d\Phi_B}{dt}, \quad I = \frac{\mathcal{E}}{R} = -\frac{N}{R}\frac{d\Phi_B}{dt}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">The negative sign mathematically embodies Lenz's Law. Induced charge flow $\Delta q = \frac{\Delta \Phi_B}{R}$ is independent of time!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Bar Magnet Insertion & Coil Response) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Faraday Induction & Lenz Opposition Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="poleToggleBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Facing Pole: North Pole (N)
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="faradayCanvas" width="800" height="380" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Magnet Position ($x$)</span>
+            <span id="posVal" class="text-cyan-400 font-mono font-bold">-14.0 cm</span>
+          </div>
+          <input id="posSlider" type="range" min="-22" max="22" step="0.5" value="-14" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Motion Velocity ($v = dx/dt$)</span>
+            <span id="velVal" class="text-amber-400 font-mono font-bold">Manual Drag Mode</span>
+          </div>
+          <button id="autoOscBtn" type="button" class="w-full bg-slate-800 hover:bg-slate-700 text-xs py-1.5 rounded font-semibold text-slate-200 border border-slate-700 transition">
+            Start Harmonic Plunge
+          </button>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Coil Turns ($N$)</span>
+            <span id="turnsVal" class="text-emerald-400 font-mono font-bold">100 Turns</span>
+          </div>
+          <input id="turnsSlider" type="range" min="20" max="300" step="10" value="100" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Total Flux ($\Phi_B$):</span>
+          <div id="fluxVal" class="text-cyan-400 font-bold text-sm mt-0.5">2.45 mWb</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Induced EMF ($\mathcal{E} = -d\Phi/dt$):</span>
+          <div id="emfVal" class="text-amber-400 font-bold text-sm mt-0.5">0.00 mV</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Coil Face Polarity:</span>
+          <div id="polarityVal" class="text-emerald-400 font-bold text-sm mt-0.5">Neutral (No Motion)</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Mechanical Interaction:</span>
+          <div id="forceDescVal" class="text-indigo-300 font-bold text-sm mt-0.5">Zero Resistance</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Faraday-Lenz Formulation & Induced Charge -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Fundamental Law</span>
+          <h4 class="text-white font-semibold text-base mt-1">Mathematical Derivation of Faraday's Law & Induced Charge Independence</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Magnet approaching a closed coil -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 250" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-v" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+              <marker id="arr-bline" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-opp" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#ef4444"/>
+              </marker>
+            </defs>
+
+            <!-- Bar Magnet (Approaching from left to right) -->
+            <!-- South on Left (Blue), North on Right (Red) -->
+            <rect x="70" y="95" width="70" height="50" fill="#1e3a8a" stroke="#3b82f6" stroke-width="2" />
+            <text x="100" y="125" fill="#ffffff" font-size="14" font-weight="bold" font-family="monospace">S</text>
+
+            <rect x="140" y="95" width="70" height="50" fill="#991b1b" stroke="#ef4444" stroke-width="2" />
+            <text x="170" y="125" fill="#ffffff" font-size="14" font-weight="bold" font-family="monospace">N</text>
+
+            <!-- Velocity Vector v (Rightwards) -->
+            <line x1="220" y1="120" x2="280" y2="120" stroke="#fbbf24" stroke-width="3" marker-end="url(#arr-v)" />
+            <text x="235" y="110" fill="#fbbf24" font-size="12" font-weight="bold" font-family="monospace">v (Approach)</text>
+
+            <!-- Expanding Magnetic Field Lines from North Pole entering the coil -->
+            <path d="M 210 105 C 270 95, 340 80, 420 70" fill="none" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arr-bline)" />
+            <path d="M 210 120 L 415 120" fill="none" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr-bline)" />
+            <path d="M 210 135 C 270 145, 340 160, 420 170" fill="none" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arr-bline)" />
+
+            <!-- Circular Conducting Coil Viewed at Angle (Perspective Ellipse) -->
+            <ellipse cx="450" cy="120" rx="28" ry="75" fill="rgba(15, 23, 42, 0.7)" stroke="#10b981" stroke-width="4" />
+            
+            <!-- Induced Current Arrow on Front Rim (Anticlockwise $\implies$ North Polarity) -->
+            <text x="440" y="35" fill="#10b981" font-size="12" font-weight="bold" font-family="monospace">Induced North Pole (N)</text>
+            <text x="440" y="215" fill="#cbd5e1" font-size="11" font-family="monospace">Conducting Coil (Resistor R)</text>
+
+            <!-- Repulsive Opposing Force Arrow -->
+            <line x1="410" y1="120" x2="350" y2="120" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arr-opp)" />
+            <text x="310" y="142" fill="#ef4444" font-size="11" font-weight="bold" font-family="monospace">F_repulsion (Lenz)</text>
+
+            <!-- Galvanometer attached to coil at bottom -->
+            <line x1="450" y1="195" x2="540" y2="195" stroke="#94a3b8" stroke-width="2" />
+            <line x1="450" y1="45" x2="540" y2="45" stroke="#94a3b8" stroke-width="2" />
+            <line x1="540" y1="45" x2="540" y2="100" stroke="#94a3b8" stroke-width="2" />
+            <line x1="540" y1="140" x2="540" y2="195" stroke="#94a3b8" stroke-width="2" />
+            
+            <circle cx="540" cy="120" r="20" fill="#0f172a" stroke="#fbbf24" stroke-width="2" />
+            <text x="535" y="125" fill="#fbbf24" font-size="12" font-weight="bold" font-family="monospace">G</text>
+            <line x1="540" y1="120" x2="550" y2="108" stroke="#ef4444" stroke-width="2" />
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 6.1A: North pole of bar magnet plunging towards coil; induced current creates a North face to resist the increase in flux.</p>
+        </div>
+
+        <p>1. Consider a closed loop of resistance $R$ linked with magnetic flux $\Phi_B = \vec{B}\cdot\vec{A}$.</p>
+        <p>2. By Faraday's second law of electromagnetic induction, the magnitude of induced EMF is proportional to the time rate of change of magnetic flux:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\mathcal{E} \propto \frac{d\Phi_B}{dt}$$
+        </div>
+        <p>3. Incorporating Lenz's law, which states that the polarity of induced EMF always opposes the change in flux producing it:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\mathcal{E} = -N \frac{d\Phi_B}{dt}$$
+        </div>
+        <p>4. By Ohm's law, the induced instantaneous current $I$ in a circuit of total resistance $R$ is:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$I = \frac{\mathcal{E}}{R} = -\frac{N}{R} \frac{d\Phi_B}{dt}$$
+        </div>
+        <p>5. The infinitesimal charge $dq$ that flows through the circuit in time interval $dt$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$dq = I \, dt = \left( -\frac{N}{R} \frac{d\Phi_B}{dt} \right) dt = -\frac{N}{R} d\Phi_B$$
+        </div>
+        <p>6. Total induced charge $\Delta q$ when flux changes from $\Phi_1$ to $\Phi_2$:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$\Delta q = \int dq = \frac{N}{R} |\Delta \Phi_B| = \frac{N (\Phi_1 - \Phi_2)}{R}$$
+        </div>
+        <p class="text-slate-400"><em>Vital Conclusion:</em> While induced EMF ($\mathcal{E}$) and induced current ($I$) depend inversely on the time taken ($\Delta t$), the total charge passed ($\Delta q$) depends strictly on total change in flux ($\Delta \Phi$) and resistance ($R$), and is completely <strong class="text-white">independent of time or rate of motion</strong>!</p>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Falling Magnet Through a Conducting Tube</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* A bar magnet is dropped vertically through a long copper pipe. What is its acceleration?
+            <br>• As it falls, increasing flux induces eddy currents in the pipe wall which exert an upward opposing magnetic force on the falling magnet.
+            <br>• Hence, acceleration is strictly <strong class="text-white">less than $g$ ($a < g$)</strong>.
+            <br>• Eventually, upward magnetic drag equals downward gravity ($mg$), and the magnet falls with a constant terminal velocity ($a = 0$)!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Magnet Dropped Through a Cut Ring</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Exam Trap:* What happens if the ring has a small cut (open circuit)?
+            <br>• Change in magnetic flux still induces an EMF across the cut ends ($\mathcal{E} \ne 0$).
+            <br>• However, because the circuit is broken, <strong class="text-white">no continuous current can flow ($I = 0$)</strong>.
+            <br>• No opposing magnetic pole is developed; thus no retarding magnetic force acts on the magnet.
+            <br>• The magnet falls freely with acceleration exactly equal to gravity: <strong class="text-white">$a = g$</strong>.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Slow vs Fast Withdrawal Charge Transfer</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Conceptual Trap:* A magnet is pulled out of a coil rapidly in Case A, and very slowly in Case B. In which case is more charge transferred?
+            <br>*Correct Answer:* <strong class="text-white">EQUAL IN BOTH CASES!</strong>
+            $$\Delta q = \frac{\Delta \Phi}{R}$$
+            Rapid withdrawal produces large $\mathcal{E}$ and large $I$ for a short time, while slow withdrawal produces small $I$ over a longer time. The total charge $\Delta q$ is identical.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Lenz's Law and Conservation of Energy</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            If induced current assisted the motion instead of opposing it, a gentle push would accelerate the magnet perpetually without consuming energy, violating the First Law of Thermodynamics. The mechanical work done by the external agent against the repulsive/attractive magnetic force is what transforms into electrical energy, and ultimately into Joule heat ($I^2Rt$).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A square loop of side $10\text{ cm}$ and resistance $0.5\text{ }\Omega$ is placed vertically in the east-west plane. A uniform magnetic field of $0.10\text{ T}$ is set up across the plane in the north-east direction. The magnetic field is decreased to zero in $0.70\text{ s}$ at a steady rate. Determine the magnitudes of induced EMF and current during this time-interval.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Area of the square loop $A = (0.10\text{ m})^2 = 1.0 \times 10^{-2}\text{ m}^2$.</p>
+          <p>2. The plane of the loop is in the east-west plane, so its normal points North. Field is in the North-East direction, making angle $\theta = 45^\circ$ with the area vector.</p>
+          <p>3. Initial magnetic flux $\Phi_1$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\Phi_1 = B A \cos 45^\circ = (0.10) \times (1.0 \times 10^{-2}) \times \frac{1}{\sqrt{2}} = \frac{10^{-3}}{\sqrt{2}}\text{ Wb} \approx 0.707 \times 10^{-3}\text{ Wb}$$
+          </div>
+          <p>4. Final magnetic flux $\Phi_2 = 0$. Change in flux $\Delta \Phi = \Phi_2 - \Phi_1 = -0.707 \times 10^{-3}\text{ Wb}$.</p>
+          <p>5. Induced EMF magnitude:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\mathcal{E} = \frac{|\Delta \Phi|}{\Delta t} = \frac{0.707 \times 10^{-3}\text{ Wb}}{0.70\text{ s}} \approx 1.01 \times 10^{-3}\text{ V} \approx 1.0\text{ mV}$$
+          </div>
+          <p>6. Induced current:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$I = \frac{\mathcal{E}}{R} = \frac{1.01 \times 10^{-3}\text{ V}}{0.5\text{ }\Omega} \approx 2.02 \times 10^{-3}\text{ A} \approx 2.0\text{ mA}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: The magnetic flux linked with a coil of resistance $10\text{ }\Omega$ varies with time according to the equation $\Phi_B = (6t^2 - 5t + 1)\text{ Wb}$. Find the magnitude of induced current at $t = 0.25\text{ s}$ and determine the total charge that passes through the coil between $t = 0$ and $t = 2\text{ s}$.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Instantaneous induced EMF by differentiation:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\mathcal{E} = -\frac{d\Phi_B}{dt} = -\frac{d}{dt}(6t^2 - 5t + 1) = -(12t - 5)\text{ Volts}$$
+          </div>
+          <p>2. At $t = 0.25\text{ s}$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\mathcal{E}(0.25) = -(12 \times 0.25 - 5) = -(3 - 5) = +2\text{ Volts}$$
+            $$I = \frac{|\mathcal{E}|}{R} = \frac{2\text{ V}}{10\text{ }\Omega} = 0.2\text{ A}$$
+          </div>
+          <p>3. Total charge transferred between $t = 0$ and $t = 2\text{ s}$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\Phi_i(t=0) = 6(0)^2 - 5(0) + 1 = 1\text{ Wb}$$
+            $$\Phi_f(t=2) = 6(2)^2 - 5(2) + 1 = 24 - 10 + 1 = 15\text{ Wb}$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\Delta q = \frac{|\Phi_f - \Phi_i|}{R} = \frac{|15 - 1|}{10} = \frac{14}{10} = 1.4\text{ Coulombs}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Magnetic Flux</p>
+          <p class="text-xs font-bold text-white mt-1">$\Phi_B = BA\cos\theta$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Faraday's Law</p>
+          <p class="text-xs font-bold text-white mt-1">$\mathcal{E} = -N\frac{d\Phi_B}{dt}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Induced Charge</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$\Delta q = \frac{\Delta\Phi_B}{R}$ (Time Indep.)</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Lenz Origin</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">Conservation of Energy</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Faraday & Lenz Canvas Simulation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('faradayCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const poleToggleBtn = document.getElementById('poleToggleBtn');
+      const posSlider = document.getElementById('posSlider');
+      const autoOscBtn = document.getElementById('autoOscBtn');
+      const turnsSlider = document.getElementById('turnsSlider');
+
+      const posVal = document.getElementById('posVal');
+      const velVal = document.getElementById('velVal');
+      const turnsVal = document.getElementById('turnsVal');
+
+      const fluxVal = document.getElementById('fluxVal');
+      const emfVal = document.getElementById('emfVal');
+      const polarityVal = document.getElementById('polarityVal');
+      const forceDescVal = document.getElementById('forceDescVal');
+
+      let facingPole = 'N'; // 'N' or 'S'
+      let isOscillating = false;
+      let oscPhase = 0;
+      let lastPos = -14.0;
+      let velocity = 0;
+
+      poleToggleBtn.addEventListener('click', () => {
+        facingPole = (facingPole === 'N') ? 'S' : 'N';
+        poleToggleBtn.textContent = `Facing Pole: ${facingPole === 'N' ? 'North Pole (N)' : 'South Pole (S)'}`;
+      });
+
+      autoOscBtn.addEventListener('click', () => {
+        isOscillating = !isOscillating;
+        autoOscBtn.textContent = isOscillating ? 'Stop Oscillation' : 'Start Harmonic Plunge';
+        autoOscBtn.className = isOscillating
+          ? 'w-full bg-rose-800 hover:bg-rose-700 text-xs py-1.5 rounded font-semibold text-slate-100 border border-rose-600 transition'
+          : 'w-full bg-slate-800 hover:bg-slate-700 text-xs py-1.5 rounded font-semibold text-slate-200 border border-slate-700 transition';
+      });
+
+      function renderLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        let currentPos = parseFloat(posSlider.value);
+        const N = parseInt(turnsSlider.value);
+        turnsVal.textContent = `${N} Turns`;
+
+        if (isOscillating) {
+          oscPhase += 0.05;
+          currentPos = Math.sin(oscPhase) * 16;
+          posSlider.value = currentPos.toFixed(1);
+        }
+
+        // Velocity evaluation (cm per frame)
+        velocity = (currentPos - lastPos) * 60; // scaled
+        lastPos = currentPos;
+
+        posVal.textContent = `${currentPos.toFixed(1)} cm`;
+        velVal.textContent = `${velocity.toFixed(1)} cm/s`;
+
+        // Physics Calculation
+        // Coil sits at x = 0.
+        // Flux model: Phi = Phi_max / (1 + (x / 6)^2)
+        const poleSign = (facingPole === 'N') ? 1 : -1;
+        const distFromCoil = Math.abs(currentPos);
+        const phiBase = 4.0e-3 / (1 + Math.pow(distFromCoil / 7.0, 2)); // Wb
+        const totalFlux = poleSign * phiBase;
+
+        // dPhi/dt = (dPhi/dx) * (dx/dt)
+        // d/dx [ 1 / (1 + (x/a)^2) ] = -2x/a^2 / (1 + (x/a)^2)^2
+        const dPhi_dx = - (2 * currentPos / 49.0) * (4.0e-3 / Math.pow(1 + Math.pow(distFromCoil / 7.0, 2), 2));
+        const v_m_s = velocity / 100; // m/s
+        const dPhi_dt = poleSign * dPhi_dx * v_m_s;
+        const inducedEMF = -N * dPhi_dt; // Volts
+
+        fluxVal.textContent = `${(Math.abs(totalFlux) * 1e3).toFixed(2)} mWb`;
+        emfVal.textContent = `${(inducedEMF * 1e3).toFixed(2)} mV`;
+
+        // Polarity and Lenz feedback
+        if (Math.abs(velocity) < 0.2) {
+          polarityVal.textContent = 'Neutral (No Motion)';
+          polarityVal.className = 'text-slate-400 font-bold text-sm mt-0.5';
+          forceDescVal.textContent = 'Zero Force';
+        } else if (currentPos < 0 && velocity > 0) {
+          // Approaching from left
+          if (facingPole === 'N') {
+            polarityVal.textContent = 'North Face (Anticlockwise)';
+            polarityVal.className = 'text-rose-400 font-bold text-sm mt-0.5';
+            forceDescVal.textContent = 'Repulsion (N resists N)';
+          } else {
+            polarityVal.textContent = 'South Face (Clockwise)';
+            polarityVal.className = 'text-blue-400 font-bold text-sm mt-0.5';
+            forceDescVal.textContent = 'Repulsion (S resists S)';
+          }
+        } else if (currentPos < 0 && velocity < 0) {
+          // Receding to left
+          if (facingPole === 'N') {
+            polarityVal.textContent = 'South Face (Clockwise)';
+            polarityVal.className = 'text-blue-400 font-bold text-sm mt-0.5';
+            forceDescVal.textContent = 'Attraction (S attracts N)';
+          } else {
+            polarityVal.textContent = 'North Face (Anticlockwise)';
+            polarityVal.className = 'text-rose-400 font-bold text-sm mt-0.5';
+            forceDescVal.textContent = 'Attraction (N attracts S)';
+          }
+        } else {
+          polarityVal.textContent = 'Opposing Flux Shift';
+          polarityVal.className = 'text-emerald-400 font-bold text-sm mt-0.5';
+          forceDescVal.textContent = 'Lenz Drag Active';
+        }
+
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        // Visual Scales: 1 cm = 13 px
+        const pxScale = 13;
+        const magnetXPx = cx + (currentPos * pxScale);
+
+        // 1. Draw Stationary Coil in the Center (x = cx)
+        renderCoilWithBulb(cx, cy, N, inducedEMF);
+
+        // 2. Draw Moving Bar Magnet
+        renderMagnet(magnetXPx, cy, facingPole);
+
+        // 3. Draw Piercing Magnetic Flux Lines
+        renderDynamicFieldLines(magnetXPx, cy, cx, facingPole, distFromCoil);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Lenz's Law in Action: Induced current creates magnetic pole that directly opposes relative velocity v`, cx, canvas.height - 12);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderCoilWithBulb(cx, cy, N, emf) {
+        // Coil Elliptical Turns
+        ctx.save();
+        ctx.lineWidth = 3.5;
+        const numTurnsVisual = 6;
+        const turnSpacing = 8;
+        const coilH = 85;
+
+        for (let i = -numTurnsVisual / 2; i <= numTurnsVisual / 2; i++) {
+          const tx = cx + i * turnSpacing;
+          ctx.strokeStyle = '#10b981';
+          ctx.beginPath();
+          ctx.ellipse(tx, cy, 14, coilH, 0, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+
+        // Connecting wires to load bulb at bottom
+        ctx.strokeStyle = '#64748b';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(cx - 25, cy + coilH);
+        ctx.lineTo(cx - 25, cy + coilH + 35);
+        ctx.lineTo(cx - 15, cy + coilH + 35);
+        ctx.moveTo(cx + 25, cy + coilH);
+        ctx.lineTo(cx + 25, cy + coilH + 35);
+        ctx.lineTo(cx + 15, cy + coilH + 35);
+        ctx.stroke();
+
+        // Load Indicator Bulb
+        const bulbY = cy + coilH + 35;
+        const glowFactor = Math.min(1.0, Math.abs(emf) * 80);
+        ctx.beginPath();
+        ctx.arc(cx, bulbY, 12, 0, Math.PI * 2);
+        ctx.fillStyle = glowFactor > 0.1 ? `rgba(251, 191, 36, ${0.2 + glowFactor * 0.8})` : '#1e293b';
+        ctx.fill();
+        ctx.strokeStyle = glowFactor > 0.1 ? '#fbbf24' : '#475569';
+        ctx.stroke();
+
+        if (glowFactor > 0.1) {
+          ctx.shadowColor = '#fbbf24';
+          ctx.shadowBlur = 15 * glowFactor;
+          ctx.stroke();
+          ctx.shadowBlur = 0;
+        }
+
+        ctx.fillStyle = '#cbd5e1';
+        ctx.font = 'bold 10px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Stationary Coil', cx, cy - coilH - 12);
+        ctx.restore();
+      }
+
+      function renderMagnet(x, y, pole) {
+        const mw = 120;
+        const mh = 44;
+        const leftX = x - mw / 2;
+        const topY = y - mh / 2;
+
+        const leftPole = (pole === 'N') ? 'S' : 'N';
+        const rightPole = (pole === 'N') ? 'N' : 'S';
+
+        // Left Half
+        ctx.fillStyle = (leftPole === 'N') ? '#991b1b' : '#1e3a8a';
+        ctx.fillRect(leftX, topY, mw / 2, mh);
+        ctx.strokeStyle = (leftPole === 'N') ? '#ef4444' : '#3b82f6';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(leftX, topY, mw / 2, mh);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 16px monospace';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(leftPole, leftX + mw / 4, y);
+
+        // Right Half (Facing coil if on left)
+        ctx.fillStyle = (rightPole === 'N') ? '#991b1b' : '#1e3a8a';
+        ctx.fillRect(x, topY, mw / 2, mh);
+        ctx.strokeStyle = (rightPole === 'N') ? '#ef4444' : '#3b82f6';
+        ctx.strokeRect(x, topY, mw / 2, mh);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(rightPole, x + mw / 4, y);
+
+        ctx.font = 'bold 9px monospace';
+        ctx.fillText('BAR MAGNET', x, topY - 8);
+      }
+
+      function renderDynamicFieldLines(mx, my, cx, pole, dist) {
+        ctx.save();
+        ctx.lineWidth = 1.4;
+        const lineOffsets = [-30, -15, 0, 15, 30];
+
+        lineOffsets.forEach(dy => {
+          ctx.strokeStyle = 'rgba(56, 189, 248, 0.4)';
+          ctx.beginPath();
+          if (mx < cx) {
+            // Emerging from magnet right face towards coil
+            ctx.moveTo(mx + 60, my + dy * 0.5);
+            ctx.quadraticCurveTo(cx - dist * 4, my + dy * 1.5, cx, my + dy * 2);
+          } else {
+            // Magnet on right of coil
+            ctx.moveTo(mx - 60, my + dy * 0.5);
+            ctx.quadraticCurveTo(cx + dist * 4, my + dy * 1.5, cx, my + dy * 2);
+          }
+          ctx.stroke();
+        });
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

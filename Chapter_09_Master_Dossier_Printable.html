@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class 12 Physics | Chapter 9 - Ray Optics Master Dossier</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    /* Print Optimization Rules */
+    @page {
+      size: A4 portrait;
+      margin: 12mm 14mm 12mm 14mm;
+    }
+
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        font-size: 10pt !important;
+        line-height: 1.35 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .avoid-break {
+        page-break-inside: avoid;
+      }
+      .print-border {
+        border: 1px solid #1e293b !important;
+      }
+      .print-table th {
+        background-color: #f1f5f9 !important;
+        color: #000000 !important;
+        border: 1px solid #94a3b8 !important;
+      }
+      .print-table td {
+        border: 1px solid #cbd5e1 !important;
+        color: #000000 !important;
+      }
+      .formula-box {
+        background: #f8fafc !important;
+        border-left: 3px solid #0f172a !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Sticky Top Action Bar (Auto-hidden in Print/PDF) -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex flex-wrap justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <div>
+        <span class="text-lg font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+        <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Open Access</span>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-3 mt-2 sm:mt-0">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-indigo-600/30 active:scale-95 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>Save as PDF (Clean Vector)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Body Container -->
+  <main class="max-w-4xl mx-auto px-4 py-8 md:py-12 space-y-10 print:p-0 print:m-0 print:space-y-6">
+
+    <!-- Dossier Title Block -->
+    <div class="border-b-2 border-indigo-500/40 pb-5 print:border-black print:pb-3">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-indigo-400 print:text-black">CBSE Class XII • Unit 06 (Optics)</p>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1 print:text-black print:text-2xl">
+            Chapter 09: Ray Optics and Optical Instruments
+          </h1>
+          <p class="text-slate-400 mt-1 text-sm print:text-gray-700">Master Revision Dossier • Spherical Mirrors, Curved Refraction, Lens Maker's Formula, Prism Deviation & Optical Instruments</p>
+        </div>
+        <div class="hidden sm:block text-right text-xs text-slate-500 print:block print:text-black">
+          <p class="font-mono">Open Access Initiative</p>
+          <p class="font-mono">Unit VI Bracket: 14 Marks Core</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: Master Formula & Optics Parameter Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        1. Definitive Formula & Optical Relations Matrix
+      </h2>
+      <div class="overflow-x-auto rounded-xl border border-slate-800 print:border-black">
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase tracking-wider border-b border-slate-800 font-semibold">
+            <tr>
+              <th class="p-2.5 border-r border-slate-800">Concept</th>
+              <th class="p-2.5 border-r border-slate-800">Mathematical Formulation</th>
+              <th class="p-2.5 border-r border-slate-800">Sign Conventions</th>
+              <th class="p-2.5">Boundary Conditions & Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/80 text-slate-300">
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Mirror Formula</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\frac{1}{v} + \frac{1}{u} = \frac{1}{f} = \frac{2}{R}, \quad m = -\frac{v}{u} = \frac{f}{f-u}$$</td>
+              <td class="p-2.5 text-[11px]">Concave: $f < 0$<br>Convex: $f > 0$</td>
+              <td class="p-2.5 text-[11px]">Focal length $f = R/2$ is independent of the surrounding medium. Longitudinal magnification $m_L = -m^2$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Apparent Depth & Shift</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$h' = \frac{h}{\mu}, \quad \text{Normal Shift } \Delta t = t\left(1 - \frac{1}{\mu}\right)$$</td>
+              <td class="p-2.5 text-[11px]">Denser into rarer viewing</td>
+              <td class="p-2.5 text-[11px]">Shift $\Delta t$ is independent of the distance of the object from the slab. Circle of vision area $A = \frac{\pi d^2}{\mu^2 - 1}$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Critical Angle & TIR</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\sin i_c = \frac{\mu_R}{\mu_D} = \frac{1}{\mu} \quad (i > i_c \text{ for TIR})$$</td>
+              <td class="p-2.5 text-[11px]">Must go from Denser to Rarer</td>
+              <td class="p-2.5 text-[11px]">Optical fibre numerical aperture: $\text{NA} = \sin\theta_a = \sqrt{\mu_1^2 - \mu_2^2}$. 100% reflection without loss.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Curved Surface Refraction</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\frac{\mu_2}{v} - \frac{\mu_1}{u} = \frac{\mu_2 - \mu_1}{R}$$</td>
+              <td class="p-2.5 text-[11px]">$\mu_1$: Object medium<br>$\mu_2$: Image medium</td>
+              <td class="p-2.5 text-[11px]">Valid for concave or convex surfaces. Light moves from medium 1 towards medium 2 across curvature $R$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Lens Maker's Formula</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\frac{1}{f} = \left(\frac{\mu_2}{\mu_1} - 1\right)\left(\frac{1}{R_1} - \frac{1}{R_2}\right)$$</td>
+              <td class="p-2.5 text-[11px]">Equiconvex: $R_1=+R, R_2=-R$<br>Equiconcave: $R_1=-R, R_2=+R$</td>
+              <td class="p-2.5 text-[11px]">For glass lens in water: $f_w = 4 f_a$. If immersed in liquid with $\mu_l > \mu_g$, lens nature reverses (convex becomes diverging).</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Thin Lens Equation</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\frac{1}{v} - \frac{1}{u} = \frac{1}{f}, \quad m = +\frac{v}{u} = \frac{f}{f+u}$$</td>
+              <td class="p-2.5 text-[11px]">Convex: $f > 0$<br>Concave: $f < 0$</td>
+              <td class="p-2.5 text-[11px]">Optical power $P = \frac{1}{f(\text{m})}$ in Dioptres (D). Combination in contact: $P_{\text{eq}} = P_1 + P_2 \implies \frac{1}{F} = \frac{1}{f_1} + \frac{1}{f_2}$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Prism Formula</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\delta = i + e - A, \quad \mu = \frac{\sin\left(\frac{A + D_m}{2}\right)}{\sin\left(\frac{A}{2}\right)}$$</td>
+              <td class="p-2.5 text-[11px]">At $D_m$: $i = e, r_1 = r_2 = A/2$</td>
+              <td class="p-2.5 text-[11px]">Thin prism: $\delta = (\mu - 1)A$. Dispersive power $\omega = \frac{\mu_V - \mu_R}{\mu_Y - 1}$ is independent of prism angle $A$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Compound Microscope</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$m_{\text{near}} = -\frac{L}{f_o}\left(1 + \frac{D}{f_e}\right), \quad m_{\infty} = -\frac{L}{f_o}\left(\frac{D}{f_e}\right)$$</td>
+              <td class="p-2.5 text-[11px]">$D = 25\text{ cm}$<br>$f_o, f_e \text{ both small}$</td>
+              <td class="p-2.5 text-[11px]">Total magnification $m = m_o \times m_e$. Normal adjustment tube length $L = v_o + f_e$. Near point tube length $L = v_o + u_e$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Astronomical Telescope</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$m_{\infty} = -\frac{f_o}{f_e} \quad (L = f_o + f_e)$$
+              $$m_{\text{near}} = -\frac{f_o}{f_e}\left(1 + \frac{f_e}{D}\right) \quad (L = f_o + u_e)$$</td>
+              <td class="p-2.5 text-[11px]">$f_o \text{ large, } f_e \text{ small}$<br>Aperture $D$ large</td>
+              <td class="p-2.5 text-[11px]">Resolving power $\text{RP} = \frac{D}{1.22\lambda} \propto D$. Normal adjustment gives relaxed eye viewing with final image at infinity.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 2: Stepwise Derivations Blueprint -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        2. Core Derivations Blueprint (Step-by-Step Board Proofs)
+      </h2>
+
+      <!-- Proof 1: Mirror Formula -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 9.1: The Mirror Equation ($\frac{1}{v} + \frac{1}{u} = \frac{1}{f}$) for a Concave Mirror
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Consider an object $AB$ placed beyond $C$ on the principal axis of a concave mirror of small aperture, forming real inverted image $A'B'$ between $C$ and $F$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. From similar right-angled triangles $\triangle A'B'P$ and $\triangle ABP$: $\frac{A'B'}{AB} = \frac{B'P}{BP}$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          3. From similar triangles $\triangle A'B'F$ and $\triangle MPF$ (where $MP \perp \text{axis}$ is incident aperture height, $MP = AB$): $\frac{A'B'}{MP} = \frac{A'B'}{AB} = \frac{B'F}{FP} = \frac{B'P - FP}{FP}$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          4. Equating both expressions: $\frac{B'P}{BP} = \frac{B'P - FP}{FP}$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          5. Applying Cartesian Sign Convention: $BP = -u$, $B'P = -v$, $FP = -f$:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$\frac{-v}{-u} = \frac{-v - (-f)}{-f} \implies \frac{v}{u} = \frac{v - f}{f} = \frac{v}{f} - 1$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          6. Dividing throughout by $v$:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\frac{1}{u} = \frac{1}{f} - \frac{1}{v} \implies \frac{1}{v} + \frac{1}{u} = \frac{1}{f}$$
+        </div>
+      </div>
+
+      <!-- Proof 2: Refraction at Curved Surface -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 9.2: Refraction at a Single Spherical Curved Surface ($\frac{\mu_2}{v} - \frac{\mu_1}{u} = \frac{\mu_2 - \mu_1}{R}$)
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Point object $O$ in medium $\mu_1$ forms image $I$ in medium $\mu_2$ across curved interface of radius $R$ and center $C$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Let ray $ON$ make angle $\alpha$ with axis, refracted ray $NI$ make angle $\beta$, and normal $NC$ make angle $\gamma$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          3. Exterior angles: In $\triangle ONC$, $i = \alpha + \gamma$. In $\triangle NIC$, $\gamma = r + \beta \implies r = \gamma - \beta$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          4. By Snell's Law for paraxial rays ($\mu_1 i = \mu_2 r$): $\mu_1(\alpha + \gamma) = \mu_2(\gamma - \beta) \implies \mu_1\alpha + \mu_2\beta = (\mu_2 - \mu_1)\gamma$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          5. Substituting paraxial angles $\alpha \approx \frac{NM}{-u}$, $\beta \approx \frac{NM}{v}$, $\gamma \approx \frac{NM}{R}$:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\mu_1\left(\frac{NM}{-u}\right) + \mu_2\left(\frac{NM}{v}\right) = (\mu_2 - \mu_1)\left(\frac{NM}{R}\right) \implies \frac{\mu_2}{v} - \frac{\mu_1}{u} = \frac{\mu_2 - \mu_1}{R}$$
+        </div>
+      </div>
+
+      <!-- Proof 3: Lens Maker's Formula -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 9.3: Deduction of the Lens Maker's Formula
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. For refraction at first surface (radius $R_1$, medium $\mu_1$ to $\mu_2$, intermediate image at $v_1$):
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$\frac{\mu_2}{v_1} - \frac{\mu_1}{u} = \frac{\mu_2 - \mu_1}{R_1} \quad \text{--- [Eq. 1]}$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          2. For refraction at second surface (radius $R_2$, medium $\mu_2$ to $\mu_1$, virtual object at $v_1$, final image at $v$):
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$\frac{\mu_1}{v} - \frac{\mu_2}{v_1} = \frac{\mu_1 - \mu_2}{R_2} = -\frac{\mu_2 - \mu_1}{R_2} \quad \text{--- [Eq. 2]}$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. Adding Eq. 1 and Eq. 2 ($\frac{\mu_2}{v_1}$ cancels): $\frac{\mu_1}{v} - \frac{\mu_1}{u} = (\mu_2 - \mu_1)\left(\frac{1}{R_1} - \frac{1}{R_2}\right)$. Dividing by $\mu_1$:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\frac{1}{v} - \frac{1}{u} = \left(\frac{\mu_2}{\mu_1} - 1\right)\left(\frac{1}{R_1} - \frac{1}{R_2}\right) = \frac{1}{f} \quad (\because u = \infty \implies v = f)$$
+        </div>
+      </div>
+
+      <!-- Proof 4: Master Prism Formula -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 9.4: The Master Prism Formula ($\mu = \frac{\sin\frac{A + D_m}{2}}{\sin\frac{A}{2}}$)
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Angle of deviation: $\delta = (i - r_1) + (e - r_2) = (i + e) - (r_1 + r_2)$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. In quadrilateral $AQOR$: $A + \angle QOR = 180^\circ$. In $\triangle QOR$: $r_1 + r_2 + \angle QOR = 180^\circ \implies r_1 + r_2 = A$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          3. Therefore: $\delta = i + e - A \implies i + e = A + \delta$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          4. At minimum deviation ($D_m$): $i = e$ and $r_1 = r_2 = r \implies 2r = A \implies r = A/2$. Also, $2i = A + D_m \implies i = \frac{A + D_m}{2}$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          5. Applying Snell's Law $\mu = \frac{\sin i}{\sin r}$:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\mu = \frac{\sin\left(\frac{A + D_m}{2}\right)}{\sin\left(\frac{A}{2}\right)}$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: High-Yield Exam Trap Matrix -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-rose-400 print:text-black border-l-4 border-rose-500 print:border-black pl-2.5">
+        3. High-Yield "Red Alert" Exam Trap Matrix
+      </h2>
+
+      <!-- Comparative Trap Table -->
+      <div class="rounded-xl border border-rose-900/40 print-border overflow-hidden">
+        <div class="bg-rose-950/40 print:bg-gray-100 p-2.5 border-b border-rose-900/40 print:border-black">
+          <p class="text-xs font-bold text-rose-300 print:text-black uppercase">
+            Master Trap 1: Physical Modifications across Optical Elements
+          </p>
+        </div>
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase font-semibold">
+            <tr>
+              <th class="p-2 border border-slate-800">Physical Action</th>
+              <th class="p-2 border border-slate-800 text-cyan-400 print:text-black">Effect on Focal Length ($f$)</th>
+              <th class="p-2 border border-slate-800 text-amber-400 print:text-black">Effect on Image Formation</th>
+              <th class="p-2 border border-slate-800 text-emerald-400 print:text-black">Physics Rationale</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Mirror immersed in water</td>
+              <td class="p-2 font-bold text-emerald-400 print:text-black">No Change ($f' = f$)</td>
+              <td class="p-2">Complete image, same size</td>
+              <td class="p-2 text-[11px]">$f = R/2$ is pure geometry; reflection laws are medium-independent.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Glass lens immersed in water</td>
+              <td class="p-2 font-mono text-rose-400 print:text-black">Increases 4 times ($f_w = 4 f_a$)</td>
+              <td class="p-2">Power drops to 25%</td>
+              <td class="p-2 text-[11px]">Relative index drops: $(\mu_g/\mu_w - 1) = (9/8 - 1) = 1/8$ vs $(1.5 - 1) = 1/2$.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Glass lens in liquid ($\mu_l > \mu_g$)</td>
+              <td class="p-2 font-mono text-rose-400 print:text-black">Sign Reverses ($f < 0$)</td>
+              <td class="p-2">Convex acts as Diverging</td>
+              <td class="p-2 text-[11px]">$(\mu_g/\mu_l - 1)$ becomes negative; convergence/divergence inverts.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Lens cut transversely ($\perp$ axis)</td>
+              <td class="p-2 font-mono text-amber-400 print:text-black">Doubles ($f' = 2f$)</td>
+              <td class="p-2">Power halves ($P' = P/2$)</td>
+              <td class="p-2 text-[11px]">One curved face becomes flat ($R_2 \to \infty$); plano-convex lens forms.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Lens cut longitudinally ($\parallel$ axis)</td>
+              <td class="p-2 font-bold text-emerald-400 print:text-black">No Change ($f' = f$)</td>
+              <td class="p-2 text-rose-400 print:text-black">Intensity drops to 50%</td>
+              <td class="p-2 text-[11px]">Curvatures $R_1, R_2$ unchanged, but aperture collection area halves.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Half aperture covered black</td>
+              <td class="p-2 font-bold text-emerald-400 print:text-black">No Change</td>
+              <td class="p-2 font-bold text-emerald-400 print:text-black">Full Image Still Formed!</td>
+              <td class="p-2 text-[11px]">Every uncovered point forms full image; only total brightness reduces.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Critical Pitfalls Grid -->
+      <div class="grid sm:grid-cols-2 gap-3 text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 2: Microscope vs Telescope Lenses Swap</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            A telescope <strong class="text-white print:text-black">CANNOT</strong> be converted into a microscope by reversing lenses:
+            <br>• Microscope requires <strong class="text-white print:text-black">$f_o < f_e$</strong>, both very small ($\sim \text{mm}$ to few $\text{cm}$).
+            <br>• Telescope requires <strong class="text-white print:text-black">$f_o \gg f_e$</strong> ($f_o \sim 100\text{ cm}$, large aperture for light gathering).
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 3: Telescope Magnification vs Resolving Power</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            Magnification $m = f_o/f_e$ only increases angular size.
+            <br>Ability to distinguish close stars is <strong class="text-white print:text-black">Resolving Power ($\text{RP} = \frac{D}{1.22\lambda}$)</strong>, which depends strictly on objective <strong class="text-white print:text-black">aperture diameter $D$</strong>, not on focal lengths!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Handcrafted Exemplar Numericals -->
+    <section class="space-y-4 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-amber-400 print:text-black border-l-4 border-amber-500 print:border-black pl-2.5">
+        4. Handcrafted Exemplars (Analytical Numerical Solutions)
+      </h2>
+
+      <!-- Problem 1 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black">Problem 1: Lens Maker's Formula & Liquid Immersion</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden">Exemplar 01</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          A convex lens of glass ($\mu_g = 1.5$) has focal length $15\text{ cm}$ in air. It is immersed in a liquid of refractive index $\mu_l = 1.65$. Calculate its focal length in the liquid and state its optical nature.
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> In air: $\frac{1}{f_a} = (\mu_g - 1)\left(\frac{1}{R_1} - \frac{1}{R_2}\right) \implies \frac{1}{15} = (1.5 - 1)\Delta R \implies \Delta R = \frac{1}{7.5}\text{ cm}^{-1}$.</p>
+          <p class="text-slate-400 print:text-black">In liquid ($\mu_l = 1.65$):</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$\frac{1}{f_l} = \left(\frac{\mu_g}{\mu_l} - 1\right)\Delta R = \left(\frac{1.5}{1.65} - 1\right)\left(\frac{1}{7.5}\right) = \left(\frac{1.5 - 1.65}{1.65}\right)\left(\frac{1}{7.5}\right) = -\frac{0.15}{1.65 \times 7.5} = -\frac{1}{82.5}$$
+          </div>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$f_l = -82.5\text{ cm} \quad (\text{Behaves as a Diverging / Concave Lens})$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black">Problem 2: Astronomical Telescope Parameters</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden">Exemplar 02</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          An astronomical telescope has an objective of focal length $100\text{ cm}$ and an eyepiece of focal length $5\text{ cm}$. Find: (i) Magnifying power in normal adjustment, (ii) Separation between lenses, and (iii) Magnifying power when the final image is formed at the near point ($D = 25\text{ cm}$).
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> $f_o = 100\text{ cm}, f_e = 5\text{ cm}, D = 25\text{ cm}$.</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$\text{(i) Normal Adjustment: } m = -\frac{f_o}{f_e} = -\frac{100}{5} = -20$$
+            $$\text{(ii) Tube Length: } L = f_o + f_e = 100 + 5 = 105\text{ cm}$$
+          </div>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$\text{(iii) Near Point: } m = -\frac{f_o}{f_e}\left(1 + \frac{f_e}{D}\right) = -20\left(1 + \frac{5}{25}\right) = -20(1.2) = -24$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Printable Cut-Out Flashcard Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        5. Printable Pocket Flashcard Grid
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Mirror Law</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1">$\frac{1}{v} + \frac{1}{u} = \frac{1}{f}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Lens Law</p>
+          <p class="font-bold text-white print:text-black text-xs mt-1">$\frac{1}{v} - \frac{1}{u} = \frac{1}{f}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Prism Formula</p>
+          <p class="font-bold text-white print:text-black text-[11px] mt-1">$\mu = \frac{\sin\frac{A+D_m}{2}}{\sin\frac{A}{2}}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Telescope Power</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1">$m = -\frac{f_o}{f_e}$ ($L=f_o+f_e$)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Document Footer -->
+    <footer class="pt-6 border-t border-slate-800 text-center text-xs text-slate-500 print:text-black print:pt-3">
+      <p>AXIOM Physics Class 12 • Open Access Physics Initiative • Distributed under Creative Commons Free Access</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>

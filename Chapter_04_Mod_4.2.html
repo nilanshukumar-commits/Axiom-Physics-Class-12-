@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Ampere's Circuital Law & Solenoid</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 4.2</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 03: Magnetic Effects of Current • Chapter 04[cite: 12, 13]</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Ampere's Circuital Law & Straight Solenoid</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Closed-loop line integrals, Amperian loops, infinite straight wire field, and interior uniform field of a long solenoid.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Electrostatics mein jab complex charge distribution ka field nikalna hota tha, toh hum Coulomb's Law ke lambe integration se bachne ke liye <strong class="text-white">Gauss's Law</strong> (surface integral $\oint \vec{E}\cdot d\vec{A}$) use karte the. Theek waise hi, magnetostatics mein Biot-Savart Law ke lambe calculus se bachne ke liye hamare paas <strong class="text-white">Ampere's Circuital Law</strong> hai! Farq sirf itna hai ki Gauss's law me ek 3D closed surface charge ko qaid karti hai, jabki Ampere's law me ek 2D closed loop (Amperian loop) wire ke current ko lasso ki tarah gher leta hai. Agar loop ke andar se koi net current pass nahi ho raha, toh chahe bahar kitna bhi current ho, loop ke along net circulation hamesha zero aayega!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Ampere's Circuital Law (ACL)</h3>
+          <p class="text-sm text-slate-400 mb-2">Line integral of magnetic field $\vec{B}$ around any closed path equals $\mu_0$ times the total threading current:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\oint \vec{B} \cdot d\vec{l} = \mu_0 I_{\text{enclosed}}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Right-hand rule sign convention: Curl fingers along loop integration direction; thumb points along positive current direction.</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Straight Wire & Long Solenoid Field</h3>
+          <p class="text-sm text-slate-400 mb-2">Core applications derived via Amperian symmetry:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$B_{\text{wire}} = \frac{\mu_0 I}{2\pi r}, \quad B_{\text{solenoid}} = \mu_0 n I$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Where $n = N/L$ is the number of turns per unit length[cite: 13]. At extreme ends of a finite solenoid: $B_{\text{end}} \approx \frac{1}{2}\mu_0 n I$.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Amperian Loop & Solenoid Simulator) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Amperian Loop & Solenoid Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="viewModeBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Switch: Straight Wire Loop / Long Solenoid
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="ampereCanvas" width="800" height="400" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="param1Label">Threading Current ($I$)</span>
+            <span id="param1Val" class="text-cyan-400 font-mono font-bold">5.0 A</span>
+          </div>
+          <input id="param1Slider" type="range" min="1" max="20" step="0.5" value="5" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="param2Label">Amperian Radius ($r$)</span>
+            <span id="param2Val" class="text-amber-400 font-mono font-bold">6.0 cm</span>
+          </div>
+          <input id="param2Slider" type="range" min="3" max="16" step="0.5" value="6" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="param3Label">Outside Current Source</span>
+            <span id="param3Val" class="text-emerald-400 font-mono font-bold">Enabled (Zero Net Line Integral)</span>
+          </div>
+          <div class="flex items-center mt-2">
+            <input id="outsideToggle" type="checkbox" checked class="w-4 h-4 accent-emerald-500 cursor-pointer">
+            <label for="outsideToggle" class="text-xs text-slate-400 ml-2 cursor-pointer">Show Outside Wire (+I_out)</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Line Integral ($\oint \vec{B}\cdot d\vec{l}$):</span>
+          <div id="integralVal" class="text-cyan-400 font-bold text-sm mt-0.5">6.28 × 10⁻⁶ T·m</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Boundary Field ($B$):</span>
+          <div id="fieldVal" class="text-amber-400 font-bold text-sm mt-0.5">16.67 μT</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Enclosed Ampere Law Check:</span>
+          <div id="ampereCheckVal" class="text-emerald-400 font-bold text-sm mt-0.5">∮B·dl = μ₀ I_enc (Invariant)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint[cite: 13]</span>
+      </div>
+
+      <!-- Derivation 1: Field of Infinitely Long Straight Wire -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Application A</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Magnetic Field of an Infinitely Long Straight Wire using ACL[cite: 13]</h4>
+        </div>
+        <p>1. Consider an infinitely long straight wire carrying steady current $I$. By cylindrical symmetry, magnetic field lines are concentric circles in planes perpendicular to the wire[cite: 13].</p>
+        <p>2. Construct a circular Amperian loop of radius $r$ centered on the wire. At every point on this loop, $\vec{B}$ is tangential to the circle, and its magnitude $B$ is constant due to radial symmetry.</p>
+        <p>3. Tangential element vector $d\vec{l}$ is parallel to $\vec{B}$ everywhere ($\theta = 0^\circ \implies \vec{B}\cdot d\vec{l} = B\,dl\cos 0^\circ = B\,dl$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\oint \vec{B}\cdot d\vec{l} = \oint B\,dl = B \oint dl = B(2\pi r)$$
+        </div>
+        <p>4. Total current enclosed by the Amperian loop is $I_{\text{enc}} = I$. Applying Ampere's Circuital Law[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\oint \vec{B}\cdot d\vec{l} = \mu_0 I_{\text{enc}} \implies B(2\pi r) = \mu_0 I$$
+        </div>
+        <p>5. Solving for magnetic field magnitude[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$B = \frac{\mu_0 I}{2\pi r} \quad \left(B \propto \frac{1}{r}\right) \text{[cite: 13]}$$
+        </div>
+      </div>
+
+      <!-- Derivation 2: Field of an Ideal Straight Solenoid -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Application B</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Magnetic Field Inside a Long Straight Solenoid ($B = \mu_0 n I$)[cite: 13]</h4>
+        </div>
+        <p>1. Consider a long tightly wound solenoid having $n$ turns per unit length carrying current $I$[cite: 13]. Inside the solenoid, field lines are parallel and dense (strong uniform field); outside, field lines spread out over vast volume and are nearly zero ($\vec{B}_{\text{out}} \approx 0$).</p>
+        <p>2. Construct a rectangular Amperian loop $abcd$ of length $L$ and width $w$, where side $ab$ lies parallel to the axis inside the solenoid, sides $bc$ and $da$ are perpendicular to the axis, and side $cd$ lies completely outside.</p>
+        <p>3. Evaluate the closed line integral across all 4 segments:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\oint \vec{B}\cdot d\vec{l} = \int_a^b \vec{B}\cdot d\vec{l} + \int_b^c \vec{B}\cdot d\vec{l} + \int_c^d \vec{B}\cdot d\vec{l} + \int_d^a \vec{B}\cdot d\vec{l}$$
+        </div>
+        <p>4. Individual segment breakdown:</p>
+        <p class="text-slate-400">• Along $ab$ (inside): $\vec{B} \parallel d\vec{l} \implies \int_a^b B\,dl = B L$.</p>
+        <p class="text-slate-400">• Along $bc$ and $da$: $\vec{B} \perp d\vec{l} \implies \cos 90^\circ = 0 \implies \int_b^c = \int_d^a = 0$.</p>
+        <p class="text-slate-400">• Along $cd$ (outside): $\vec{B} \approx 0 \implies \int_c^d = 0$.</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\oint \vec{B}\cdot d\vec{l} = B L + 0 + 0 + 0 = B L$$
+        </div>
+        <p>5. Number of turns enclosed by the loop of length $L$ is $N_{\text{enc}} = n L$. Total enclosed current $I_{\text{enc}} = (n L) I$.</p>
+        <p>6. Applying Ampere's Law $\oint \vec{B}\cdot d\vec{l} = \mu_0 I_{\text{enc}}$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$B L = \mu_0 (n L I) \implies B = \mu_0 n I \text{[cite: 13]}$$
+        </div>
+        <p class="text-slate-400"><em>End Effect:</em> Near the physical open ends of a finite solenoid, field lines diverge outward into half the solid angle, making $B_{\text{end}} = \frac{1}{2}\mu_0 n I$.</p>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: The "Zero Line Integral $\implies$ Zero Magnetic Field" Myth</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Just like Gauss's Law, $\oint \vec{B}\cdot d\vec{l} = 0$ only guarantees that the <strong>net enclosed current is zero</strong> ($I_{\text{enc}} = 0$). It does <strong>NOT</strong> mean $\vec{B} = 0$ everywhere on the loop! An outside current wire produces a non-zero magnetic field on the loop, but $\vec{B}\cdot d\vec{l}$ integrates to positive values along one half and equal negative values along the other half, canceling out to zero[cite: 13].
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Turn Density ($n$) vs Total Turns ($N$)</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Formula is $B = \mu_0 n I$, where $n = \frac{N}{L}$ is turns <strong>per unit length</strong>[cite: 13]. If a question states "a solenoid of 500 turns is stretched to double its length keeping current same", $N$ is constant but $L$ is doubled $\implies n' = n/2 \implies B$ is halved! Do not plug total turns $N$ directly into the formula without dividing by length $L$.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Thick Cylindrical Wire: Field Inside ($r < R$)</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            For a solid wire of radius $R$ carrying uniform current density $J = I/(\pi R^2)$:
+            <br>• Outside ($r \ge R$): $I_{\text{enc}} = I \implies B = \frac{\mu_0 I}{2\pi r} \propto \frac{1}{r}$[cite: 13].
+            <br>• Inside ($r < R$): $I_{\text{enc}} = J(\pi r^2) = I\left(\frac{r^2}{R^2}\right) \implies B(2\pi r) = \mu_0 I\frac{r^2}{R^2} \implies \mathbf{B = \frac{\mu_0 I r}{2\pi R^2} \propto r}$!
+            <br>Field increases linearly from zero at center to maximum at surface, then falls as $1/r$.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Dependence on Solenoid Radius ($R$)</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Notice that $B = \mu_0 n I$ contains <strong>zero dependence on the cross-sectional radius $R$</strong> of the solenoid[cite: 13]! Whether a solenoid has a radius of $1\text{ cm}$ or $10\text{ cm}$, if turns per metre $n$ and current $I$ are identical, the interior axial magnetic field is exactly the same[cite: 13].
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A solenoid of length $0.5\text{ m}$ has a radius of $1\text{ cm}$ and is made up of $500\text{ turns}$. It carries a current of $5\text{ A}$. What is the magnitude of the magnetic field (i) at the center inside the solenoid, (ii) at one of its extreme ends?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Calculate turns per unit length ($n$)[cite: 13]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$n = \frac{N}{L} = \frac{500}{0.5\text{ m}} = 1000\text{ turns/metre}$$
+          </div>
+          <p>2. Field inside near the center[cite: 13]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$B = \mu_0 n I = (4\pi \times 10^{-7}\text{ T}\cdot\text{m/A}) \times (1000\text{ m}^{-1}) \times (5\text{ A})$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$B = 2\pi \times 10^{-3}\text{ T} \approx 6.28 \times 10^{-3}\text{ T} = 6.28\text{ mT}$$
+          </div>
+          <p>3. Field at an extreme end:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$B_{\text{end}} = \frac{1}{2} B_{\text{center}} = \frac{6.28\text{ mT}}{2} = 3.14\text{ mT}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A long straight solid copper wire of radius $R = 2.0\text{ mm}$ carries a steady uniformly distributed current of $16\text{ A}$. Find the magnitude of the magnetic field at distance (i) $r_1 = 1.0\text{ mm}$ from the axis of the wire, (ii) $r_2 = 4.0\text{ mm}$ from the axis of the wire.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p><strong class="text-indigo-300">Case (i) Inside the wire ($r_1 = 1.0\text{ mm} < R$):</strong></p>
+          <p>Current enclosed by Amperian loop of radius $r_1$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$I_{\text{enc}} = I \frac{\pi r_1^2}{\pi R^2} = 16 \times \left(\frac{1.0\text{ mm}}{2.0\text{ mm}}\right)^2 = 16 \times \frac{1}{4} = 4\text{ A}$$
+          </div>
+          <p>Applying ACL: $B_1(2\pi r_1) = \mu_0 I_{\text{enc}}$:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$B_1 = \frac{\mu_0 I_{\text{enc}}}{2\pi r_1} = \frac{(4\pi \times 10^{-7}) \times 4}{2\pi \times (1.0 \times 10^{-3})} = \frac{2 \times 10^{-7} \times 4}{10^{-3}} = 8.0 \times 10^{-4}\text{ T} = 0.8\text{ mT}$$
+          </div>
+          <p><strong class="text-indigo-300">Case (ii) Outside the wire ($r_2 = 4.0\text{ mm} > R$):</strong></p>
+          <p>Entire wire current is enclosed ($I_{\text{enc}} = 16\text{ A}$)[cite: 13]:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$B_2 = \frac{\mu_0 I}{2\pi r_2} = \frac{(4\pi \times 10^{-7}) \times 16}{2\pi \times (4.0 \times 10^{-3})} = \frac{2 \times 10^{-7} \times 16}{4 \times 10^{-3}} = 8.0 \times 10^{-4}\text{ T} = 0.8\text{ mT} \text{[cite: 13]}$$
+          </div>
+          <p class="text-slate-400"><em>Symmetry Insight:</em> Notice $B_1 = B_2 = 0.8\text{ mT}$! Because inside $B \propto r$ and outside $B \propto 1/r$, the field at $R/2$ equals the field at $2R$[cite: 13].</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Ampere's Law</p>
+          <p class="text-xs font-bold text-white mt-1">$\oint \vec{B}\cdot d\vec{l} = \mu_0 I_{\text{enc}}$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Long Wire Field</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$B = \frac{\mu_0 I}{2\pi r}$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Ideal Solenoid</p>
+          <p class="text-xs font-bold text-white mt-1">$B = \mu_0 n I$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Solenoid End</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$B_{\text{end}} = \frac{1}{2}\mu_0 n I$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Ampere Simulation Engine Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('ampereCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const viewModeBtn = document.getElementById('viewModeBtn');
+      const param1Slider = document.getElementById('param1Slider');
+      const param2Slider = document.getElementById('param2Slider');
+      const outsideToggle = document.getElementById('outsideToggle');
+
+      const param1Label = document.getElementById('param1Label');
+      const param2Label = document.getElementById('param2Label');
+      const param3Label = document.getElementById('param3Label');
+      const param1Val = document.getElementById('param1Val');
+      const param2Val = document.getElementById('param2Val');
+      const param3Val = document.getElementById('param3Val');
+
+      const integralVal = document.getElementById('integralVal');
+      const fieldVal = document.getElementById('fieldVal');
+      const ampereCheckVal = document.getElementById('ampereCheckVal');
+
+      let currentMode = 'wire'; // 'wire' or 'solenoid'
+      let currentPhase = 0;
+
+      viewModeBtn.addEventListener('click', () => {
+        currentMode = (currentMode === 'wire') ? 'solenoid' : 'wire';
+        if (currentMode === 'wire') {
+          viewModeBtn.textContent = 'Switch: Straight Wire Loop / Long Solenoid';
+          param1Label.textContent = 'Threading Current (I)';
+          param2Label.textContent = 'Amperian Radius (r)';
+          param3Label.textContent = 'Outside Current Source';
+          param1Slider.min = 1; param1Slider.max = 20; param1Slider.step = 0.5; param1Slider.value = 5;
+          param2Slider.min = 3; param2Slider.max = 16; param2Slider.step = 0.5; param2Slider.value = 6;
+          outsideToggle.parentElement.style.display = 'flex';
+        } else {
+          viewModeBtn.textContent = 'Switch: Return to Straight Wire Amperian Loop';
+          param1Label.textContent = 'Solenoid Current (I)';
+          param2Label.textContent = 'Turns per metre (n)';
+          param3Label.textContent = 'Core Permeability (μ_r)';
+          param1Slider.min = 1; param1Slider.max = 15; param1Slider.step = 0.5; param1Slider.value = 4;
+          param2Slider.min = 200; param2Slider.max = 2000; param2Slider.step = 100; param2Slider.value = 1000;
+          outsideToggle.parentElement.style.display = 'none';
+        }
+      });
+
+      function renderLoop() {
+        currentPhase += 0.04;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const val1 = parseFloat(param1Slider.value);
+        const val2 = parseFloat(param2Slider.value);
+        const showOutside = outsideToggle.checked;
+
+        const mu0 = 4 * Math.PI * 1e-7;
+
+        if (currentMode === 'wire') {
+          param1Val.textContent = val1.toFixed(1) + ' A';
+          param2Val.textContent = val2.toFixed(1) + ' cm';
+          param3Val.textContent = showOutside ? 'Enabled (Outside Loop)' : 'Disabled';
+
+          // Physics for wire
+          const r_m = val2 / 100;
+          const B_wire = (mu0 * val1) / (2 * Math.PI * r_m);
+          const lineIntegral = B_wire * (2 * Math.PI * r_m); // equals mu0 * I
+
+          integralVal.textContent = (lineIntegral).toExponential(2) + ' T·m';
+          fieldVal.textContent = (B_wire * 1e6).toFixed(2) + ' μT';
+          ampereCheckVal.textContent = '∮B·dl = μ₀ I_enc (Strict Invariant)';
+
+          renderWireAmperianView(val1, val2, showOutside, B_wire);
+        } else {
+          param1Val.textContent = val1.toFixed(1) + ' A';
+          param2Val.textContent = val2.toFixed(0) + ' turns/m';
+          param3Val.textContent = '1.0 (Air Core)';
+
+          // Physics for solenoid
+          const n = val2;
+          const I = val1;
+          const B_sol = mu0 * n * I;
+          const L_amperian = 0.12; // 12 cm loop length
+          const lineIntegralSol = B_sol * L_amperian;
+
+          integralVal.textContent = (lineIntegralSol).toExponential(2) + ' T·m';
+          fieldVal.textContent = (B_sol * 1e3).toFixed(2) + ' mT';
+          ampereCheckVal.textContent = `B = μ₀ n I = ${(B_sol * 1e3).toFixed(2)} mT (Uniform)`;
+
+          renderSolenoidView(I, n, B_sol);
+        }
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderWireAmperianView(I, r_cm, showOutside, B_wire) {
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        const pxScale = 14;
+        const radiusPx = r_cm * pxScale;
+
+        // 1. Concentric Magnetic Field Lines (Cyan circular curves)
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.25)';
+        ctx.lineWidth = 1.5;
+        const fieldRadii = [radiusPx * 0.5, radiusPx * 0.75, radiusPx, radiusPx * 1.35, radiusPx * 1.7];
+        fieldRadii.forEach(fr => {
+          ctx.beginPath();
+          ctx.arc(cx, cy, fr, 0, Math.PI * 2);
+          ctx.stroke();
+        });
+
+        // 2. The Amperian Loop (Amber/Gold Dashed Ring)
+        ctx.save();
+        ctx.strokeStyle = '#f59e0b';
+        ctx.shadowColor = '#f59e0b';
+        ctx.shadowBlur = 10;
+        ctx.lineWidth = 2.5;
+        ctx.setLineDash([6, 6]);
+        ctx.beginPath();
+        ctx.arc(cx, cy, radiusPx, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+
+        // Direction of dl along the Amperian Loop (Anticlockwise integration)
+        const angleDL = (currentPhase * 1.5) % (Math.PI * 2);
+        const dlX = cx + Math.cos(angleDL) * radiusPx;
+        const dlY = cy + Math.sin(angleDL) * radiusPx;
+        drawArrow(dlX, dlY, dlX - Math.sin(angleDL) * 35, dlY + Math.cos(angleDL) * 35, '#f59e0b', 'dl ➔');
+
+        // Magnetic Field Vector B at the same point (B is strictly parallel to dl)
+        drawArrow(dlX, dlY, dlX - Math.sin(angleDL) * 55, dlY + Math.cos(angleDL) * 55, '#38bdf8', 'B (θ = 0°)');
+
+        // 3. Central Wire (Current flowing out of page: Circle with Dot)
+        ctx.beginPath();
+        ctx.arc(cx, cy, 14, 0, Math.PI * 2);
+        ctx.fillStyle = '#0f172a';
+        ctx.fill();
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+
+        ctx.fillStyle = '#38bdf8';
+        ctx.beginPath();
+        ctx.arc(cx, cy, 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Wire ⊙ I_enc = ${I}A`, cx, cy + 28);
+
+        // 4. Outside Wire (Demonstrating Outside Current contributes zero to line integral)
+        if (showOutside) {
+          const outX = cx + 240;
+          const outY = cy - 60;
+
+          ctx.beginPath();
+          ctx.arc(outX, outY, 12, 0, Math.PI * 2);
+          ctx.fillStyle = '#0f172a';
+          ctx.fill();
+          ctx.strokeStyle = '#f43f5e';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+
+          // Cross (current into page)
+          ctx.strokeStyle = '#f43f5e';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(outX - 4, outY - 4); ctx.lineTo(outX + 4, outY + 4);
+          ctx.moveTo(outX + 4, outY - 4); ctx.lineTo(outX - 4, outY + 4);
+          ctx.stroke();
+
+          ctx.fillStyle = '#f43f5e';
+          ctx.font = 'bold 10px monospace';
+          ctx.fillText('Outside Wire ⊗', outX, outY - 18);
+          ctx.fillStyle = '#94a3b8';
+          ctx.fillText('Net ∮B·dl = 0', outX, outY + 24);
+        }
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Amperian Loop (radius r = ${r_cm} cm): B is parallel to dl everywhere | ∮B·dl = B(2πr) = μ₀I_enc[cite: 13]`, cx, canvas.height - 12);
+      }
+
+      function renderSolenoidView(I, n, B_sol) {
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        const solL = 520;
+        const solH = 130;
+        const startX = cx - solL / 2;
+
+        // 1. Solenoid Windings (Top row current OUT ⊙, Bottom row current IN ⊗)
+        const turnsDrawn = 24;
+        const stepX = solL / turnsDrawn;
+
+        for (let i = 0; i <= turnsDrawn; i++) {
+          const wx = startX + i * stepX;
+          // Top turn conductor (⊙ Current OUT of page)
+          ctx.beginPath();
+          ctx.arc(wx, cy - solH / 2, 5, 0, Math.PI * 2);
+          ctx.fillStyle = '#38bdf8';
+          ctx.fill();
+          // Dot
+          ctx.fillStyle = '#ffffff';
+          ctx.beginPath();
+          ctx.arc(wx, cy - solH / 2, 1.5, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Bottom turn conductor (⊗ Current INTO page)
+          ctx.beginPath();
+          ctx.arc(wx, cy + solH / 2, 5, 0, Math.PI * 2);
+          ctx.fillStyle = '#f43f5e';
+          ctx.fill();
+          // Cross
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(wx - 2, cy + solH / 2 - 2); ctx.lineTo(wx + 2, cy + solH / 2 + 2);
+          ctx.moveTo(wx + 2, cy + solH / 2 - 2); ctx.lineTo(wx - 2, cy + solH / 2 + 2);
+          ctx.stroke();
+        }
+
+        // 2. Uniform Magnetic Field Lines inside Solenoid (Dense straight horizontal lines)
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.45)';
+        ctx.lineWidth = 2;
+        for (let y = cy - solH / 2 + 20; y < cy + solH / 2; y += 22) {
+          ctx.beginPath();
+          ctx.moveTo(startX - 20, y);
+          ctx.lineTo(startX + solL + 20, y);
+          ctx.stroke();
+
+          // Moving magnetic field bead particles
+          const beadX = startX + ((currentPhase * 80 + y * 4) % (solL + 40));
+          ctx.fillStyle = '#38bdf8';
+          ctx.beginPath();
+          ctx.arc(beadX, y, 2.5, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`Uniform Interior B = μ₀ n I = ${(B_sol * 1e3).toFixed(2)} mT ➔[cite: 13]`, cx - 120, cy - 35);
+
+        // 3. Rectangular Amperian Loop (abcd)
+        const loopW = 160;
+        const loopH = 110;
+        const loopX = cx - loopW / 2;
+        const loopY = cy - 20;
+
+        ctx.save();
+        ctx.strokeStyle = '#f59e0b';
+        ctx.setLineDash([5, 4]);
+        ctx.lineWidth = 2.5;
+        ctx.strokeRect(loopX, loopY, loopW, loopH);
+        ctx.restore();
+
+        // Loop labels: a, b, c, d
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = 'bold 12px monospace';
+        ctx.fillText('a', loopX - 12, loopY + 4);
+        ctx.fillText('b', loopX + loopW + 8, loopY + 4);
+        ctx.fillText('c', loopX + loopW + 8, loopY + loopH + 4);
+        ctx.fillText('d', loopX - 12, loopY + loopH + 4);
+
+        ctx.font = '10px monospace';
+        ctx.fillText('Segment ab: B ∥ dl (BL)', cx, loopY - 8);
+        ctx.fillText('Segment cd: B ≈ 0 (Zero)', cx, loopY + loopH + 16);
+        ctx.fillText('bc & da: B ⊥ dl (Zero)', loopX + loopW + 14, cy + 30);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Rectangular Amperian Loop abcd: Only segment ab contributes to ∮B·dl = BL = μ₀(nL)I[cite: 13]', cx, canvas.height - 12);
+      }
+
+      function drawArrow(fromX, fromY, toX, toY, color, labelText) {
+        const angle = Math.atan2(toY - fromY, toX - fromX);
+        const headlen = 8;
+
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+        ctx.moveTo(fromX, fromY);
+        ctx.lineTo(toX, toY);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(toX, toY);
+        ctx.lineTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
+        ctx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
+        ctx.closePath();
+        ctx.fill();
+
+        if (labelText) {
+          ctx.fillStyle = color;
+          ctx.font = 'bold 10px monospace';
+          ctx.fillText(labelText, toX + 6, toY + 2);
+        }
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class 12 Physics | Chapter 4 - Moving Charges & Magnetism Master Dossier</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    /* Print Optimization Rules */
+    @page {
+      size: A4 portrait;
+      margin: 12mm 14mm 12mm 14mm;
+    }
+
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        font-size: 10.5pt !important;
+        line-height: 1.35 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .avoid-break {
+        page-break-inside: avoid;
+      }
+      .print-border {
+        border: 1px solid #1e293b !important;
+      }
+      .print-table th {
+        background-color: #f1f5f9 !important;
+        color: #000000 !important;
+        border: 1px solid #94a3b8 !important;
+      }
+      .print-table td {
+        border: 1px solid #cbd5e1 !important;
+        color: #000000 !important;
+      }
+      .formula-box {
+        background: #f8fafc !important;
+        border-left: 3px solid #0f172a !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Sticky Top Action Bar (Auto-hidden in Print/PDF) -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex flex-wrap justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <div>
+        <span class="text-lg font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+        <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Open Access</span>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-3 mt-2 sm:mt-0">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-indigo-600/30 active:scale-95 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>Save as PDF (Clean Vector)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Body Container -->
+  <main class="max-w-4xl mx-auto px-4 py-8 md:py-12 space-y-10 print:p-0 print:m-0 print:space-y-6">
+
+    <!-- Dossier Title Block -->
+    <div class="border-b-2 border-indigo-500/40 pb-5 print:border-black print:pb-3">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-indigo-400 print:text-black">CBSE Class XII • Unit 03 (Magnetic Effects of Current)</p>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1 print:text-black print:text-2xl">
+            Chapter 04: Moving Charges and Magnetism
+          </h1>
+          <p class="text-slate-400 mt-1 text-sm print:text-gray-700">Master Revision Dossier • Biot-Savart, Ampere's Law, Helical Dynamics, Parallel Wires & Galvanometer</p>
+        </div>
+        <div class="hidden sm:block text-right text-xs text-slate-500 print:block print:text-black">
+          <p class="font-mono">Open Access Initiative</p>
+          <p class="font-mono">Unit III & IV Bracket: 17 Marks</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: Master Formula & Physical Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        1. Definitive Formula & Magnetic Field Matrix
+      </h2>
+      <div class="overflow-x-auto rounded-xl border border-slate-800 print:border-black">
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase tracking-wider border-b border-slate-800 font-semibold">
+            <tr>
+              <th class="p-2.5 border-r border-slate-800">Concept</th>
+              <th class="p-2.5 border-r border-slate-800">Mathematical Formulation</th>
+              <th class="p-2.5 border-r border-slate-800">SI Unit / Dim</th>
+              <th class="p-2.5">Boundary Conditions & Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/80 text-slate-300">
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Biot-Savart Law</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$d\vec{B} = \frac{\mu_0}{4\pi}\frac{I(d\vec{l}\times\hat{r})}{r^2} = \frac{\mu_0 I dl\sin\theta}{4\pi r^2}\hat{n}$$</td>
+              <td class="p-2.5">$\text{Tesla (T)} = \text{Wb/m}^2$<br>$[\text{M}^1\text{T}^{-2}\text{A}^{-1}]$</td>
+              <td class="p-2.5 text-[11px]">$\vec{B} \perp d\vec{l}$ and $\vec{B} \perp \vec{r}$. $\mu_0 = 4\pi \times 10^{-7}\text{ T}\cdot\text{m/A}$. Zero along element line ($\theta=0^\circ$).</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Circular Loop Axis & Center</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$B_{\text{axis}} = \frac{\mu_0 N I R^2}{2(R^2+x^2)^{3/2}}, \quad B_0 = \frac{\mu_0 N I}{2R}\text{}$$</td>
+              <td class="p-2.5">$\text{Tesla (T)}$</td>
+              <td class="p-2.5 text-[11px]">Right-hand thumb rule gives axis sense. At far distance ($x \gg R$): $B \propto 1/x^3$ (magnetic dipole equivalent).</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Ampere's Circuital Law</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\oint \vec{B}\cdot d\vec{l} = \mu_0 I_{\text{enclosed}}\text{}$$</td>
+              <td class="p-2.5">$\text{T}\cdot\text{m}$</td>
+              <td class="p-2.5 text-[11px]">Valid for any closed Amperian loop. Currents outside loop contribute to $\vec{B}$ but net integral cancels to zero.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Infinite Wire & Solenoid</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$B_{\text{wire}} = \frac{\mu_0 I}{2\pi r}, \quad B_{\text{sol}} = \mu_0 n I\text{}$$</td>
+              <td class="p-2.5">$\text{Tesla (T)}$</td>
+              <td class="p-2.5 text-[11px]">$n = N/L$ (turns per unit length). End of finite solenoid: $B_{\text{end}} = \frac{1}{2}\mu_0 n I$. Outside ideal solenoid $B \approx 0$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Magnetic Lorentz Force</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\vec{F}_B = q(\vec{v}\times\vec{B}) \implies F_B = qvB\sin\theta\text{}$$</td>
+              <td class="p-2.5">$\text{Newton (N)}$</td>
+              <td class="p-2.5 text-[11px]">$\vec{F}_B \perp \vec{v}$ always $\implies$ Work done $W = 0$, kinetic energy constant. Static charge feels $F_B = 0$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Helical Motion Parameters</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$r = \frac{mv\sin\theta}{qB}, \quad T = \frac{2\pi m}{qB}, \quad p = \frac{2\pi mv\cos\theta}{qB}$$</td>
+              <td class="p-2.5">$r, p: \text{m}$<br>$T: \text{s}$</td>
+              <td class="p-2.5 text-[11px]">Period $T$ and cyclotron frequency $f_c = \frac{qB}{2\pi m}$ are strictly independent of velocity $v$ and radius $r$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Velocity Selector</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\vec{E} \perp \vec{B} \perp \vec{v} \implies v = \frac{E}{B}\text{}$$</td>
+              <td class="p-2.5">$\text{m/s}$</td>
+              <td class="p-2.5 text-[11px]">$\vec{F}_E + \vec{F}_B = 0$. Undeflected trajectory condition is independent of particle mass $m$ and charge sign.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Force on Conductor</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\vec{F} = I(\vec{L}\times\vec{B}) = ILB\sin\theta\text{}$$</td>
+              <td class="p-2.5">$\text{Newton (N)}$</td>
+              <td class="p-2.5 text-[11px]">Direction by Fleming's Left-Hand Rule. For any closed current loop in uniform field, $\oint d\vec{l} = 0 \implies \vec{F}_{\text{net}} = 0$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Parallel Wires Force</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\frac{F}{L} = \frac{\mu_0 I_1 I_2}{2\pi d}\text{}$$</td>
+              <td class="p-2.5">$\text{N/m}$</td>
+              <td class="p-2.5 text-[11px]">Parallel currents attract; antiparallel repel. Defines SI Ampere: $2 \times 10^{-7}\text{ N/m}$ at $1\text{ m}$ separation in vacuum.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Torque on Loop & MCG</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\vec{\tau} = \vec{M}\times\vec{B}, \quad \tau = NIAB\sin\theta\text{}$$</td>
+              <td class="p-2.5">$\text{N}\cdot\text{m}$</td>
+              <td class="p-2.5 text-[11px]">Radial field keeps $\theta = 90^\circ$ ($\sin 90^\circ = 1$). Restoring spring equilibrium: $NIAB = k\phi \implies \phi \propto I$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Ammeter & Voltmeter</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$S = \frac{I_g G}{I - I_g}, \quad R = \frac{V}{I_g} - G\text{}$$</td>
+              <td class="p-2.5">$\text{Ohm (}\Omega\text{)}$</td>
+              <td class="p-2.5 text-[11px]">Shunt $S$ connected in parallel ($R_{\text{ammeter}} \to 0$); Multiplier $R$ connected in series ($R_{\text{voltmeter}} \to \infty$).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 2: Stepwise Derivations Blueprint -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        2. Core Derivations Blueprint (Step-by-Step Board Proofs)
+      </h2>
+
+      <!-- Proof 1: Circular Loop Axial Field -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 4.1: Magnetic Field on the Axis of a Circular Current Loop
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Consider a circular loop of radius $R$ carrying steady current $I$. Point $P$ lies on its axis at distance $x$ from center $O$. Distance from any element $d\vec{l}$ to $P$ is $r = \sqrt{R^2 + x^2}$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. The element $d\vec{l}$ is tangential and perpendicular to position vector $\vec{r}$ ($\theta = 90^\circ$):
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$dB = \frac{\mu_0}{4\pi}\frac{I dl \sin 90^\circ}{r^2} = \frac{\mu_0}{4\pi}\frac{I dl}{R^2 + x^2}$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. Resolve $d\vec{B}$: Normal components $dB\cos\phi$ cancel pairwise ($\int dB\cos\phi = 0$). Axial components $dB\sin\phi$ add constructively:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$B_{\text{net}} = \int dB\sin\phi = \int \left(\frac{\mu_0}{4\pi}\frac{I dl}{R^2 + x^2}\right) \left(\frac{R}{\sqrt{R^2 + x^2}}\right) = \frac{\mu_0 I R}{4\pi (R^2 + x^2)^{3/2}} \oint dl$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          4. Since $\oint dl = 2\pi R$, for a coil of $N$ tightly wound turns:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$B_{\text{axis}} = \frac{\mu_0 N I R^2}{2(R^2 + x^2)^{3/2}} \quad \left(\text{At Center } x=0: B_0 = \frac{\mu_0 N I}{2R}\right)\text{}$$
+        </div>
+      </div>
+
+      <!-- Proof 2: Long Solenoid Field -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 4.2: Magnetic Field Inside an Ideal Long Straight Solenoid via ACL
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Consider a long solenoid of turn density $n = N/L$ carrying current $I$. Construct a rectangular Amperian loop $abcd$ of length $L$ with $ab$ along the axis inside, $bc$ and $da$ perpendicular, and $cd$ outside.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Closed line integral evaluation:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$\oint \vec{B}\cdot d\vec{l} = \int_a^b \vec{B}\cdot d\vec{l} + \int_b^c \vec{B}\cdot d\vec{l} + \int_c^d \vec{B}\cdot d\vec{l} + \int_d^a \vec{B}\cdot d\vec{l} = B L + 0 + 0 + 0 = B L$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. Total current enclosed by the loop is $I_{\text{enc}} = (n L) I$. By Ampere's Law $\oint \vec{B}\cdot d\vec{l} = \mu_0 I_{\text{enc}}$:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$B L = \mu_0 (n L I) \implies B = \mu_0 n I\text{}$$
+        </div>
+      </div>
+
+      <!-- Proof 3: Parallel Conductors Force & Ampere -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 4.3: Force Between Parallel Conductors & Definition of 1 Ampere
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Two long parallel conductors separated by distance $d$ carry currents $I_1$ and $I_2$. Wire 1 produces magnetic field at Wire 2: $B_1 = \frac{\mu_0 I_1}{2\pi d}$ (normal to Wire 2).
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Magnetic force experienced by length $L$ of Wire 2: $F_{21} = I_2 L B_1 \sin 90^\circ = I_2 L \left(\frac{\mu_0 I_1}{2\pi d}\right)$.
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\frac{F}{L} = \frac{\mu_0 I_1 I_2}{2\pi d} \quad (\vec{F}_{12} = -\vec{F}_{21} \text{ by Newton's 3rd Law})\text{}$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. <strong>Definition of 1 Ampere:</strong> If $I_1 = I_2 = 1\text{ A}$ and $d = 1\text{ m}$ in vacuum, force per unit length is strictly $\frac{F}{L} = \frac{(4\pi \times 10^{-7})(1)(1)}{2\pi(1)} = 2 \times 10^{-7}\text{ N/m}$.
+        </p>
+      </div>
+
+      <!-- Proof 4: Moving Coil Galvanometer -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 4.4: Torque Balance and Conversions of Moving Coil Galvanometer
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. In a radial field produced by concave poles and soft iron core, $\theta = 90^\circ$ always. Deflecting torque: $\tau_{\text{def}} = N I A B$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Restoring spring torque $\tau_{\text{rest}} = k \phi$. In equilibrium: $N I A B = k \phi \implies \phi = \left(\frac{N A B}{k}\right) I \implies \phi \propto I$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          3. <strong>Conversions:</strong> (i) Ammeter ($0$ to $I$): $S = \frac{I_g G}{I - I_g}$ in parallel. (ii) Voltmeter ($0$ to $V$): $R = \frac{V}{I_g} - G$ in series.
+        </p>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: High-Yield Exam Trap Matrix -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-rose-400 print:text-black border-l-4 border-rose-500 print:border-black pl-2.5">
+        3. High-Yield "Red Alert" Exam Trap Matrix
+      </h2>
+
+      <!-- Core Comparative Matrix Table -->
+      <div class="rounded-xl border border-rose-900/40 print-border overflow-hidden">
+        <div class="bg-rose-950/40 print:bg-gray-100 p-2.5 border-b border-rose-900/40 print:border-black">
+          <p class="text-xs font-bold text-rose-300 print:text-black uppercase">
+            Master Trap 1: Particle Orbit Radius Comparisons in Magnetic Field
+          </p>
+        </div>
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase font-semibold">
+            <tr>
+              <th class="p-2 border border-slate-800">Fixed Parameter</th>
+              <th class="p-2 border border-slate-800">Governing Radius Relation</th>
+              <th class="p-2 border border-slate-800">Proton ($p$) : Deuteron ($d$) : Alpha ($\alpha$)</th>
+              <th class="p-2 border border-slate-800">Physics Insight</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Same Velocity ($v$)</td>
+              <td class="p-2 font-mono text-indigo-300 print:text-black">$r = \frac{mv}{qB} \implies r \propto \frac{m}{q}$</td>
+              <td class="p-2 font-bold text-emerald-400 print:text-black">$1 : 2 : 2$</td>
+              <td class="p-2 text-[11px]">$m_\alpha = 4m_p, q_\alpha = 2q_p \implies m/q$ is equal for $d$ and $\alpha$.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Same Momentum ($p$)</td>
+              <td class="p-2 font-mono text-indigo-300 print:text-black">$r = \frac{p}{qB} \implies r \propto \frac{1}{q}$</td>
+              <td class="p-2 font-bold text-emerald-400 print:text-black">$2 : 2 : 1 \quad (1 : 1 : 0.5)$</td>
+              <td class="p-2 text-[11px]">Radius is completely independent of particle mass $m$.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Same Kinetic Energy ($K$)</td>
+              <td class="p-2 font-mono text-indigo-300 print:text-black">$r = \frac{\sqrt{2mK}}{qB} \implies r \propto \frac{\sqrt{m}}{q}$</td>
+              <td class="p-2 font-bold text-emerald-400 print:text-black">$1 : \sqrt{2} : 1$</td>
+              <td class="p-2 text-[11px]">Proton and alpha particle trace identical circular paths!</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Same Accelerating Voltage ($V$)</td>
+              <td class="p-2 font-mono text-indigo-300 print:text-black">$r = \frac{1}{B}\sqrt{\frac{2mV}{q}} \implies r \propto \sqrt{\frac{m}{q}}$</td>
+              <td class="p-2 font-bold text-emerald-400 print:text-black">$1 : \sqrt{2} : \sqrt{2}$</td>
+              <td class="p-2 text-[11px]">$K = qV$; substituted into the centripetal relation.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Critical Pitfalls Grid -->
+      <div class="grid sm:grid-cols-2 gap-3 text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 2: Voltage vs Current Sensitivity Invariance</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            Increasing turns $N$ doubles current sensitivity ($I_s = \frac{NAB}{k} \propto N$). However, wire length doubles, so coil resistance also doubles ($R \propto N$).
+            $$V_s = \frac{I_s}{R} = \frac{NAB}{k R} \implies \text{Constant!}$$
+            Increasing $I_s$ does <strong>NOT</strong> necessarily increase voltage sensitivity $V_s$.
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 3: Work Done by Magnetic Force ($W_B = 0$)</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            Because $\vec{F}_B = q(\vec{v}\times\vec{B})$ is always strictly perpendicular to instantaneous displacement $d\vec{r}$:
+            $$P = \vec{F}_B \cdot \vec{v} = 0 \implies W = \Delta K = 0$$
+            A static magnetic field can bend trajectories and alter momentum vectors, but can <strong>never alter particle kinetic energy or speed</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Handcrafted Exemplar Numericals -->
+    <section class="space-y-4 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-amber-400 print:text-black border-l-4 border-amber-500 print:border-black pl-2.5">
+        4. Handcrafted Exemplars (Analytical Numerical Solutions)
+      </h2>
+
+      <!-- Problem 1 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black">Problem 1: Circular Coil Axial Field Drop Ratio</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden">Exemplar 01</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          At what distance on the axis of a circular current-carrying coil of radius $R$ does the magnetic field drop to $\frac{1}{8}\text{th}$ of its value at the center?
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> Field ratio on axis to center:</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$\frac{B_{\text{axis}}}{B_0} = \frac{R^3}{(R^2 + x^2)^{3/2}} = \left[\frac{R^2}{R^2 + x^2}\right]^{3/2} = \frac{1}{8} = \left(\frac{1}{2}\right)^3$$
+          </div>
+          <p class="text-slate-400 print:text-black">Equating fractional powers:</p>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$\frac{R^2}{R^2 + x^2} = \frac{1}{4} \implies R^2 + x^2 = 4R^2 \implies x^2 = 3R^2 \implies x = \sqrt{3}R$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black">Problem 2: Dual Galvanometer Conversion (Ammeter & Voltmeter)</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden">Exemplar 02</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          A galvanometer of coil resistance $G = 20\text{ }\Omega$ shows full-scale deflection for $I_g = 5\text{ mA}$. Calculate: (i) Shunt $S$ to convert it into an ammeter of range $0$ to $5\text{ A}$, (ii) Series resistance $R$ to convert it into a voltmeter of range $0$ to $20\text{ V}$.
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> Given $G = 20\text{ }\Omega$, $I_g = 5 \times 10^{-3}\text{ A}$.</p>
+          <p class="text-slate-400 print:text-black">1. Ammeter Shunt ($I = 5\text{ A}$):</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$S = \frac{I_g G}{I - I_g} = \frac{(5 \times 10^{-3})(20)}{5 - 0.005} = \frac{0.1}{4.995} \approx 0.02002\text{ }\Omega \approx 0.02\text{ }\Omega \quad (\text{in parallel})\text{}$$
+          </div>
+          <p class="text-slate-400 print:text-black">2. Voltmeter Series Multiplier ($V = 20\text{ V}$):</p>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$R = \frac{V}{I_g} - G = \frac{20}{5 \times 10^{-3}} - 20 = 4000 - 20 = 3980\text{ }\Omega \quad (\text{in series})\text{}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Printable Cut-Out Flashcard Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        5. Printable Pocket Flashcard Grid
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Center Field of Coil</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1">$B_0 = \frac{\mu_0 NI}{2R}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Solenoid Core</p>
+          <p class="font-bold text-white print:text-black text-xs mt-1">$B = \mu_0 n I$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Parallel Wires</p>
+          <p class="font-bold text-white print:text-black text-[11px] mt-1">$\frac{F}{L} = \frac{\mu_0 I_1 I_2}{2\pi d}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">MCG Sensitivity</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1">$I_s = \frac{NAB}{k}$</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Document Footer -->
+    <footer class="pt-6 border-t border-slate-800 text-center text-xs text-slate-500 print:text-black print:pt-3">
+      <p>AXIOM Physics Class 12 • Open Access Physics Initiative • Distributed under Creative Commons Free Access</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Electric Flux & Gauss's Law</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 1.3</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 01: Electrostatics • Chapter 01</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Electric Flux & Gauss's Law</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Surface integrals, piercing flux lines, symmetric Gaussian envelopes, wire, sheet, and shell derivations with schematics[cite: 13].</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek tez barish ho rahi hai aur aapne haath mein ek circular wire ring pakdi hai. Ring se kitna paani pass hoga yeh do baaton par depend karta hai: rain ki intensity aur ring ka orientation. Agar ring barish ke perpendicular hai toh maximum paani pass hoga; agar flat parallel hai toh zero. <strong class="text-white">Electric Flux ($\Phi$)</strong> bilkul wahi count hai: ek surface se normal pass hone wali electric field lines ki total sankhya. <strong class="text-white">Gauss's Law</strong> kehta hai ki agar surface band (closed) hai, toh andar band net charge hi decide karta hai ki kul kitni lines bahar nikal rahi hain—surface ka shape chahe sphere ho, cylinder ho ya irregular shape[cite: 13]!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">Electric Flux Definition</h3>
+          <p class="text-sm text-slate-400 mb-2">Surface integral of electric field over an infinitesimal area element vector $d\vec{A}$:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\Phi_E = \int \vec{E} \cdot d\vec{A} = \int E \cos\theta\, dA$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">SI Unit: $\text{N}\cdot\text{m}^2/\text{C}$ or $\text{V}\cdot\text{m}$. Scalar quantity (can be positive, negative, or zero).</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">Gauss's Theorem</h3>
+          <p class="text-sm text-slate-400 mb-2">Net outward flux through any closed Gaussian surface equals $1/\varepsilon_0$ times the enclosed charge[cite: 13]:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\Phi_{\text{net}} = \oint \vec{E} \cdot d\vec{A} = \frac{q_{\text{enclosed}}}{\varepsilon_0}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Charges outside the Gaussian surface contribute zero net flux through the closed boundary.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Vibrant Piercing Flux Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Gaussian Surface Flux Simulator</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="surfaceTypeBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition-all border border-indigo-400/30 cursor-pointer">
+            Switch: Spherical / Cylindrical Surface
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="gaussCanvas" width="800" height="400" class="w-full block"></canvas>
+      </div>
+
+      <!-- Real-Time Sliders -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Enclosed Charge ($q_{\text{enc}}$)</span>
+            <span id="qEncVal" class="text-cyan-400 font-mono font-bold">+6 nC</span>
+          </div>
+          <input id="qEncSlider" type="range" min="-12" max="12" value="6" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Gaussian Radius ($R$)</span>
+            <span id="radiusVal" class="text-amber-400 font-mono font-bold">120 px</span>
+          </div>
+          <input id="radiusSlider" type="range" min="60" max="170" value="120" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>External Interferences</span>
+            <span id="extChargeVal" class="text-emerald-400 font-mono font-bold">Present (Net 0)</span>
+          </div>
+          <div class="flex items-center mt-2">
+            <input id="extChargeToggle" type="checkbox" checked class="w-4 h-4 accent-emerald-500 cursor-pointer">
+            <label for="extChargeToggle" class="text-xs text-slate-400 ml-2 cursor-pointer">Show Outside Charge</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Computational Metrics -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Total Piercing Flux ($\Phi$):</span>
+          <div id="fluxOutputVal" class="text-cyan-400 font-bold text-sm mt-0.5">677.6 N·m²/C</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Field Magnitude at Boundary ($E$):</span>
+          <div id="boundaryEVal" class="text-amber-400 font-bold text-sm mt-0.5">3.75 × 10³ N/C</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Flux Invariance Check:</span>
+          <div class="text-emerald-400 font-bold text-sm mt-0.5">Independent of Radius $R$</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Figures -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint (The 3 Gauss Applications)[cite: 13]</span>
+      </div>
+
+      <!-- Application 1: Infinitely Long Wire with Schematic Figure -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Application 01</span>
+          <h4 class="text-white font-semibold text-base mt-1">Field due to Infinitely Long Straight Charged Wire[cite: 13]</h4>
+        </div>
+
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 260" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow-wire" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+              </marker>
+            </defs>
+
+            <line x1="40" y1="130" x2="610" y2="130" stroke="#f43f5e" stroke-width="4" stroke-dasharray="8,4" />
+            <line x1="120" y1="130" x2="530" y2="130" stroke="#f43f5e" stroke-width="5" />
+            <text x="140" y="125" fill="#fecdd3" font-size="12" font-weight="bold">+</text>
+            <text x="200" y="125" fill="#fecdd3" font-size="12" font-weight="bold">+</text>
+            <text x="260" y="125" fill="#fecdd3" font-size="12" font-weight="bold">+</text>
+            <text x="325" y="125" fill="#fecdd3" font-size="12" font-weight="bold">+</text>
+            <text x="390" y="125" fill="#fecdd3" font-size="12" font-weight="bold">+</text>
+            <text x="450" y="125" fill="#fecdd3" font-size="12" font-weight="bold">+</text>
+            <text x="500" y="125" fill="#fecdd3" font-size="12" font-weight="bold">+</text>
+            <text x="55" y="115" fill="#f43f5e" font-size="12" font-weight="bold" font-family="monospace">Charged Wire (+λ)</text>
+
+            <rect x="200" y="50" width="250" height="160" fill="rgba(56, 189, 248, 0.08)" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6,4" />
+            <ellipse cx="200" cy="130" rx="30" ry="80" fill="rgba(15, 23, 42, 0.7)" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6,4" />
+            <ellipse cx="450" cy="130" rx="30" ry="80" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-width="2" />
+
+            <line x1="200" y1="225" x2="450" y2="225" stroke="#94a3b8" stroke-width="1.5" />
+            <line x1="200" y1="220" x2="200" y2="230" stroke="#94a3b8" stroke-width="1.5" />
+            <line x1="450" y1="220" x2="450" y2="230" stroke="#94a3b8" stroke-width="1.5" />
+            <text x="320" y="240" fill="#cbd5e1" font-size="12" font-family="monospace">Length = l</text>
+
+            <line x1="325" y1="130" x2="325" y2="50" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,3" />
+            <text x="332" y="95" fill="#f59e0b" font-size="12" font-weight="bold" font-family="monospace">r</text>
+
+            <line x1="325" y1="50" x2="325" y2="12" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow-wire)" />
+            <text x="335" y="24" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">E</text>
+            <line x1="360" y1="50" x2="360" y2="18" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+            <text x="368" y="24" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">dA</text>
+            <rect x="290" y="44" width="22" height="12" fill="rgba(16, 185, 129, 0.3)" stroke="#10b981" stroke-width="1" />
+            <text x="385" y="40" fill="#a5f3fc" font-size="10" font-family="monospace">(θ = 0°, cos 0° = 1)</text>
+
+            <line x1="450" y1="90" x2="505" y2="90" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+            <text x="510" y="94" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">dA</text>
+            <line x1="450" y1="90" x2="450" y2="45" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow-wire)" />
+            <text x="455" y="55" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">E</text>
+            <path d="M 450 80 L 460 80 L 460 90" fill="none" stroke="#f59e0b" stroke-width="1.5" />
+            <text x="475" y="75" fill="#fcd34d" font-size="10" font-family="monospace">θ = 90° (Φ₂ = 0)</text>
+
+            <line x1="200" y1="90" x2="145" y2="90" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+            <text x="125" y="94" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">dA</text>
+            <line x1="200" y1="90" x2="200" y2="45" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow-wire)" />
+            <text x="185" y="55" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">E</text>
+            <text x="110" y="75" fill="#fcd34d" font-size="10" font-family="monospace">θ = 90° (Φ₃ = 0)</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 1.3A: Coaxial Cylindrical Gaussian surface enclosing an infinite straight linear charge[cite: 13].</p>
+        </div>
+
+        <p>1. Consider an infinitely long thin wire with uniform linear charge density $\lambda = \frac{dq}{dL}$[cite: 13]. By symmetry, $\vec{E}$ is directed radially outward everywhere[cite: 13].</p>
+        <p>2. We construct a coaxial cylindrical Gaussian surface of radius $r$ and length $l$[cite: 13]. Charge enclosed: $q_{\text{enc}} = \lambda l$.</p>
+        <p>3. Total flux across the closed surface:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\Phi = \int_{\text{end cap 1}} \vec{E}\cdot d\vec{A} + \int_{\text{end cap 2}} \vec{E}\cdot d\vec{A} + \int_{\text{curved}} \vec{E}\cdot d\vec{A}$$
+        </div>
+        <p>4. For flat circular ends, $\vec{E} \perp d\vec{A}$ ($\theta = 90^\circ \implies \vec{E}\cdot d\vec{A} = 0$). For the curved wall, $\vec{E} \parallel d\vec{A}$ ($\theta = 0^\circ$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\Phi = 0 + 0 + E \int_{\text{curved}} dA = E(2\pi r l)$$
+        </div>
+        <p>5. Applying Gauss's Theorem $\Phi = \frac{q_{\text{enc}}}{\varepsilon_0}$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$E(2\pi r l) = \frac{\lambda l}{\varepsilon_0} \implies \vec{E} = \frac{\lambda}{2\pi\varepsilon_0 r}\hat{n} \quad \left(E \propto \frac{1}{r}\right)$$
+        </div>
+      </div>
+
+      <!-- Application 2: Infinite Sheet with Schematic Figure -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Application 02</span>
+          <h4 class="text-white font-semibold text-base mt-1">Field due to Uniformly Charged Infinite Plane Sheet[cite: 13]</h4>
+        </div>
+
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 260" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow-sheet" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrow-sheet-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+              </marker>
+            </defs>
+
+            <polygon points="260,20 380,20 340,240 220,240" fill="rgba(244, 63, 94, 0.12)" stroke="#f43f5e" stroke-width="2.5" />
+            <g fill="#fecdd3" font-size="14" font-weight="bold">
+              <text x="290" y="50">+</text><text x="320" y="50">+</text>
+              <text x="275" y="90">+</text><text x="310" y="90">+</text><text x="345" y="90">+</text>
+              <text x="260" y="130">+</text><text x="300" y="130">+</text><text x="330" y="130">+</text>
+              <text x="250" y="170">+</text><text x="285" y="170">+</text><text x="320" y="170">+</text>
+              <text x="235" y="210">+</text><text x="270" y="210">+</text><text x="305" y="210">+</text>
+            </g>
+            <text x="250" y="15" fill="#f43f5e" font-size="12" font-weight="bold" font-family="monospace">Infinite Plane Sheet (+σ)</text>
+
+            <rect x="130" y="95" width="160" height="70" fill="rgba(56, 189, 248, 0.08)" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="4,3" />
+            <ellipse cx="130" cy="130" rx="16" ry="35" fill="rgba(56, 189, 248, 0.2)" stroke="#38bdf8" stroke-width="2" />
+
+            <ellipse cx="290" cy="130" rx="16" ry="35" fill="rgba(244, 63, 94, 0.4)" stroke="#f43f5e" stroke-width="2" />
+            <text x="270" y="180" fill="#fca5a5" font-size="10" font-family="monospace">Area = A</text>
+
+            <rect x="290" y="95" width="160" height="70" fill="rgba(56, 189, 248, 0.08)" stroke="#38bdf8" stroke-width="1.8" />
+            <ellipse cx="450" cy="130" rx="16" ry="35" fill="rgba(56, 189, 248, 0.2)" stroke="#38bdf8" stroke-width="2" />
+
+            <line x1="450" y1="130" x2="525" y2="130" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow-sheet)" />
+            <text x="532" y="134" fill="#38bdf8" font-size="12" font-weight="bold" font-family="monospace">E</text>
+            <line x1="450" y1="115" x2="505" y2="115" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-sheet-green)" />
+            <text x="512" y="119" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">dA</text>
+            <text x="460" y="155" fill="#a5f3fc" font-size="10" font-family="monospace">Φ₁ = +EA (θ=0°)</text>
+
+            <line x1="130" y1="130" x2="55" y2="130" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow-sheet)" />
+            <text x="35" y="134" fill="#38bdf8" font-size="12" font-weight="bold" font-family="monospace">E</text>
+            <line x1="130" y1="115" x2="75" y2="115" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-sheet-green)" />
+            <text x="55" y="119" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">dA</text>
+            <text x="80" y="155" fill="#a5f3fc" font-size="10" font-family="monospace">Φ₂ = +EA (θ=0°)</text>
+
+            <line x1="380" y1="95" x2="380" y2="50" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-sheet-green)" />
+            <text x="390" y="65" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">dA</text>
+            <line x1="380" y1="95" x2="430" y2="95" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow-sheet)" />
+            <text x="435" y="99" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">E</text>
+            <path d="M 380 85 L 390 85 L 390 95" fill="none" stroke="#f59e0b" stroke-width="1.5" />
+            <text x="350" y="40" fill="#fcd34d" font-size="10" font-family="monospace">Curved Wall: θ = 90° (Φ₃ = 0)</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 1.3B: Cylindrical Gaussian Pillbox intersecting a uniformly charged infinite non-conducting sheet[cite: 13].</p>
+        </div>
+
+        <p>1. Let $\sigma = \frac{dq}{dA}$ be the uniform surface charge density on an infinite flat sheet[cite: 13]. By planar symmetry, $\vec{E}$ points normally outward in both opposite directions (+x and -x)[cite: 13].</p>
+        <p>2. We construct a cylindrical pillbox of cross-sectional area $A$ piercing perpendicular through the sheet[cite: 13]. Enclosed charge: $q_{\text{enc}} = \sigma A$.</p>
+        <p>3. The curved side wall has $d\vec{A} \perp \vec{E}$, so flux through the curved surface is zero. Both flat end caps have $\vec{E} \parallel d\vec{A}$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\Phi_{\text{net}} = \int_{\text{left cap}} \vec{E}\cdot d\vec{A} + \int_{\text{right cap}} \vec{E}\cdot d\vec{A} + \int_{\text{curved}} \vec{E}\cdot d\vec{A} = EA + EA + 0 = 2EA$$
+        </div>
+        <p>4. Applying Gauss's Theorem $\Phi = \frac{q_{\text{enc}}}{\varepsilon_0}$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$2EA = \frac{\sigma A}{\varepsilon_0} \implies \vec{E} = \frac{\sigma}{2\varepsilon_0}\hat{n} \quad \left(\text{Independent of observation distance } r\right)$$
+        </div>
+      </div>
+
+      <!-- Application 3: Spherical Shell with Schematic Figure -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Application 03</span>
+          <h4 class="text-white font-semibold text-base mt-1">Field due to Uniformly Charged Thin Spherical Shell (Inside & Outside)[cite: 13]</h4>
+        </div>
+
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 260" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow-shell" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrow-shell-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+              </marker>
+            </defs>
+
+            <circle cx="210" cy="130" r="65" fill="none" stroke="#f43f5e" stroke-width="3" />
+            <g fill="#fecdd3" font-size="12" font-weight="bold">
+              <text x="206" y="60">+</text><text x="256" y="80">+</text><text x="278" y="134">+</text>
+              <text x="256" y="186">+</text><text x="206" y="208">+</text><text x="156" y="186">+</text>
+              <text x="138" y="134">+</text><text x="156" y="80">+</text>
+            </g>
+            <line x1="210" y1="130" x2="256" y2="84" stroke="#f43f5e" stroke-width="1.5" />
+            <text x="238" y="105" fill="#f43f5e" font-size="11" font-weight="bold" font-family="monospace">R</text>
+
+            <circle cx="210" cy="130" r="105" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="6,4" />
+            <line x1="210" y1="130" x2="284" y2="56" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3,3" />
+            <text x="248" y="82" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">r &gt; R</text>
+
+            <line x1="284" y1="56" x2="320" y2="20" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow-shell)" />
+            <text x="325" y="25" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">E</text>
+            <line x1="284" y1="56" x2="310" y2="30" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-shell-green)" />
+            <text x="315" y="45" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">dA</text>
+            <text x="220" y="18" fill="#38bdf8" font-size="11" font-family="monospace">Outer Gaussian Surface (r &gt; R)</text>
+
+            <circle cx="210" cy="130" r="35" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-dasharray="4,3" />
+            <line x1="210" y1="130" x2="210" y2="95" stroke="#a855f7" stroke-width="1.2" />
+            <text x="214" y="115" fill="#a855f7" font-size="10" font-family="monospace">r &lt; R</text>
+            <text x="175" y="134" fill="#a855f7" font-size="9" font-family="monospace">q_enc=0</text>
+
+            <!-- Graph: E vs r -->
+            <g transform="translate(390, 30)">
+              <line x1="30" y1="180" x2="220" y2="180" stroke="#94a3b8" stroke-width="2" />
+              <line x1="30" y1="180" x2="30" y2="20" stroke="#94a3b8" stroke-width="2" />
+              <text x="225" y="184" fill="#cbd5e1" font-size="11" font-family="monospace">r</text>
+              <text x="15" y="18" fill="#cbd5e1" font-size="11" font-family="monospace">E</text>
+
+              <line x1="100" y1="180" x2="100" y2="185" stroke="#f43f5e" stroke-width="2" />
+              <line x1="100" y1="180" x2="100" y2="50" stroke="#f43f5e" stroke-width="1" stroke-dasharray="4,4" />
+              <text x="96" y="200" fill="#f43f5e" font-size="11" font-weight="bold" font-family="monospace">r=R</text>
+
+              <line x1="30" y1="180" x2="100" y2="180" stroke="#38bdf8" stroke-width="4" />
+              <text x="45" y="165" fill="#a855f7" font-size="10" font-family="monospace">E = 0</text>
+
+              <circle cx="100" cy="50" r="4" fill="#f59e0b" />
+              <text x="110" y="45" fill="#f59e0b" font-size="10" font-family="monospace">E_max = σ/ε₀</text>
+
+              <path d="M 100 50 Q 130 140 210 165" fill="none" stroke="#38bdf8" stroke-width="3" />
+              <text x="145" y="110" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">E ∝ 1/r²</text>
+              <text x="70" y="225" fill="#cbd5e1" font-size="11" font-family="monospace">Board Graph: E vs r for Shell</text>
+            </g>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 1.3C: Concentric Gaussian spheres and the definitive $E\text{ vs }r$ electrostatic graph for a charged thin shell[cite: 13].</p>
+        </div>
+
+        <p>Let a thin spherical shell of radius $R$ carry total charge $q$ with surface density $\sigma = \frac{q}{4\pi R^2}$[cite: 13].</p>
+        <p><strong class="text-indigo-300">Case I: Outside the Shell ($r \ge R$):</strong> Construct a concentric spherical Gaussian surface of radius $r$[cite: 13]. $\vec{E}$ and $d\vec{A}$ are radially outward everywhere ($\theta = 0^\circ$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\oint \vec{E}\cdot d\vec{A} = E \oint dA = E(4\pi r^2) = \frac{q}{\varepsilon_0} \implies E_{\text{out}} = \frac{1}{4\pi\varepsilon_0}\frac{q}{r^2}$$
+        </div>
+        <p>*(The entire charge behaves as if concentrated at the center point $O$).*</p>
+        <p><strong class="text-indigo-300">Case II: Inside the Shell ($r < R$):</strong> Construct an internal concentric Gaussian surface of radius $r$[cite: 13]. Since charge resides entirely on the outer surface of the shell, $q_{\text{enc}} = 0$:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$E(4\pi r^2) = \frac{0}{\varepsilon_0} \implies E_{\text{inside}} = 0$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: The "Zero Net Flux = Zero Electric Field" Myth</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            If $\Phi_{\text{net}} = \oint \vec{E}\cdot d\vec{A} = 0$, it only means $q_{\text{enclosed}} = 0$. It does <strong>not</strong> mean $\vec{E} = 0$ everywhere on the surface! An outside dipole or point charge produces an equal amount of entering and leaving flux ($\Phi_{\text{in}} = \Phi_{\text{out}}$), keeping $\Phi_{\text{net}} = 0$ despite $E \ne 0$.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Gauss's Law Validity vs Gaussian Surface Utility</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Gauss's law is mathematically <strong>always valid</strong> for any closed surface of any irregular shape. However, it is only <strong>useful to calculate $\vec{E}$</strong> if high symmetry exists (spherical, cylindrical, planar) so that $E$ can be factored outside the integral as a constant.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Conducting Sheet vs Non-Conducting Thin Sheet</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            For an infinite thin dielectric sheet: $E = \frac{\sigma}{2\varepsilon_0}$. For a thick <strong>conducting plate</strong>, charges distribute on both opposite faces, making the field in front of it $E = \frac{\sigma}{\varepsilon_0}$. Confusing the factor of 2 is the most common board error.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Charge on a Corner/Face of a Cube</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            If a point charge $q$ is at the <strong>corner</strong> of a cube, 8 symmetric cubes are needed to enclose it; hence flux through 1 cube is $\frac{q}{8\varepsilon_0}$. If placed on a <strong>face center</strong>, 2 cubes are needed; flux through that cube is $\frac{q}{2\varepsilon_0}$.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: An electric field is given by $\vec{E} = 400x\,\hat{i}\text{ N/C}$. Calculate the flux through a cube of side $a = 0.1\text{ m}$ placed between $x = 0$ and $x = a$, and find the total charge enclosed within the cube.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Since $\vec{E}$ only points along $+x$, the four faces parallel to the $x$-axis have $d\vec{A} \perp \hat{i}$, yielding zero flux.</p>
+          <p>2. At left face ($x = 0$): $\vec{E}_{\text{left}} = 400(0) = 0 \implies \Phi_{\text{left}} = 0$.</p>
+          <p>3. At right face ($x = a = 0.1\text{ m}$): Area $A = a^2 = (0.1)^2 = 0.01\text{ m}^2$. $\vec{E}_{\text{right}} = 400(0.1)\hat{i} = 40\hat{i}\text{ N/C}$.</p>
+          <p class="text-center font-mono text-indigo-300">$$\Phi_{\text{net}} = \vec{E}_{\text{right}} \cdot \vec{A} = (40)(0.01)\cos 0^\circ = 0.4\text{ N}\cdot\text{m}^2/\text{C}$$</p>
+          <p>4. Applying Gauss's Law to find enclosed charge:</p>
+          <p class="text-center font-mono text-indigo-300">$$q_{\text{enc}} = \varepsilon_0 \Phi_{\text{net}} = (8.854 \times 10^{-12}) \times 0.4 = 3.54 \times 10^{-12}\text{ C} = 3.54\text{ pC}$$</p>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A point charge $q$ is placed at distance $d/2$ directly above the center of a square horizontal plate of side $d$. What is the electric flux passing through the plate?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Construct a symmetric imaginary cube of side $d$ enclosing the charge $q$ right at its center (distance to all 6 faces is identical and equal to $d/2$).</p>
+          <p>2. By Gauss's Law, total outward flux through all 6 faces of the closed cube is:</p>
+          <p class="text-center font-mono text-indigo-300">$$\Phi_{\text{total}} = \frac{q}{\varepsilon_0}$$</p>
+          <p>3. Due to perfect cubic symmetry, each of the 6 faces receives an equal share of the total flux:</p>
+          <p class="text-center font-mono text-indigo-300">$$\Phi_{\text{plate}} = \frac{1}{6}\Phi_{\text{total}} = \frac{q}{6\varepsilon_0}$$</p>
+          <p class="text-slate-400"><em>Exam Trap Note:</em> Attempting direct surface integration $\int \frac{kq}{r^2}\cos\theta\,dA$ takes 15 minutes of calculus, whereas Gaussian enclosing symmetry solves it in 10 seconds!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Infinite Wire</p>
+          <p class="text-xs font-bold text-white mt-1">$E = \frac{\lambda}{2\pi\varepsilon_0 r}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Infinite Sheet</p>
+          <p class="text-xs font-bold text-white mt-1">$E = \frac{\sigma}{2\varepsilon_0}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Spherical Shell Out</p>
+          <p class="text-xs font-bold text-white mt-1">$E = \frac{1}{4\pi\varepsilon_0}\frac{q}{r^2}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Spherical Shell In</p>
+          <p class="text-xs font-bold text-white mt-1">$E_{\text{inside}} = 0$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Piercing Flux Simulation Engine Script (Hardened & Error-Free) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('gaussCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      // Controls references
+      const qEncSlider = document.getElementById('qEncSlider');
+      const radiusSlider = document.getElementById('radiusSlider');
+      const extChargeToggle = document.getElementById('extChargeToggle');
+      const qEncVal = document.getElementById('qEncVal');
+      const radiusVal = document.getElementById('radiusVal');
+      const extChargeVal = document.getElementById('extChargeVal');
+      const fluxOutputVal = document.getElementById('fluxOutputVal');
+      const boundaryEVal = document.getElementById('boundaryEVal');
+      const surfaceTypeBtn = document.getElementById('surfaceTypeBtn');
+
+      let surfaceType = 'sphere'; // 'sphere' or 'cylinder'
+      let pulseTime = 0;
+
+      if (surfaceTypeBtn) {
+        surfaceTypeBtn.addEventListener('click', () => {
+          surfaceType = (surfaceType === 'sphere') ? 'cylinder' : 'sphere';
+          surfaceTypeBtn.textContent = (surfaceType === 'sphere')
+            ? 'Switch: Spherical / Cylindrical Surface'
+            : 'Switch to Spherical Gaussian Surface';
+        });
+      }
+
+      function renderLoop() {
+        pulseTime += 0.025;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const qNano = qEncSlider ? parseFloat(qEncSlider.value) : 6;
+        const radius = radiusSlider ? parseFloat(radiusSlider.value) : 120;
+        const showExternal = extChargeToggle ? extChargeToggle.checked : true;
+
+        if (qEncVal) qEncVal.textContent = (qNano >= 0 ? '+' : '') + qNano + ' nC';
+        if (radiusVal) radiusVal.textContent = radius + ' px';
+        if (extChargeVal) extChargeVal.textContent = showExternal ? 'Present (Net 0)' : 'Disabled';
+
+        // Physics: Flux = q / eps0
+        const eps0 = 8.854e-12;
+        const qCoulomb = qNano * 1e-9;
+        const netFlux = qCoulomb / eps0;
+
+        if (fluxOutputVal) {
+          fluxOutputVal.textContent = Math.abs(netFlux) > 1000 
+            ? netFlux.toExponential(2) + ' N·m²/C' 
+            : netFlux.toFixed(1) + ' N·m²/C';
+        }
+
+        const rMeters = (radius / 120) * 0.1;
+        const kCoulomb = 8.99e9;
+        const eBoundary = Math.abs(qCoulomb) === 0 ? 0 : (kCoulomb * Math.abs(qCoulomb)) / (rMeters * rMeters);
+        if (boundaryEVal) {
+          boundaryEVal.textContent = eBoundary.toExponential(2) + ' N/C';
+        }
+
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        // Background grid
+        ctx.strokeStyle = 'rgba(30, 41, 59, 0.4)';
+        ctx.lineWidth = 1;
+        for (let x = 0; x < canvas.width; x += 40) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+        }
+        for (let y = 0; y < canvas.height; y += 40) {
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+        }
+
+        if (surfaceType === 'sphere') {
+          renderSpherical(cx, cy, radius, qNano, showExternal);
+        } else {
+          renderCylindrical(cx, cy, radius, qNano);
+        }
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderSpherical(cx, cy, radius, qNano, showExternal) {
+        const numRays = Math.max(4, Math.abs(qNano) * 3);
+        const isPositive = qNano >= 0;
+
+        if (qNano !== 0) {
+          for (let i = 0; i < numRays; i++) {
+            const angle = (i * 2 * Math.PI) / numRays;
+            const rayLen = radius + 60;
+
+            const startX = isPositive ? cx : cx + Math.cos(angle) * rayLen;
+            const startY = isPositive ? cy : cy + Math.sin(angle) * rayLen;
+            const endX = isPositive ? cx + Math.cos(angle) * rayLen : cx;
+            const endY = isPositive ? cy + Math.sin(angle) * rayLen : cy;
+
+            ctx.strokeStyle = isPositive ? 'rgba(56, 189, 248, 0.4)' : 'rgba(244, 63, 94, 0.4)';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.lineTo(endX, endY);
+            ctx.stroke();
+
+            const beadPhase = (pulseTime * 50 + i * 20) % rayLen;
+            const bx = isPositive ? cx + Math.cos(angle) * beadPhase : cx + Math.cos(angle) * (rayLen - beadPhase);
+            const by = isPositive ? cy + Math.sin(angle) * beadPhase : cy + Math.sin(angle) * (rayLen - beadPhase);
+
+            ctx.fillStyle = isPositive ? '#38bdf8' : '#f43f5e';
+            ctx.beginPath();
+            ctx.arc(bx, by, 2.5, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        // Gaussian Sphere
+        ctx.save();
+        ctx.strokeStyle = '#38bdf8';
+        ctx.shadowColor = '#38bdf8';
+        ctx.shadowBlur = 12;
+        ctx.lineWidth = 2.5;
+        ctx.setLineDash([6, 6]);
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+
+        const surfaceGrad = ctx.createRadialGradient(cx, cy, 10, cx, cy, radius);
+        surfaceGrad.addColorStop(0, 'rgba(56, 189, 248, 0.04)');
+        surfaceGrad.addColorStop(1, 'rgba(56, 189, 248, 0.12)');
+        ctx.fillStyle = surfaceGrad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        const sampleAngle = Math.PI / 4;
+        const bX = cx + Math.cos(sampleAngle) * radius;
+        const bY = cy - Math.sin(sampleAngle) * radius;
+        drawArrow(bX, bY, bX + Math.cos(sampleAngle) * 45, bY - Math.sin(sampleAngle) * 45, '#10b981', 'dA');
+        if (qNano !== 0) {
+          const eDir = qNano > 0 ? sampleAngle : sampleAngle + Math.PI;
+          drawArrow(bX, bY, bX + Math.cos(eDir) * 40, bY - Math.sin(eDir) * 40, '#f59e0b', 'E (θ=0°)');
+        }
+
+        drawCharge(cx, cy, qNano >= 0 ? '+' : '-', qNano + ' nC');
+
+        if (showExternal) {
+          const extX = cx + 260;
+          const extY = cy - 80;
+          drawCharge(extX, extY, '+', '+5 nC (ext)');
+
+          for (let a = Math.PI - 0.4; a < Math.PI + 0.4; a += 0.15) {
+            ctx.strokeStyle = 'rgba(251, 191, 36, 0.35)';
+            ctx.setLineDash([2, 4]);
+            ctx.beginPath();
+            ctx.moveTo(extX, extY);
+            ctx.lineTo(extX + Math.cos(a) * 360, extY + Math.sin(a) * 360);
+            ctx.stroke();
+            ctx.setLineDash([]);
+          }
+          ctx.fillStyle = '#f59e0b';
+          ctx.font = '10px monospace';
+          ctx.fillText('External Charge (Net Flux = 0)', extX - 70, extY - 24);
+        }
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Spherical Gaussian Surface: Φ = q_enclosed / ε₀[cite: 13]', cx, canvas.height - 18);
+      }
+
+      function renderCylindrical(cx, cy, radius, qNano) {
+        const length = 260;
+        const halfL = length / 2;
+
+        ctx.strokeStyle = qNano >= 0 ? '#f43f5e' : '#38bdf8';
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        ctx.moveTo(cx - halfL - 40, cy);
+        ctx.lineTo(cx + halfL + 40, cy);
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('Charged Wire (+λ)', cx - halfL - 85, cy + 4);
+
+        ctx.save();
+        ctx.strokeStyle = '#38bdf8';
+        ctx.shadowColor = '#38bdf8';
+        ctx.shadowBlur = 10;
+        ctx.lineWidth = 2;
+        ctx.setLineDash([5, 5]);
+
+        ctx.beginPath();
+        ctx.moveTo(cx - halfL, cy - radius);
+        ctx.lineTo(cx + halfL, cy - radius);
+        ctx.moveTo(cx - halfL, cy + radius);
+        ctx.lineTo(cx + halfL, cy + radius);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.ellipse(cx - halfL, cy, radius * 0.35, radius, 0, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.ellipse(cx + halfL, cy, radius * 0.35, radius, 0, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.fillStyle = 'rgba(56, 189, 248, 0.08)';
+        ctx.fillRect(cx - halfL, cy - radius, length, radius * 2);
+
+        for (let x = cx - halfL + 40; x <= cx + halfL - 40; x += 50) {
+          drawArrow(x, cy - radius, x, cy - radius - 35, '#38bdf8');
+          drawArrow(x, cy + radius, x, cy + radius + 35, '#38bdf8');
+        }
+
+        drawArrow(cx + halfL, cy - radius / 2, cx + halfL + 35, cy - radius / 2, '#10b981', 'dA');
+        drawArrow(cx + halfL, cy - radius / 2, cx + halfL, cy - radius / 2 - 30, '#f59e0b', 'E (90°)');
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Coaxial Cylinder: Flat caps have E ⊥ dA (Φ = 0). Curved surface yields E = λ / (2πε₀r)[cite: 13]', cx, canvas.height - 18);
+      }
+
+      function drawCharge(x, y, sign, label) {
+        const isPos = sign === '+';
+        ctx.save();
+        ctx.fillStyle = isPos ? 'rgba(244, 63, 94, 0.4)' : 'rgba(56, 189, 248, 0.4)';
+        ctx.beginPath();
+        ctx.arc(x, y, 22, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = isPos ? '#e11d48' : '#0284c7';
+        ctx.beginPath();
+        ctx.arc(x, y, 14, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 12px monospace';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(sign, x, y + 1);
+
+        ctx.font = 'bold 10px monospace';
+        ctx.fillText(label, x, y + 26);
+        ctx.restore();
+      }
+
+      function drawArrow(fromX, fromY, toX, toY, color, labelText) {
+        const angle = Math.atan2(toY - fromY, toX - fromX);
+        const headlen = 8;
+
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+        ctx.moveTo(fromX, fromY);
+        ctx.lineTo(toX, toY);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(toX, toY);
+        ctx.lineTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
+        ctx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
+        ctx.closePath();
+        ctx.fill();
+
+        if (labelText) {
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 10px monospace';
+          ctx.fillText(labelText, toX + 6, toY + 2);
+        }
+        ctx.restore();
+      }
+
+      // Start animation loop cleanly
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

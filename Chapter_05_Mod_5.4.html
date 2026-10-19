@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Magnetic Properties of Materials</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 5.3</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 03: Magnetism and Matter • Chapter 05</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Magnetic Properties of Materials: Dia, Para & Ferromagnetism</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Microscopic origin of magnetic dipoles, susceptibility $\chi$, relative permeability $\mu_r$, Curie's Law, and domain dynamics.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek bheed bhare hall ko jisme ek speaker (external magnetic field $\vec{B}_0$) aakar lecture dena shuru karta hai:
+        <br>1. <strong class="text-white">Diamagnetic log</strong> stubborn hain: unke paas pehle koi opinion nahi tha (zero net intrinsic dipole), lekin speaker ke bolte hi woh unke khilaaf hokar opposite direction mein react karte hain aur hall se door bhagne lagte hain (repelled by magnetic field).
+        <br>2. <strong class="text-white">Paramagnetic log</strong> lazy supporters hain: sabke paas apna personal opinion (permanent dipole) hai par bheed ki garmi (thermal agitation) unhe random rakhti hai. Speaker aate hi woh halka sa uski taraf jhuk jaate hain, par garmi badhane par unka alignment toot jata hai (Curie's Law: $\chi \propto 1/T$).
+        <br>3. <strong class="text-white">Ferromagnetic log</strong> organized gangs (Weiss Domains) hain: lakho log pehle se hi ek direction mein disciplined khade hain! Jaise hi speaker ek halka sa ishara karta hai, poore gang ke borders shift ho jaate hain aur sab ek sath usi direction mein synchronize hokar intensely lock ho jaate hain!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">Fundamental Magnetic Field Vectors</h3>
+          <p class="text-sm text-slate-400 mb-2">Magnetization $\vec{M}$, Magnetic Intensity $\vec{H}$, and Total Field $\vec{B}$:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\vec{M} = \frac{\vec{m}_{\text{net}}}{V}, \quad \vec{B} = \mu_0(\vec{H} + \vec{M})$$
+            $$\vec{M} = \chi \vec{H} \implies \vec{B} = \mu_0(1 + \chi)\vec{H} = \mu_r \mu_0 \vec{H}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Units: $\vec{M}$ and $\vec{H}$ have SI unit $\text{A/m}$. Relative permeability $\mu_r = 1 + \chi$ (dimensionless).</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">Curie's Law & Curie-Weiss Law</h3>
+          <p class="text-sm text-slate-400 mb-2">Thermal disruption of magnetic alignment:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\chi_{\text{para}} = \frac{C}{T} \quad (\text{Curie's Law})$$
+            $$\chi_{\text{ferro}} = \frac{C'}{T - T_c} \quad (T > T_c, \text{Curie-Weiss Law})$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Where $T_c$ is the Curie Temperature. Above $T_c$, a ferromagnetic substance transitions into a simple paramagnetic substance!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Microscopic Domain & Dipole Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Microscopic Material Response Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="matTypeBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Active Material: Paramagnetic (Aluminium)
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="materialCanvas" width="800" height="380" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>External Field ($B_0$)</span>
+            <span id="b0Val" class="text-cyan-400 font-mono font-bold">1.20 Tesla</span>
+          </div>
+          <input id="b0Slider" type="range" min="0" max="3" step="0.1" value="1.2" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Absolute Temperature ($T$)</span>
+            <span id="tTempVal" class="text-amber-400 font-mono font-bold">300 K</span>
+          </div>
+          <input id="tTempSlider" type="range" min="50" max="900" step="25" value="300" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Material Response Class</span>
+            <span id="classDescVal" class="text-emerald-400 font-mono font-bold">Weak Attraction</span>
+          </div>
+          <div class="text-[11px] text-slate-500 mt-2 font-mono" id="classFormula">χ = +2.3 × 10⁻⁵ | μr = 1.000023</div>
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Susceptibility ($\chi$):</span>
+          <div id="chiVal" class="text-cyan-400 font-bold text-sm mt-0.5">+2.30 × 10⁻⁵</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Permeability ($\mu_r = 1 + \chi$):</span>
+          <div id="muRVal" class="text-amber-400 font-bold text-sm mt-0.5">1.000023</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Internal Field ($B_{\text{int}}$):</span>
+          <div id="bIntVal" class="text-emerald-400 font-bold text-sm mt-0.5">1.20002 T</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Thermal Law Status:</span>
+          <div id="lawStatusVal" class="text-indigo-300 font-bold text-sm mt-0.5">Obeys Curie's Law</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Comparative Blueprint & Derivations -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Comparative Blueprint & Mathematical Deductions</span>
+      </div>
+
+      <!-- Master Comparative Matrix Table -->
+      <div class="overflow-x-auto rounded-xl border border-slate-800">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead class="bg-slate-950 text-slate-200 uppercase font-semibold border-b border-slate-800">
+            <tr>
+              <th class="p-3 border-r border-slate-800">Property</th>
+              <th class="p-3 border-r border-slate-800 text-cyan-400">Diamagnetic</th>
+              <th class="p-3 border-r border-slate-800 text-amber-400">Paramagnetic</th>
+              <th class="p-3 text-emerald-400">Ferromagnetic</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-3 font-semibold text-white">1. Physical Action in External Field $\vec{B}_0$</td>
+              <td class="p-3">Feeble repulsion; moves from stronger to weaker field regions.</td>
+              <td class="p-3">Feeble attraction; moves from weaker to stronger field regions.</td>
+              <td class="p-3">Strong, intense attraction; pulled rapidly towards strongest field.</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold text-white">2. Atomic Magnetic Dipole Moment</td>
+              <td class="p-3">Zero intrinsic dipole (electrons are paired with canceling spins).</td>
+              <td class="p-3">Permanent intrinsic atomic dipoles exist, but randomly oriented by heat.</td>
+              <td class="p-3">Permanent dipoles pre-aligned into macroscopic Weiss Domains ($10^{11}$ atoms).</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold text-white">3. Magnetic Susceptibility ($\chi$)</td>
+              <td class="p-3 text-rose-400 font-mono font-bold">Negative & Small ($-1 \le \chi < 0$)<br>e.g., Bismuth: $\chi \approx -1.6 \times 10^{-5}$</td>
+              <td class="p-3 text-amber-300 font-mono font-bold">Positive & Small ($0 < \chi < \varepsilon$)<br>e.g., Aluminium: $\chi \approx +2.3 \times 10^{-5}$</td>
+              <td class="p-3 text-emerald-400 font-mono font-bold">Positive & Extremely Large ($\chi \gg 1000$)<br>e.g., Soft Iron: $\chi \approx 5000$</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold text-white">4. Relative Permeability ($\mu_r$)</td>
+              <td class="p-3 font-mono">Slightly less than 1 ($0 \le \mu_r < 1$)</td>
+              <td class="p-3 font-mono">Slightly greater than 1 ($\mu_r > 1$)</td>
+              <td class="p-3 font-mono">Much greater than 1 ($\mu_r \gg 1000$)</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold text-white">5. Behavior of Field Lines</td>
+              <td class="p-3">Field lines are <strong>expelled</strong> from material ($B_{\text{in}} < B_0$).</td>
+              <td class="p-3">Field lines slightly <strong>concentrated</strong> inside ($B_{\text{in}} \gtrsim B_0$).</td>
+              <td class="p-3">Field lines <strong>crowd heavily</strong> inside ($B_{\text{in}} \ggg B_0$).</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold text-white">6. Effect of Temperature ($T$)</td>
+              <td class="p-3 text-cyan-300 font-bold">INDEPENDENT of $T$<br>(Orbital property; unchanged by heat)</td>
+              <td class="p-3 text-amber-300 font-bold">Inversely proportional ($T$)<br>$\chi = \frac{C}{T}$ (Curie's Law)</td>
+              <td class="p-3 text-emerald-300 font-bold">Curie-Weiss Law above $T_c$:<br>$\chi = \frac{C'}{T - T_c}$ (Converts to Para!)</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold text-white">7. Classic Examples</td>
+              <td class="p-3">Bismuth, Copper, Water, Lead, Nitrogen (STP), Superconductors.</td>
+              <td class="p-3">Aluminium, Sodium, Platinum, Liquid Oxygen, Manganese.</td>
+              <td class="p-3">Iron, Cobalt, Nickel, Gadolinium ($T_c = 16^\circ\text{C}$), Alnico.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Derivation: Curie's Law and Curie-Weiss Law -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Thermodynamic Law</span>
+          <h4 class="text-white font-semibold text-base mt-1">Deduction of Curie's Law & Ferromagnetic-to-Paramagnetic Transition</h4>
+        </div>
+        <p>1. In a paramagnetic material, individual atomic magnetic dipoles $\vec{m}$ experience an aligning torque from external field $\vec{B}_0$, but thermal kinetic energy ($\sim k_B T$) tends to randomize their orientations.</p>
+        <p>2. At moderate fields and temperatures where magnetic potential energy is much smaller than thermal energy ($m B_0 \ll k_B T$), statistical Boltzmann mechanics gives net magnetization proportional to applied field and inversely to absolute temperature:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$M = C \frac{B_0}{T} \implies \frac{M}{H} = \frac{\mu_0 C}{T} \implies \chi = \frac{C}{T}$$
+        </div>
+        <p>3. Where $C$ is Curie's Constant ($C = \frac{\mu_0 n m^2}{3 k_B}$). As $T \to 0\text{ K}$, magnetization approaches maximum saturation value $M_{\text{sat}} = n m$.</p>
+        <p>4. In a ferromagnetic substance, atomic exchange coupling creates spontaneous domain alignment below the <strong class="text-white">Curie Temperature $T_c$</strong> (e.g., for Iron $T_c = 1043\text{ K}$ or $770^\circ\text{C}$). Above $T_c$, thermal agitation completely overpowers the exchange coupling, breaking the domain structure into randomized atomic dipoles. The susceptibility then obeys the <strong class="text-white">Curie-Weiss Law</strong>:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\chi = \frac{C'}{T - T_c} \quad (T > T_c)$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Perfect Diamagnetism & The Superconductor Identity</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* What is the magnetic susceptibility of a perfect superconductor?
+            <br>A superconductor below its critical temperature exhibits the <strong class="text-white">Meissner Effect</strong>: it completely expels all magnetic flux from its interior ($\vec{B} = 0$).
+            $$\vec{B} = \mu_0(\vec{H} + \vec{M}) = 0 \implies \vec{M} = -\vec{H}$$
+            $$\chi = \frac{M}{H} = \mathbf{-1}, \quad \mu_r = 1 + \chi = \mathbf{0}$$
+            A superconductor is a <strong>perfect diamagnet</strong> ($\chi = -1, \mu_r = 0$).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Does Diamagnetism depend on Temperature?</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Exam Trap:* "If a piece of bismuth is heated from $300\text{ K}$ to $600\text{ K}$, how does its susceptibility change?"
+            <br>*Correct Answer:* <strong class="text-white">IT REMAINS COMPLETELY UNCHANGED!</strong>
+            Diamagnetism arises from Lenz's law modification of paired electron orbital speeds, which does not depend on thermal agitation. (Only paramagnetism and ferromagnetism depend on temperature).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Liquid in a U-Tube Between Magnetic Poles</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            • <strong>Diamagnetic Liquid (Water/Bismuth):</strong> The liquid meniscus in the limb between strong magnetic poles <strong class="text-white">DEPRESSES (goes down)</strong> because it is repelled from the strong field.
+            <br>• <strong>Paramagnetic Liquid (Liquid Oxygen/FeSO₄ sol):</strong> The meniscus <strong class="text-white">RISES UP</strong> because it is attracted towards the region of stronger field.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Electromagnet Core vs Permanent Magnet Materials</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            • <strong>Electromagnet / Transformer Core (Soft Iron):</strong> Requires <strong class="text-white">High Permeability $\mu_r$</strong>, High Retentivity, but <strong class="text-white">Low Coercivity</strong> and thin hysteresis loop to minimize heat dissipation during AC cycling.
+            <br>• <strong>Permanent Magnet (Steel / Alnico):</strong> Requires <strong class="text-white">High Retentivity</strong> and <strong class="text-white">HIGH COERCIVITY</strong> so that stray fields or mechanical drops do not demagnetize it easily.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A solenoid has a core of material with relative permeability $\mu_r = 400$. The windings of the solenoid are insulated from the core and carry a current of $2.0\text{ A}$. If the number of turns is $1000\text{ per metre}$, calculate (i) Magnetic Intensity $H$, (ii) Magnetic Field $B$, and (iii) Magnetization $M$ inside the core.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Magnetic Intensity $H$ depends strictly on the winding free current:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$H = n I = (1000\text{ m}^{-1}) \times (2.0\text{ A}) = 2.0 \times 10^3\text{ A/m}$$
+          </div>
+          <p>2. Magnetic field $B$ inside the material core:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$B = \mu_r \mu_0 H = 400 \times (4\pi \times 10^{-7}\text{ T}\cdot\text{m/A}) \times (2.0 \times 10^3\text{ A/m})$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$B = 3200\pi \times 10^{-4}\text{ T} \approx 1.005\text{ Tesla}$$
+          </div>
+          <p>3. Magnetization $M$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$M = \chi H = (\mu_r - 1) H = (400 - 1) \times (2.0 \times 10^3) = 399 \times 2.0 \times 10^3$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$M = 7.98 \times 10^5\text{ A/m}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: The magnetic susceptibility of a paramagnetic salt is $1.2 \times 10^{-5}$ at $300\text{ K}$. At what temperature will its susceptibility increase to $1.8 \times 10^{-5}$? If the sample is placed in a field of $0.6\text{ T}$ and cooled to $4\text{ K}$, it reaches 15% of its saturation magnetization. If the field is increased to $2.0\text{ T}$, can Curie's law still be applied?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. By Curie's Law, $\chi \propto 1/T \implies \chi_1 T_1 = \chi_2 T_2$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$T_2 = T_1 \times \left(\frac{\chi_1}{\chi_2}\right) = 300\text{ K} \times \left(\frac{1.2 \times 10^{-5}}{1.8 \times 10^{-5}}\right) = 300 \times \frac{2}{3} = 200\text{ K}$$
+          </div>
+          <p>2. At $T = 4\text{ K}$ and higher field ($2.0\text{ T}$), the ratio $B/T$ becomes very large ($B/T = 2.0 / 4 = 0.5\text{ T/K}$). Atomic dipoles become almost fully aligned, approaching complete magnetic saturation ($M \to M_{\text{sat}}$). In this regime, magnetization stops increasing linearly with field; therefore, <strong class="text-white">Curie's Law ceases to be valid</strong>!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Diamagnetic</p>
+          <p class="text-xs font-bold text-rose-400 mt-1">$-1 \le \chi < 0$, $\mu_r < 1$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Paramagnetic</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$\chi \propto 1/T$, $\mu_r > 1$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Ferromagnetic</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$\chi \gg 1000$, $\mu_r \gg 1000$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Curie-Weiss Law</p>
+          <p class="text-xs font-bold text-white mt-1">$\chi = \frac{C'}{T - T_c}$ ($T > T_c$)</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Microscopic Material Simulation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('materialCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const matTypeBtn = document.getElementById('matTypeBtn');
+      const b0Slider = document.getElementById('b0Slider');
+      const tTempSlider = document.getElementById('tTempSlider');
+
+      const b0Val = document.getElementById('b0Val');
+      const tTempVal = document.getElementById('tTempVal');
+      const classDescVal = document.getElementById('classDescVal');
+      const classFormula = document.getElementById('classFormula');
+
+      const chiVal = document.getElementById('chiVal');
+      const muRVal = document.getElementById('muRVal');
+      const bIntVal = document.getElementById('bIntVal');
+      const lawStatusVal = document.getElementById('lawStatusVal');
+
+      // Material classes: 'para', 'dia', 'ferro'
+      const matClasses = ['para', 'dia', 'ferro'];
+      let currentMatIdx = 0;
+      let phaseTime = 0;
+
+      matTypeBtn.addEventListener('click', () => {
+        currentMatIdx = (currentMatIdx + 1) % matClasses.length;
+        const currentMat = matClasses[currentMatIdx];
+
+        if (currentMat === 'para') {
+          matTypeBtn.textContent = 'Active Material: Paramagnetic (Aluminium)';
+          classDescVal.textContent = 'Weak Attraction';
+          classDescVal.className = 'text-amber-400 font-mono font-bold';
+          lawStatusVal.textContent = "Obeys Curie's Law";
+        } else if (currentMat === 'dia') {
+          matTypeBtn.textContent = 'Active Material: Diamagnetic (Copper / Bismuth)';
+          classDescVal.textContent = 'Feeble Repulsion';
+          classDescVal.className = 'text-cyan-400 font-mono font-bold';
+          lawStatusVal.textContent = 'Temperature Independent';
+        } else {
+          matTypeBtn.textContent = 'Active Material: Ferromagnetic (Iron / Domain Walls)';
+          classDescVal.textContent = 'Intense Domain Alignment';
+          classDescVal.className = 'text-emerald-400 font-mono font-bold';
+          lawStatusVal.textContent = 'Curie-Weiss Law (Tc = 770°C)';
+        }
+      });
+
+      function renderLoop() {
+        phaseTime += 0.04;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const B0 = parseFloat(b0Slider.value);
+        const Temp = parseFloat(tTempSlider.value);
+
+        b0Val.textContent = B0.toFixed(2) + ' Tesla';
+        tTempVal.textContent = Temp.toFixed(0) + ' K';
+
+        const currentMat = matClasses[currentMatIdx];
+
+        let chi = 0;
+        let mu_r = 1;
+        let B_int = B0;
+
+        if (currentMat === 'para') {
+          // Curie's Law: chi = C / T
+          const C_curie = 0.007; // scale
+          chi = C_curie / Temp;
+          mu_r = 1 + chi;
+          B_int = B0 * mu_r;
+          chiVal.textContent = '+' + chi.toExponential(2);
+          muRVal.textContent = mu_r.toFixed(5);
+          classFormula.textContent = `χ = C/T = ${(chi*1e5).toFixed(2)}×10⁻⁵ | μr = ${mu_r.toFixed(5)}`;
+        } else if (currentMat === 'dia') {
+          // Temperature independent negative susceptibility
+          chi = -1.6e-5;
+          mu_r = 1 + chi;
+          B_int = B0 * mu_r;
+          chiVal.textContent = chi.toExponential(2);
+          muRVal.textContent = mu_r.toFixed(5);
+          classFormula.textContent = `χ = -1.60×10⁻⁵ (Constant) | μr = 0.99998`;
+        } else {
+          // Ferromagnetic: Below Tc = 1043 K (or scaled 600K here)
+          const Tc = 600;
+          if (Temp < Tc) {
+            chi = 3500 * (1 - Temp / Tc) + 120;
+            mu_r = 1 + chi;
+            B_int = B0 * Math.min(25, 1 + chi * 0.005);
+            chiVal.textContent = '+' + Math.round(chi);
+            muRVal.textContent = Math.round(mu_r);
+            lawStatusVal.textContent = 'Ferromagnetic State (T < Tc)';
+            classFormula.textContent = `High Permeability μr >> 1000 | Domain Growth`;
+          } else {
+            // Above Curie Temp
+            chi = 120 / (Temp - Tc + 10);
+            mu_r = 1 + chi;
+            B_int = B0 * (1 + chi * 0.1);
+            chiVal.textContent = '+' + chi.toFixed(2);
+            muRVal.textContent = mu_r.toFixed(3);
+            lawStatusVal.textContent = 'Transformed to Paramagnetic (T > Tc)';
+            classFormula.textContent = `Curie-Weiss Law: χ = C'/(T - Tc)`;
+          }
+        }
+
+        bIntVal.textContent = B_int.toFixed(3) + ' T';
+
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        // Render Canvas Visuals based on Material Type
+        if (currentMat === 'para') {
+          renderParamagneticDipoles(cx, cy, B0, Temp, phaseTime);
+        } else if (currentMat === 'dia') {
+          renderDiamagneticOrbitals(cx, cy, B0, phaseTime);
+        } else {
+          renderFerromagneticDomains(cx, cy, B0, Temp, phaseTime);
+        }
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      // 1. PARAMAGNETIC DIPOLES: Random Thermal Jitter vs B0 Alignment
+      function renderParamagneticDipoles(cx, cy, B0, Temp, phase) {
+        renderOuterPoles(cx, cy, 'PARAMAGNETIC SAMPLE (Aluminium)');
+
+        const boxW = 280, boxH = 180;
+        const startX = cx - boxW / 2;
+        const startY = cy - boxH / 2;
+
+        ctx.fillStyle = 'rgba(245, 158, 11, 0.08)';
+        ctx.fillRect(startX, startY, boxW, boxH);
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(startX, startY, boxW, boxH);
+
+        // Alignment factor: Higher B0 aligns; higher Temp randomizes
+        const alignRatio = Math.min(0.95, (B0 * 1.5) / (Temp / 180));
+
+        const rows = 5, cols = 7;
+        const stepX = boxW / cols;
+        const stepY = boxH / rows;
+
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const dx = startX + c * stepX + stepX / 2;
+            const dy = startY + r * stepY + stepY / 2;
+
+            // Base random angle fluctuating with temperature
+            const noise = Math.sin(phase * 3 + r * 5 + c * 3) * (1 - alignRatio) * Math.PI;
+            const dipoleAngle = noise; // Net average bias towards 0 radians (along B0 ➔)
+
+            renderLittleArrow(dx, dy, dipoleAngle, '#fbbf24', 16);
+          }
+        }
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Curie Thermal Rivalry: Magnetic alignment vs Thermal randomization (χ = C / T)`, cx, canvas.height - 12);
+      }
+
+      // 2. DIAMAGNETIC ORBITALS: Opposing Induced Dipoles & Field Line Expulsion
+      function renderDiamagneticOrbitals(cx, cy, B0, phase) {
+        renderOuterPoles(cx, cy, 'DIAMAGNETIC SAMPLE (Bismuth / Copper)');
+
+        const boxW = 280, boxH = 180;
+        const startX = cx - boxW / 2;
+        const startY = cy - boxH / 2;
+
+        ctx.fillStyle = 'rgba(56, 189, 248, 0.08)';
+        ctx.fillRect(startX, startY, boxW, boxH);
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(startX, startY, boxW, boxH);
+
+        // Curved field lines bending OUTWARD (Expulsion of field lines)
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.45)';
+        ctx.lineWidth = 1.8;
+        for (let y = startY + 20; y < startY + boxH; y += 35) {
+          ctx.beginPath();
+          ctx.moveTo(40, y);
+          ctx.lineTo(startX - 20, y);
+          // Spline curving outward away from center
+          const curveY = y < cy ? y - 25 : y + 25;
+          ctx.quadraticCurveTo(cx, curveY, startX + boxW + 20, y);
+          ctx.lineTo(canvas.width - 40, y);
+          ctx.stroke();
+        }
+
+        // Induced atomic electron paired loops (Precessing opposite to B0)
+        const rows = 4, cols = 5;
+        const stepX = boxW / cols;
+        const stepY = boxH / rows;
+
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const dx = startX + c * stepX + stepX / 2;
+            const dy = startY + r * stepY + stepY / 2;
+
+            // Paired orbital ring
+            ctx.strokeStyle = '#38bdf8';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(dx, dy, 12, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // Induced dipole arrow pointing LEFTWARD (Opposing B0 🠈)
+            if (B0 > 0) {
+              renderLittleArrow(dx, dy, Math.PI, '#f43f5e', 14);
+            }
+          }
+        }
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Lenz's Law Orbital Shielding: Induced moments oppose applied field | Lines expelled (χ < 0)`, cx, canvas.height - 12);
+      }
+
+      // 3. FERROMAGNETIC DOMAINS: Weiss Domain Wall Shifting & Saturation
+      function renderFerromagneticDomains(cx, cy, B0, Temp, phase) {
+        renderOuterPoles(cx, cy, 'FERROMAGNETIC WEISS DOMAINS (Soft Iron)');
+
+        const boxW = 280, boxH = 180;
+        const startX = cx - boxW / 2;
+        const startY = cy - boxH / 2;
+
+        ctx.fillStyle = '#0f172a';
+        ctx.fillRect(startX, startY, boxW, boxH);
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 2.5;
+        ctx.strokeRect(startX, startY, boxW, boxH);
+
+        const isAboveCurie = Temp >= 600;
+
+        if (isAboveCurie) {
+          // Disrupted paramagnetic random phase
+          ctx.fillStyle = '#f43f5e';
+          ctx.font = 'bold 12px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText(`THERMAL DECOUPLING: T > Tc (${Temp}K >= 600K)`, cx, cy - 30);
+          ctx.fillText(`DOMAINS DESTROYED ➔ PARAMAGNETIC STATE`, cx, cy);
+
+          for (let i = 0; i < 28; i++) {
+            const rx = startX + 20 + Math.random() * (boxW - 40);
+            const ry = startY + 20 + Math.random() * (boxH - 40);
+            renderLittleArrow(rx, ry, Math.random() * Math.PI * 2, '#94a3b8', 12);
+          }
+          return;
+        }
+
+        // Domain wall shift calculation: As B0 increases, favorable domain grows
+        const shiftX = Math.min(100, B0 * 45); // Central wall shifts right
+        const midWallX = cx + shiftX;
+
+        // Domain 1: Aligned with B0 (➔) - Expands
+        ctx.fillStyle = 'rgba(16, 185, 129, 0.2)';
+        ctx.fillRect(startX, startY, (midWallX - startX), boxH);
+
+        // Domain 2: Opposing/Mismatched - Shrinks
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.15)';
+        ctx.fillRect(midWallX, startY, (startX + boxW - midWallX), boxH);
+
+        // Boundary Domain Wall
+        ctx.save();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(midWallX, startY);
+        ctx.lineTo(midWallX, startY + boxH);
+        ctx.stroke();
+        ctx.restore();
+
+        // Render aligned dipoles in expanding domain (➔)
+        for (let x = startX + 20; x < midWallX - 10; x += 35) {
+          for (let y = startY + 25; y < startY + boxH - 10; y += 35) {
+            renderLittleArrow(x, y, 0, '#10b981', 18);
+          }
+        }
+
+        // Render misaligned dipoles in shrinking domain (🠙)
+        for (let x = midWallX + 20; x < startX + boxW - 10; x += 35) {
+          for (let y = startY + 25; y < startY + boxH - 10; y += 35) {
+            renderLittleArrow(x, y, -Math.PI / 2, '#ef4444', 16);
+          }
+        }
+
+        ctx.fillStyle = '#10b981';
+        ctx.font = 'bold 11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Growing Favorable Domain (➔)`, (startX + midWallX) / 2, startY - 8);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.fillText(`Domain Wall Displacement: Favorable domains expand by wall motion until complete saturation`, cx, canvas.height - 12);
+      }
+
+      function renderOuterPoles(cx, cy, title) {
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(title, cx, 30);
+
+        // North pole on left, South pole on right
+        ctx.fillStyle = '#991b1b';
+        ctx.fillRect(30, cy - 80, 50, 160);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 16px monospace';
+        ctx.fillText('N', 55, cy + 6);
+
+        ctx.fillStyle = '#1e3a8a';
+        ctx.fillRect(canvas.width - 80, cy - 80, 50, 160);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText('S', canvas.width - 55, cy + 6);
+      }
+
+      function renderLittleArrow(x, y, angle, color, len) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(angle);
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+        ctx.moveTo(-len / 2, 0);
+        ctx.lineTo(len / 2, 0);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(len / 2, 0);
+        ctx.lineTo(len / 2 - 4, -3);
+        ctx.lineTo(len / 2 - 4, 3);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

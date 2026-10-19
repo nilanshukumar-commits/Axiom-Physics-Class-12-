@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Dipole in B-Field & Gauss's Law</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 5.2</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 03: Magnetism and Matter • Chapter 05</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Magnetic Dipole in Uniform Field & Gauss's Law</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Restoring torque, oscillation SHM equation, potential energy states, and absence of isolated magnetic monopoles.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek simple pendulum ko: jab aap use uski mean position se thoda sa displace karke chhodte hain, toh gravity use wapas center ki taraf khinchti hai aur woh SHM karne lagta hai. Theek waise hi, jab ek compass needle ya bar magnet ko uniform magnetic field mein halka sa deflect kiya jata hai, toh magnetic field uspar ek <strong class="text-white">restoring torque ($\tau = -MB\sin\theta$)</strong> lagati hai jo use wapas field ke parallel align karna chahti hai. Aur <strong class="text-white">Gauss's Law for Magnetism</strong> universe ka sabse fundamental sach batata hai: agar aap kisi bhi band kamre (closed surface) mein magnet ko band kar den, toh jitni field lines andar aayengi utni hi bahar nikal jayengi, kyunki isolated North ya South pole exist hi nahi karta!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Torque & Potential Energy</h3>
+          <p class="text-sm text-slate-400 mb-2">Dipole moment $\vec{M}$ in uniform magnetic field $\vec{B}$:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\vec{\tau} = \vec{M} \times \vec{B}, \quad U = -\vec{M}\cdot\vec{B} = -MB\cos\theta$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Stable Equilibrium: $\theta = 0^\circ$ ($U_{\min} = -MB, \tau = 0$). Unstable Equilibrium: $\theta = 180^\circ$ ($U_{\max} = +MB, \tau = 0$).</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Gauss's Law for Magnetism</h3>
+          <p class="text-sm text-slate-400 mb-2">Net magnetic flux through any closed Gaussian surface is identically zero:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\Phi_B = \oint \vec{B} \cdot d\vec{A} = 0$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Physical Signification: Isolated magnetic monopoles do not exist; magnetic lines are continuous closed loops.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (SHM Needle & Gauss Surface Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Compass Oscillation & Gauss Flux Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="viewToggleBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Switch: Gauss's Law Closed Box
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="oscCanvas" width="800" height="380" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="slider1Label">Magnetic Field ($B$)</span>
+            <span id="slider1Val" class="text-cyan-400 font-mono font-bold">0.050 T (500 G)</span>
+          </div>
+          <input id="slider1" type="range" min="0.01" max="0.15" step="0.005" value="0.05" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="slider2Label">Initial Deflection ($\theta_0$)</span>
+            <span id="slider2Val" class="text-amber-400 font-mono font-bold">18° (Small Angle)</span>
+          </div>
+          <input id="slider2" type="range" min="5" max="45" step="1" value="18" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="slider3Label">Magnetic Dipole Moment ($M$)</span>
+            <span id="slider3Val" class="text-emerald-400 font-mono font-bold">0.80 A·m²</span>
+          </div>
+          <input id="slider3" type="range" min="0.2" max="2.0" step="0.1" value="0.8" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Time Period ($T = 2\pi\sqrt{I/MB}$):</span>
+          <div id="periodVal" class="text-cyan-400 font-bold text-sm mt-0.5">0.444 s</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Oscillation Frequency ($f$):</span>
+          <div id="freqVal" class="text-amber-400 font-bold text-sm mt-0.5">2.25 Hz</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Peak Restoring Torque ($\tau_{\max}$):</span>
+          <div id="torqueVal" class="text-emerald-400 font-bold text-sm mt-0.5">12.36 mN·m</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Net Gauss Flux ($\Phi_B$):</span>
+          <div class="text-indigo-300 font-bold text-sm mt-0.5">0.00 Wb (Invariant)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation: Oscillation of a Magnetic Needle in a Uniform Magnetic Field -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Classic Board Derivation</span>
+          <h4 class="text-white font-semibold text-base mt-1">Oscillation Time Period of a Magnetic Dipole in a Uniform Magnetic Field</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Restoring Torque & Deflection Angle -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 250" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-b" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-force" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#ef4444"/>
+              </marker>
+              <marker id="arr-moment" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+              </marker>
+            </defs>
+
+            <!-- Background Uniform Magnetic Field Lines -->
+            <g stroke="#334155" stroke-width="1.5">
+              <line x1="50" y1="50" x2="600" y2="50" marker-end="url(#arr-b)" />
+              <line x1="50" y1="100" x2="600" y2="100" marker-end="url(#arr-b)" />
+              <line x1="50" y1="150" x2="600" y2="150" marker-end="url(#arr-b)" />
+              <line x1="50" y1="200" x2="600" y2="200" marker-end="url(#arr-b)" />
+            </g>
+            <text x="580" y="42" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">B ➔</text>
+
+            <!-- Reference Equilibrium Axis (Horizontal dashed) -->
+            <line x1="160" y1="125" x2="480" y2="125" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4,4" />
+            <text x="490" y="129" fill="#94a3b8" font-size="10" font-family="monospace">θ = 0° (Equilibrium)</text>
+
+            <!-- Pivot Center O -->
+            <circle cx="320" cy="125" r="4" fill="#ffffff" />
+            <text x="315" y="145" fill="#cbd5e1" font-size="10" font-family="monospace">O</text>
+
+            <!-- Deflected Magnetic Needle (Tilted at angle theta) -->
+            <!-- South pole at (220, 165), North pole at (420, 85) -->
+            <polygon points="320,119 420,85 320,131" fill="#ef4444" stroke="#f87171" stroke-width="1.5" />
+            <polygon points="320,119 220,165 320,131" fill="#3b82f6" stroke="#60a5fa" stroke-width="1.5" />
+
+            <text x="428" y="82" fill="#ef4444" font-size="12" font-weight="bold" font-family="monospace">N (+m)</text>
+            <text x="180" y="172" fill="#3b82f6" font-size="12" font-weight="bold" font-family="monospace">S (-m)</text>
+
+            <!-- Magnetic Dipole Moment Vector M (South to North) -->
+            <line x1="320" y1="125" x2="380" y2="101" stroke="#10b981" stroke-width="2.5" marker-end="url(#arr-moment)" />
+            <text x="350" y="94" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">M</text>
+
+            <!-- Deflection Angle Theta Arc -->
+            <path d="M 370 125 A 50 50 0 0 0 367 106" fill="none" stroke="#f59e0b" stroke-width="1.8" />
+            <text x="375" y="118" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">θ</text>
+
+            <!-- Magnetic Force on North Pole (Rightward along B) -->
+            <line x1="420" y1="85" x2="480" y2="85" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-force)" />
+            <text x="485" y="80" fill="#ef4444" font-size="10" font-family="monospace">F = +mB</text>
+
+            <!-- Magnetic Force on South Pole (Leftward opposite to B) -->
+            <line x1="220" y1="165" x2="160" y2="165" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-force)" />
+            <text x="100" y="169" fill="#ef4444" font-size="10" font-family="monospace">F = -mB</text>
+
+            <!-- Restoring Torque Curved Arrow -->
+            <path d="M 410 65 A 25 25 0 0 0 390 85" fill="none" stroke="#f59e0b" stroke-width="2" marker-end="url(#arr-moment)" />
+            <text x="340" y="60" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">Restoring Torque τ = -MB sinθ</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 5.2A: Magnetic needle of moment $\vec{M}$ deflected by small angle $\theta$ in uniform field $\vec{B}$, experiencing equal and opposite forces constituting a restoring couple.</p>
+        </div>
+
+        <!-- Step-by-Step Mathematical Derivation -->
+        <p>1. Consider a magnetic needle of magnetic dipole moment $\vec{M}$ and moment of inertia $\mathcal{I}$ about its suspension axis, placed in a uniform magnetic field $\vec{B}$.</p>
+        <p>2. When deflected through an angle $\theta$ from its equilibrium position, the deflecting couple develops an opposing restoring torque acting to decrease $\theta$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\tau = -M B \sin\theta$$
+        </div>
+        <p>3. If $\theta$ is small ($\theta \ll 1\text{ rad}$), we can approximate $\sin\theta \approx \theta$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\tau \approx -M B \theta$$
+        </div>
+        <p>4. In rotational dynamics, torque equals moment of inertia times angular acceleration ($\tau = \mathcal{I}\alpha = \mathcal{I}\frac{d^2\theta}{dt^2}$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\mathcal{I}\frac{d^2\theta}{dt^2} = -M B \theta \implies \frac{d^2\theta}{dt^2} = -\left(\frac{M B}{\mathcal{I}}\right)\theta$$
+        </div>
+        <p>5. Comparing with standard Simple Harmonic Motion (SHM) differential equation $\frac{d^2\theta}{dt^2} = -\omega^2\theta$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\omega^2 = \frac{M B}{\mathcal{I}} \implies \omega = \sqrt{\frac{M B}{\mathcal{I}}}$$
+        </div>
+        <p>6. The time period $T$ of oscillation is given by $T = \frac{2\pi}{\omega}$:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$T = 2\pi \sqrt{\frac{\mathcal{I}}{M B}} \implies B = \frac{4\pi^2 \mathcal{I}}{M T^2}$$
+        </div>
+        <p class="text-slate-400"><em>Experimental Utility:</em> This provides an exact laboratory method to calculate unknown magnetic field $B$ or magnetic dipole moment $M$ using an oscillation magnetometer.</p>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Stable vs Unstable Equilibrium Energy Misconception</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            In both positions, net torque $\tau = MB\sin\theta = 0$.
+            <br>• <strong>$\theta = 0^\circ$ (Stable):</strong> $\vec{M} \parallel \vec{B} \implies U = -MB\cos 0^\circ = \mathbf{-MB}$ (Minimum energy). If deflected slightly, it oscillates back.
+            <br>• <strong>$\theta = 180^\circ$ (Unstable):</strong> $\vec{M}$ antiparallel to $\vec{B} \implies U = -MB\cos 180^\circ = \mathbf{+MB}$ (Maximum energy). If disturbed, it flips over and does not return.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Net Force on Magnetic Dipole (Uniform vs Non-Uniform Field)</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            • In a <strong>Uniform Magnetic Field</strong>: Two equal and opposite forces act on the poles ($+mB$ and $-mB$). Hence <strong class="text-white">$\vec{F}_{\text{net}} = 0$</strong>; it experiences only a pure torque.
+            <br>• In a <strong>Non-Uniform Magnetic Field</strong>: Forces at the two poles do not balance ($B_N \ne B_S$). Hence the dipole experiences <strong class="text-white">BOTH a net translating force and a torque</strong> ($\vec{F}_{\text{net}} \ne 0, \vec{\tau} \ne 0$).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Work Done in Rotating a Dipole</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            External work done rotating a dipole from $\theta_1$ to $\theta_2$:
+            $$W = U(\theta_2) - U(\theta_1) = -MB\cos\theta_2 - (-MB\cos\theta_1) = MB(\cos\theta_1 - \cos\theta_2)$$
+            • From stable to unstable equilibrium ($\theta_1 = 0^\circ \to \theta_2 = 180^\circ$):
+            $$W = MB(1 - (-1)) = \mathbf{2MB}$$
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Gauss's Law in Electrostatics vs Magnetism</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            • Electrostatics: $\oint \vec{E}\cdot d\vec{A} = \frac{q_{\text{enc}}}{\varepsilon_0}$ (can be non-zero because isolated positive/negative charges exist).
+            <br>• Magnetism: $\oint \vec{B}\cdot d\vec{A} = \mathbf{0}$ always! If you cut a magnet into a million pieces, every single piece remains an N-S dipole pair; net magnetic pole charge inside any closed volume is strictly zero.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A magnetic needle pivoted about its horizontal axis is free to oscillate in the magnetic meridian. It completes $30\text{ oscillations}$ in $1\text{ minute}$ at a place where the horizontal component of earth's field is $0.36\text{ G}$. What is the time period of oscillation? If the moment of inertia of the needle is $7.2 \times 10^{-6}\text{ kg}\cdot\text{m}^2$, calculate its magnetic dipole moment.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Frequency and Time Period:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$T = \frac{\text{Total Time}}{\text{Number of Oscillations}} = \frac{60\text{ s}}{30} = 2.0\text{ seconds}$$
+          </div>
+          <p>2. Given: $\mathcal{I} = 7.2 \times 10^{-6}\text{ kg}\cdot\text{m}^2$, $B = 0.36\text{ G} = 0.36 \times 10^{-4}\text{ T} = 3.6 \times 10^{-5}\text{ T}$.</p>
+          <p>3. Using period formula $T = 2\pi\sqrt{\frac{\mathcal{I}}{MB}} \implies T^2 = \frac{4\pi^2\mathcal{I}}{MB}$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$M = \frac{4\pi^2 \mathcal{I}}{B T^2} = \frac{4 \times (9.87) \times (7.2 \times 10^{-6})}{(3.6 \times 10^{-5}) \times (2.0)^2}$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$M = \frac{2.842 \times 10^{-4}}{1.44 \times 10^{-4}} \approx 1.97\text{ A}\cdot\text{m}^2 \quad (\text{or J/T})$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: Two identical thin bar magnets, each of length $l$ and magnetic moment $M$, are joined perpendicular to each other at their ends such that unlike poles touch each other ($N_1$ touching $S_2$). The combination is suspended in a uniform magnetic field $B$. What is the net magnetic dipole moment of the combination, and what angle does the first magnet make with the field in equilibrium?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Magnetic moment is a vector pointing from South to North pole.</p>
+          <p>$\vec{M}_1 = M\hat{i}$ and $\vec{M}_2 = M\hat{j}$ (at $90^\circ$ to each other).</p>
+          <p>2. Resultant magnetic dipole moment $\vec{M}_{\text{net}}$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$M_{\text{net}} = \sqrt{M_1^2 + M_2^2} = \sqrt{M^2 + M^2} = \sqrt{2}M$$
+          </div>
+          <p>3. In stable equilibrium in uniform field $B$, the resultant dipole moment $\vec{M}_{\text{net}}$ aligns exactly parallel to the external field $\vec{B}$.</p>
+          <p>4. The angle between $\vec{M}_1$ and $\vec{M}_{\text{net}}$ is:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\tan\theta = \frac{M_2}{M_1} = \frac{M}{M} = 1 \implies \theta = 45^\circ$$
+          </div>
+          <p class="text-slate-400"><em>Conclusion:</em> In equilibrium, the first magnet makes an angle of $45^\circ$ with the external field direction, and net moment is $\sqrt{2}M$.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Restoring Torque</p>
+          <p class="text-xs font-bold text-white mt-1">$\tau = MB\sin\theta$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Oscillation Period</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$T = 2\pi\sqrt{\frac{\mathcal{I}}{MB}}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Potential Energy</p>
+          <p class="text-xs font-bold text-white mt-1">$U = -MB\cos\theta$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Gauss's Law</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$\oint \vec{B}\cdot d\vec{A} = 0$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS SHM Needle & Gauss Surface Engine Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('oscCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const viewToggleBtn = document.getElementById('viewToggleBtn');
+      const slider1 = document.getElementById('slider1');
+      const slider2 = document.getElementById('slider2');
+      const slider3 = document.getElementById('slider3');
+
+      const slider1Label = document.getElementById('slider1Label');
+      const slider2Label = document.getElementById('slider2Label');
+      const slider3Label = document.getElementById('slider3Label');
+      const slider1Val = document.getElementById('slider1Val');
+      const slider2Val = document.getElementById('slider2Val');
+      const slider3Val = document.getElementById('slider3Val');
+
+      const periodVal = document.getElementById('periodVal');
+      const freqVal = document.getElementById('freqVal');
+      const torqueVal = document.getElementById('torqueVal');
+
+      // 'oscillation' or 'gauss'
+      let currentView = 'oscillation';
+      let simTime = 0;
+
+      viewToggleBtn.addEventListener('click', () => {
+        currentView = (currentView === 'oscillation') ? 'gauss' : 'oscillation';
+        viewToggleBtn.textContent = (currentView === 'oscillation')
+          ? "Switch: Gauss's Law Closed Box"
+          : 'Switch: Return to Needle Oscillation';
+      });
+
+      function renderLoop() {
+        simTime += 0.02;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const B = parseFloat(slider1.value);
+        const theta0Deg = parseFloat(slider2.value);
+        const theta0Rad = (theta0Deg * Math.PI) / 180;
+        const M = parseFloat(slider3.value);
+
+        slider1Val.textContent = B.toFixed(3) + ` T (${(B * 1e4).toFixed(0)} G)`;
+        slider2Val.textContent = theta0Deg.toFixed(0) + '°';
+        slider3Val.textContent = M.toFixed(2) + ' A·m²';
+
+        // Moment of Inertia for typical small magnetic needle
+        const I_moment = 2.0e-5; // kg·m²
+        const omega = Math.sqrt((M * B) / I_moment);
+        const T_period = (2 * Math.PI) / omega;
+        const freq = 1 / T_period;
+        const maxTorque = M * B * Math.sin(theta0Rad);
+
+        periodVal.textContent = T_period.toFixed(3) + ' s';
+        freqVal.textContent = freq.toFixed(2) + ' Hz';
+        torqueVal.textContent = (maxTorque * 1e3).toFixed(2) + ' mN·m';
+
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        if (currentView === 'oscillation') {
+          renderOscillationMode(cx, cy, B, theta0Rad, omega, M);
+        } else {
+          renderGaussBoxMode(cx, cy);
+        }
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderOscillationMode(cx, cy, B, theta0Rad, omega, M) {
+        // Draw Uniform Horizontal Magnetic Field Lines
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.2)';
+        ctx.lineWidth = 1.5;
+        for (let y = 60; y < canvas.height - 40; y += 42) {
+          ctx.beginPath();
+          ctx.moveTo(80, y);
+          ctx.lineTo(canvas.width - 60, y);
+          ctx.stroke();
+
+          // Arrowhead
+          ctx.fillStyle = '#38bdf8';
+          ctx.beginPath();
+          ctx.moveTo(canvas.width - 60, y);
+          ctx.lineTo(canvas.width - 70, y - 4);
+          ctx.lineTo(canvas.width - 70, y + 4);
+          ctx.fill();
+        }
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`Uniform B Field (${(B * 1e4).toFixed(0)} Gauss) ➔`, 90, 42);
+
+        // Reference Horizontal Line (Equilibrium)
+        ctx.strokeStyle = '#475569';
+        ctx.setLineDash([5, 5]);
+        ctx.beginPath();
+        ctx.moveTo(cx - 160, cy);
+        ctx.lineTo(cx + 160, cy);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Instantaneous Angle: θ(t) = θ₀ cos(ωt)
+        const currentTheta = theta0Rad * Math.cos(omega * simTime);
+
+        // Render Oscillating Needle
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(currentTheta);
+
+        const needleL = 130;
+        const needleW = 16;
+
+        // North Half (Red)
+        ctx.fillStyle = '#ef4444';
+        ctx.beginPath();
+        ctx.moveTo(0, -needleW / 2);
+        ctx.lineTo(needleL, 0);
+        ctx.lineTo(0, needleW / 2);
+        ctx.closePath();
+        ctx.fill();
+        ctx.strokeStyle = '#f87171';
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('N', needleL - 18, 4);
+
+        // South Half (Blue)
+        ctx.fillStyle = '#3b82f6';
+        ctx.beginPath();
+        ctx.moveTo(0, -needleW / 2);
+        ctx.lineTo(-needleL, 0);
+        ctx.lineTo(0, needleW / 2);
+        ctx.closePath();
+        ctx.fill();
+        ctx.strokeStyle = '#60a5fa';
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText('S', -needleL + 10, 4);
+
+        // Center Pivot
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(0, 0, 5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.restore();
+
+        // Protractor Deflection Arc Indicator
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 75, 0, currentTheta, currentTheta < 0);
+        ctx.stroke();
+
+        const currentDeg = (currentTheta * 180 / Math.PI).toFixed(1);
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`θ = ${currentDeg}°`, cx + 85, cy - 8);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Simple Harmonic Oscillation: I (d²θ/dt²) = -MBθ | Period T = 2π√(I/MB) is independent of amplitude`, cx, canvas.height - 14);
+      }
+
+      function renderGaussBoxMode(cx, cy) {
+        // Render Bar Magnet
+        const mw = 180, mh = 50;
+        const leftX = cx - mw / 2;
+        const topY = cy - mh / 2;
+
+        // South Half (Left - Blue)
+        ctx.fillStyle = '#1e3a8a';
+        ctx.fillRect(leftX, topY, mw / 2, mh);
+        ctx.strokeStyle = '#3b82f6';
+        ctx.strokeRect(leftX, topY, mw / 2, mh);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 16px monospace';
+        ctx.fillText('S', leftX + mw / 4, cy + 5);
+
+        // North Half (Right - Red)
+        ctx.fillStyle = '#991b1b';
+        ctx.fillRect(cx, topY, mw / 2, mh);
+        ctx.strokeStyle = '#ef4444';
+        ctx.strokeRect(cx, topY, mw / 2, mh);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText('N', cx + mw / 4, cy + 5);
+
+        // Closed Gaussian Surface (Dashed Pillbox)
+        const boxW = 280, boxH = 150;
+        ctx.save();
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 2.5;
+        ctx.setLineDash([6, 6]);
+        ctx.strokeRect(cx - boxW / 2, cy - boxH / 2, boxW, boxH);
+        ctx.restore();
+
+        ctx.fillStyle = '#10b981';
+        ctx.font = 'bold 12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Closed Gaussian Surface S', cx, cy - boxH / 2 - 12);
+
+        // Continuous Field Streamlines Piercing In and Out
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.45)';
+        ctx.lineWidth = 1.8;
+        const yOffsets = [-40, -20, 0, 20, 40];
+
+        yOffsets.forEach(dy => {
+          // Lines emerging from North (+dA)
+          drawArrow(cx + mw / 2, cy + dy, cx + boxW / 2 + 35, cy + dy * 1.5, '#38bdf8', '');
+          // Lines entering into South (-dA)
+          drawArrow(cx - boxW / 2 - 35, cy + dy * 1.5, cx - mw / 2, cy + dy, '#38bdf8', '');
+        });
+
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = '11px monospace';
+        ctx.fillText('+ Flux (Leaving North face)', cx + 180, cy - 65);
+        ctx.fillText('- Flux (Entering South face)', cx - 180, cy - 65);
+
+        ctx.fillStyle = '#emerald';
+        ctx.font = 'bold 13px monospace';
+        ctx.fillText('Net Flux Φ = ∮ B · dA = (+Φ_out) + (-Φ_in) = 0.000', cx, cy + boxH / 2 + 28);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.fillText("Gauss's Law for Magnetism: Every line entering also leaves | Proves non-existence of isolated monopoles", cx, canvas.height - 12);
+      }
+
+      function drawArrow(fromX, fromY, toX, toY, color, labelText) {
+        const angle = Math.atan2(toY - fromY, toX - fromX);
+        const headlen = 7;
+
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+        ctx.moveTo(fromX, fromY);
+        ctx.lineTo(toX, toY);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(toX, toY);
+        ctx.lineTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
+        ctx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
+        ctx.closePath();
+        ctx.fill();
+
+        if (labelText) {
+          ctx.fillStyle = color;
+          ctx.font = 'bold 10px monospace';
+          ctx.fillText(labelText, toX + 6, toY + 2);
+        }
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

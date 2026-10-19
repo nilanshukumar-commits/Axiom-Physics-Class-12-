@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Equipotential Surfaces & Potential Energy</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 2.2</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 01: Electrostatics • Chapter 02</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Equipotential Surfaces & Electrostatic Potential Energy</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Geometry of constant voltage envelopes, gradient relation $E = -dV/dr$, zero work theorems, and system binding energy.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Topographic map par bane contour lines ko dekho: ek hi contour line par chalte waqt aapki altitude bilkul constant rehti hai, isliye gravity ke khilaaf zero effort lagta hai. Theek waise hi, <strong class="text-white">Equipotential Surface</strong> ek aisa 3D ya 2D envelope hai jiske har point par electric potential $V$ ek barabar hota hai. Kisi charge ko is surface par aage-peeche ghumane par <strong class="text-white">net work done hamesha ZERO</strong> hota hai! Iska sabse bada signature rule: Electric field lines hamesha is surface ke <strong class="text-white">strictly perpendicular (90°)</strong> hoti hain.
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">Equipotential Surface Properties</h3>
+          <p class="text-sm text-slate-400 mb-2">Zero work done moving test charge $q_0$ between points $A$ and $B$[cite: 13]:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$W_{A \to B} = q_0(V_B - V_A) = 0 \quad (\because V_A = V_B)$$
+            $$\vec{E} \cdot d\vec{r} = 0 \implies \vec{E} \perp \text{Equipotential Surface}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Equipotential surfaces never intersect each other (otherwise two potential values would exist at one point)[cite: 13].</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">Potential Gradient & System PE</h3>
+          <p class="text-sm text-slate-400 mb-2">Differential field relation and interaction energy of two point charges[cite: 13]:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$E = -\frac{dV}{dr}, \quad U = \frac{1}{4\pi\varepsilon_0}\frac{q_1 q_2}{r_{12}}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Negative sign proves $\vec{E}$ points in the direction where potential decreases steepest[cite: 13].</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Equipotential Topology Simulator) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Equipotential & Orthogonal E-Field Simulator</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="geoModeBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Mode: Uniform Field (Planes)
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="equiCanvas" width="800" height="400" class="w-full block cursor-crosshair"></canvas>
+      </div>
+
+      <!-- Real-Time Sliders -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Potential Step ($\Delta V$)</span>
+            <span id="vStepVal" class="text-cyan-400 font-mono font-bold">20 V</span>
+          </div>
+          <input id="vStepSlider" type="range" min="10" max="50" step="5" value="20" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Probe Position on Surface</span>
+            <span id="probeTrackVal" class="text-amber-400 font-mono font-bold">On $V_2 = 40\text{ V}$</span>
+          </div>
+          <input id="probeSlider" type="range" min="0" max="100" value="50" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Work Done along Equipotential ($W$)</span>
+            <span class="text-emerald-400 font-mono font-bold">0.00 J (Zero Work)</span>
+          </div>
+          <div class="text-[11px] text-slate-400 mt-2">
+            $\vec{E} \perp d\vec{r} \implies \theta = 90^\circ \implies \cos 90^\circ = 0$[cite: 13]
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Computational Metrics -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Surface Separation ($\Delta r$):</span>
+          <div id="spacingOutputVal" class="text-cyan-400 font-bold text-sm mt-0.5">5.0 cm</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Electric Field ($E = -\Delta V / \Delta r$):</span>
+          <div id="eFieldOutputVal" class="text-amber-400 font-bold text-sm mt-0.5">400 V/m</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Crowding Density Rule:</span>
+          <div class="text-emerald-400 font-bold text-sm mt-0.5">Closer Surfaces $\implies$ Stronger $\vec{E}$[cite: 13]</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint[cite: 13]</span>
+      </div>
+
+      <!-- Derivation 1: E = -dV/dr -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation A</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Relation between Electric Field and Potential Gradient ($E = -\frac{dV}{dr}$)[cite: 13]</h4>
+        </div>
+        <p>1. Consider two closely spaced equipotential surfaces $A$ and $B$ separated by a small perpendicular distance $dr$, with potentials $V$ and $V - dV$[cite: 13].</p>
+        <p>2. A unit positive test charge ($q_0 = +1\text{ C}$) is moved from surface $B$ to surface $A$ against the electric field $\vec{E}$[cite: 13].</p>
+        <p>3. External force applied to balance electrostatic force: $\vec{F}_{\text{ext}} = -q_0 \vec{E} = -\vec{E}$.</p>
+        <p>4. Work done by the external agent across distance $dr$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$dW_{\text{ext}} = \vec{F}_{\text{ext}} \cdot d\vec{r} = -E\,dr$$
+        </div>
+        <p>5. By definition, this work equals the potential difference $V_A - V_B$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$V_A - V_B = V - (V - dV) = dV$$
+        </div>
+        <p>6. Equating both expressions:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$dV = -E\,dr \implies E = -\frac{dV}{dr}$$
+        </div>
+        <p class="text-slate-400"><em>Two Crucial Inferences:</em> (i) Electric field points in the direction where potential decreases fastest[cite: 13]. (ii) Magnitude of $\vec{E}$ equals potential change per unit displacement normal to the equipotential surface ($dr = \frac{-dV}{E}$, meaning surfaces crowd closer in stronger field regions)[cite: 13].</p>
+      </div>
+
+      <!-- Derivation 2: Electrostatic Potential Energy of System of Charges -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation B</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Potential Energy of a System of Two Point Charges in Vacuum[cite: 13]</h4>
+        </div>
+        <p>1. Consider two charges $q_1$ and $q_2$ initially at infinite separation. Bring $q_1$ first to position $\vec{r}_1$[cite: 13]. Since no external field exists initially, work done $W_1 = 0$[cite: 13].</p>
+        <p>2. Charge $q_1$ produces electric potential at any point at distance $r_{12}$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$V_1 = \frac{1}{4\pi\varepsilon_0}\frac{q_1}{r_{12}}$$
+        </div>
+        <p>3. Now bring $q_2$ from infinity to position $\vec{r}_2$ at separation $r_{12}$ from $q_1$[cite: 13]. Work done against the potential of $q_1$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$W_2 = q_2 V_1 = q_2 \left( \frac{1}{4\pi\varepsilon_0}\frac{q_1}{r_{12}} \right) = \frac{1}{4\pi\varepsilon_0}\frac{q_1 q_2}{r_{12}}$$
+        </div>
+        <p>4. Total external work is stored as the electrostatic potential energy $U$ of the two-charge configuration[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$U = W_1 + W_2 = \frac{1}{4\pi\varepsilon_0}\frac{q_1 q_2}{r_{12}}$$
+        </div>
+        <p class="text-slate-400"><em>Sign Rule:</em> If charges are like ($q_1q_2 > 0$), $U > 0$ (repulsive system, work done to bring them together). If charges are opposite ($q_1q_2 < 0$), $U < 0$ (attractive bound system)[cite: 13].</p>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Surface Shape Misconceptions</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Students often assume equipotential surfaces are always spheres. Shape strictly follows field symmetry:
+            <br>• Point charge $\implies$ <strong>Concentric spheres</strong>[cite: 13]
+            <br>• Infinite straight line charge $\implies$ <strong>Coaxial cylinders</strong>[cite: 13]
+            <br>• Uniform electric field $\implies$ <strong>Equispaced parallel planes</strong>[cite: 13]
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Spacing of Concentric Surfaces for a Point Charge</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            For equal potential drops ($\Delta V = 10\text{ V}$), equipotential spheres of a point charge are <strong>NOT equidistant</strong>! Since $E \propto 1/r^2$, $dr = \frac{dV}{E} \propto r^2$. The gap between successive equipotential spheres <strong>increases</strong> rapidly as you move away from the charge.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Pair Counting Trap in Potential Energy of System</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            For an $N$-charge system, students often miss combinations. The total number of interaction terms is strictly $\frac{N(N-1)}{2}$. For 3 charges: 3 pairs ($U_{12} + U_{23} + U_{13}$). For 4 charges in a square: <strong>6 pairs</strong> (4 sides $+ 2\text{ diagonals}$). Never double-count or omit diagonal pairs!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Conductor Surface & Volume Equipotentiality</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Because $\vec{E} = 0$ everywhere inside an electrostatic conductor, $dV = 0$ throughout its volume[cite: 13]. Therefore, the entire bulk of a conductor is an <strong>equipotential volume</strong>, and its surface is an <strong>equipotential surface</strong>[cite: 13].
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: Three point charges $+q$, $+2q$, and $+4q$ are placed at the vertices of an equilateral triangle of side $a$. Find the total electrostatic potential energy of the configuration, and determine the work required to double the side length of the triangle.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Total potential energy is the sum over all unique pairs ($N=3 \implies \frac{3 \times 2}{2} = 3$ pairs):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$U_i = \frac{1}{4\pi\varepsilon_0}\left[ \frac{(q)(2q)}{a} + \frac{(2q)(4q)}{a} + \frac{(q)(4q)}{a} \right] = \frac{1}{4\pi\varepsilon_0 a}[2q^2 + 8q^2 + 4q^2] = \frac{14q^2}{4\pi\varepsilon_0 a}$$
+          </div>
+          <p>2. When side length is doubled ($a' = 2a$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$U_f = \frac{14q^2}{4\pi\varepsilon_0 (2a)} = \frac{7q^2}{4\pi\varepsilon_0 a}$$
+          </div>
+          <p>3. Work required by external agent $W_{\text{ext}} = \Delta U = U_f - U_i$:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$W_{\text{ext}} = \frac{7q^2}{4\pi\varepsilon_0 a} - \frac{14q^2}{4\pi\varepsilon_0 a} = -\frac{7q^2}{4\pi\varepsilon_0 a}$$
+          </div>
+          <p class="text-slate-400"><em>Physical Insight:</em> Negative work indicates like charges naturally repel and push each other apart; external agent must restrain them.</p>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A uniform electric field exists in space making an angle of $30^\circ$ with the $+x$-axis in the $xy$-plane, with magnitude $E = 200\text{ V/m}$. If the potential at the origin $(0,0)$ is zero, find the equation of the equipotential surface passing through point $(1\text{ m}, 0)$.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Vector electric field: $\vec{E} = E\cos 30^\circ\,\hat{i} + E\sin 30^\circ\,\hat{j} = 200\left(\frac{\sqrt{3}}{2}\right)\hat{i} + 200\left(\frac{1}{2}\right)\hat{j} = 100\sqrt{3}\,\hat{i} + 100\,\hat{j}\text{ V/m}$.</p>
+          <p>2. Potential function $V(x,y) = -\vec{E}\cdot\vec{r} = -(100\sqrt{3}x + 100y)$.</p>
+          <p>3. Potential at point $(1,0)$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$V(1,0) = -(100\sqrt{3}(1) + 100(0)) = -100\sqrt{3}\text{ Volts}$$
+          </div>
+          <p>4. The equipotential surface corresponds to $V(x,y) = -100\sqrt{3}$:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$-(100\sqrt{3}x + 100y) = -100\sqrt{3} \implies \sqrt{3}x + y = \sqrt{3}$$
+          </div>
+          <p class="text-slate-400"><em>Exam Check:</em> This is a straight line with slope $m = -\sqrt{3}$ ($\theta = 120^\circ$). Notice field angle was $30^\circ$. $120^\circ - 30^\circ = 90^\circ$, proving $\vec{E}$ is strictly perpendicular to the equipotential line[cite: 13]!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Work on Surface</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$W = q\Delta V = 0$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Field Direction</p>
+          <p class="text-xs font-bold text-white mt-1">$\vec{E} \perp \text{Equipotential}$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Gradient Law</p>
+          <p class="text-xs font-bold text-white mt-1">$E = -\frac{dV}{dr}$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">2-Charge System PE</p>
+          <p class="text-xs font-bold text-white mt-1">$U = \frac{kq_1q_2}{r_{12}}$[cite: 13]</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Equipotential Simulator Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('equiCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const vStepSlider = document.getElementById('vStepSlider');
+      const probeSlider = document.getElementById('probeSlider');
+      const geoModeBtn = document.getElementById('geoModeBtn');
+      const vStepVal = document.getElementById('vStepVal');
+      const probeTrackVal = document.getElementById('probeTrackVal');
+      const spacingOutputVal = document.getElementById('spacingOutputVal');
+      const eFieldOutputVal = document.getElementById('eFieldOutputVal');
+
+      // Modes: 'uniform' (parallel planes), 'radial' (concentric circles)
+      let currentMode = 'uniform';
+      let pulseTime = 0;
+
+      geoModeBtn.addEventListener('click', () => {
+        currentMode = (currentMode === 'uniform') ? 'radial' : 'uniform';
+        geoModeBtn.textContent = (currentMode === 'uniform') 
+          ? 'Mode: Uniform Field (Planes)' 
+          : 'Mode: Point Charge (Concentric Spheres)';
+      });
+
+      function renderLoop() {
+        pulseTime += 0.025;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const deltaV = parseFloat(vStepSlider.value);
+        const probeParam = parseFloat(probeSlider.value) / 100; // 0 to 1
+
+        vStepVal.textContent = deltaV + ' V';
+
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        // Background grid
+        ctx.strokeStyle = 'rgba(30, 41, 59, 0.4)';
+        ctx.lineWidth = 1;
+        for (let x = 0; x < canvas.width; x += 40) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+        }
+        for (let y = 0; y < canvas.height; y += 40) {
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+        }
+
+        if (currentMode === 'uniform') {
+          renderUniformPlanes(cx, cy, deltaV, probeParam);
+        } else {
+          renderRadialEquipotentials(cx, cy, deltaV, probeParam);
+        }
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      // MODE 1: Uniform Field Equipotential Planes
+      function renderUniformPlanes(cx, cy, deltaV, probeParam) {
+        // Uniform E = 400 V/m
+        const E = 400; // V/m
+        // Delta r = Delta V / E
+        const deltaR_meters = deltaV / E;
+        const deltaR_cm = deltaR_meters * 100;
+        const spacingPx = deltaR_cm * 6; // visual scale
+
+        spacingOutputVal.textContent = deltaR_cm.toFixed(1) + ' cm';
+        eFieldOutputVal.textContent = E + ' V/m';
+
+        // 1. Orthogonal Electric Field Lines (Horizontal arrows from left to right)
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.25)';
+        ctx.lineWidth = 1.5;
+        for (let y = 60; y < canvas.height; y += 70) {
+          ctx.beginPath();
+          ctx.moveTo(40, y);
+          ctx.lineTo(canvas.width - 40, y);
+          ctx.stroke();
+
+          // Streamline glowing beads
+          const beadX = 40 + ((pulseTime * 60 + y * 2) % (canvas.width - 80));
+          ctx.fillStyle = '#38bdf8';
+          ctx.beginPath();
+          ctx.arc(beadX, y, 2, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Vector tip
+          drawVectorTip(canvas.width - 40, y, 0, '#38bdf8');
+        }
+
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('Electric Field E (Left ➔ Right)[cite: 13]', 50, 35);
+
+        // 2. Equipotential Vertical Planes (Surfaces perpendicular to E)[cite: 13]
+        const numPlanes = 6;
+        const startX = cx - (numPlanes / 2) * spacingPx;
+
+        for (let i = 0; i < numPlanes; i++) {
+          const planeX = startX + i * spacingPx;
+          if (planeX < 50 || planeX > canvas.width - 50) continue;
+
+          // Potential drops as you go in direction of E[cite: 13]
+          const voltage = (numPlanes - i) * deltaV;
+
+          // Is this plane tracked by probe?
+          const isSelected = (i === 2);
+
+          ctx.save();
+          ctx.strokeStyle = isSelected ? '#f59e0b' : 'rgba(52, 211, 153, 0.7)';
+          ctx.lineWidth = isSelected ? 3 : 1.8;
+          ctx.setLineDash(isSelected ? [6, 4] : []);
+          ctx.beginPath();
+          ctx.moveTo(planeX, 50);
+          ctx.lineTo(planeX, canvas.height - 50);
+          ctx.stroke();
+          ctx.restore();
+
+          // Voltage badge at top
+          ctx.fillStyle = isSelected ? '#f59e0b' : '#34d399';
+          ctx.font = 'bold 11px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText(voltage + ' V', planeX, 42);
+
+          // Orthogonal right angle indicator
+          if (i === 2) {
+            const angleY = 130;
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.strokeRect(planeX, angleY, 12, 12);
+            ctx.fillText('90°', planeX + 22, angleY + 10);
+          }
+        }
+
+        // 3. Probe Particle Moving Along the Selected Equipotential Plane ($V_2$)
+        const trackedPlaneX = startX + 2 * spacingPx;
+        const probeY = 70 + probeParam * (canvas.height - 140);
+        probeTrackVal.textContent = 'On V = ' + (4 * deltaV) + ' V';
+
+        // Draw probe particle
+        ctx.fillStyle = '#ec4899';
+        ctx.shadowColor = '#ec4899';
+        ctx.shadowBlur = 10;
+        ctx.beginPath();
+        ctx.arc(trackedPlaneX, probeY, 8, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 10px monospace';
+        ctx.textAlign = 'left';
+        ctx.fillText('q₀ (Moving along plane)', trackedPlaneX + 14, probeY + 3);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Uniform Field: Equipotential surfaces are equispaced parallel planes perpendicular to E[cite: 13]', cx, canvas.height - 18);
+      }
+
+      // MODE 2: Concentric Spherical Surfaces (Point Charge)[cite: 13]
+      function renderRadialEquipotentials(cx, cy, deltaV, probeParam) {
+        spacingOutputVal.textContent = 'dr ∝ r² (Expands)';
+        eFieldOutputVal.textContent = 'E ∝ 1/r²';
+
+        // Concentric equipotential circles
+        // For point charge, V = kq/r => r = kq/V
+        const radii = [45, 75, 120, 190];
+        radii.forEach((r, idx) => {
+          ctx.save();
+          ctx.strokeStyle = idx === 1 ? '#f59e0b' : 'rgba(52, 211, 153, 0.6)';
+          ctx.lineWidth = idx === 1 ? 2.5 : 1.5;
+          ctx.setLineDash(idx === 1 ? [5, 4] : []);
+          ctx.beginPath();
+          ctx.arc(cx, cy, r, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.restore();
+
+          ctx.fillStyle = idx === 1 ? '#f59e0b' : '#34d399';
+          ctx.font = '10px monospace';
+          ctx.fillText((radii.length - idx) * deltaV + ' V', cx + r + 4, cy - 4);
+        });
+
+        // Radial E-field rays
+        const numRays = 12;
+        for (let i = 0; i < numRays; i++) {
+          const angle = (i * 2 * Math.PI) / numRays;
+          ctx.strokeStyle = 'rgba(56, 189, 248, 0.3)';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(cx + Math.cos(angle) * 20, cy + Math.sin(angle) * 20);
+          ctx.lineTo(cx + Math.cos(angle) * 220, cy + Math.sin(angle) * 220);
+          ctx.stroke();
+        }
+
+        // Central Positive Charge
+        ctx.fillStyle = '#e11d48';
+        ctx.beginPath();
+        ctx.arc(cx, cy, 16, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 12px monospace';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('+Q', cx, cy + 1);
+
+        // Probe moving along the circle r = 75
+        const probeAngle = probeParam * Math.PI * 2;
+        const px = cx + Math.cos(probeAngle) * 75;
+        const py = cy + Math.sin(probeAngle) * 75;
+
+        probeTrackVal.textContent = 'On Circular Orbit';
+
+        ctx.fillStyle = '#ec4899';
+        ctx.beginPath();
+        ctx.arc(px, py, 7, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Point Charge: Concentric spheres | Gap between surfaces widens as field weakens[cite: 13]', cx, canvas.height - 18);
+      }
+
+      function drawVectorTip(x, y, angle, color) {
+        const headlen = 8;
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x - headlen * Math.cos(angle - Math.PI / 6), y - headlen * Math.sin(angle - Math.PI / 6));
+        ctx.lineTo(x - headlen * Math.cos(angle + Math.PI / 6), y - headlen * Math.sin(angle + Math.PI / 6));
+        ctx.closePath();
+        ctx.fill();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

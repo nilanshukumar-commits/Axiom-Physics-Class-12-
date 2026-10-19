@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class 12 Physics | Chapter 13 - Nuclei Master Dossier</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX Core CSS & JS with Robust Auto-Render -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" 
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError: false,
+      errorColor: '#cbd5e1'
+    });"></script>
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+      letter-spacing: -0.01em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .font-mono, font-mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+    }
+
+    .katex {
+      font-size: 1.02em !important;
+      font-weight: 400 !important;
+      text-rendering: optimizeLegibility;
+    }
+    .katex-display {
+      margin: 0.55em 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 2px;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 12mm 14mm 12mm 14mm;
+    }
+
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        font-size: 9.8pt !important;
+        line-height: 1.35 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .avoid-break {
+        page-break-inside: avoid;
+      }
+      .print-border {
+        border: 1px solid #1e293b !important;
+      }
+      .print-table th {
+        background-color: #f1f5f9 !important;
+        color: #000000 !important;
+        border: 1px solid #94a3b8 !important;
+      }
+      .print-table td {
+        border: 1px solid #cbd5e1 !important;
+        color: #000000 !important;
+      }
+      .formula-box {
+        background: #f8fafc !important;
+        border-left: 3px solid #0f172a !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-indigo-500 selection:text-white">
+
+  <!-- Sticky Top Action Bar (Auto-hidden in Print/PDF) -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex flex-wrap justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <div>
+        <span class="text-lg font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+        <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2.5 py-0.5 rounded-full ml-2 font-mono">Class 12 • Open Access</span>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-3 mt-2 sm:mt-0">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 rounded-xl text-xs font-semibold transition shadow-md shadow-indigo-600/20 active:scale-95 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>Save as PDF (Clean Vector)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Body Container -->
+  <main class="max-w-4xl mx-auto px-4 py-8 md:py-10 space-y-9 print:p-0 print:m-0 print:space-y-5">
+
+    <!-- Dossier Title Block -->
+    <div class="border-b-2 border-indigo-500/40 pb-5 print:border-black print:pb-3">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-indigo-400 print:text-black font-mono">CBSE Class XII • Unit 08 (Atoms & Nuclei)</p>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1 print:text-black print:text-2xl">
+            Chapter 13: Nuclei
+          </h1>
+          <p class="text-slate-400 mt-1 text-sm print:text-gray-700">Master Revision Dossier • Nuclear Radius, Constant Density Proof, Mass Defect, Binding Energy Curve, Nuclear Forces, Fission & Fusion</p>
+        </div>
+        <div class="hidden sm:block text-right text-xs text-slate-500 print:block print:text-black">
+          <p class="font-mono">Open Access Initiative</p>
+          <p class="font-mono">Unit VIII Part 2 Dossier</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: Master Formula & Nuclear Physics Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5 font-mono">
+        1. Definitive Formula & Nuclear Parameters Matrix
+      </h2>
+      <div class="overflow-x-auto rounded-xl border border-slate-800 print:border-black">
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase tracking-wider border-b border-slate-800 font-semibold font-mono">
+            <tr>
+              <th class="p-2.5 border-r border-slate-800">Concept</th>
+              <th class="p-2.5 border-r border-slate-800">Mathematical Formulation</th>
+              <th class="p-2.5 border-r border-slate-800">Proportionality & Values</th>
+              <th class="p-2.5">Boundary Conditions & Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/80 text-slate-300">
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Nuclear Radius</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$R = R_0 A^{1/3}$$</td>
+              <td class="p-2.5 text-[11px] font-mono">$$R_0 \approx 1.2\text{ fm} = 1.2 \times 10^{-15}\text{ m}$$</td>
+              <td class="p-2.5 text-[11px]">Radius scales strictly with the cube root of mass number $A$. Volume is directly proportional to $A$ ($V \propto A$).</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Nuclear Density</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\rho = \frac{m A}{\frac{4}{3}\pi R_0^3 A} = \frac{3m}{4\pi R_0^3}$$</td>
+              <td class="p-2.5 text-[11px] font-mono">$$\rho \approx 2.3 \times 10^{17}\text{ kg/m}^3$$</td>
+              <td class="p-2.5 text-[11px]">Mass number $A$ cancels out completely. Nuclear density is a universal constant for all elements (Density ratio of any two nuclei is $1:1$).</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Mass Defect ($\Delta m$)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\Delta m = [Z m_p + (A - Z) m_n] - M_{\text{nucleus}}$$</td>
+              <td class="p-2.5 text-[11px] font-mono">$$1\text{ u} \approx 931.5\text{ MeV}/c^2$$</td>
+              <td class="p-2.5 text-[11px]">Total constituent mass is always strictly greater than the rest mass of the bound nucleus.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Binding Energy</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$E_b = \Delta m \times c^2, \quad E_{bn} = \frac{E_b}{A}$$</td>
+              <td class="p-2.5 text-[11px] font-mono">$$E_{bn,\max} \approx 8.75\text{ MeV} \text{ (}^{56}\mathrm{Fe}\text{)}$$</td>
+              <td class="p-2.5 text-[11px]">Stability is governed entirely by $E_{bn}$ (per nucleon), not by total $E_b$. Flat plateau ($E_{bn} \approx 8.5\text{ MeV}$) for $30 < A < 170$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Thermal Fission ($^{235}\mathrm{U}$)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$${}^{235}_{92}\mathrm{U} + {}^{1}_{0}\mathrm{n} \to {}^{141}_{56}\mathrm{Ba} + {}^{92}_{36}\mathrm{Kr} + 3({}^{1}_{0}\mathrm{n}) + Q$$</td>
+              <td class="p-2.5 text-[11px] font-mono">$$Q \approx 200.6\text{ MeV per event}$$</td>
+              <td class="p-2.5 text-[11px]">Triggered by slow thermal neutrons ($0.025\text{ eV}$). Sustained controlled power requires neutron multiplication factor $k = 1$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Solar Fusion ($p-p$ Cycle)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$4({}^{1}_{1}\mathrm{H}) + 2\mathrm{e}^- \to {}^{4}_{2}\mathrm{He} + 2\nu_e + 6\gamma + Q$$</td>
+              <td class="p-2.5 text-[11px] font-mono">$$Q \approx 26.7\text{ MeV per } \alpha\text{ formed}$$</td>
+              <td class="p-2.5 text-[11px]">Requires ultra-high temperatures ($T \sim 10^7\text{ K}$) to overcome mutual proton Coulomb barrier ($V_C \approx 400\text{ keV}$).</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Specific Energy Ratio</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\text{Fusion} \approx 6.7\text{ MeV/u} \quad \text{vs} \quad \text{Fission} \approx 0.85\text{ MeV/u}$$</td>
+              <td class="p-2.5 text-[11px] font-mono">$$\text{Ratio} \approx 4 \text{ to } 7 \times$$</td>
+              <td class="p-2.5 text-[11px]">Per unit mass of fuel, thermonuclear fusion is vastly more energy-dense than heavy-element fission.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 2: Stepwise Derivations Blueprint -->
+    <section class="space-y-4">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5 font-mono">
+        2. Core Derivations Blueprint (Step-by-Step Board Proofs)
+      </h2>
+
+      <!-- Proof 1: Constant Nuclear Density -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black font-mono">
+          Blueprint 13.1: Mathematical Proof of Invariant Nuclear Density ($\rho \approx 2.3 \times 10^{17}\text{ kg/m}^3$)
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. The radius $R$ of a nucleus with mass number $A$ is given by the empirical relation: $R = R_0 A^{1/3}$, where $R_0 = 1.2 \times 10^{-15}\text{ m}$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Taking the nucleus to be a sphere of radius $R$, its volume is:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$V = \frac{4}{3}\pi R^3 = \frac{4}{3}\pi (R_0 A^{1/3})^3 = \frac{4}{3}\pi R_0^3 A$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. If $m$ is the average mass of a single nucleon ($m \approx 1.66 \times 10^{-27}\text{ kg}$), the total mass of the nucleus containing $A$ nucleons is $M = m A$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          4. Therefore, the nuclear density $\rho$ is:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\rho = \frac{M}{V} = \frac{m A}{\frac{4}{3}\pi R_0^3 A} = \frac{3m}{4\pi R_0^3} = \frac{3 \times 1.66 \times 10^{-27}}{4 \times 3.1416 \times (1.2 \times 10^{-15})^3} \approx 2.3 \times 10^{17}\text{ kg/m}^3$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          5. Because the mass number $A$ cancels completely from the expression, nuclear density is strictly constant and independent of the size or identity of the nucleus.
+        </p>
+      </div>
+
+      <!-- Proof 2: Energy Release in Fission & Fusion from the Binding Energy Curve -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black font-mono">
+          Blueprint 13.2: Explanation of Energy Release in Fission and Fusion from the $E_{bn}$ Curve
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. The binding energy per nucleon curve shows a broad maximum of $\approx 8.5\text{ MeV/nucleon}$ in the range $30 < A < 170$, peaking at $^{56}\mathrm{Fe}$ ($8.75\text{ MeV/nucleon}$).
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. <strong class="text-white print:text-black">For Heavy Nuclei ($A > 200$):</strong> In a nucleus like $^{240}\mathrm{X}$, $E_{bn} \approx 7.6\text{ MeV/nucleon}$. When it splits into two middle-weight fragments of $A \approx 120$ where $E_{bn} \approx 8.5\text{ MeV/nucleon}$:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\Delta E_{bn} = 8.5 - 7.6 = 0.9\text{ MeV/nucleon} \implies Q = A \times \Delta E_{bn} = 240 \times 0.9\text{ MeV} \approx 216\text{ MeV}$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. <strong class="text-white print:text-black">For Light Nuclei ($A \le 10$):</strong> Light nuclei like $^{2}\mathrm{H}$ have low $E_{bn} \approx 1.1\text{ MeV/nucleon}$. When they fuse to form $^{4}\mathrm{He}$ ($E_{bn} \approx 7.1\text{ MeV/nucleon}$), the binding energy jump is enormous ($\Delta E_{bn} \approx 6.0\text{ MeV/nucleon}$), liberating massive kinetic energy.
+        </p>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: High-Yield Exam Trap Matrix -->
+    <section class="space-y-4">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-rose-400 print:text-black border-l-4 border-rose-500 print:border-black pl-2.5 font-mono">
+        3. High-Yield "Red Alert" Exam Trap Matrix
+      </h2>
+
+      <!-- Comparative Table: Traps and Misconceptions -->
+      <div class="rounded-xl border border-rose-900/40 print-border overflow-hidden">
+        <div class="bg-rose-950/40 print:bg-gray-100 p-2.5 border-b border-rose-900/40 print:border-black">
+          <p class="text-xs font-bold text-rose-300 print:text-black uppercase font-mono">
+            Master Trap 1: Critical Conceptual Distinctions in Nuclear Physics
+          </p>
+        </div>
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase font-semibold font-mono">
+            <tr>
+              <th class="p-2 border border-slate-800">Physical Scenario</th>
+              <th class="p-2 border border-slate-800 text-cyan-400 print:text-black">Common Student Misconception</th>
+              <th class="p-2 border border-slate-800 text-emerald-400 print:text-black">Correct Scientific Law</th>
+              <th class="p-2 border border-slate-800">Exam Consequence</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Nuclear Density Ratio</td>
+              <td class="p-2 text-rose-400 print:text-black">Density depends on mass number: $\rho \propto A$.</td>
+              <td class="p-2 font-mono text-emerald-400 print:text-black">$\rho_1 : \rho_2 = 1 : 1$ (Strictly Invariant)</td>
+              <td class="p-2 text-[11px]">Density ratio of $^{12}\mathrm{C}$ to $^{238}\mathrm{U}$ is exactly $1$.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Nuclear Stability Metric</td>
+              <td class="p-2 text-rose-400 print:text-black">Total binding energy $E_b$ decides stability ($^{238}\mathrm{U}$ has $1800\text{ MeV}$).</td>
+              <td class="p-2 font-mono text-emerald-400 print:text-black">$E_{bn} = E_b / A$ decides stability</td>
+              <td class="p-2 text-[11px]">$^{56}\mathrm{Fe}$ ($8.75\text{ MeV/u}$) is far more stable than $^{238}\mathrm{U}$ ($7.6\text{ MeV/u}$).</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Nuclear Force below $0.8\text{ fm}$</td>
+              <td class="p-2 text-rose-400 print:text-black">Force remains attractive at all small distances.</td>
+              <td class="p-2 font-mono text-emerald-400 print:text-black">Switches to STRONGLY REPULSIVE for $r < 0.8\text{ fm}$</td>
+              <td class="p-2 text-[11px]">Repulsive core prevents the collapse of atomic nucleus.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Energy Output Comparison</td>
+              <td class="p-2 text-rose-400 print:text-black">Fission is always more energetic than fusion.</td>
+              <td class="p-2 font-mono text-emerald-400 print:text-black">Fission wins per event; Fusion wins per kg</td>
+              <td class="p-2 text-[11px]">Per kg of fuel, fusion yields $\approx 4\times$ to $7\times$ more energy than fission.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Critical Pitfalls Grid -->
+      <div class="grid sm:grid-cols-2 gap-3 text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 2: Charge Independence of Strong Force</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            Nuclear force is strictly non-electromagnetic. At a distance of $\approx 1\text{ fm}$:
+            <br>$$\mathbf{F_{pp} \approx F_{nn} \approx F_{pn}}$$
+            Coulomb repulsion between protons is an additional, separate electromagnetic force.
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 3: Thermal Neutrons and Moderator Role</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            Fission of $^{235}\mathrm{U}$ has an extremely small cross-section for fast neutrons ($\approx 2\text{ MeV}$).
+            <br>Heavy water ($D_2O$) or graphite slows neutrons to thermal energies ($\approx 0.025\text{ eV}$) via elastic scattering to maintain $k = 1$.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Handcrafted Exemplar Numericals -->
+    <section class="space-y-4 avoid-break">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-amber-400 print:text-black border-l-4 border-amber-500 print:border-black pl-2.5 font-mono">
+        4. Handcrafted Exemplars (Analytical Numerical Solutions)
+      </h2>
+
+      <!-- Problem 1 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black font-mono">Problem 1: Nuclear Radius & Density Ratio</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden font-mono">Exemplar 01</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          Given the mass numbers of two nuclei are in the ratio $27 : 125$. Find: (i) the ratio of their nuclear radii, and (ii) the ratio of their nuclear densities.
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> Given $A_1 / A_2 = 27 / 125$.</p>
+          <p class="text-slate-400 print:text-black">(i) Ratio of nuclear radii ($R = R_0 A^{1/3}$):</p>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$\frac{R_1}{R_2} = \left(\frac{A_1}{A_2}\right)^{1/3} = \left(\frac{27}{125}\right)^{1/3} = \frac{3}{5} = \mathbf{3 : 5}$$
+          </div>
+          <p class="text-slate-400 print:text-black">(ii) Ratio of nuclear densities ($\rho = \frac{3m}{4\pi R_0^3}$):</p>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$\frac{\rho_1}{\rho_2} = \mathbf{1 : 1} \quad (\text{Strictly independent of mass number } A)$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black font-mono">Problem 2: Q-Value Calculation in Alpha Decay</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden font-mono">Exemplar 02</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          Find the $Q$-value of the alpha decay: ${}^{238}_{92}\mathrm{U} \to {}^{234}_{90}\mathrm{Th} + {}^{4}_{2}\mathrm{He}$. Given: $m({}^{238}_{92}\mathrm{U}) = 238.05079\text{ u}$, $m({}^{234}_{90}\mathrm{Th}) = 234.04363\text{ u}$, and $m({}^{4}_{2}\mathrm{He}) = 4.00260\text{ u}$.
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> Mass defect $\Delta m = m_{\text{reactants}} - m_{\text{products}}$:</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$\Delta m = 238.05079\text{ u} - [234.04363\text{ u} + 4.00260\text{ u}] = 238.05079\text{ u} - 238.04623\text{ u} = 0.00456\text{ u}$$
+          </div>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$Q = \Delta m \times 931.5\text{ MeV} = 0.00456 \times 931.5\text{ MeV} \approx \mathbf{4.25\text{ MeV}}$$
+          </div>
+          <p class="text-slate-400 print:text-black">Since $Q > 0$, the alpha decay is energetically spontaneous.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Printable Cut-Out Flashcard Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5 font-mono">
+        5. Printable Pocket Flashcard Grid
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black font-mono">Radius Law</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1 font-mono">$R = R_0 A^{1/3}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black font-mono">Nuclear Density</p>
+          <p class="font-bold text-white print:text-black text-xs mt-1 font-mono">$\rho \approx 2.3 \times 10^{17}\text{ kg/m}^3$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black font-mono">Iron Peak</p>
+          <p class="font-bold text-cyan-300 print:text-black text-[11px] mt-1 font-mono">$^{56}\mathrm{Fe} = 8.75\text{ MeV/u}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black font-mono">Conversion Unit</p>
+          <p class="font-bold text-amber-300 print:text-black text-xs mt-1 font-mono">$1\text{ u} = 931.5\text{ MeV}$</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Document Footer -->
+    <footer class="pt-6 border-t border-slate-800 text-center text-xs text-slate-500 print:text-black print:pt-3">
+      <p class="font-mono">AXIOM Physics Class 12 • Open Access Physics Initiative • Distributed under Creative Commons Free Access</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>

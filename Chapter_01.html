@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Coulomb's Law & Superposition</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Free Edition</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 01: Electrostatics • Module 1.1</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Coulomb's Law & Principle of Superposition</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Crisp first-principles breakdown, interactive live vector mechanics, exam traps, and exemplar numericals.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Imagine two magnets floating on completely frictionless ice: push them closer, and repulsion blows up exponentially, not linearly. Electrostatic force operates on a rigid, invisible line of sight connecting two point charges. Adding a third charge into the system does <strong class="text-white">not alter the mutual handshake</strong> between the first two—it simply adds its own independent force vector on top.
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">Coulomb's Law (Point Charges)</h3>
+          <p class="text-sm text-slate-400 mb-3">Force between stationary charges in vacuum along their line of center:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-lg">
+            $$\vec{F}_{12} = \frac{1}{4\pi\varepsilon_0} \frac{q_1 q_2}{r^2} \hat{r}_{21}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">In medium of dielectric constant $K$: $F_{\text{med}} = \frac{F_{\text{vac}}}{K}$.</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">Superposition Principle</h3>
+          <p class="text-sm text-slate-400 mb-3">Net force is the <span class="text-rose-400 font-medium">vector sum</span> of individual two-body pairwise forces:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-lg">
+            $$\vec{F}_{\text{net}} = \sum_{i=1}^{n} \vec{F}_i = \vec{F}_1 + \vec{F}_2 + \dots + \vec{F}_n$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Scalar addition of magnitudes without directional angles leads to 100% error.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (HTML5 Canvas) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-emerald-400 text-sm font-bold uppercase tracking-wider">
+          <span>🎮 03. Interactive Visualizer: Draggable Vector Engine</span>
+        </div>
+        <div class="text-xs bg-slate-800 text-slate-300 px-3 py-1 rounded-md">
+          Drag <span class="text-indigo-400 font-bold">Charge Q2</span> with mouse / touch
+        </div>
+      </div>
+
+      <!-- Canvas Box -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex justify-center">
+        <canvas id="simCanvas" width="800" height="380" class="w-full cursor-crosshair"></canvas>
+      </div>
+
+      <!-- Controls Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4 pt-4 border-t border-slate-800">
+        <div>
+          <label class="block text-xs font-medium text-slate-400 mb-1">Charge $Q_1$ (Fixed Origin): <span id="q1Val" class="text-indigo-400 font-bold">+5 μC</span></label>
+          <input id="q1Slider" type="range" min="-10" max="10" value="5" class="w-full accent-indigo-500">
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-slate-400 mb-1">Charge $Q_2$ (Movable): <span id="q2Val" class="text-indigo-400 font-bold">-4 μC</span></label>
+          <input id="q2Slider" type="range" min="-10" max="10" value="-4" class="w-full accent-indigo-500">
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-slate-400 mb-1">Medium Dielectric Constant ($K$): <span id="kVal" class="text-indigo-400 font-bold">1 (Air)</span></label>
+          <input id="kSlider" type="range" min="1" max="20" value="1" class="w-full accent-indigo-500">
+        </div>
+      </div>
+      <div class="mt-3 flex items-center justify-between text-xs text-slate-400">
+        <div>Distance ($r$): <span id="distVal" class="text-white font-mono">0.00 cm</span></div>
+        <div>Calculated Magnitude ($|F|$): <span id="forceVal" class="text-emerald-400 font-mono font-bold">0.00 N</span></div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivation -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivation (Vector Symmetry)</span>
+      </div>
+      <div class="space-y-3 text-slate-300 text-sm leading-relaxed">
+        <p><strong class="text-white">1. Position vectors:</strong> Let point charges $q_1$ and $q_2$ be at position vectors $\vec{r}_1$ and $\vec{r}_2$. The displacement vector pointing from $q_2$ to $q_1$ is $\vec{r}_{12} = \vec{r}_1 - \vec{r}_2$.</p>
+        <p><strong class="text-white">2. Formulating Force:</strong> The electrostatic force exerted on $q_1$ by $q_2$ along the line of sight is:</p>
+        <div class="text-center py-1">$$\vec{F}_{12} = \frac{1}{4\pi\varepsilon_0}\frac{q_1 q_2}{|\vec{r}_{12}|^2} \hat{r}_{12}$$</div>
+        <p><strong class="text-white">3. Expanding unit vector:</strong> Since $\hat{r}_{12} = \frac{\vec{r}_{12}}{|\vec{r}_{12}|} = \frac{\vec{r}_1 - \vec{r}_2}{|\vec{r}_1 - \vec{r}_2|}$:</p>
+        <div class="text-center py-1">$$\vec{F}_{12} = \frac{1}{4\pi\varepsilon_0}\frac{q_1 q_2}{|\vec{r}_1 - \vec{r}_2|^3} (\vec{r}_1 - \vec{r}_2)$$</div>
+        <p><strong class="text-white">4. Action-Reaction symmetry:</strong> Inverting coordinates gives $(\vec{r}_2 - \vec{r}_1) = -(\vec{r}_1 - \vec{r}_2)$, proving Newton's 3rd Law:</p>
+        <div class="text-center py-1 font-bold text-white">$$\vec{F}_{21} = -\vec{F}_{12}$$</div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold flex items-center space-x-2">
+            <span>Trap 1: The "Scalar Magnitude" Sum Trap</span>
+          </h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Students frequently compute forces $|F_1|$ and $|F_2|$ and add them directly ($F_1 + F_2$). Forces are vectors! Always resolve into orthogonal components ($\sum F_x \hat{i} + \sum F_y \hat{j}$) before finding the resultant.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold flex items-center space-x-2">
+            <span>Trap 2: Large Conducting Spheres vs Point Charges</span>
+          </h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Coulomb's Law strictly assumes point charges. For conducting spheres of finite radii, induction relocates charge centers. Like charges repel to opposite sides ($r_{\text{eff}} > r$), reducing force below Coulomb prediction.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Foundation Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: Two fixed point charges $+4q$ and $+q$ are separated by distance $L$. At what position should a third charge $Q$ be placed so that it is in equilibrium?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> Let $Q$ be at distance $x$ from $+4q$. For equilibrium:</p>
+          <p class="text-center font-mono text-indigo-300">$$\frac{1}{4\pi\varepsilon_0} \frac{4q \cdot Q}{x^2} = \frac{1}{4\pi\varepsilon_0} \frac{q \cdot Q}{(L-x)^2} \implies \frac{2}{x} = \frac{1}{L-x}$$</p>
+          <p>$$2(L - x) = x \implies 2L = 3x \implies x = \frac{2L}{3}$$</p>
+          <p class="text-slate-400"><em>Punchline:</em> Distance is $2L/3$ from $+4q$. The sign and magnitude of $Q$ cancel completely, having zero effect on equilibrium position.</p>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Advanced Symmetry Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: Five equal point charges $+q$ are fixed at 5 vertices of a regular hexagon of side $a$. Find the net force on charge $+q_0$ at the center.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> By geometric inversion symmetry, diametrically opposite pairs cancel pairwise:</p>
+          <p class="text-center font-mono text-indigo-300">$$\vec{F}_1 + \vec{F}_4 = 0, \quad \vec{F}_2 + \vec{F}_5 = 0$$</p>
+          <p>The single charge across the vacant vertex remains completely unbalanced. Distance from center to vertex in a regular hexagon equals side $a$:</p>
+          <p class="text-center font-mono text-indigo-300">$$\vec{F}_{\text{net}} = \frac{1}{4\pi\varepsilon_0} \frac{q \cdot q_0}{a^2} \quad \text{(directed directly toward the empty vertex)}$$</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formula</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Scalar Force</p>
+          <p class="text-xs font-bold text-white mt-1">$F = \frac{k |q_1 q_2|}{r^2}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Dielectric Effect</p>
+          <p class="text-xs font-bold text-white mt-1">$F_{\text{med}} = \frac{F_{\text{vac}}}{K}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Electrostatic Constant</p>
+          <p class="text-xs font-bold text-white mt-1">$9 \times 10^9 \text{ N}\cdot\text{m}^2/\text{C}^2$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Validity Boundary</p>
+          <p class="text-xs font-bold text-white mt-1">Point charges, $r > 10^{-15}\text{ m}$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive Canvas Simulation Logic -->
+  <script>
+    const canvas = document.getElementById('simCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // UI Controls
+    const q1Slider = document.getElementById('q1Slider');
+    const q2Slider = document.getElementById('q2Slider');
+    const kSlider = document.getElementById('kSlider');
+    const q1Val = document.getElementById('q1Val');
+    const q2Val = document.getElementById('q2Val');
+    const kVal = document.getElementById('kVal');
+    const distVal = document.getElementById('distVal');
+    const forceVal = document.getElementById('forceVal');
+
+    // Charge State
+    const charge1 = { x: 260, y: 190, r: 16, isFixed: true };
+    const charge2 = { x: 540, y: 190, r: 16, isDragging: false };
+
+    function getMousePos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: (clientX - rect.left) * scaleX,
+        y: (clientY - rect.top) * scaleY
+      };
+    }
+
+    // Drag Events
+    function startDrag(e) {
+      const pos = getMousePos(e);
+      const dx = pos.x - charge2.x;
+      const dy = pos.y - charge2.y;
+      if (Math.hypot(dx, dy) < charge2.r + 15) {
+        charge2.isDragging = true;
+      }
+    }
+
+    function doDrag(e) {
+      if (!charge2.isDragging) return;
+      const pos = getMousePos(e);
+      charge2.x = Math.max(30, Math.min(canvas.width - 30, pos.x));
+      charge2.y = Math.max(30, Math.min(canvas.height - 30, pos.y));
+      draw();
+    }
+
+    function stopDrag() { charge2.isDragging = false; }
+
+    canvas.addEventListener('mousedown', startDrag);
+    window.addEventListener('mousemove', doDrag);
+    window.addEventListener('mouseup', stopDrag);
+
+    canvas.addEventListener('touchstart', startDrag);
+    window.addEventListener('touchmove', doDrag);
+    window.addEventListener('touchend', stopDrag);
+
+    [q1Slider, q2Slider, kSlider].forEach(slider => slider.addEventListener('input', draw));
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const q1 = parseFloat(q1Slider.value);
+      const q2 = parseFloat(q2Slider.value);
+      const K = parseFloat(kSlider.value);
+
+      q1Val.textContent = (q1 >= 0 ? '+' : '') + q1 + ' μC';
+      q2Val.textContent = (q2 >= 0 ? '+' : '') + q2 + ' μC';
+      kVal.textContent = K === 1 ? '1 (Air/Vacuum)' : K;
+
+      // Coordinate Grid Lines
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < canvas.width; x += 40) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+      }
+      for (let y = 0; y < canvas.height; y += 40) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+      }
+
+      // Distance Vector Math
+      const dx = charge2.x - charge1.x;
+      const dy = charge2.y - charge1.y;
+      const pixelDist = Math.hypot(dx, dy);
+      
+      // Scaling: 100 pixels = 0.05 meters (5 cm)
+      const rMeters = Math.max(0.01, (pixelDist / 100) * 0.05);
+      distVal.textContent = (rMeters * 100).toFixed(2) + ' cm';
+
+      // Mutual Coulomb Force calculation: F = (1 / 4πε0 * K) * (|q1 q2| / r^2)
+      const kCoulomb = 8.99e9;
+      const forceMag = (kCoulomb * Math.abs(q1 * 1e-6 * q2 * 1e-6)) / (K * (rMeters * rMeters));
+      forceVal.textContent = forceMag > 1000 ? forceMag.toExponential(2) + ' N' : forceMag.toFixed(2) + ' N';
+
+      // Connecting Line
+      ctx.setLineDash([5, 5]);
+      ctx.strokeStyle = '#475569';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(charge1.x, charge1.y);
+      ctx.lineTo(charge2.x, charge2.y);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Draw Vector Arrow for Force on Q2
+      const isRepulsive = (q1 * q2) > 0;
+      const angle = Math.atan2(dy, dx);
+      const vectorDir = isRepulsive ? angle : angle + Math.PI;
+
+      // Arrow length capped for UI aesthetic
+      const arrowLen = Math.min(100, Math.max(25, Math.log10(forceMag + 1) * 28));
+
+      const arrowEndX = charge2.x + Math.cos(vectorDir) * arrowLen;
+      const arrowEndY = charge2.y + Math.sin(vectorDir) * arrowLen;
+
+      ctx.strokeStyle = '#10b981';
+      ctx.fillStyle = '#10b981';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(charge2.x, charge2.y);
+      ctx.lineTo(arrowEndX, arrowEndY);
+      ctx.stroke();
+
+      // Arrow Head
+      const headlen = 10;
+      ctx.beginPath();
+      ctx.moveTo(arrowEndX, arrowEndY);
+      ctx.lineTo(arrowEndX - headlen * Math.cos(vectorDir - Math.PI / 6), arrowEndY - headlen * Math.sin(vectorDir - Math.PI / 6));
+      ctx.lineTo(arrowEndX - headlen * Math.cos(vectorDir + Math.PI / 6), arrowEndY - headlen * Math.sin(vectorDir + Math.PI / 6));
+      ctx.fill();
+
+      // Vector Label
+      ctx.font = 'bold 12px sans-serif';
+      ctx.fillText(isRepulsive ? 'F (Repulsive)' : 'F (Attractive)', arrowEndX + 8, arrowEndY);
+
+      // Render Charge Q1 (Origin)
+      ctx.beginPath();
+      ctx.arc(charge1.x, charge1.y, charge1.r, 0, Math.PI * 2);
+      ctx.fillStyle = q1 >= 0 ? '#ef4444' : '#3b82f6';
+      ctx.fill();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#ffffff';
+      ctx.stroke();
+      ctx.fillStyle = '#ffffff';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.font = 'bold 11px sans-serif';
+      ctx.fillText('Q1', charge1.x, charge1.y);
+
+      // Render Charge Q2 (Movable)
+      ctx.beginPath();
+      ctx.arc(charge2.x, charge2.y, charge2.r, 0, Math.PI * 2);
+      ctx.fillStyle = q2 >= 0 ? '#ef4444' : '#3b82f6';
+      ctx.fill();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#a855f7';
+      ctx.stroke();
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText('Q2', charge2.x, charge2.y);
+    }
+
+    // Initial Render
+    draw();
+  </script>
+</body>
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class 12 Physics | Chapter 14 - Semiconductor Electronics Master Dossier</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX Core CSS & JS with Robust Auto-Render -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" 
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError: false,
+      errorColor: '#cbd5e1'
+    });"></script>
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+      letter-spacing: -0.01em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .font-mono, font-mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+    }
+
+    .katex {
+      font-size: 1.02em !important;
+      font-weight: 400 !important;
+      text-rendering: optimizeLegibility;
+    }
+    .katex-display {
+      margin: 0.55em 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 2px;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 12mm 14mm 12mm 14mm;
+    }
+
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        font-size: 9.8pt !important;
+        line-height: 1.35 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .avoid-break {
+        page-break-inside: avoid;
+      }
+      .print-border {
+        border: 1px solid #1e293b !important;
+      }
+      .print-table th {
+        background-color: #f1f5f9 !important;
+        color: #000000 !important;
+        border: 1px solid #94a3b8 !important;
+      }
+      .print-table td {
+        border: 1px solid #cbd5e1 !important;
+        color: #000000 !important;
+      }
+      .formula-box {
+        background: #f8fafc !important;
+        border-left: 3px solid #0f172a !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-indigo-500 selection:text-white">
+
+  <!-- Sticky Top Action Bar (Auto-hidden in Print/PDF) -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex flex-wrap justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <div>
+        <span class="text-lg font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+        <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2.5 py-0.5 rounded-full ml-2 font-mono">Class 12 • Open Access</span>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-3 mt-2 sm:mt-0">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 rounded-xl text-xs font-semibold transition shadow-md shadow-indigo-600/20 active:scale-95 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>Save as PDF (Clean Vector)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Body Container -->
+  <main class="max-w-4xl mx-auto px-4 py-8 md:py-10 space-y-9 print:p-0 print:m-0 print:space-y-5">
+
+    <!-- Dossier Title Block -->
+    <div class="border-b-2 border-indigo-500/40 pb-5 print:border-black print:pb-3">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-indigo-400 print:text-black font-mono">CBSE Class XII • Unit 09 (Electronic Devices)</p>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1 print:text-black print:text-2xl">
+            Chapter 14: Semiconductor Electronics
+          </h1>
+          <p class="text-slate-400 mt-1 text-sm print:text-gray-700">Master Revision Dossier • Energy Bands, Intrinsic & Extrinsic Doping, p-n Junction Dynamics, Diode Biasing, Half & Full-Wave Rectifiers, and Optoelectronics</p>
+        </div>
+        <div class="hidden sm:block text-right text-xs text-slate-500 print:block print:text-black">
+          <p class="font-mono">Open Access Initiative</p>
+          <p class="font-mono">Unit IX Complete Dossier</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: Master Formula & Semiconductor Parameters Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5 font-mono">
+        1. Definitive Formula & Semiconductor Parameters Matrix
+      </h2>
+      <div class="overflow-x-auto rounded-xl border border-slate-800 print:border-black">
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase tracking-wider border-b border-slate-800 font-semibold font-mono">
+            <tr>
+              <th class="p-2.5 border-r border-slate-800">Concept</th>
+              <th class="p-2.5 border-r border-slate-800">Mathematical Formulation</th>
+              <th class="p-2.5 border-r border-slate-800">Characteristic Values</th>
+              <th class="p-2.5">Boundary Conditions & Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/80 text-slate-300">
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Energy Band Gap ($E_g$)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$E_g = h\nu = \frac{hc}{\lambda}$$</td>
+              <td class="p-2.5 text-[11px] font-mono">Si: $1.1\text{ eV}$<br>Ge: $0.7\text{ eV}$, C: $5.4\text{ eV}$</td>
+              <td class="p-2.5 text-[11px]">Metals: $E_g = 0$ (overlap). Semiconductors: $E_g < 3\text{ eV}$. Insulators: $E_g > 3\text{ eV}$. As temperature increases, band gap slightly decreases.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Mass Action Law</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$n_e \cdot n_h = n_i^2$$</td>
+              <td class="p-2.5 text-[11px] font-mono">Si: $n_i \approx 1.5 \times 10^{16}\text{ m}^{-3}$<br>Ge: $n_i \approx 2.4 \times 10^{19}\text{ m}^{-3}$</td>
+              <td class="p-2.5 text-[11px]">Holds for intrinsic and extrinsic semiconductors in thermal equilibrium. Doping increases majority carriers while suppressing minority carriers.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Total Semiconductor Current</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$I = I_e + I_h = e A (n_e v_e + n_h v_h)$$</td>
+              <td class="p-2.5 text-[11px] font-mono">$$\sigma = e (n_e \mu_e + n_h \mu_h)$$</td>
+              <td class="p-2.5 text-[11px]">Electron mobility is always greater than hole mobility ($\mu_e > \mu_h$). Total current is the scalar sum of electron and hole drift currents.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Effective Barrier Potential</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$V_{\text{eff}} = V_0 - V_f \quad (\text{Forward})$$<br>$$V_{\text{eff}} = V_0 + V_r \quad (\text{Reverse})$$</td>
+              <td class="p-2.5 text-[11px] font-mono">Si: $V_0 \approx 0.7\text{ V}$<br>Ge: $V_0 \approx 0.3\text{ V}$</td>
+              <td class="p-2.5 text-[11px]">Forward bias narrows depletion width ($d \propto \sqrt{V_{\text{eff}}}$); reverse bias widens depletion width. Internal field: $E_0 = V_0/d \sim 10^6\text{ V/m}$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Dynamic Resistance ($r_d$)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$r_d = \frac{\Delta V}{\Delta I}$$</td>
+              <td class="p-2.5 text-[11px] font-mono">Forward: $10 \text{ to } 100\text{ }\Omega$<br>Reverse: $\sim 10^6\text{ }\Omega$</td>
+              <td class="p-2.5 text-[11px]">Diode is non-ohmic. Dynamic (AC) resistance is reciprocal of the slope of the I-V characteristic curve at that operating point.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Half-Wave Rectifier</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$f_{\text{out}} = f_{\text{in}}, \quad \eta_{\max} = \frac{0.406 R_L}{r_f + R_L} \approx 40.6\%$$</td>
+              <td class="p-2.5 text-[11px] font-mono">$$\text{PIV} = V_m, \quad I_{\text{dc}} = \frac{I_m}{\pi}$$</td>
+              <td class="p-2.5 text-[11px]">Conduction occurs for only one half-cycle ($180^\circ$). Ripple factor $\gamma = 1.21$. Capacitor filter smooths ripple if $C R_L \gg T$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Full-Wave Rectifier</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$f_{\text{out}} = 2f_{\text{in}}, \quad \eta_{\max} = \frac{0.812 R_L}{r_f + R_L} \approx 81.2\%$$</td>
+              <td class="p-2.5 text-[11px] font-mono">$$\text{PIV} = 2V_m, \quad I_{\text{dc}} = \frac{2I_m}{\pi}$$</td>
+              <td class="p-2.5 text-[11px]">Center-tapped configuration. Conduction occurs for full $360^\circ$ through alternating diodes $D_1$ and $D_2$. Ripple factor $\gamma = 0.482$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Optoelectronic Devices</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\text{Photodiode: } h\nu \ge E_g \quad (\text{3rd Quad})$$<br>$$\text{LED: } \lambda \approx \frac{hc}{E_g} \quad (\text{1st Quad})$$</td>
+              <td class="p-2.5 text-[11px] font-mono">LED: $E_g > 1.8\text{ eV}$<br>Solar: $4\text{th Quad (No bias)}$</td>
+              <td class="p-2.5 text-[11px]">Photodiode operated in reverse bias because fractional minority change ($\Delta p/p \gg \Delta n/n$). LEDs require direct band gap semiconductors ($\text{GaAsP}$).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 2: Stepwise Derivations Blueprint -->
+    <section class="space-y-4">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5 font-mono">
+        2. Core Derivations Blueprint (Step-by-Step Board Proofs)
+      </h2>
+
+      <!-- Proof 1: Junction Formation and Barrier Potential -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black font-mono">
+          Blueprint 14.1: Formation of Depletion Layer, Diffusion, Drift, and Equilibrium Barrier Potential ($V_0$)
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Due to high concentration gradients across a freshly formed p-n junction, majority holes diffuse from p to n, and majority electrons diffuse from n to p, setting up an initial <strong class="text-white print:text-black">Diffusion Current ($I_{\text{diff}}$)</strong>.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. As electrons diffuse into the p-side, they leave behind uncompensated, immobile positive donor ions ($N_d^+$) in the n-side. Simultaneously, diffusing holes leave behind uncompensated, immobile negative acceptor ions ($N_a^-$) in the p-side.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          3. This space-charge region on either side of the junction becomes completely devoid of mobile charge carriers and is named the <strong class="text-white print:text-black">Depletion Layer</strong> (thickness $d \sim 10^{-6}\text{ m}$).
+        </p>
+        <p class="text-slate-300 print:text-black">
+          4. The uncompensated ions establish an internal electric field $\vec{E}_0$ directed from the n-side to the p-side. This electric field opposes further majority carrier diffusion, while sweeping thermally generated minority carriers across the junction, creating a <strong class="text-white print:text-black">Drift Current ($I_{\text{drift}}$)</strong> directed from n to p.
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\text{At Thermal Equilibrium: } I_{\text{diffusion}} = I_{\text{drift}} \implies I_{\text{net}} = 0$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          5. The potential difference across the depletion layer at equilibrium is the <strong class="text-white print:text-black">Barrier Potential ($V_0$)</strong>. Built-in electric field: $E_0 = \frac{V_0}{d} \approx \frac{0.7\text{ V}}{10^{-6}\text{ m}} = 7 \times 10^5\text{ V/m}$.
+        </p>
+      </div>
+
+      <!-- Proof 2: Full-Wave Rectifier Working -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black font-mono">
+          Blueprint 14.2: Full-Wave Center-Tapped Rectifier: Circuit Operation and Efficiency Formulation
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Center-tap $T$ of the transformer secondary winding serves as the zero-volt ($0\text{V}$) reference point for load resistor $R_L$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. <strong class="text-white print:text-black">Positive Half-Cycle ($0 \le \omega t \le \pi$):</strong> Terminal $A$ is positive, and terminal $B$ is negative relative to $T$. Diode $D_1$ is forward-biased (conducts), while $D_2$ is reverse-biased (blocks). Current flows along $A \to D_1 \to R_L (\text{top to bottom}) \to T$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          3. <strong class="text-white print:text-black">Negative Half-Cycle ($\pi \le \omega t \le 2\pi$):</strong> Terminal $A$ is negative, and terminal $B$ is positive relative to $T$. Diode $D_1$ is reverse-biased (blocks), while $D_2$ is forward-biased (conducts). Current flows along $B \to D_2 \to R_L (\text{top to bottom}) \to T$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          4. Current flows through load $R_L$ in the identical direction during both half-cycles. Output DC current and power:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$I_{\text{dc}} = \frac{2I_m}{\pi}, \qquad P_{\text{dc}} = I_{\text{dc}}^2 R_L = \left(\frac{2I_m}{\pi}\right)^2 R_L = \frac{4}{\pi^2} I_m^2 R_L$$
+          $$I_{\text{rms}} = \frac{I_m}{\sqrt{2}}, \qquad P_{\text{ac}} = I_{\text{rms}}^2 (r_f + R_L) = \frac{I_m^2}{2}(r_f + R_L)$$
+        </div>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\eta = \frac{P_{\text{dc}}}{P_{\text{ac}}} = \frac{\frac{4}{\pi^2} I_m^2 R_L}{\frac{1}{2} I_m^2 (r_f + R_L)} = \frac{8}{\pi^2}\left(\frac{R_L}{r_f + R_L}\right) \approx \frac{0.812 R_L}{r_f + R_L} \implies \eta_{\max} \approx 81.2\%$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: High-Yield Exam Trap Matrix -->
+    <section class="space-y-4">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-rose-400 print:text-black border-l-4 border-rose-500 print:border-black pl-2.5 font-mono">
+        3. High-Yield "Red Alert" Exam Trap Matrix
+      </h2>
+
+      <!-- Comparative Table: Traps and Misconceptions -->
+      <div class="rounded-xl border border-rose-900/40 print-border overflow-hidden">
+        <div class="bg-rose-950/40 print:bg-gray-100 p-2.5 border-b border-rose-900/40 print:border-black">
+          <p class="text-xs font-bold text-rose-300 print:text-black uppercase font-mono">
+            Master Trap 1: Critical Conceptual Distinctions in Semiconductor Physics
+          </p>
+        </div>
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase font-semibold font-mono">
+            <tr>
+              <th class="p-2 border border-slate-800">Physical Scenario</th>
+              <th class="p-2 border border-slate-800 text-cyan-400 print:text-black">Common Student Misconception</th>
+              <th class="p-2 border border-slate-800 text-emerald-400 print:text-black">Correct Scientific Law</th>
+              <th class="p-2 border border-slate-800">Exam Consequence</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Electrical Neutrality of Doped Crystal</td>
+              <td class="p-2 text-rose-400 print:text-black">n-type is negatively charged; p-type is positively charged.</td>
+              <td class="p-2 font-mono text-emerald-400 print:text-black">Both n-type and p-type crystals are 100% NEUTRAL</td>
+              <td class="p-2 text-[11px]">Donor atoms ($N_d^+$) and acceptor atoms ($N_a^-$) balance free electrons and holes exactly.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Rectifier Ripple Frequency</td>
+              <td class="p-2 text-rose-400 print:text-black">Output ripple frequency is $50\text{ Hz}$ for all rectifiers.</td>
+              <td class="p-2 font-mono text-emerald-400 print:text-black">HWR: $f_{\text{out}} = f_{\text{in}}$; FWR: $f_{\text{out}} = 2f_{\text{in}}$</td>
+              <td class="p-2 text-[11px]">For $50\text{ Hz}$ line input: Full-Wave output ripple frequency is strictly $100\text{ Hz}$.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Photodiode Biasing Mode</td>
+              <td class="p-2 text-rose-400 print:text-black">Operated in forward bias for maximum current.</td>
+              <td class="p-2 font-mono text-emerald-400 print:text-black">Operated strictly in REVERSE BIAS (3rd Quadrant)</td>
+              <td class="p-2 text-[11px]">Fractional change in minority carriers ($\Delta p/p$) is vastly higher than majority carriers ($\Delta n/n$).</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Peak Inverse Voltage (PIV)</td>
+              <td class="p-2 text-rose-400 print:text-black">$\text{PIV} = V_m$ for all rectifier topologies.</td>
+              <td class="p-2 font-mono text-emerald-400 print:text-black">Center-tapped FWR: $\text{PIV} = 2V_m$</td>
+              <td class="p-2 text-[11px]">Non-conducting diode experiences double peak voltage: $(+V_m) - (-V_m) = 2V_m$.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Carbon vs Silicon Conductivity</td>
+              <td class="p-2 text-rose-400 print:text-black">Carbon is a semiconductor because it is in Group 14 with Si and Ge.</td>
+              <td class="p-2 font-mono text-emerald-400 print:text-black">Diamond is an INSULATOR ($E_g \approx 5.4\text{ eV} > 3\text{ eV}$)</td>
+              <td class="p-2 text-[11px]">Valence electrons in Carbon are in $n=2$ shell, bound extremely tightly to nucleus.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Critical Pitfalls Grid -->
+      <div class="grid sm:grid-cols-2 gap-3 text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 2: Temperature Effect on Reverse Saturation Current</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            Reverse saturation current ($I_0$) is independent of applied reverse voltage, but is <strong class="text-white print:text-black">extremely sensitive to temperature</strong>.
+            <br>• $I_0$ is generated entirely by thermal breaking of covalent bonds.
+            <br>• <strong class="text-white print:text-black">$I_0$ doubles approximately for every $10^\circ\text{C}$ rise in temperature!</strong>
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 3: Direct vs Indirect Band Gap in LEDs</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            Silicon ($1.1\text{ eV}$) and Germanium ($0.7\text{ eV}$) cannot be used to fabricate LEDs.
+            <br>• They have indirect band gaps where recombination energy is dissipated as heat vibrations (phonons).
+            <br>• Visible LEDs require direct band gap semiconductors ($\text{GaAsP}$) with <strong class="text-white print:text-black">$E_g \ge 1.8\text{ eV}$</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Handcrafted Exemplar Numericals -->
+    <section class="space-y-4 avoid-break">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-amber-400 print:text-black border-l-4 border-amber-500 print:border-black pl-2.5 font-mono">
+        4. Handcrafted Exemplars (Analytical Numerical Solutions)
+      </h2>
+
+      <!-- Problem 1 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black font-mono">Problem 1: Doping Carrier Concentration via Mass Action Law</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden font-mono">Exemplar 01</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          A pure silicon crystal has intrinsic carrier concentration $n_i = 1.5 \times 10^{16}\text{ m}^{-3}$ at $300\text{ K}$. It is doped with Indium atoms at a concentration of $N_a = 4.5 \times 10^{22}\text{ m}^{-3}$. Determine: (i) the majority and minority carrier concentrations in the doped crystal, and (ii) the semiconductor type.
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> Indium is a trivalent dopant (acceptor impurity, $N_a$). At room temperature, all acceptor atoms are ionized:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold text-sm py-0.5">
+            $$\text{Majority Carrier Concentration (Holes): } n_h \approx N_a = 4.5 \times 10^{22}\text{ m}^{-3}$$
+          </div>
+          <p class="text-slate-400 print:text-black">Applying the Mass Action Law ($n_e \cdot n_h = n_i^2$):</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$n_e = \frac{n_i^2}{n_h} = \frac{(1.5 \times 10^{16}\text{ m}^{-3})^2}{4.5 \times 10^{22}\text{ m}^{-3}} = \frac{2.25 \times 10^{32}}{4.5 \times 10^{22}} = \mathbf{5.0 \times 10^9\text{ m}^{-3}}$$
+          </div>
+          <p class="text-slate-400 print:text-black">Because $n_h \gg n_e$ ($4.5 \times 10^{22} \gg 5.0 \times 10^9$), it is a <strong class="text-white print:text-black">p-type semiconductor</strong>.</p>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black font-mono">Problem 2: Full-Wave Rectifier Circuit Parameters</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden font-mono">Exemplar 02</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          A center-tapped full-wave rectifier uses two silicon diodes with forward resistance $r_f = 15\text{ }\Omega$ each. The transformer secondary voltage between each outer terminal and center tap is $20\text{ V (rms)}$ at $50\text{ Hz}$. If load resistance is $R_L = 785\text{ }\Omega$, calculate: (i) peak load current, (ii) DC output voltage, (iii) rectification efficiency, and (iv) output ripple frequency.
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> $V_{\text{rms}} = 20\text{ V}$ per half winding, $r_f = 15\text{ }\Omega$, $R_L = 785\text{ }\Omega$.</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$V_m = \sqrt{2} \times V_{\text{rms}} = 1.414 \times 20\text{ V} \approx 28.28\text{ V}$$
+            $$\text{(i) Peak Current: } I_m = \frac{V_m}{r_f + R_L} = \frac{28.28\text{ V}}{15\text{ }\Omega + 785\text{ }\Omega} = \frac{28.28}{800} \approx 0.03535\text{ A} = \mathbf{35.35\text{ mA}}$$
+            $$\text{(ii) DC Voltage: } V_{\text{dc}} = \frac{2 V_m}{\pi} \left(\frac{R_L}{r_f + R_L}\right) = \frac{2 \times 28.28}{3.1416} \times \frac{785}{800} \approx 18.0 \times 0.981 = \mathbf{17.66\text{ V}}$$
+            $$\text{(iii) Efficiency: } \eta = \frac{0.812 \times R_L}{r_f + R_L} \times 100\% = \frac{0.812 \times 785}{800} \times 100\% \approx \mathbf{79.68\%}$$
+            $$\text{(iv) Ripple Frequency: } f_{\text{out}} = 2f_{\text{in}} = 2 \times 50\text{ Hz} = \mathbf{100\text{ Hz}}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Printable Cut-Out Flashcard Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5 font-mono">
+        5. Printable Pocket Flashcard Grid
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black font-mono">Mass Action Law</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1 font-mono">$n_e \cdot n_h = n_i^2$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black font-mono">Barrier Voltage</p>
+          <p class="font-bold text-white print:text-black text-xs mt-1 font-mono">Si: $0.7\text{V}$, Ge: $0.3\text{V}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black font-mono">FWR Efficiency</p>
+          <p class="font-bold text-cyan-300 print:text-black text-[11px] mt-1 font-mono">$\eta_{\max} = 81.2\%$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black font-mono">FWR Ripple Freq</p>
+          <p class="font-bold text-amber-300 print:text-black text-xs mt-1 font-mono">$f_{\text{out}} = 2f_{\text{in}}$</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Document Footer -->
+    <footer class="pt-6 border-t border-slate-800 text-center text-xs text-slate-500 print:text-black print:pt-3">
+      <p class="font-mono">AXIOM Physics Class 12 • Open Access Physics Initiative • Distributed under Creative Commons Free Access</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Bar Magnet & Magnetic Field Lines</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 5.1</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 03: Magnetism and Matter • Chapter 05</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Bar Magnet as an Equivalent Solenoid & Field Lines</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Continuous closed magnetic loops, solenoid slice integration, dipole analogies, and far-field inverse-cube calculations.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek lambe solenoid ko jisme hazaron circular current rings ek ke baad ek saji hain. Har ek ring ek micro-magnetic dipole banati hai. Jab aap in sabhi rings ko combine karte hain, toh andar adjacent faces ke currents aapas mein cancel ho jaate hain aur sirf outer surface par ek helical sheet of current bachti hai. Theek yahi cheez ek <strong class="text-white">Permanent Bar Magnet</strong> ke andar hoti hai: atoms ke andar ghoomte electrons ke microscopic current loops add hokar ek macroscopic magnetic dipole moment banate hain. Isliye chahe aap iron filings ko solenoid ke paas chhidkein ya bar magnet ke paas, unka <strong class="text-white">magnetic field pattern 100% identical</strong> banta hai!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Magnetic Field Lines Axioms</h3>
+          <p class="text-sm text-slate-400 mb-2">Universal rules governing magnetic vector trajectories:</p>
+          <ul class="text-xs text-slate-300 space-y-1 list-disc list-inside">
+            <li>Form <strong class="text-white">continuous closed loops</strong> (outside from N to S, inside from S to N).</li>
+            <li>Tangent at any point gives direction of net magnetic field $\vec{B}$.</li>
+            <li>Two lines never intersect (otherwise two field directions would exist).</li>
+            <li>Crowding of lines represents relative magnitude of field strength.</li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Dipole Field Comparison ($r \gg a$)</h3>
+          <p class="text-sm text-slate-400 mb-2">Exact parallel with Electrostatic Dipole ($p \to M, \frac{1}{4\pi\varepsilon_0} \to \frac{\mu_0}{4\pi}$):</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$B_{\text{axial}} = \frac{\mu_0}{4\pi}\frac{2M}{r^3}, \quad B_{\text{equatorial}} = \frac{\mu_0}{4\pi}\frac{M}{r^3}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Notice: $B_{\text{axial}} = 2 \times B_{\text{equatorial}}$ for the same distance $r$.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Solenoid vs Bar Magnet Overlay Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Solenoid ⇄ Bar Magnet Dynamic Field Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="modelToggleBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            View: Finite Solenoid Windings
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="magnetCanvas" width="800" height="400" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Magnetic Moment ($M$)</span>
+            <span id="mVal" class="text-cyan-400 font-mono font-bold">1.20 A·m²</span>
+          </div>
+          <input id="mSlider" type="range" min="0.4" max="3.0" step="0.1" value="1.2" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Observation Distance ($r$)</span>
+            <span id="rVal" class="text-amber-400 font-mono font-bold">12.0 cm</span>
+          </div>
+          <input id="rSlider" type="range" min="6" max="25" step="0.5" value="12" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Field Line Density</span>
+            <span id="linesVal" class="text-emerald-400 font-mono font-bold">12 Closed Streamlines</span>
+          </div>
+          <input id="linesSlider" type="range" min="6" max="18" step="2" value="12" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Axial Field ($B_{\text{axial}}$):</span>
+          <div id="bAxialVal" class="text-cyan-400 font-bold text-sm mt-0.5">13.89 μT</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Equatorial Field ($B_{\text{eq}}$):</span>
+          <div id="bEqVal" class="text-amber-400 font-bold text-sm mt-0.5">6.94 μT</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Ratio $B_{\text{axial}} / B_{\text{eq}}$:</span>
+          <div class="text-emerald-400 font-bold text-sm mt-0.5">2.00 (Exact)</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Continuity Law:</span>
+          <div class="text-indigo-300 font-bold text-sm mt-0.5">∮B·dA = 0 (No Monopoles)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Bar Magnet as Equivalent Solenoid -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Classic Board Derivation</span>
+          <h4 class="text-white font-semibold text-base mt-1">Axial Magnetic Field of a Finite Solenoid as a Bar Magnet</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Solenoid Element Integration -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 260" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-axis" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-bfield" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+              </marker>
+            </defs>
+
+            <!-- Central Axis Line -->
+            <line x1="40" y1="130" x2="600" y2="130" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-axis)" />
+            <text x="585" y="120" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">Axis ➔</text>
+
+            <!-- Solenoid Body (Cylinder of length 2l and radius a) -->
+            <rect x="120" y="70" width="200" height="120" fill="rgba(56, 189, 248, 0.08)" stroke="#38bdf8" stroke-width="2" />
+            <line x1="220" y1="60" x2="220" y2="200" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3" />
+            <text x="216" y="215" fill="#cbd5e1" font-size="11" font-family="monospace">Center O</text>
+
+            <!-- Solenoid Length Dimensions: -l to +l -->
+            <line x1="120" y1="50" x2="320" y2="50" stroke="#94a3b8" stroke-width="1.5" />
+            <line x1="120" y1="44" x2="120" y2="56" stroke="#94a3b8" stroke-width="1.5" />
+            <line x1="320" y1="44" x2="320" y2="56" stroke="#94a3b8" stroke-width="1.5" />
+            <text x="205" y="42" fill="#cbd5e1" font-size="11" font-family="monospace">2l</text>
+            <text x="110" y="215" fill="#94a3b8" font-size="10" font-family="monospace">-l</text>
+            <text x="315" y="215" fill="#94a3b8" font-size="10" font-family="monospace">+l</text>
+
+            <!-- Solenoid Radius a -->
+            <line x1="220" y1="130" x2="220" y2="70" stroke="#f59e0b" stroke-width="2" />
+            <text x="226" y="105" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">a</text>
+
+            <!-- Elemental Slice dx at distance x from O -->
+            <rect x="250" y="68" width="16" height="124" fill="rgba(245, 158, 11, 0.3)" stroke="#f59e0b" stroke-width="1.8" />
+            <text x="246" y="215" fill="#f59e0b" font-size="10" font-weight="bold" font-family="monospace">x</text>
+            <text x="246" y="60" fill="#f59e0b" font-size="10" font-weight="bold" font-family="monospace">dx</text>
+
+            <!-- Axial Point P -->
+            <circle cx="510" cy="130" r="4.5" fill="#ef4444" stroke="#ffffff" stroke-width="1.5" />
+            <text x="505" y="150" fill="#f87171" font-size="11" font-weight="bold" font-family="monospace">P</text>
+
+            <!-- Distance r from O to P -->
+            <line x1="220" y1="235" x2="510" y2="235" stroke="#38bdf8" stroke-width="1.5" />
+            <line x1="220" y1="228" x2="220" y2="242" stroke="#38bdf8" stroke-width="1.5" />
+            <line x1="510" y1="228" x2="510" y2="242" stroke="#38bdf8" stroke-width="1.5" />
+            <text x="350" y="250" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">r (r ≫ a, r ≫ l)</text>
+
+            <!-- Distance (r - x) from slice to P -->
+            <line x1="258" y1="18" x2="510" y2="18" stroke="#cbd5e1" stroke-width="1.2" stroke-dasharray="3,3" />
+            <text x="360" y="14" fill="#cbd5e1" font-size="10" font-family="monospace">(r - x)</text>
+
+            <!-- Resultant Field Vector B at P -->
+            <line x1="510" y1="130" x2="575" y2="130" stroke="#10b981" stroke-width="3" marker-end="url(#arr-bfield)" />
+            <text x="515" y="118" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">B_net</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 5.1A: Elemental slice $dx$ of a finite solenoid of length $2l$ and radius $a$ evaluated at axial point $P$.</p>
+        </div>
+
+        <p>1. Consider a solenoid of length $2l$, radius $a$, carrying current $I$ with $n$ turns per unit length. Total turns $N = n(2l)$.</p>
+        <p>2. Take an elemental circular slice of thickness $dx$ at distance $x$ from the center $O$. Number of turns in this slice is $n\,dx$.</p>
+        <p>3. Distance of point $P$ from the slice is $(r - x)$. Using the circular loop axial field formula:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$dB = \frac{\mu_0 (n\,dx) I a^2}{2 [(r - x)^2 + a^2]^{3/2}}$$
+        </div>
+        <p>4. For a distant axial point ($r \gg a$ and $r \gg x$), we can approximate $(r - x) \approx r$ and neglect $a^2$ in the denominator: $[(r - x)^2 + a^2]^{3/2} \approx r^3$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$dB = \frac{\mu_0 n I a^2}{2 r^3} dx$$
+        </div>
+        <p>5. Integrate over the entire length of the solenoid from $x = -l$ to $x = +l$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$B = \frac{\mu_0 n I a^2}{2 r^3} \int_{-l}^{+l} dx = \frac{\mu_0 n I a^2}{2 r^3} [l - (-l)] = \frac{\mu_0 n I a^2 (2l)}{2 r^3}$$
+        </div>
+        <p>6. Multiply and divide numerator by $\pi$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$B = \frac{\mu_0 I [n(2l)] (\pi a^2)}{2\pi r^3} = \frac{\mu_0 I N A}{2\pi r^3}$$
+        </div>
+        <p>7. Since magnetic dipole moment $M = N I A = N I (\pi a^2)$, multiplying numerator and denominator by 2:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$B_{\text{axial}} = \frac{\mu_0}{4\pi} \frac{2M}{r^3}$$
+        </div>
+        <p class="text-slate-400"><em>Deduction:</em> This expression is completely identical to the electric field of an electric dipole along its axis ($E = \frac{1}{4\pi\varepsilon_0}\frac{2p}{r^3}$), proving that a finite solenoid acts as an exact equivalent bar magnet.</p>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Electric Field Lines vs Magnetic Field Lines Continuity</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Electrostatic field lines are <strong>discontinuous</strong>—they start at positive charges and end at negative charges (cannot exist inside a conductor). In contrast, magnetic field lines form <strong>continuous closed loops</strong> everywhere (outside North to South, inside South to North). This is because isolated magnetic monopoles do not exist ($\oint \vec{B}\cdot d\vec{A} = 0$).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Cutting a Bar Magnet (Length vs Cross-Section)</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Let original dipole moment be $M = m \times 2l$, where $m$ is pole strength and $2l$ is length:
+            <br>• Cut transverse to length (into 2 halves): Length becomes $l$, pole strength $m$ is unchanged $\implies \mathbf{M' = M/2}$.
+            <br>• Cut along length (longitudinally): Length remains $2l$, pole strength halves to $m/2 \implies \mathbf{M' = M/2}$.
+            <br>In both cases, each piece becomes a complete new dipole with both N and S poles!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: The Factor of 2 in Axial vs Equatorial Ratio</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            At equal large distance $r$ ($r \gg l$):
+            $$B_{\text{axial}} = 2 \times B_{\text{equatorial}}$$
+            Direction Alert: $\vec{B}_{\text{axial}}$ points <strong>parallel to $\vec{M}$</strong> (from S to N), whereas $\vec{B}_{\text{equatorial}}$ points <strong>antiparallel to $\vec{M}$</strong> (from N to S). Vector equation: $\vec{B}_{\text{eq}} = -\frac{\mu_0}{4\pi}\frac{\vec{M}}{r^3}$.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Magnetic Length vs Geometric Length</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Poles of a bar magnet reside slightly inside the physical edges. The magnetic length ($2l$) between poles is approximately <strong>84% of its geometric length</strong>:
+            $$L_{\text{magnetic}} \approx 0.84 \times L_{\text{geometric}}$$
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A short bar magnet placed with its axis at $30^\circ$ with an external field of $800\text{ G}$ experiences a torque of $0.016\text{ N}\cdot\text{m}$. (a) What is the magnetic moment of the magnet? (b) What is the magnitude of the magnetic field at a point on its axis at a distance of $10\text{ cm}$ from its center? (Take $1\text{ G} = 10^{-4}\text{ T}$).</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. External field $B = 800\text{ G} = 800 \times 10^{-4}\text{ T} = 0.08\text{ T}$, $\theta = 30^\circ$, torque $\tau = 0.016\text{ N}\cdot\text{m}$.</p>
+          <p>Using $\tau = M B \sin\theta$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$0.016 = M \times (0.08) \times \sin 30^\circ = M \times (0.08) \times 0.5 = 0.04 M$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$M = \frac{0.016}{0.04} = 0.40\text{ A}\cdot\text{m}^2 \quad (\text{or J/T})$$
+          </div>
+          <p>2. Axial field at distance $r = 10\text{ cm} = 0.1\text{ m}$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$B_{\text{axial}} = \frac{\mu_0}{4\pi}\frac{2M}{r^3} = (10^{-7}) \times \frac{2 \times 0.40}{(0.1)^3} = 10^{-7} \times \frac{0.80}{10^{-3}} = 8.0 \times 10^{-5}\text{ T} = 0.80\text{ G}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A thin bar magnet of length $L$ and magnetic moment $M$ is bent into a semicircle. What will be the new magnetic dipole moment of the bent magnet?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Let $m$ be the pole strength of the magnet. Initial magnetic moment: $M = m \cdot L$.</p>
+          <p>2. When bent into a semicircle of radius $R$, the circumference equals length $L$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\pi R = L \implies R = \frac{L}{\pi}$$
+          </div>
+          <p>3. The new distance between the two poles (diameter of the semicircle) is $2R$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$L' = 2R = \frac{2L}{\pi}$$
+          </div>
+          <p>4. Since bending does not change the pole strength $m$, the new magnetic moment $M'$ is:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$M' = m \cdot L' = m \left(\frac{2L}{\pi}\right) = \frac{2}{\pi}(m L) = \frac{2}{\pi} M \approx 0.637 M$$
+          </div>
+          <p class="text-slate-400"><em>Trap Alert:</em> Pole strength $m$ is an intrinsic cross-sectional property; it does not change on bending, but effective pole displacement shrinks from $L$ to $2L/\pi$.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Axial Field</p>
+          <p class="text-xs font-bold text-white mt-1">$B = \frac{\mu_0 2M}{4\pi r^3}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Equatorial Field</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$B = \frac{\mu_0 M}{4\pi r^3}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Dipole Torque</p>
+          <p class="text-xs font-bold text-white mt-1">$\vec{\tau} = \vec{M}\times\vec{B}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Gauss Law Magnetism</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$\oint \vec{B}\cdot d\vec{A} = 0$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Solenoid ⇄ Bar Magnet Simulation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('magnetCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const modelToggleBtn = document.getElementById('modelToggleBtn');
+      const mSlider = document.getElementById('mSlider');
+      const rSlider = document.getElementById('rSlider');
+      const linesSlider = document.getElementById('linesSlider');
+
+      const mVal = document.getElementById('mVal');
+      const rVal = document.getElementById('rVal');
+      const linesVal = document.getElementById('linesVal');
+
+      const bAxialVal = document.getElementById('bAxialVal');
+      const bEqVal = document.getElementById('bEqVal');
+
+      // 'solenoid' or 'barmagnet'
+      let currentModel = 'solenoid';
+      let phaseTime = 0;
+
+      modelToggleBtn.addEventListener('click', () => {
+        currentModel = (currentModel === 'solenoid') ? 'barmagnet' : 'solenoid';
+        modelToggleBtn.textContent = (currentModel === 'solenoid')
+          ? 'View: Finite Solenoid Windings'
+          : 'View: Solid Bar Magnet (N-S Poles)';
+      });
+
+      function renderLoop() {
+        phaseTime += 0.035;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const M = parseFloat(mSlider.value);
+        const r_cm = parseFloat(rSlider.value);
+        const numLines = parseInt(linesSlider.value);
+
+        mVal.textContent = M.toFixed(2) + ' A·m²';
+        rVal.textContent = r_cm.toFixed(1) + ' cm';
+        linesVal.textContent = `${numLines} Closed Streamlines`;
+
+        // Physics calculation (SI units)
+        const r_m = r_cm / 100;
+        const mu0_over_4pi = 1e-7;
+        const B_axial = (mu0_over_4pi * 2 * M) / Math.pow(r_m, 3);
+        const B_eq = (mu0_over_4pi * M) / Math.pow(r_m, 3);
+
+        bAxialVal.textContent = (B_axial * 1e6).toFixed(2) + ' μT';
+        bEqVal.textContent = (B_eq * 1e6).toFixed(2) + ' μT';
+
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        const magnetW = 160;
+        const magnetH = 50;
+
+        // 1. Draw Continuous Closed Magnetic Field Loops
+        renderClosedMagneticLoops(cx, cy, magnetW, magnetH, numLines, phaseTime);
+
+        // 2. Render Central Source (Solenoid vs Bar Magnet)
+        if (currentModel === 'solenoid') {
+          renderSolenoidSource(cx, cy, magnetW, magnetH, phaseTime);
+        } else {
+          renderBarMagnetSource(cx, cy, magnetW, magnetH);
+        }
+
+        // 3. Observation Point P on Axis
+        const pxScale = 14;
+        const obsXPx = cx + (r_cm * pxScale);
+        drawObservationProbe(obsXPx, cy, r_cm, B_axial);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Equivalence Principle: Field lines emerge from North, curve around to South, and pass inside from S to N', cx, canvas.height - 12);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderClosedMagneticLoops(cx, cy, mw, mh, numLines, phase) {
+        ctx.save();
+        ctx.lineWidth = 1.5;
+
+        const maxRx = 340;
+        const maxRy = 165;
+        const stepRx = (maxRx - mw / 2 - 15) / numLines;
+        const stepRy = (maxRy - mh / 2) / numLines;
+
+        for (let i = 1; i <= numLines; i++) {
+          const rx = mw / 2 + i * stepRx;
+          const ry = mh / 2 + i * stepRy;
+
+          // Upper and Lower Symmetrical Continuous Loops
+          ctx.strokeStyle = 'rgba(56, 189, 248, 0.35)';
+          ctx.beginPath();
+          ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2);
+          ctx.stroke();
+
+          // Flowing Field Bead Particles (Circulating N -> S outside, S -> N inside)
+          // North is Right (+x), South is Left (-x)
+          const beadSpeed = 0.8 + i * 0.15;
+          const beadAngle = (phase * beadSpeed + i * 1.2) % (Math.PI * 2);
+          const bx = cx + Math.cos(beadAngle) * rx;
+          const by = cy + Math.sin(beadAngle) * ry;
+
+          ctx.fillStyle = '#38bdf8';
+          ctx.beginPath();
+          ctx.arc(bx, by, 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      function renderBarMagnetSource(cx, cy, w, h) {
+        const leftX = cx - w / 2;
+        const topY = cy - h / 2;
+
+        // South Half (Blue - Left)
+        ctx.fillStyle = '#1e3a8a';
+        ctx.fillRect(leftX, topY, w / 2, h);
+        ctx.strokeStyle = '#3b82f6';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(leftX, topY, w / 2, h);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 16px monospace';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('S', leftX + w / 4, cy);
+
+        // North Half (Red - Right)
+        ctx.fillStyle = '#991b1b';
+        ctx.fillRect(cx, topY, w / 2, h);
+        ctx.strokeStyle = '#ef4444';
+        ctx.strokeRect(cx, topY, w / 2, h);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText('N', cx + w / 4, cy);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 10px monospace';
+        ctx.fillText('BAR MAGNET', cx, topY - 10);
+      }
+
+      function renderSolenoidSource(cx, cy, w, h, phase) {
+        const leftX = cx - w / 2;
+        const topY = cy - h / 2;
+
+        // Core cylinder body
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+        ctx.fillRect(leftX, topY, w, h);
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(leftX, topY, w, h);
+
+        // Helical turns along length
+        const turns = 14;
+        const step = w / turns;
+        ctx.strokeStyle = '#fbbf24';
+        ctx.lineWidth = 2.5;
+
+        for (let i = 0; i < turns; i++) {
+          const tx = leftX + i * step;
+          ctx.beginPath();
+          ctx.moveTo(tx, topY + h);
+          ctx.lineTo(tx + step, topY);
+          ctx.stroke();
+        }
+
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = 'bold 10px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('FINITE SOLENOID (n turns)', cx, topY - 10);
+        ctx.fillText('S (Left)', leftX + 20, cy + 32);
+        ctx.fillText('N (Right)', leftX + w - 24, cy + 32);
+      }
+
+      function drawObservationProbe(px, py, r_cm, B_val) {
+        if (px > canvas.width - 40) return;
+
+        ctx.beginPath();
+        ctx.arc(px, py, 5, 0, Math.PI * 2);
+        ctx.fillStyle = '#10b981';
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        ctx.fillStyle = '#10b981';
+        ctx.font = 'bold 11px monospace';
+        ctx.textAlign = 'left';
+        ctx.fillText(`P (r = ${r_cm}cm)`, px + 8, py - 8);
+
+        // Vector B arrow
+        drawArrow(px, py, px + 40, py, '#10b981', 'B_axial ➔');
+      }
+
+      function drawArrow(fromX, fromY, toX, toY, color, labelText) {
+        const angle = Math.atan2(toY - fromY, toX - fromX);
+        const headlen = 7;
+
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+        ctx.moveTo(fromX, fromY);
+        ctx.lineTo(toX, toY);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(toX, toY);
+        ctx.lineTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
+        ctx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
+        ctx.closePath();
+        ctx.fill();
+
+        if (labelText) {
+          ctx.fillStyle = color;
+          ctx.font = 'bold 10px monospace';
+          ctx.fillText(labelText, toX + 6, toY + 2);
+        }
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

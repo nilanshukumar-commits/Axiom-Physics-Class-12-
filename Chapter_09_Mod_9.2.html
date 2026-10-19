@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Refraction, Apparent Depth & TIR</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 9.2</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 06: Optics • Chapter 09 (Ray Optics)</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Refraction, Apparent Depth & Total Internal Reflection</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Snell’s Law, normal shift through transparent slabs, critical angle boundary physics, optical fibre propagation, and natural phenomena.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek four-wheeler jeep ko jo asphalt road se achanak ek kachhi ret (sand) wali zameen par tirchi (oblique) enter karti hai: jo pahiya pehle ret mein jata hai woh slow ho jata hai, jabki road par chal raha doosra pahiya tez rehta hai, jisse jeep apne normal raste se mud (bend) jaati hai! Theek yahi cheez light ke sath hoti hai: light rarer medium (tez speed) se denser medium (kam speed) mein aane par normal ki taraf jhuk jaati hai. 
+        Aur socho jab jeep ulta ret se road par jaati hai—woh normal se door mudti hai. Agar aap aane ka angle itna badha dein ki gaadi wapas ret mein hi ghoom kar palat jaye, toh wahi hai <strong class="text-white">Total Internal Reflection (TIR)</strong>! Duniya bhar ka high-speed internet isi TIR par tike patle glass ke baalon (optical fibres) ke zariye light speed par travel kar raha hai!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Snell’s Law & Apparent Depth</h3>
+          <p class="text-sm text-slate-400 mb-2">Refraction across planar boundary separating media 1 and 2:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\mu_1 \sin i = \mu_2 \sin r \implies \frac{\sin i}{\sin r} = \frac{\mu_2}{\mu_1} = \,^1\mu_2 = \frac{v_1}{v_2} = \frac{\lambda_1}{\lambda_2}$$
+            $$h_{\text{apparent}} = \frac{h_{\text{real}}}{\mu}, \quad \text{Normal Shift } \Delta t = t\left(1 - \frac{1}{\mu}\right)$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Frequency ($\nu$) remains strictly invariant across refraction! Speed and wavelength change in direct proportion.</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Critical Angle & Total Internal Reflection</h3>
+          <p class="text-sm text-slate-400 mb-2">When light travels from Denser ($\mu_D$) to Rarer ($\mu_R$):</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\sin i_c = \frac{\mu_R}{\mu_D} \implies \text{For Denser into Air: } \sin i_c = \frac{1}{\mu}$$
+            $$\text{Condition for TIR: } i > i_c \quad (\text{100\% Light is Reflected; Zero Loss!})$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Unlike silvered mirrors which absorb 5-10% of light, TIR reflects 100% of incident radiant energy without attenuation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Snell's Law & TIR Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Denser-to-Rarer Ray Tracing & TIR Simulator</span>
+        </div>
+        <div id="stateBadge" class="text-xs font-bold font-mono px-3 py-1 rounded bg-indigo-900/60 text-indigo-300 border border-indigo-700/50">
+          MODE: PARTIAL REFRACTION
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="tirCanvas" width="800" height="390" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Angle of Incidence in Denser Medium ($i$)</span>
+            <span id="iVal" class="text-amber-400 font-mono font-bold">35.0°</span>
+          </div>
+          <input id="iSlider" type="range" min="0" max="85" step="0.5" value="35" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Refractive Index of Denser Medium ($\mu$)</span>
+            <span id="muVal" class="text-cyan-400 font-mono font-bold">1.50 (Crown Glass)</span>
+          </div>
+          <input id="muSlider" type="range" min="1.10" max="2.42" step="0.02" value="1.50" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Critical Angle ($i_c = \sin^{-1}(1/\mu)$):</span>
+          <div id="icOut" class="text-cyan-400 font-bold text-sm mt-0.5">41.81°</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Refraction Angle in Air ($r$):</span>
+          <div id="rOut" class="text-amber-400 font-bold text-sm mt-0.5">59.36°</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Reflection Status:</span>
+          <div id="statusOut" class="text-rose-400 font-bold text-sm mt-0.5">Partial Reflection (4%)</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Energy Efficiency:</span>
+          <div id="effOut" class="text-emerald-400 font-bold text-sm mt-0.5">Refracted Light Dominates</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Comprehensive Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Apparent Depth & Normal Shift -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Classic Board Derivation</span>
+          <h4 class="text-white font-semibold text-base mt-1">Apparent Depth of an Object Immersed in Denser Medium & Normal Shift ($\Delta t$)</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Apparent Depth -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 250" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-ray-app" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+            </defs>
+
+            <!-- Interface Line between Medium 1 (Air) and Medium 2 (Water) -->
+            <line x1="50" y1="100" x2="600" y2="100" stroke="#38bdf8" stroke-width="2.5" />
+            <rect x="50" y="100" width="550" height="130" fill="rgba(56, 189, 248, 0.08)" />
+            <text x="70" y="85" fill="#cbd5e1" font-size="11" font-weight="bold" font-family="monospace">Rarer Medium (Air, μ₁ = 1)</text>
+            <text x="70" y="130" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">Denser Medium (Water/Glass, μ₂ = μ)</text>
+
+            <!-- Normal Line through point B -->
+            <line x1="380" y1="50" x2="380" y2="150" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4,4" />
+            <text x="385" y="60" fill="#94a3b8" font-size="10" font-family="monospace">Normal</text>
+
+            <!-- Real Object O at bottom -->
+            <circle cx="280" cy="210" r="4" fill="#ef4444" />
+            <text x="260" y="215" fill="#ef4444" font-size="11" font-weight="bold" font-family="monospace">Object O</text>
+
+            <!-- Ray 1: Normal ray OA (undeviated into air) -->
+            <line x1="280" y1="210" x2="280" y2="40" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arr-ray-app)" />
+            <text x="285" y="108" fill="#cbd5e1" font-size="10" font-family="monospace">A</text>
+
+            <!-- Ray 2: Oblique ray OB incident at B at angle i -->
+            <line x1="280" y1="210" x2="380" y2="100" stroke="#38bdf8" stroke-width="1.8" />
+            <text x="385" y="112" fill="#cbd5e1" font-size="10" font-family="monospace">B</text>
+
+            <!-- Refracted ray into air bending away from normal at angle r -->
+            <line x1="380" y1="100" x2="480" y2="35" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr-ray-app)" />
+
+            <!-- Virtual backward extension of refracted ray meeting at I -->
+            <line x1="380" y1="100" x2="280" y2="145" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="3,3" />
+            <circle cx="280" cy="145" r="3.5" fill="#ec4899" />
+            <text x="215" y="148" fill="#ec4899" font-size="11" font-weight="bold" font-family="monospace">Image I (Apparent)</text>
+
+            <!-- Angle i at O -->
+            <path d="M 280 190 A 20 20 0 0 1 295 195" fill="none" stroke="#f59e0b" stroke-width="1.5" />
+            <text x="290" y="185" fill="#f59e0b" font-size="10" font-family="monospace">i</text>
+
+            <!-- Angle r in air -->
+            <path d="M 380 75 A 25 25 0 0 1 405 78" fill="none" stroke="#f59e0b" stroke-width="1.5" />
+            <text x="400" y="70" fill="#f59e0b" font-size="10" font-family="monospace">r</text>
+
+            <!-- Dimensions -->
+            <line x1="190" y1="100" x2="190" y2="210" stroke="#94a3b8" stroke-width="1.2" />
+            <text x="130" y="160" fill="#94a3b8" font-size="10" font-family="monospace">Real Depth (h)</text>
+
+            <line x1="170" y1="100" x2="170" y2="145" stroke="#ec4899" stroke-width="1.2" />
+            <text x="110" y="125" fill="#ec4899" font-size="10" font-family="monospace">h_app = h/μ</text>
+
+            <!-- Normal shift bracket -->
+            <line x1="280" y1="155" x2="280" y2="200" stroke="#10b981" stroke-width="2.5" />
+            <text x="295" y="175" fill="#10b981" font-size="10" font-weight="bold" font-family="monospace">Shift Δt</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 9.2A: Geometric formation of virtual image $I$ above real object $O$ due to refraction away from normal.</p>
+        </div>
+
+        <p>1. Consider an object $O$ situated at real depth $h = OA$ inside a medium of refractive index $\mu$. A ray $OA$ incident normally passes undeviated.</p>
+        <p>2. A second ray $OB$ incident at angle $i$ refracts into air at angle $r$ ($r > i$). Produced backwards, it meets the normal line at image point $I$. The apparent depth is $h' = IA$.</p>
+        <p>3. In right-angled $\triangle OAB$: $\sin i = \frac{AB}{OB}$. In right-angled $\triangle IAB$: $\sin r = \frac{AB}{IB}$.</p>
+        <p>4. Applying Snell's law ($\mu \sin i = 1 \times \sin r$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\mu = \frac{\sin r}{\sin i} = \frac{AB/IB}{AB/OB} = \frac{OB}{IB}$$
+        </div>
+        <p>5. For near-normal viewing (paraxial rays, small angles $i$ and $r$), point $B$ lies very close to $A$ ($OB \approx OA = h$, and $IB \approx IA = h'$):</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\mu = \frac{OA}{IA} = \frac{h_{\text{real}}}{h_{\text{apparent}}} \implies h_{\text{apparent}} = \frac{h}{\mu}$$
+        </div>
+        <p>6. The upward vertical displacement of the object is known as the <strong class="text-white">Normal Shift ($\Delta t$)</strong>:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$\Delta t = h - h' = h - \frac{h}{\mu} = h\left(1 - \frac{1}{\mu}\right)$$
+        </div>
+        <p class="text-slate-400"><em>Multiple Slabs Generalization:</em> For $n$ layers of thicknesses $t_1, t_2, \dots$ and indices $\mu_1, \mu_2, \dots$: $\Delta t_{\text{total}} = \sum t_i \left(1 - \frac{1}{\mu_i}\right)$.</p>
+      </div>
+
+      <!-- Derivation 2: Critical Angle & Total Internal Reflection -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Boundary Condition Proof</span>
+          <h4 class="text-white font-semibold text-base mt-1">Deduction of Critical Angle ($i_c$) & Acceptance Angle in Optical Fibres</h4>
+        </div>
+        <p>1. When a ray travels from a denser medium ($\mu_1 = \mu$) to a rarer medium ($\mu_2 = 1$), it bends away from the normal ($r > i$).</p>
+        <p>2. As angle of incidence $i$ increases, angle of refraction $r$ increases correspondingly until at a specific angle $i = i_c$ (Critical Angle), the refracted ray grazes the interface ($r = 90^\circ$). Applying Snell's Law:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\mu \sin i_c = 1 \times \sin 90^\circ = 1 \times 1 = 1$$
+        </div>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\sin i_c = \frac{1}{\mu} \implies i_c = \sin^{-1}\left(\frac{1}{\mu}\right)$$
+        </div>
+        <p>3. If $i > i_c$, no refraction is mathematically possible ($\sin r > 1$, which is invalid). The entire light energy is reflected back into the denser medium following laws of reflection. This is <strong class="text-white">Total Internal Reflection (TIR)</strong>.</p>
+        <p>4. <em>Optical Fibre Core-Cladding Boundary:</em> Light entering a core of index $\mu_1$ surrounded by cladding of index $\mu_2$ ($\mu_1 > \mu_2$) undergoes repeated TIR if the angle of incidence at core-cladding boundary exceeds $i_c = \sin^{-1}(\mu_2/\mu_1)$. The maximum external entrance angle in air is the <strong class="text-white">Acceptance Angle ($\theta_a$)</strong>:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$\sin\theta_a = \sqrt{\mu_1^2 - \mu_2^2} \quad (\text{Numerical Aperture } \text{NA} = \sin\theta_a)$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Diver Underwater Looking at the External World (Circle of Vision)</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* A point light source is placed at depth $d$ under water ($\mu$). What is the area of the circular patch on the surface through which light emerges into air?
+            <br>• Rays with $i \le i_c$ emerge; rays with $i > i_c$ undergo TIR back down.
+            <br>• Radius of circular disc: $r = d \tan i_c = \frac{d \sin i_c}{\cos i_c} = \frac{d (1/\mu)}{\sqrt{1 - 1/\mu^2}} = \frac{d}{\sqrt{\mu^2 - 1}}$.
+            $$\mathbf{\text{Area } A = \pi r^2 = \frac{\pi d^2}{\mu^2 - 1}}$$
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Shift through a Glass Slab vs Position of Object</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Exam Trap:* "If an object is moved further away from a glass slab of thickness $t$, does the normal shift increase?"
+            <br>*Correct Answer:* <strong class="text-white">NO! IT REMAINS INDEPENDENT!</strong>
+            $$\Delta t = t\left(1 - \frac{1}{\mu}\right)$$
+            Normal shift depends strictly on the slab's <strong class="text-white">thickness $t$</strong> and <strong class="text-white">refractive index $\mu$</strong>. It is completely independent of the distance of the object from the slab!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Prism Inversion Without Energy Loss (Porro Prisms)</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Why do binoculars use $45^\circ-90^\circ-45^\circ$ right-angled glass prisms instead of plane mirrors?
+            <br>• For crown glass ($\mu \approx 1.5$), critical angle is $i_c = \sin^{-1}(1/1.5) \approx \mathbf{41.8^\circ}$.
+            <br>• When light strikes the internal hypotenuse at $45^\circ$, $i = 45^\circ > 41.8^\circ$, causing <strong class="text-white">100% Total Internal Reflection</strong> with zero image degradation, no ghost reflections, and no silver tarnishing over time.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Diamond Sparkle Secret</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Diamond has an exceptionally high refractive index ($\mu \approx 2.42$). Its critical angle is extremely small:
+            $$i_c = \sin^{-1}\left(\frac{1}{2.42}\right) \approx \mathbf{24.4^\circ}$$
+            A skilled gem-cutter cuts diamond facets so that light entering undergoes multiple internal reflections at angles $> 24.4^\circ$ before emerging through top faces, creating dazzling brilliance.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A small bulb is placed at the bottom of a water tank of depth $80\text{ cm}$. What is the area of the surface of water through which light from the bulb can emerge out? (Refractive index of water $\mu = 4/3$).</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> Depth $d = 80\text{ cm} = 0.80\text{ m}$, $\mu = 4/3$.</p>
+          <p>1. Critical angle condition: $\sin i_c = \frac{1}{\mu} = \frac{3}{4} = 0.75$.</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\tan i_c = \frac{\sin i_c}{\cos i_c} = \frac{\sin i_c}{\sqrt{1 - \sin^2 i_c}} = \frac{3/4}{\sqrt{1 - 9/16}} = \frac{3/4}{\sqrt{7}/4} = \frac{3}{\sqrt{7}}$$
+          </div>
+          <p>2. Radius of the circular illuminated disc on surface:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$r = d \tan i_c = (0.80\text{ m}) \times \frac{3}{\sqrt{7}} = \frac{2.4}{\sqrt{7}}\text{ m} \approx 0.907\text{ m}$$
+          </div>
+          <p>3. Area through which light emerges:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\text{Area } A = \pi r^2 = \pi \left(\frac{2.4}{\sqrt{7}}\right)^2 = \frac{5.76\pi}{7} \approx 2.585\text{ m}^2$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: An optical fibre has a core of refractive index $\mu_1 = 1.68$ and a cladding of index $\mu_2 = 1.44$. What is the critical angle at the core-cladding boundary? Find the range of incident angles for incoming rays in air at the face of the fibre so that total internal reflection occurs inside the core.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Critical angle at the internal core-cladding boundary:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\sin i_c = \frac{\mu_2}{\mu_1} = \frac{1.44}{1.68} = \frac{6}{7} \approx 0.8571 \implies i_c = \sin^{-1}(0.8571) \approx 59.0^\circ$$
+          </div>
+          <p>2. For TIR inside the core, the angle with normal at core wall must be $i \ge 59.0^\circ$.</p>
+          <p>Since the entrance face is normal to the core axis, refraction angle at entrance is $r = 90^\circ - i \le 90^\circ - 59^\circ = 31.0^\circ$.</p>
+          <p>3. Applying Snell's law at entrance face from air ($\mu_{\text{air}} = 1$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$1 \times \sin i_{\max} = \mu_1 \sin r_{\max} = 1.68 \times \sin(31.0^\circ) = 1.68 \times \sqrt{1 - \sin^2(59.0^\circ)} = \sqrt{\mu_1^2 - \mu_2^2}$$
+            $$\sin i_{\max} = \sqrt{(1.68)^2 - (1.44)^2} = \sqrt{2.8224 - 2.0736} = \sqrt{0.7488} \approx 0.8653$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$i_{\max} = \sin^{-1}(0.8653) \approx 59.9^\circ \implies \text{Acceptance Range: } 0^\circ \le i \le 59.9^\circ$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Critical Angle</p>
+          <p class="text-xs font-bold text-cyan-300 mt-1">$\sin i_c = \frac{1}{\mu}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Apparent Depth</p>
+          <p class="text-xs font-bold text-white mt-1">$h' = \frac{h}{\mu}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Normal Shift</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$\Delta t = t(1 - \frac{1}{\mu})$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Circle of Vision</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$A = \frac{\pi d^2}{\mu^2 - 1}$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Denser-to-Rarer Ray Tracing & TIR Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('tirCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const iSlider = document.getElementById('iSlider');
+      const muSlider = document.getElementById('muSlider');
+
+      const iVal = document.getElementById('iVal');
+      const muVal = document.getElementById('muVal');
+
+      const icOut = document.getElementById('icOut');
+      const rOut = document.getElementById('rOut');
+      const statusOut = document.getElementById('statusOut');
+      const effOut = document.getElementById('effOut');
+      const stateBadge = document.getElementById('stateBadge');
+
+      function renderLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const iDeg = parseFloat(iSlider.value);
+        const mu = parseFloat(muSlider.value);
+
+        iVal.textContent = `${iDeg.toFixed(1)}°`;
+        muVal.textContent = `${mu.toFixed(2)}`;
+
+        // Physics Calculation: Denser to Rarer (Air mu2 = 1.0)
+        const iRad = (iDeg * Math.PI) / 180;
+        const sin_ic = 1.0 / mu;
+        const icRad = Math.asin(sin_ic);
+        const icDeg = (icRad * 180) / Math.PI;
+
+        icOut.textContent = `${icDeg.toFixed(2)}°`;
+
+        let isTIR = false;
+        let isGrazing = false;
+        let rDeg = 0;
+        let rRad = 0;
+
+        const sin_r = mu * Math.sin(iRad);
+
+        if (Math.abs(iDeg - icDeg) < 0.4) {
+          isGrazing = true;
+          rDeg = 90.0;
+          rRad = Math.PI / 2;
+          rOut.textContent = '90.00° (Grazing Interface)';
+          statusOut.textContent = 'Critical Boundary ($i = i_c$)';
+          statusOut.className = 'text-amber-400 font-bold text-sm mt-0.5';
+          effOut.textContent = 'Refracted Ray Skims Surface';
+          stateBadge.textContent = 'MODE: CRITICAL GRAZING (r = 90°)';
+          stateBadge.className = 'text-xs font-bold font-mono px-3 py-1 rounded bg-amber-900/60 text-amber-300 border border-amber-700/50';
+        } else if (sin_r > 1.0) {
+          isTIR = true;
+          rOut.textContent = 'No Refraction (TIR)';
+          statusOut.textContent = '100% Total Internal Reflection';
+          statusOut.className = 'text-emerald-400 font-bold text-sm mt-0.5';
+          effOut.textContent = '100% Energy Retained (Zero Loss)';
+          stateBadge.textContent = 'MODE: TOTAL INTERNAL REFLECTION';
+          stateBadge.className = 'text-xs font-bold font-mono px-3 py-1 rounded bg-emerald-900/60 text-emerald-300 border border-emerald-700/50';
+        } else {
+          rRad = Math.asin(sin_r);
+          rDeg = (rRad * 180) / Math.PI;
+          rOut.textContent = `${rDeg.toFixed(2)}°`;
+          statusOut.textContent = 'Partial Reflection (~4-8%)';
+          statusOut.className = 'text-rose-400 font-bold text-sm mt-0.5';
+          effOut.textContent = 'Refracted Light Dominates';
+          stateBadge.textContent = 'MODE: PARTIAL REFRACTION';
+          stateBadge.className = 'text-xs font-bold font-mono px-3 py-1 rounded bg-indigo-900/60 text-indigo-300 border border-indigo-700/50';
+        }
+
+        renderTIRScene(iRad, rRad, isTIR, isGrazing, mu);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderTIRScene(iRad, rRad, isTIR, isGrazing, mu) {
+        const cx = canvas.width / 2;
+        const cy = 180; // Boundary line height
+
+        // 1. Upper Medium: Rarer (Air, mu = 1.0)
+        ctx.fillStyle = '#020617';
+        ctx.fillRect(40, 30, canvas.width - 80, cy - 30);
+
+        // 2. Lower Medium: Denser (Glass/Water, mu)
+        ctx.fillStyle = 'rgba(56, 189, 248, 0.12)';
+        ctx.fillRect(40, cy, canvas.width - 80, canvas.height - cy - 40);
+
+        // Boundary Line
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(40, cy);
+        ctx.lineTo(canvas.width - 40, cy);
+        ctx.stroke();
+
+        ctx.fillStyle = '#cbd5e1';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('RARER MEDIUM: Air (μ₁ = 1.0)', 55, cy - 18);
+        ctx.fillStyle = '#38bdf8';
+        ctx.fillText(`DENSER MEDIUM: Glass/Water (μ₂ = ${mu.toFixed(2)})`, 55, cy + 24);
+
+        // 3. Normal Line (Vertical dashed)
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(cx, 45);
+        ctx.lineTo(cx, canvas.height - 50);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = '#94a3b8';
+        ctx.fillText('Normal', cx + 8, 65);
+
+        // 4. Incident Ray from Denser Medium (Bottom Left to Center)
+        const rayLen = 150;
+        const inX = cx - rayLen * Math.sin(iRad);
+        const inY = cy + rayLen * Math.cos(iRad);
+
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(inX, inY);
+        ctx.lineTo(cx, cy);
+        ctx.stroke();
+
+        // Incident arrow
+        drawRayArrow((inX + cx) / 2, (inY + cy) / 2, Math.atan2(cy - inY, cx - inX), '#f59e0b');
+
+        // Angle i Arc
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 38, Math.PI / 2, Math.PI / 2 + iRad, false);
+        ctx.stroke();
+        ctx.fillStyle = '#f59e0b';
+        ctx.fillText(`i`, cx - 22, cy + 30);
+
+        if (!isTIR && !isGrazing) {
+          // 5. Refracted Ray into Air (Top Right)
+          const refrX = cx + rayLen * Math.sin(rRad);
+          const refrY = cy - rayLen * Math.cos(rRad);
+
+          ctx.strokeStyle = '#38bdf8';
+          ctx.lineWidth = 3;
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(refrX, refrY);
+          ctx.stroke();
+
+          drawRayArrow((cx + refrX) / 2, (cy + refrY) / 2, Math.atan2(refrY - cy, refrX - cx), '#38bdf8');
+
+          // Angle r Arc
+          ctx.strokeStyle = '#38bdf8';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.arc(cx, cy, 46, -Math.PI / 2, -Math.PI / 2 + rRad, false);
+          ctx.stroke();
+          ctx.fillStyle = '#38bdf8';
+          ctx.fillText(`r`, cx + 20, cy - 30);
+
+          // Weak Partial Reflected Ray (Bottom Right)
+          const partX = cx + rayLen * Math.sin(iRad);
+          const partY = cy + rayLen * Math.cos(iRad);
+          ctx.strokeStyle = 'rgba(239, 68, 68, 0.35)';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(partX, partY);
+          ctx.stroke();
+          ctx.fillStyle = 'rgba(239, 68, 68, 0.7)';
+          ctx.fillText('Weak Reflection (~4%)', partX - 40, partY + 16);
+        } else if (isGrazing) {
+          // Grazing ray along interface
+          ctx.strokeStyle = '#fbbf24';
+          ctx.lineWidth = 3.5;
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(cx + rayLen, cy);
+          ctx.stroke();
+          drawRayArrow(cx + rayLen / 2, cy, 0, '#fbbf24');
+          ctx.fillStyle = '#fbbf24';
+          ctx.fillText('Grazing Refraction r = 90°', cx + 40, cy - 10);
+        } else {
+          // 6. TOTAL INTERNAL REFLECTION (Bright Emerald / Red reflected ray)
+          const tirX = cx + rayLen * Math.sin(iRad);
+          const tirY = cy + rayLen * Math.cos(iRad);
+
+          ctx.strokeStyle = '#10b981';
+          ctx.lineWidth = 3.5;
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(tirX, tirY);
+          ctx.stroke();
+
+          drawRayArrow((cx + tirX) / 2, (cy + tirY) / 2, Math.atan2(tirY - cy, tirX - cx), '#10b981');
+
+          // Reflected angle arc
+          ctx.strokeStyle = '#10b981';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.arc(cx, cy, 38, Math.PI / 2 - iRad, Math.PI / 2, false);
+          ctx.stroke();
+          ctx.fillStyle = '#10b981';
+          ctx.fillText(`r = i`, cx + 16, cy + 30);
+          ctx.fillText('100% Total Internal Reflection!', tirX - 60, tirY + 18);
+        }
+
+        // Center Point of Incidence
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath(); ctx.arc(cx, cy, 4, 0, Math.PI * 2); ctx.fill();
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Snell's Law: μ sin(i) = 1 · sin(r) | Critical Angle sin(i_c) = 1/μ | TIR occurs when i > i_c`, canvas.width / 2, canvas.height - 12);
+      }
+
+      function drawRayArrow(x, y, angle, color) {
+        const headlen = 8;
+        ctx.save();
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x - headlen * Math.cos(angle - Math.PI / 6), y - headlen * Math.sin(angle - Math.PI / 6));
+        ctx.lineTo(x - headlen * Math.cos(angle + Math.PI / 6), y - headlen * Math.sin(angle + Math.PI / 6));
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

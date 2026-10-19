@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Magnetic Force on Current & Parallel Wires</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 4.4</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 03: Magnetic Effects of Current • Chapter 04[cite: 12, 14]</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Force on Current Conductor & Parallel Wires</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Macroscopic Lorentz integration, mutual wire forces, parallel attraction vs antiparallel repulsion, and the SI Ampere standard.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Electrostatics mein "Like charges repel, Unlike charges attract" universal rule hai. Lekin Magnetism mein ek hair-raising twist aata hai: <strong class="text-white">"Like currents ATTRACT, and Opposite currents REPEL"</strong>! 
+        Jab do parallel wires mein current same direction mein behta hai, toh dono ke beech magnetic field opposite direction mein hone ke karan cancel hokar kamzor ho jata hai, aur bahar ka high magnetic pressure unhe ek dusre ki taraf push kar deta hai (Attraction). Agar currents opposite hon, toh beech mein magnetic field add hokar super-strong barrier banata hai jo dono wires ko door dhakelta hai (Repulsion)!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Force on a Current Conductor</h3>
+          <p class="text-sm text-slate-400 mb-2">Macroscopic summation of Lorentz forces on all conduction electrons:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\vec{F} = I (\vec{L} \times \vec{B}) \implies F = I L B \sin\theta$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Where $\theta$ is the angle between length vector $\vec{L}$ (along current) and $\vec{B}$. Maximum at $\theta = 90^\circ$; zero when parallel ($\theta = 0^\circ$).</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Force between Two Parallel Wires</h3>
+          <p class="text-sm text-slate-400 mb-2">Mutual force per unit length between infinite parallel conductors separated by distance $d$:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\frac{F}{L} = \frac{\mu_0 I_1 I_2}{2\pi d}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Obeys Newton's 3rd Law: $\vec{F}_{12} = -\vec{F}_{21}$. SI unit of force per unit length: $\text{N/m}$.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Parallel Wires Deflection Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Dynamic Parallel Wire Force Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="toggleCurrentBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Direction: Parallel (Attraction)
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="parallelCanvas" width="800" height="380" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Current in Wire 1 ($I_1$)</span>
+            <span id="i1Val" class="text-cyan-400 font-mono font-bold">10.0 A</span>
+          </div>
+          <input id="i1Slider" type="range" min="1" max="25" step="1" value="10" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Current in Wire 2 ($I_2$)</span>
+            <span id="i2Val" class="text-amber-400 font-mono font-bold">10.0 A</span>
+          </div>
+          <input id="i2Slider" type="range" min="1" max="25" step="1" value="10" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Separation Distance ($d$)</span>
+            <span id="dVal" class="text-emerald-400 font-mono font-bold">5.0 cm</span>
+          </div>
+          <input id="dSlider" type="range" min="2" max="15" step="0.5" value="5" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Force per Unit Length ($F/L$):</span>
+          <div id="forcePerLenVal" class="text-cyan-400 font-bold text-sm mt-0.5">4.00 × 10⁻⁴ N/m</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Magnetic Field $B_1$ at Wire 2:</span>
+          <div id="b1AtWire2Val" class="text-amber-400 font-bold text-sm mt-0.5">40.0 μT (Inward)</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Nature of Force:</span>
+          <div id="natureForceVal" class="text-emerald-400 font-bold text-sm mt-0.5">MUTUAL ATTRACTION</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Newton's 3rd Law:</span>
+          <div class="text-indigo-300 font-bold text-sm mt-0.5">F₁₂ = -F₂₁ (Equal & Opp)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint[cite: 14]</span>
+      </div>
+
+      <!-- Derivation 1: Force on a Straight Conductor -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation A</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Magnetic Force on a Current-Carrying Conductor ($\vec{F} = I\vec{L}\times\vec{B}$)[cite: 14]</h4>
+        </div>
+        <p>1. Consider a straight segment of conductor of length $L$ and cross-sectional area $A$ carrying steady current $I$ placed in uniform magnetic field $\vec{B}$[cite: 14].</p>
+        <p>2. Let $n$ be the free electron density[cite: 13]. Total number of conduction electrons in the conductor is $N = n (A L)$[cite: 13].</p>
+        <p>3. Each electron moving with drift velocity $\vec{v}_d$ experiences magnetic Lorentz force[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\vec{f}_e = -e (\vec{v}_d \times \vec{B})$$
+        </div>
+        <p>4. Total macroscopic magnetic force $\vec{F}$ is the vector sum over all $N$ free electrons:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\vec{F} = N \vec{f}_e = (n A L) \left[ -e (\vec{v}_d \times \vec{B}) \right] = -(n e A v_d) (\vec{L} \times \vec{B})$$
+        </div>
+        <p>5. Since current $I = n e A v_d$ and the direction of current is taken along length vector $\vec{L}$ (opposite to electron drift $\vec{v}_d$)[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\vec{F} = I (\vec{L} \times \vec{B}) \implies F = I L B \sin\theta$$
+        </div>
+      </div>
+
+      <!-- Derivation 2: Parallel Conductors & Definition of Ampere -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation B & SI Standard</span>
+          <h4 class="text-white font-semibold text-base mt-1">Force Between Two Parallel Current-Carrying Conductors & The Definition of Ampere[cite: 14]</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Two Parallel Wires Field and Forces -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 260" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-wire-i" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-f-attr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+              </marker>
+            </defs>
+
+            <!-- Wire 1 (Carrying I1 Upwards) -->
+            <line x1="220" y1="230" x2="220" y2="30" stroke="#38bdf8" stroke-width="4" marker-end="url(#arr-wire-i)" />
+            <text x="210" y="248" fill="#38bdf8" font-size="12" font-weight="bold" font-family="monospace">Wire 1 (I₁)</text>
+
+            <!-- Wire 2 (Carrying I2 Upwards) -->
+            <line x1="430" y1="230" x2="430" y2="30" stroke="#38bdf8" stroke-width="4" marker-end="url(#arr-wire-i)" />
+            <text x="420" y="248" fill="#38bdf8" font-size="12" font-weight="bold" font-family="monospace">Wire 2 (I₂)</text>
+
+            <!-- Separation Distance d -->
+            <line x1="220" y1="190" x2="430" y2="190" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,4" />
+            <circle cx="220" cy="190" r="3" fill="#cbd5e1" /><circle cx="430" cy="190" r="3" fill="#cbd5e1" />
+            <text x="315" y="184" fill="#cbd5e1" font-size="11" font-family="monospace">Distance d</text>
+
+            <!-- Magnetic Field B1 produced by Wire 1 at location of Wire 2 (Inwards ⊗) -->
+            <circle cx="430" cy="110" r="14" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5" />
+            <line x1="424" y1="104" x2="436" y2="116" stroke="#f59e0b" stroke-width="2" />
+            <line x1="436" y1="104" x2="424" y2="116" stroke="#f59e0b" stroke-width="2" />
+            <text x="450" y="114" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">B₁ = μ₀I₁ / (2πd) ⊗</text>
+
+            <!-- Magnetic Field B2 produced by Wire 2 at location of Wire 1 (Outwards ⊙) -->
+            <circle cx="220" cy="110" r="14" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5" />
+            <circle cx="220" cy="110" r="3.5" fill="#f59e0b" />
+            <text x="70" y="114" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">B₂ = μ₀I₂ / (2πd) ⊙</text>
+
+            <!-- Mutual Attractive Force Vectors (Pointing Towards Each Other) -->
+            <!-- Force on Wire 2 by Wire 1 (Points Leftward) -->
+            <line x1="430" y1="110" x2="330" y2="110" stroke="#10b981" stroke-width="3" marker-end="url(#arr-f-attr)" />
+            <text x="350" y="100" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">F₂₁ (Attraction)</text>
+
+            <!-- Force on Wire 1 by Wire 2 (Points Rightward) -->
+            <line x1="220" y1="110" x2="320" y2="110" stroke="#10b981" stroke-width="3" marker-end="url(#arr-f-attr)" />
+            <text x="235" y="100" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">F₁₂ (Attraction)</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 4.4A: Two parallel conductors carrying currents in the same direction exert mutual attractive forces[cite: 14].</p>
+        </div>
+
+        <!-- Derivation Math -->
+        <p>1. Consider two long, straight parallel conductors $1$ and $2$ separated by normal distance $d$ carrying currents $I_1$ and $I_2$ in the same direction[cite: 14].</p>
+        <p>2. Magnetic field produced by wire $1$ at every point along wire $2$ (directed normally inward $\otimes$ by right-hand rule)[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$B_1 = \frac{\mu_0 I_1}{2\pi d}$$
+        </div>
+        <p>3. Wire $2$ carries current $I_2$ in this perpendicular magnetic field $B_1$. By Fleming's Left-Hand Rule, force on length $L$ of wire $2$ acts horizontally towards wire $1$[cite: 14]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$F_{21} = I_2 L B_1 \sin 90^\circ = I_2 L \left( \frac{\mu_0 I_1}{2\pi d} \right) = \frac{\mu_0 I_1 I_2 L}{2\pi d}$$
+        </div>
+        <p>4. Similarly, wire $2$ produces magnetic field $B_2 = \frac{\mu_0 I_2}{2\pi d}$ (outward $\odot$) at wire $1$, exerting equal opposite force $F_{12}$ directed towards wire $2$[cite: 14]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\frac{F}{L} = \frac{\mu_0 I_1 I_2}{2\pi d} \quad \text{and} \quad \vec{F}_{12} = -\vec{F}_{21} \text{[cite: 14]}$$
+        </div>
+
+        <!-- Standard SI Definition Box -->
+        <div class="bg-indigo-950/40 border border-indigo-500/40 p-4 rounded-xl mt-3 space-y-2">
+          <p class="text-indigo-300 font-bold text-sm">Official Definition of 1 Ampere (Based on Force between Conductors)[cite: 14]</p>
+          <p class="text-slate-200 text-xs leading-relaxed">
+            Set $I_1 = I_2 = 1\text{ A}$, $d = 1\text{ m}$, and $L = 1\text{ m}$ in vacuum:
+          </p>
+          <div class="text-center font-mono text-emerald-400 font-bold py-1">
+            $$\frac{F}{L} = \frac{(4\pi \times 10^{-7}) \times 1 \times 1}{2\pi \times 1} = 2 \times 10^{-7}\text{ N/m}$$
+          </div>
+          <p class="text-slate-300 text-xs italic">
+            "One ampere is that constant current which, if maintained in two straight parallel conductors of infinite length, of negligible circular cross-section, and placed 1 metre apart in vacuum, would produce between these conductors a force equal to $2 \times 10^{-7}\text{ Newton per metre}$ of length."[cite: 14]
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Electrostatic vs Magnetic Interaction Duality</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            • <strong>Parallel Beams of Protons in Vacuum:</strong> Repel each other! Electrostatic Coulomb repulsion ($F_e = \frac{kq_1q_2}{r^2}$) is much stronger than magnetic attraction ($F_m = \frac{v^2}{c^2} F_e$).
+            <br>• <strong>Parallel Current-Carrying Copper Wires:</strong> ATTRACT each other[cite: 14]! Wires are overall electrically neutral (positive lattice ions cancel electron charge $\implies F_e = 0$), so pure magnetic attraction dominates[cite: 14].
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: The "Unequal Currents" Force Trap</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Question:* If Wire 1 carries $100\text{ A}$ and Wire 2 carries $1\text{ A}$, which wire experiences the greater force?
+            <br>*Trap Answer:* Wire 2 feels 100 times more force.
+            <br>*Correct Answer:* <strong class="text-white">BOTH EXPERIENCE EXACTLY THE SAME FORCE!</strong> 
+            $F_{12} = F_{21} = \frac{\mu_0 I_1 I_2 L}{2\pi d}$[cite: 14]. Newton's Third Law is strictly obeyed[cite: 14].
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Arbitrary Shaped Wire in Uniform Field</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            For any curved wire of arbitrary shape carrying current $I$ in a uniform magnetic field $\vec{B}$:
+            $$\vec{F} = \int I (d\vec{l} \times \vec{B}) = I \left( \oint d\vec{l} \right) \times \vec{B} = I (\vec{L}' \times \vec{B})$$
+            Where $\vec{L}'$ is the direct vector displacement from the start point to the end point! For any <strong>closed planar loop</strong> of any shape in a uniform field, $\oint d\vec{l} = 0 \implies \vec{F}_{\text{net}} = 0$.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Direction of Force (Fleming's Left-Hand Rule)</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Stretch Forefinger (Field $\vec{B}$), Middle finger (Current $I$), and Thumb: Thumb gives Force $\vec{F}$.
+            <br>Remember: Current in Wire 2 is in the field of Wire 1 ($B_1$), NOT in its own field $B_2$! A wire cannot exert a net magnetic force on itself.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A horizontal wire $A$ carries a current of $50\text{ A}$ and is rigidly fixed. Another wire $B$ is placed vertically below and parallel to wire $A$ at a distance of $2.0\text{ mm}$. If the mass per unit length of wire $B$ is $2.5 \times 10^{-3}\text{ kg/m}$, find the magnitude and direction of the current required in wire $B$ such that it remains magnetically suspended in air. (Take $g = 9.8\text{ m/s}^2$).</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Wire $B$ experiences gravitational downward force per unit length: $(F_g / L) = \lambda g = (2.5 \times 10^{-3}) \times 9.8 = 2.45 \times 10^{-2}\text{ N/m}$.</p>
+          <p>2. For wire $B$ to remain suspended, the magnetic force per unit length must be directed vertically upward (Attractive force towards wire $A$).</p>
+          <p>3. Attractive force requires currents in both wires to flow in the <strong>SAME DIRECTION</strong>[cite: 14].</p>
+          <p>4. Equating upward magnetic force to downward gravity[cite: 14]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\frac{F_m}{L} = \frac{\mu_0 I_A I_B}{2\pi d} = \lambda g$$
+            $$\frac{(4\pi \times 10^{-7}) \times 50 \times I_B}{2\pi \times (2.0 \times 10^{-3})} = 2.45 \times 10^{-2}$$
+          </div>
+          <p>5. Simplify and solve for $I_B$:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\frac{2 \times 10^{-7} \times 50 \times I_B}{2.0 \times 10^{-3}} = 2.45 \times 10^{-2} \implies 5.0 \times 10^{-3} I_B = 2.45 \times 10^{-2}$$
+            $$I_B = \frac{2.45 \times 10^{-2}}{5.0 \times 10^{-3}} = 4.9\text{ Amperes}$$
+          </div>
+          <p class="text-slate-400"><em>Verdict:</em> $I_B = 4.9\text{ A}$ flowing parallel (in the same direction) as in wire $A$.</p>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A rectangular loop of dimensions $a \times b$ carrying current $I_2$ is placed parallel to a long straight wire carrying current $I_1$ in the same plane, with the nearer long side of length $a$ at distance $r$ from the straight wire. Calculate the net magnetic force on the rectangular loop.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Let the two sides parallel to the wire be at distances $r$ (nearer side) and $(r + b)$ (farther side), both of length $a$.</p>
+          <p>2. The two perpendicular sides of length $b$ experience equal and opposite magnetic forces by symmetry ($\vec{F}_{\text{top}} + \vec{F}_{\text{bottom}} = 0$), canceling out completely.</p>
+          <p>3. Force on nearer side (current parallel to $I_1$ $\implies$ Attractive towards wire)[cite: 14]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$F_1 = \frac{\mu_0 I_1 I_2 a}{2\pi r} \quad \text{(Towards the straight wire)}$$
+          </div>
+          <p>4. Force on farther side (current antiparallel to $I_1$ $\implies$ Repulsive away from wire)[cite: 14]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$F_2 = \frac{\mu_0 I_1 I_2 a}{2\pi (r + b)} \quad \text{(Away from the straight wire)}$$
+          </div>
+          <p>5. Net force on the loop ($F_1 > F_2$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$F_{\text{net}} = F_1 - F_2 = \frac{\mu_0 I_1 I_2 a}{2\pi}\left[ \frac{1}{r} - \frac{1}{r + b} \right] = \frac{\mu_0 I_1 I_2 a b}{2\pi r (r + b)} \quad \text{(Net Attractive towards wire)}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Conductor Force</p>
+          <p class="text-xs font-bold text-white mt-1">$\vec{F} = I(\vec{L}\times\vec{B})$[cite: 14]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Parallel Wires Force</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$\frac{F}{L} = \frac{\mu_0 I_1 I_2}{2\pi d}$[cite: 14]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Current Direction Rule</p>
+          <p class="text-xs font-bold text-white mt-1">Same $\to$ Attract; Opp $\to$ Repel[cite: 14]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Definition of Ampere</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$2 \times 10^{-7}\text{ N/m}$ at $1\text{ m}$[cite: 14]</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Parallel Wires Dynamic Canvas Engine Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('parallelCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const toggleCurrentBtn = document.getElementById('toggleCurrentBtn');
+      const i1Slider = document.getElementById('i1Slider');
+      const i2Slider = document.getElementById('i2Slider');
+      const dSlider = document.getElementById('dSlider');
+
+      const i1Val = document.getElementById('i1Val');
+      const i2Val = document.getElementById('i2Val');
+      const dVal = document.getElementById('dVal');
+      const forcePerLenVal = document.getElementById('forcePerLenVal');
+      const b1AtWire2Val = document.getElementById('b1AtWire2Val');
+      const natureForceVal = document.getElementById('natureForceVal');
+
+      let isParallel = true; // true = same direction (attract), false = opposite (repel)
+      let phaseTime = 0;
+
+      toggleCurrentBtn.addEventListener('click', () => {
+        isParallel = !isParallel;
+        toggleCurrentBtn.textContent = isParallel
+          ? 'Direction: Parallel (Attraction)'
+          : 'Direction: Antiparallel (Repulsion)';
+      });
+
+      function renderLoop() {
+        phaseTime += 0.04;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const I1 = parseFloat(i1Slider.value);
+        const I2 = parseFloat(i2Slider.value);
+        const d_cm = parseFloat(dSlider.value);
+
+        i1Val.textContent = I1.toFixed(1) + ' A';
+        i2Val.textContent = I2.toFixed(1) + ' A';
+        dVal.textContent = d_cm.toFixed(1) + ' cm';
+
+        // Physics Calculation
+        const mu0 = 4 * Math.PI * 1e-7;
+        const d_m = d_cm / 100;
+        const forcePerL = (mu0 * I1 * I2) / (2 * Math.PI * d_m);
+        const B1 = (mu0 * I1) / (2 * Math.PI * d_m);
+
+        forcePerLenVal.textContent = forcePerL.toExponential(2) + ' N/m';
+        b1AtWire2Val.textContent = (B1 * 1e6).toFixed(1) + ' μT (Inward)';
+
+        if (isParallel) {
+          natureForceVal.textContent = 'MUTUAL ATTRACTION';
+          natureForceVal.className = 'text-emerald-400 font-bold text-sm mt-0.5';
+        } else {
+          natureForceVal.textContent = 'MUTUAL REPULSION';
+          natureForceVal.className = 'text-rose-400 font-bold text-sm mt-0.5';
+        }
+
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        // Visual Scales: 1 cm = 18 px
+        const pxScale = 18;
+        const separationPx = d_cm * pxScale;
+
+        // Dynamic Deflection offset of flexible wires
+        const maxDeflection = Math.min(22, (forcePerL * 1.5e4));
+        const deflectionDir = isParallel ? 1 : -1; // 1 means inwards towards center
+
+        const wire1X = cx - separationPx / 2;
+        const wire2X = cx + separationPx / 2;
+
+        // 1. Draw Magnetic Field Patterns in background
+        renderMagneticFieldOverlay(wire1X, wire2X, cy, separationPx, isParallel);
+
+        // 2. Draw Wire 1 and Wire 2 with mechanical flexible deflection curves
+        renderFlexibleWire(wire1X, cy, 300, deflectionDir * maxDeflection, 'Wire 1 (I₁)', '#38bdf8', true);
+        renderFlexibleWire(wire2X, cy, 300, -deflectionDir * maxDeflection, `Wire 2 (${isParallel ? 'I₂ 🠙' : 'I₂ 🠛'})`, isParallel ? '#38bdf8' : '#ec4899', isParallel);
+
+        // 3. Force Vectors on both wires
+        const forceArrowLen = Math.min(65, Math.max(25, Math.log10(forcePerL * 1e6 + 1) * 22));
+        if (isParallel) {
+          // Both arrows point inward towards each other
+          drawArrow(wire1X + deflectionDir * maxDeflection, cy, (wire1X + deflectionDir * maxDeflection) + forceArrowLen, cy, '#10b981', 'F₁₂ (Attract)');
+          drawArrow(wire2X - deflectionDir * maxDeflection, cy, (wire2X - deflectionDir * maxDeflection) - forceArrowLen, cy, '#10b981', 'F₂₁ (Attract)');
+        } else {
+          // Both arrows point outward away from each other
+          drawArrow(wire1X + deflectionDir * maxDeflection, cy, (wire1X + deflectionDir * maxDeflection) - forceArrowLen, cy, '#f43f5e', 'F₁₂ (Repel)');
+          drawArrow(wire2X - deflectionDir * maxDeflection, cy, (wire2X - deflectionDir * maxDeflection) + forceArrowLen, cy, '#f43f5e', 'F₂₁ (Repel)');
+        }
+
+        // 4. Separation Dimension Bar
+        const dimY = cy + 120;
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(wire1X, dimY);
+        ctx.lineTo(wire2X, dimY);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = '#cbd5e1';
+        ctx.font = '10px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`d = ${d_cm} cm`, cx, dimY - 6);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.fillText('Ampere Standard: F/L = μ₀I₁I₂ / (2πd) | Two wires carrying 1A separated by 1m produce 2×10⁻⁷ N/m[cite: 14]', cx, canvas.height - 12);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderFlexibleWire(baseX, cy, height, deflectionMid, label, color, pointsUp) {
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 5;
+        ctx.lineCap = 'round';
+
+        // Quadratic curve representing wire flexing under mutual force
+        ctx.beginPath();
+        ctx.moveTo(baseX, cy - height / 2);
+        ctx.quadraticCurveTo(baseX + deflectionMid, cy, baseX, cy + height / 2);
+        ctx.stroke();
+
+        // Glowing Wire Core
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(baseX, cy - height / 2);
+        ctx.quadraticCurveTo(baseX + deflectionMid, cy, baseX, cy + height / 2);
+        ctx.stroke();
+
+        // Moving charge indicator beads
+        const numBeads = 4;
+        for (let b = 0; b < numBeads; b++) {
+          const beadPhase = (phaseTime * 50 + b * (height / numBeads)) % height;
+          const by = pointsUp ? (cy + height / 2 - beadPhase) : (cy - height / 2 + beadPhase);
+          const t = (by - (cy - height / 2)) / height; // 0 to 1
+          const bx = baseX + 4 * deflectionMid * t * (1 - t);
+
+          ctx.fillStyle = '#fbbf24';
+          ctx.beginPath();
+          ctx.arc(bx, by, 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.fillStyle = color;
+        ctx.font = 'bold 11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(label, baseX, cy - height / 2 - 12);
+        ctx.restore();
+      }
+
+      function renderMagneticFieldOverlay(w1X, w2X, cy, sepPx, isParallel) {
+        ctx.save();
+        ctx.lineWidth = 1;
+        // Concentric circular magnetic field rings around both conductors
+        const ringSteps = [20, 40, 65, 95];
+        ringSteps.forEach(r => {
+          ctx.strokeStyle = 'rgba(56, 189, 248, 0.2)';
+          ctx.beginPath();
+          ctx.arc(w1X, cy, r, 0, Math.PI * 2);
+          ctx.stroke();
+
+          ctx.strokeStyle = isParallel ? 'rgba(56, 189, 248, 0.2)' : 'rgba(236, 72, 153, 0.2)';
+          ctx.beginPath();
+          ctx.arc(w2X, cy, r, 0, Math.PI * 2);
+          ctx.stroke();
+        });
+
+        // Center field note
+        ctx.fillStyle = isParallel ? '#10b981' : '#f43f5e';
+        ctx.font = '10px monospace';
+        ctx.textAlign = 'center';
+        if (isParallel) {
+          ctx.fillText('B-fields oppose & weaken in gap ➔ Attraction[cite: 14]', (w1X + w2X) / 2, cy - 40);
+        } else {
+          ctx.fillText('B-fields reinforce in gap ➔ Repulsion[cite: 14]', (w1X + w2X) / 2, cy - 40);
+        }
+        ctx.restore();
+      }
+
+      function drawArrow(fromX, fromY, toX, toY, color, labelText) {
+        const angle = Math.atan2(toY - fromY, toX - fromX);
+        const headlen = 8;
+
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = 2.5;
+
+        ctx.beginPath();
+        ctx.moveTo(fromX, fromY);
+        ctx.lineTo(toX, toY);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(toX, toY);
+        ctx.lineTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
+        ctx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
+        ctx.closePath();
+        ctx.fill();
+
+        if (labelText) {
+          ctx.fillStyle = color;
+          ctx.font = 'bold 10px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText(labelText, (fromX + toX) / 2, fromY - 10);
+        }
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

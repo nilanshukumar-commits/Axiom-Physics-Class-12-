@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Huygens' Principle & Wavefronts</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 10.1</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 06: Optics • Chapter 10 (Wave Optics)</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Wavefronts, Huygens' Principle & Wave Proofs</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Surface of constant phase, secondary wavelet envelope construction, wave-theory derivation of the Laws of Reflection & Refraction (Snell's Law), and optical element wavefront shaping.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek shant jheel (calm pond) mein patthar girane par kya hota hai: girne wale point se chaaron taraf concentric circular ripples (waves) bahar ki taraf failti hain. Har circle par mojood paani ke saare boondein ek sath upar (crest) aur ek sath neeche (trough) jaati hain. Yahi continuous line ya surface jisme har particle ka phase bilkul same ho, <strong class="text-white">Wavefront</strong> kehlata hai! 
+        Christiaan Huygens ne 1678 mein ek krantikari baat samjhayi: wave aage kaise badhti hai? Wavefront par baitha <strong class="text-white">har ek point khud ek naya mini-source (secondary source) ban jata hai</strong> jo chaaron taraf spherical wavelets phenkta hai. Ek second baad in saare wavelets par aage se khenchi gayi common tangent (forward envelope) agla naya wavefront banati hai! Light ray kuch aur nahi, balki is wavefront ke surface par kheench gaya ek perpendicular arrow (normal) hai jo energy propagation ki direction batata hai!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Wavefront Topology</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Geometric Shapes of Wavefronts</h3>
+          <p class="text-sm text-slate-400 mb-2">Depends strictly on the geometry of the primary source:</p>
+          <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+            <li><strong class="text-white">Spherical Wavefront:</strong> Generated by a point source ($S$) at finite distance. Amplitude $A \propto \frac{1}{r}$, Intensity $I \propto \frac{1}{r^2}$.</li>
+            <li><strong class="text-white">Cylindrical Wavefront:</strong> Generated by a linear slit source. Amplitude $A \propto \frac{1}{\sqrt{r}}$, Intensity $I \propto \frac{1}{r}$.</li>
+            <li><strong class="text-white">Plane Wavefront:</strong> Produced by any source (point or line) located at infinite distance ($\infty$), e.g., sunlight reaching Earth. Amplitude and intensity remain constant along propagation.</li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Huygens' Two Postulates</h3>
+          <p class="text-sm text-slate-400 mb-2">Kinematic mechanism of wave propagation:</p>
+          <ol class="text-xs text-slate-300 space-y-2 list-decimal list-inside">
+            <li>Every point on a given primary wavefront acts as a fresh source of new disturbance, emitting spherical <strong class="text-white">secondary wavelets</strong> spreading out in all directions with the speed of light in that medium ($v$).</li>
+            <li>The forward envelope (tangential surface touching all secondary wavelets in the forward direction) at time $t + \Delta t$ gives the position of the <strong class="text-white">new secondary wavefront</strong>. Backward wavelets carry zero amplitude due to inclination factor $\frac{1 + \cos\theta}{2}$.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Huygens Wavelet Construction Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Huygens Wavelet Propagation & Refraction Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="simModeBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Mode: Plane Wavefront Propagation
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="huygensCanvas" width="800" height="390" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Wave Speed ($v$) / Time Evolution</span>
+            <span id="speedVal" class="text-cyan-400 font-mono font-bold">1.0x (Speed c)</span>
+          </div>
+          <input id="speedSlider" type="range" min="0.2" max="2.5" step="0.1" value="1.0" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Secondary Wavelet Sources ($N$)</span>
+            <span id="sourcesVal" class="text-amber-400 font-mono font-bold">7 Discrete Sources</span>
+          </div>
+          <input id="sourcesSlider" type="range" min="3" max="15" step="2" value="7" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Wavefront Radius / Radius Growth ($\Delta t$)</span>
+            <span id="radiusVal" class="text-emerald-400 font-mono font-bold">Live Growing</span>
+          </div>
+          <button id="resetWaveBtn" type="button" class="w-full bg-slate-800 hover:bg-slate-700 text-xs py-1.5 rounded font-semibold text-slate-200 border border-slate-700 transition">
+            Pulse New Primary Wavefront
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Current Wavefront Type:</span>
+          <div id="wfTypeOut" class="text-cyan-400 font-bold text-sm mt-0.5">Plane Wavefront</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Secondary Wavelet Radius ($v\tau$):</span>
+          <div id="radiusOut" class="text-amber-400 font-bold text-sm mt-0.5">42.5 px</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Ray-Wavefront Geometry:</span>
+          <div class="text-rose-400 font-bold text-sm mt-0.5">Rays ⟂ Wavefront (90°)</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Envelope Tangent:</span>
+          <div class="text-emerald-400 font-bold text-sm mt-0.5">Forward Envelope Active</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Comprehensive Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Proof of Law of Reflection -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Primary Board Proof 01</span>
+          <h4 class="text-white font-semibold text-base mt-1">Proof of the Law of Reflection ($\angle i = \angle r$) Using Huygens' Principle</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Reflection of Plane Wavefront -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 250" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-ray-refl" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-refl-out" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+              </marker>
+            </defs>
+
+            <!-- Reflecting Surface XY -->
+            <line x1="60" y1="200" x2="580" y2="200" stroke="#94a3b8" stroke-width="3" />
+            <!-- Hatching on back of mirror -->
+            <g stroke="#64748b" stroke-width="1.2">
+              <line x1="80" y1="200" x2="70" y2="212" /><line x1="140" y1="200" x2="130" y2="212" />
+              <line x1="200" y1="200" x2="190" y2="212" /><line x1="260" y1="200" x2="250" y2="212" />
+              <line x1="320" y1="200" x2="310" y2="212" /><line x1="380" y1="200" x2="370" y2="212" />
+              <line x1="440" y1="200" x2="430" y2="212" /><line x1="500" y1="200" x2="490" y2="212" />
+              <line x1="560" y1="200" x2="550" y2="212" />
+            </g>
+            <text x="65" y="190" fill="#cbd5e1" font-size="11" font-weight="bold" font-family="monospace">X</text>
+            <text x="565" y="190" fill="#cbd5e1" font-size="11" font-weight="bold" font-family="monospace">Y</text>
+
+            <!-- Point A on mirror where incident wavefront first touches -->
+            <circle cx="200" cy="200" r="3.5" fill="#ffffff" />
+            <text x="195" y="222" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace">A</text>
+
+            <!-- Point C on mirror where edge B lands at time tau -->
+            <circle cx="440" cy="200" r="3.5" fill="#ffffff" />
+            <text x="440" y="222" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace">C</text>
+
+            <!-- Incident Plane Wavefront AB at time t = 0 -->
+            <line x1="200" y1="200" x2="310" y2="70" stroke="#f59e0b" stroke-width="3" />
+            <circle cx="310" cy="70" r="3.5" fill="#f59e0b" />
+            <text x="315" y="65" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">B (Incident Wavefront AB)</text>
+
+            <!-- Incident Rays perpendicular to AB -->
+            <!-- Ray 1 striking A -->
+            <line x1="90" y1="70" x2="200" y2="200" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arr-ray-refl)" />
+            <!-- Ray 2 striking C via B -->
+            <line x1="200" y1="-60" x2="310" y2="70" stroke="#38bdf8" stroke-width="1.8" />
+            <line x1="310" y1="70" x2="440" y2="200" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arr-ray-refl)" />
+            <text x="385" y="130" fill="#38bdf8" font-size="10" font-family="monospace">BC = v·τ</text>
+
+            <!-- Right angle symbol at B (Incident ray ⟂ AB) -->
+            <path d="M 302 79 L 311 87 L 319 77" fill="none" stroke="#fbbf24" stroke-width="1.5" />
+
+            <!-- Normal at A -->
+            <line x1="200" y1="70" x2="200" y2="200" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3" />
+            <text x="185" y="80" fill="#94a3b8" font-size="9" font-family="monospace">Normal</text>
+
+            <!-- Angle of Incidence i between wavefront AB and surface XY (Angle BAC) -->
+            <path d="M 235 200 A 35 35 0 0 0 226 168" fill="none" stroke="#f59e0b" stroke-width="1.8" />
+            <text x="240" y="185" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">i</text>
+
+            <!-- Secondary wavelet arc from A of radius AD = v*tau -->
+            <path d="M 310 100 A 170 170 0 0 0 340 70" fill="none" stroke="#ec4899" stroke-width="1.8" stroke-dasharray="4,4" />
+            <text x="250" y="90" fill="#ec4899" font-size="9" font-family="monospace">Wavelet radius = v·τ</text>
+
+            <!-- Tangent CD from C touching wavelet at D (Reflected Wavefront CD) -->
+            <circle cx="330" cy="70" r="3.5" fill="#10b981" />
+            <text x="330" y="58" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">D</text>
+            <line x1="440" y1="200" x2="330" y2="70" stroke="#10b981" stroke-width="3" />
+            <text x="400" y="105" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">Reflected Wavefront CD</text>
+
+            <!-- Line AD perpendicular to CD -->
+            <line x1="200" y1="200" x2="330" y2="70" stroke="#10b981" stroke-width="1.8" />
+            <text x="235" y="125" fill="#10b981" font-size="10" font-family="monospace">AD = v·τ</text>
+            <!-- Right angle symbol at D -->
+            <path d="M 338 80 L 329 88 L 321 78" fill="none" stroke="#10b981" stroke-width="1.5" />
+
+            <!-- Reflected Rays leaving D and C -->
+            <line x1="330" y1="70" x2="420" y2="-20" stroke="#10b981" stroke-width="1.8" marker-end="url(#arr-refl-out)" />
+            <line x1="440" y1="200" x2="530" y2="110" stroke="#10b981" stroke-width="1.8" marker-end="url(#arr-refl-out)" />
+
+            <!-- Angle of Reflection r between reflected wavefront CD and surface XY (Angle DCA) -->
+            <path d="M 405 200 A 35 35 0 0 1 415 168" fill="none" stroke="#10b981" stroke-width="1.8" />
+            <text x="390" y="185" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">r</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 10.1A: Reflection of a plane wavefront $AB$ incident at angle $i$ on reflecting surface $XY$, forming reflected wavefront $CD$ at angle $r$.</p>
+        </div>
+
+        <p>1. Consider a plane wavefront $AB$ incident obliquely on a plane reflecting surface $XY$ at an angle $i$. At time $t = 0$, edge $A$ touches the mirror surface, while edge $B$ has to travel a distance $BC$ to reach point $C$ on the mirror.</p>
+        <p>2. If $v$ is the speed of light in the medium, the time taken by point $B$ to reach $C$ is $\tau = \frac{BC}{v} \implies BC = v \tau$.</p>
+        <p>3. According to Huygens' principle, the moment point $A$ touches the surface, it becomes a source of secondary wavelets radiating hemispherical wavelets of radius $v \tau$ into the medium. At time $\tau$, let a tangent $CD$ be drawn from point $C$ to this wavelet sphere. Then $AD = v \tau$.</p>
+        <p>4. The tangent plane $CD$ represents the <strong class="text-white">Reflected Wavefront</strong>.</p>
+        <p>5. In right-angled triangles $\triangle ABC$ and $\triangle ADC$:</p>
+        <p class="text-slate-400">• $\angle ABC = \angle ADC = 90^\circ$ (Rays are perpendicular to wavefronts)</p>
+        <p class="text-slate-400">• $BC = AD = v \tau$ (Distances traveled in identical time $\tau$ with identical speed $v$)</p>
+        <p class="text-slate-400">• $AC = AC$ (Common hypotenuse)</p>
+        <p>6. By the RHS Congruence Criterion: $\triangle ABC \cong \triangle ADC$. Therefore, corresponding angles must be equal:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$\angle BAC = \angle DCA \implies \angle i = \angle r$$
+        </div>
+        <p class="text-slate-400">Since the incident ray, the reflected ray, and the normal to the reflecting surface at point $A$ all lie in the plane of the paper, both classical laws of reflection are proved rigorously.</p>
+      </div>
+
+      <!-- Derivation 2: Proof of Law of Refraction (Snell's Law) -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Primary Board Proof 02</span>
+          <h4 class="text-white font-semibold text-base mt-1">Proof of Snell's Law of Refraction ($\frac{\sin i}{\sin r} = \frac{v_1}{v_2} = \frac{\mu_2}{\mu_1}$) Using Huygens' Principle</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Refraction of Plane Wavefront -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 250" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-ray-refr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-refr-out" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+              </marker>
+            </defs>
+
+            <!-- Interface Line between Medium 1 and Medium 2 -->
+            <line x1="60" y1="120" x2="580" y2="120" stroke="#38bdf8" stroke-width="2.5" />
+            <rect x="60" y="120" width="520" height="110" fill="rgba(56, 189, 248, 0.08)" />
+            <text x="75" y="105" fill="#cbd5e1" font-size="10" font-weight="bold" font-family="monospace">Medium 1 (Rarer, Speed v₁, μ₁)</text>
+            <text x="75" y="140" fill="#38bdf8" font-size="10" font-weight="bold" font-family="monospace">Medium 2 (Denser, Speed v₂ < v₁, μ₂)</text>
+
+            <!-- Point A on interface -->
+            <circle cx="200" cy="120" r="3.5" fill="#ffffff" />
+            <text x="195" y="112" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace">A</text>
+
+            <!-- Point C on interface -->
+            <circle cx="440" cy="120" r="3.5" fill="#ffffff" />
+            <text x="445" y="112" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace">C</text>
+
+            <!-- Incident Plane Wavefront AB in Medium 1 -->
+            <line x1="200" y1="120" x2="310" y2="25" stroke="#f59e0b" stroke-width="3" />
+            <circle cx="310" cy="25" r="3.5" fill="#f59e0b" />
+            <text x="315" y="20" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">B (Incident Wavefront)</text>
+
+            <!-- Incident Rays -->
+            <line x1="120" y1="25" x2="200" y2="120" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arr-ray-refr)" />
+            <line x1="230" y1="-70" x2="310" y2="25" stroke="#38bdf8" stroke-width="1.8" />
+            <line x1="310" y1="25" x2="440" y2="120" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arr-ray-refr)" />
+            <text x="385" y="65" fill="#38bdf8" font-size="10" font-family="monospace">BC = v₁·τ</text>
+
+            <!-- Right angle at B -->
+            <path d="M 302 34 L 311 42 L 319 32" fill="none" stroke="#fbbf24" stroke-width="1.5" />
+
+            <!-- Angle of Incidence i in triangle ABC -->
+            <path d="M 235 120 A 35 35 0 0 0 226 95" fill="none" stroke="#f59e0b" stroke-width="1.8" />
+            <text x="240" y="110" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">i</text>
+
+            <!-- Secondary Wavelet arc inside Medium 2 of smaller radius AD = v2 * tau -->
+            <path d="M 250 200 A 100 100 0 0 0 310 180" fill="none" stroke="#ec4899" stroke-width="1.8" stroke-dasharray="4,4" />
+            <text x="180" y="225" fill="#ec4899" font-size="9" font-family="monospace">Wavelet radius = v₂·τ (Smaller)</text>
+
+            <!-- Tangent CD from C touching wavelet at D (Refracted Wavefront CD) -->
+            <circle cx="280" cy="180" r="3.5" fill="#10b981" />
+            <text x="265" y="195" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">D</text>
+            <line x1="440" y1="120" x2="280" y2="180" stroke="#10b981" stroke-width="3" />
+            <text x="360" y="170" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">Refracted Wavefront CD</text>
+
+            <!-- Line AD perpendicular to CD -->
+            <line x1="200" y1="120" x2="280" y2="180" stroke="#10b981" stroke-width="1.8" />
+            <text x="225" y="160" fill="#10b981" font-size="10" font-family="monospace">AD = v₂·τ</text>
+            <!-- Right angle at D -->
+            <path d="M 288 177 L 292 186 L 284 189" fill="none" stroke="#10b981" stroke-width="1.5" />
+
+            <!-- Refracted Rays leaving D and C into medium 2 -->
+            <line x1="280" y1="180" x2="330" y2="245" stroke="#10b981" stroke-width="1.8" marker-end="url(#arr-refr-out)" />
+            <line x1="440" y1="120" x2="490" y2="185" stroke="#10b981" stroke-width="1.8" marker-end="url(#arr-refr-out)" />
+
+            <!-- Angle of Refraction r in triangle ADC -->
+            <path d="M 405 120 A 35 35 0 0 1 410 135" fill="none" stroke="#10b981" stroke-width="1.8" />
+            <text x="390" y="140" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">r</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 10.1B: Refraction of plane wavefront $AB$ incident at angle $i$ from medium 1 ($v_1$) into medium 2 ($v_2 < v_1$), forming refracted wavefront $CD$ at angle $r$.</p>
+        </div>
+
+        <p>1. Let a plane wavefront $AB$ propagate from medium 1 (speed $v_1$, index $\mu_1$) towards medium 2 (speed $v_2$, index $\mu_2$, where $\mu_2 > \mu_1 \implies v_2 < v_1$), incident at angle $i$ on boundary interface $AC$.</p>
+        <p>2. Let $\tau$ be the time taken by point $B$ of the wavefront to travel distance $BC$ in medium 1: $BC = v_1 \tau$.</p>
+        <p>3. During this same time interval $\tau$, the secondary spherical wavelet originating from point $A$ spreads out into medium 2 over a smaller radius: $AD = v_2 \tau$.</p>
+        <p>4. The tangent plane $CD$ drawn from $C$ to this wavelet sphere represents the <strong class="text-white">Refracted Wavefront</strong>. Since rays are perpendicular to wavefronts, $\angle ABC = 90^\circ$ and $\angle ADC = 90^\circ$.</p>
+        <p>5. In right-angled triangle $\triangle ABC$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\sin i = \frac{BC}{AC} = \frac{v_1 \tau}{AC}$$
+        </div>
+        <p>6. In right-angled triangle $\triangle ADC$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\sin r = \frac{AD}{AC} = \frac{v_2 \tau}{AC}$$
+        </div>
+        <p>7. Dividing the two trigonometric equations:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\frac{\sin i}{\sin r} = \frac{(v_1 \tau / AC)}{(v_2 \tau / AC)} = \frac{v_1}{v_2}$$
+        </div>
+        <p>8. By definition of absolute refractive index, $\mu_1 = \frac{c}{v_1}$ and $\mu_2 = \frac{c}{v_2}$, which gives $\frac{v_1}{v_2} = \frac{c/\mu_1}{c/\mu_2} = \frac{\mu_2}{\mu_1}$:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$\frac{\sin i}{\sin r} = \frac{\mu_2}{\mu_1} = \,^1\mu_2 \quad (\text{Snell's Law of Refraction Proved!})$$
+        </div>
+        <p class="text-slate-400"><em>Wave Theory Victory:</em> Since $\mu_2 > \mu_1 \implies \frac{\sin i}{\sin r} > 1 \implies \sin i > \sin r \implies i > r$. This mathematically proves that <strong class="text-white">when light enters a denser medium, it must bend towards the normal and slow down ($v_2 < v_1$)</strong>, debunking Newton's corpuscular theory which incorrectly predicted light accelerates in denser media!</p>
+      </div>
+
+      <!-- Derivation 3: Wavefront Modification Through Optical Elements -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Wavefront Shaping</span>
+          <h4 class="text-white font-semibold text-base mt-1">Behavior of a Plane Wavefront Passing Through Optical Components</h4>
+        </div>
+        <div class="grid md:grid-cols-3 gap-3 text-xs pt-1">
+          <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg">
+            <p class="text-indigo-300 font-bold">1. Through a Thin Prism</p>
+            <p class="text-slate-400 mt-1">The lower portion of the incident plane wavefront travels through maximum thickness of glass (slower speed) while the upper portion travels through air. Hence, the emergent wavefront tilts towards the base, emerging as an <strong class="text-white">inclined plane wavefront</strong>.</p>
+          </div>
+          <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg">
+            <p class="text-indigo-300 font-bold">2. Through a Convex Lens</p>
+            <p class="text-slate-400 mt-1">The central ray passes through the thickest part of the glass and suffers maximum time delay. The outer edges travel mostly through air. Hence, a plane wavefront emerges as a <strong class="text-white">converging spherical wavefront</strong> collapsing onto the real focus $F$.</p>
+          </div>
+          <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg">
+            <p class="text-indigo-300 font-bold">3. Off a Concave Mirror</p>
+            <p class="text-slate-400 mt-1">The outer edges strike the mirror first and reflect back sooner than the central portion which travels deeper to the pole. Hence, the reflected wavefront emerges as a <strong class="text-white">converging spherical wavefront</strong> centered at focus $F$.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Frequency and Phase Constancy Across Media</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* When monochromatic light of wavelength $\lambda$ travels from air into a medium of refractive index $\mu$, what happens to its frequency, speed, and wavelength?
+            <br>• <strong class="text-white">Frequency $\nu$ remains STRICTLY CONSTANT</strong>! Frequency is determined solely by the oscillating source charges, not by the medium.
+            <br>• Speed drops: $v = \frac{c}{\mu}$.
+            <br>• Wavelength decreases: $\lambda' = \frac{v}{\nu} = \frac{c/\mu}{\nu} = \mathbf{\frac{\lambda}{\mu}}$.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Why Backward Wavefronts Do Not Exist</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Exam Trap:* If every point on a wavefront emits spherical secondary wavelets in all directions, why does a wave not travel backwards?
+            <br>Huygens could not explain this mathematically. Later, Voigt and Kirchhoff proved that the amplitude of a secondary wavelet in direction $\theta$ with forward normal is governed by the <strong class="text-white">Inclination Factor (Obliquity Factor)</strong>:
+            $$F(\theta) = \frac{1 + \cos\theta}{2}$$
+            • Forward direction ($\theta = 0^\circ$): $F(0) = \frac{1 + 1}{2} = \mathbf{1}$ (Maximum).
+            <br>• Backward direction ($\theta = 180^\circ$): $F(\pi) = \frac{1 - 1}{2} = \mathbf{0}$ (Zero backward propagation).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Phase Difference Between Points on the Same Wavefront</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Direct Conceptual Trap:* What is the phase difference between any two arbitrary points lying on the exact same wavefront?
+            <br>*Correct Answer:* <strong class="text-white">ZERO ($\Delta\phi = 0$)!</strong>
+            By definition, a wavefront is the locus of all oscillating medium points having the identical phase of vibration at that instant.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Corpuscular vs Wave Theory on Light Speed in Water</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Newton's Corpuscular theory assumed that light particles are attracted by denser medium particles, predicting $v_{\text{water}} > v_{\text{air}}$.
+            Huygens' wave theory predicted $v_{\text{water}} < v_{\text{air}}$.
+            In 1850, Foucault's direct experiment measured the speed of light in water and confirmed $v_{\text{water}} < v_{\text{air}}$, decisively proving the wave theory of light!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: Light of wavelength $589\text{ nm}$ is incident from air on a water surface. (a) What are the wavelength, frequency, and speed of reflected light? (b) What are the wavelength, frequency, and speed of refracted light? (Take $\mu_{\text{water}} = 1.33$).</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> In air: $\lambda = 589\text{ nm} = 5.89 \times 10^{-7}\text{ m}$, $c = 3.0 \times 10^8\text{ m/s}$.</p>
+          <p>Frequency in air (and in all media):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\nu = \frac{c}{\lambda} = \frac{3.0 \times 10^8\text{ m/s}}{5.89 \times 10^{-7}\text{ m}} \approx 5.09 \times 10^{14}\text{ Hz}$$
+          </div>
+          <p><strong>(a) For Reflected Light (Traveling back in Air):</strong></p>
+          <p class="text-slate-400">• Speed: $v = c = 3.0 \times 10^8\text{ m/s}$.</p>
+          <p class="text-slate-400">• Frequency: $\nu = 5.09 \times 10^{14}\text{ Hz}$.</p>
+          <p class="text-slate-400">• Wavelength: $\lambda = 589\text{ nm}$.</p>
+
+          <p class="mt-2"><strong>(b) For Refracted Light (Traveling in Water, $\mu = 1.33$):</strong></p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\text{Speed } v = \frac{c}{\mu} = \frac{3.0 \times 10^8\text{ m/s}}{1.33} \approx 2.26 \times 10^8\text{ m/s}$$
+            $$\text{Frequency } \nu = 5.09 \times 10^{14}\text{ Hz} \quad (\text{Unchanged!})$$
+            $$\text{Wavelength } \lambda' = \frac{\lambda}{\mu} = \frac{589\text{ nm}}{1.33} \approx 442.8\text{ nm}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A plane wavefront is incident on a thin glass prism of refracting angle $4^\circ$ and refractive index $1.5$. Calculate the angle by which the emergent wavefront is tilted relative to the incident wavefront. If this same wavefront is passed through a convex lens of focal length $20\text{ cm}$, what will be the shape and radius of curvature of the emergent wavefront after traveling $10\text{ cm}$ beyond the lens?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. For a thin prism ($A = 4^\circ \le 10^\circ$), the deviation produced in every ray is:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\delta = (\mu - 1)A = (1.5 - 1) \times 4^\circ = 0.5 \times 4^\circ = 2.0^\circ$$
+          </div>
+          <p class="text-slate-400">Since rays remain perpendicular to the wavefront, the emergent plane wavefront is tilted by exactly <strong class="text-white">$2.0^\circ$</strong> towards the base.</p>
+          <p>2. For a convex lens of $f = +20\text{ cm}$, an incident plane wavefront ($u = \infty$) is transformed into a converging spherical wavefront focused towards $F = 20\text{ cm}$.</p>
+          <p class="text-slate-400">At the lens aperture, the emergent wavefront has radius of curvature $R = f = 20\text{ cm}$. After traveling distance $d = 10\text{ cm}$, the wavefront has converged closer to the focus:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\text{Shape: Converging Spherical Wavefront}, \qquad R' = f - d = 20\text{ cm} - 10\text{ cm} = 10\text{ cm}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Wavefront Phase</p>
+          <p class="text-xs font-bold text-white mt-1">$\Delta\phi = 0$ (Constant Phase)</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Snell's Law Proof</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$\frac{\sin i}{\sin r} = \frac{v_1}{v_2} = \frac{\mu_2}{\mu_1}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Frequency Invariance</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$\nu = \text{const}, \lambda' = \frac{\lambda}{\mu}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Ray vs Wavefront</p>
+          <p class="text-xs font-bold text-rose-400 mt-1">$\vec{\text{Ray}} \perp \text{Wavefront}$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Huygens Wavelet Construction Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('huygensCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const simModeBtn = document.getElementById('simModeBtn');
+      const speedSlider = document.getElementById('speedSlider');
+      const sourcesSlider = document.getElementById('sourcesSlider');
+      const resetWaveBtn = document.getElementById('resetWaveBtn');
+
+      const speedVal = document.getElementById('speedVal');
+      const sourcesVal = document.getElementById('sourcesVal');
+      const wfTypeOut = document.getElementById('wfTypeOut');
+      const radiusOut = document.getElementById('radiusOut');
+
+      // Modes: 'plane' or 'spherical'
+      let activeMode = 'plane';
+      let waveletRadius = 5;
+      let primaryPos = 180; // x-position for plane wavefront
+
+      simModeBtn.addEventListener('click', () => {
+        activeMode = (activeMode === 'plane') ? 'spherical' : 'plane';
+        if (activeMode === 'plane') {
+          simModeBtn.textContent = 'Mode: Plane Wavefront Propagation';
+          wfTypeOut.textContent = 'Plane Wavefront';
+          primaryPos = 180;
+        } else {
+          simModeBtn.textContent = 'Mode: Spherical Wavefront (Point Source)';
+          wfTypeOut.textContent = 'Spherical Wavefront';
+          primaryPos = 120;
+        }
+        waveletRadius = 5;
+      });
+
+      resetWaveBtn.addEventListener('click', () => {
+        waveletRadius = 5;
+      });
+
+      function renderLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const speedMult = parseFloat(speedSlider.value);
+        const numSources = parseInt(sourcesSlider.value);
+
+        speedVal.textContent = `${speedMult.toFixed(1)}x (Speed c)`;
+        sourcesVal.textContent = `${numSources} Discrete Sources`;
+        radiusOut.textContent = `${waveletRadius.toFixed(1)} px`;
+
+        // Advance wavelet expansion
+        waveletRadius += (0.65 * speedMult);
+        if (waveletRadius > 140) {
+          waveletRadius = 5; // loop expansion
+        }
+
+        const cy = canvas.height / 2;
+
+        if (activeMode === 'plane') {
+          renderPlaneHuygens(primaryPos, cy, numSources, waveletRadius);
+        } else {
+          renderSphericalHuygens(primaryPos, cy, numSources, waveletRadius);
+        }
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderPlaneHuygens(px, cy, n, r) {
+        const spanH = 240;
+        const topY = cy - spanH / 2;
+        const botY = cy + spanH / 2;
+
+        // 1. Rays perpendicular to primary wavefront
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.4)';
+        ctx.lineWidth = 1.5;
+        for (let y = topY + 20; y <= botY - 20; y += 40) {
+          ctx.beginPath();
+          ctx.moveTo(50, y);
+          ctx.lineTo(canvas.width - 60, y);
+          ctx.stroke();
+
+          // Arrowhead
+          drawArrow(px + r + 50, y, 0, '#38bdf8');
+        }
+
+        // 2. Primary Plane Wavefront (Vertical Amber Line)
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 3.5;
+        ctx.beginPath();
+        ctx.moveTo(px, topY);
+        ctx.lineTo(px, botY);
+        ctx.stroke();
+
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('Primary Wavefront (t)', px - 140, topY - 10);
+
+        // 3. Discrete Secondary Sources on Primary Wavefront
+        const stepY = spanH / (n - 1);
+        for (let i = 0; i < n; i++) {
+          const sy = topY + i * stepY;
+
+          // Secondary Wavelet Semicircle expanding forward
+          ctx.strokeStyle = 'rgba(236, 72, 153, 0.7)';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.arc(px, sy, r, -Math.PI / 2, Math.PI / 2);
+          ctx.stroke();
+
+          // Wavelet source point
+          ctx.fillStyle = '#ffffff';
+          ctx.beginPath();
+          ctx.arc(px, sy, 3.5, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        // 4. Forward Tangent Envelope (New Secondary Plane Wavefront)
+        const envX = px + r;
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 3.5;
+        ctx.beginPath();
+        ctx.moveTo(envX, topY);
+        ctx.lineTo(envX, botY);
+        ctx.stroke();
+
+        ctx.fillStyle = '#10b981';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('New Wavefront (t + Δt)', envX - 10, botY + 22);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Huygens Construction: Discrete points act as sources of wavelets | Common forward tangent forms new wavefront', canvas.width / 2, canvas.height - 12);
+      }
+
+      function renderSphericalHuygens(sourceX, cy, n, r) {
+        // Point Source S
+        ctx.fillStyle = '#f59e0b';
+        ctx.beginPath();
+        ctx.arc(sourceX, cy, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('Point Source S', sourceX - 40, cy - 12);
+
+        // Primary Spherical Wavefront
+        const primaryR = 80;
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(sourceX, cy, primaryR, -0.9, 0.9);
+        ctx.stroke();
+
+        // Secondary sources on primary arc
+        const dAngle = 1.8 / (n - 1);
+        for (let i = 0; i < n; i++) {
+          const theta = -0.9 + i * dAngle;
+          const sx = sourceX + primaryR * Math.cos(theta);
+          const sy = cy + primaryR * Math.sin(theta);
+
+          // Secondary spherical wavelets
+          ctx.strokeStyle = 'rgba(236, 72, 153, 0.65)';
+          ctx.lineWidth = 1.4;
+          ctx.beginPath();
+          ctx.arc(sx, sy, r, -Math.PI / 2 + theta, Math.PI / 2 + theta);
+          ctx.stroke();
+
+          // Source point
+          ctx.fillStyle = '#ffffff';
+          ctx.beginPath();
+          ctx.arc(sx, sy, 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        // New Secondary Spherical Wavefront Envelope
+        const newR = primaryR + r;
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 3.5;
+        ctx.beginPath();
+        ctx.arc(sourceX, cy, newR, -0.9, 0.9);
+        ctx.stroke();
+
+        ctx.fillStyle = '#10b981';
+        ctx.fillText('Secondary Wavefront', sourceX + newR - 40, cy - newR * 0.7);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Spherical Wavefront Construction: Wavelet envelope expands with radius r = v·Δt away from point source', canvas.width / 2, canvas.height - 12);
+      }
+
+      function drawArrow(x, y, angle, color) {
+        const headlen = 7;
+        ctx.save();
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x - headlen * Math.cos(angle - Math.PI / 6), y - headlen * Math.sin(angle - Math.PI / 6));
+        ctx.lineTo(x - headlen * Math.cos(angle + Math.PI / 6), y - headlen * Math.sin(angle + Math.PI / 6));
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

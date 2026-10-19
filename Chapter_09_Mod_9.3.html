@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Refraction at Curved Surfaces & Lens Maker's Formula</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 9.3</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 06: Optics • Chapter 09 (Ray Optics)</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Refraction at Spherical Surfaces & Lens Maker's Formula</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Curved interface Snell's law, two-surface refraction coupling, Lens Maker's equation, thin lens formula, optical power, and liquid immersion physics.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek marathon race ko jisme runners pehle ek curved mitti ke maidan (first refracting surface) par daudte hain aur fir aage chalkar jungle (second refracting surface) mein enter karte hain. Pehla curve unki direction ko halka sa mod deta hai, aur wahi nayi direction doosre curve ke liye starting point ban jaati hai! Ek lens asal mein koi single device nahi hai, balki <strong class="text-white">do back-to-back curved refracting surfaces ka sequential relay race</strong> hai. Pehli surface jo intermediate image banati hai, wahi doosri surface ke liye virtual object ka kaam karti hai! <strong class="text-white">Lens Maker's Formula</strong> kisi optical engineer ka master recipe card hai—jo batata hai ki glass ke raw piece ko kitne curvature ($R_1, R_2$) par grind kiya jaye taaki exact desired focal length $f$ mil sake!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Single Spherical Surface Refraction</h3>
+          <p class="text-sm text-slate-400 mb-2">Light going from medium $\mu_1$ into curved medium $\mu_2$ of radius $R$:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\frac{\mu_2}{v} - \frac{\mu_1}{u} = \frac{\mu_2 - \mu_1}{R}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Fundamental invariant: $\frac{\text{Refractive index of image medium}}{v} - \frac{\text{Refractive index of object medium}}{u} = \frac{\Delta\mu}{R}$.</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Lens Maker's Formula & Thin Lens Law</h3>
+          <p class="text-sm text-slate-400 mb-2">Coupling both surfaces for a thin lens of index $\mu_2$ in medium $\mu_1$:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\frac{1}{f} = \left(\frac{\mu_2}{\mu_1} - 1\right)\left(\frac{1}{R_1} - \frac{1}{R_2}\right)$$
+            $$\frac{1}{v} - \frac{1}{u} = \frac{1}{f}, \quad m = \frac{h_i}{h_o} = +\frac{v}{u}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Power $P = \frac{1}{f(\text{in metres})}$ (Dioptres, D). For thin lenses in contact: $P_{\text{eq}} = P_1 + P_2 \implies \frac{1}{F} = \frac{1}{f_1} + \frac{1}{f_2}$.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Thin Lens Ray Tracer Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Thin Lens Ray Tracer Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="lensTypeBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Active: Convex Lens (Converging)
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="lensCanvas" width="800" height="380" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Object Position ($u$)</span>
+            <span id="uVal" class="text-cyan-400 font-mono font-bold">-26.0 cm</span>
+          </div>
+          <input id="uSlider" type="range" min="5" max="50" step="0.5" value="26" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Focal Length Magnitude ($\vert{}f\vert{}$)</span>
+            <span id="fSliderVal" class="text-amber-400 font-mono font-bold">12.0 cm</span>
+          </div>
+          <input id="fSlider" type="range" min="6" max="25" step="1" value="12" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Object Height ($h_o$)</span>
+            <span id="hSliderVal" class="text-emerald-400 font-mono font-bold">5.0 cm</span>
+          </div>
+          <input id="hSlider" type="range" min="2" max="10" step="0.5" value="5" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Image Distance ($v$):</span>
+          <div id="vOut" class="text-cyan-400 font-bold text-sm mt-0.5">+22.29 cm</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Magnification ($m = +v/u$):</span>
+          <div id="mOut" class="text-amber-400 font-bold text-sm mt-0.5">-0.86 (Diminished)</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Optical Power ($P = 1/f$):</span>
+          <div id="pOut" class="text-rose-400 font-bold text-sm mt-0.5">+8.33 Dioptres</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Image Nature:</span>
+          <div id="natureOut" class="text-emerald-400 font-bold text-sm mt-0.5">Real & Inverted</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Comprehensive Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Single Spherical Surface Refraction -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Primary Board Proof</span>
+          <h4 class="text-white font-semibold text-base mt-1">Refraction at a Single Spherical Curved Surface ($\frac{\mu_2}{v} - \frac{\mu_1}{u} = \frac{\mu_2 - \mu_1}{R}$)</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Spherical Surface -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 240" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-ray-curv" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+            </defs>
+
+            <!-- Principal Axis -->
+            <line x1="40" y1="130" x2="600" y2="130" stroke="#475569" stroke-width="1.8" />
+            <text x="590" y="122" fill="#94a3b8" font-size="10" font-family="monospace">Axis</text>
+
+            <!-- Convex Spherical Interface APB -->
+            <path d="M 320 30 Q 350 130, 320 230" fill="none" stroke="#38bdf8" stroke-width="3.5" />
+            <rect x="320" y="30" width="280" height="200" fill="rgba(56, 189, 248, 0.08)" />
+            <text x="120" y="55" fill="#cbd5e1" font-size="11" font-weight="bold" font-family="monospace">Rarer Medium (μ₁)</text>
+            <text x="420" y="55" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">Denser Medium (μ₂ > μ₁)</text>
+
+            <!-- Pole P and Center C -->
+            <circle cx="335" cy="130" r="3.5" fill="#ffffff" />
+            <text x="325" y="145" fill="#ffffff" font-size="10" font-weight="bold" font-family="monospace">P</text>
+
+            <circle cx="480" cy="130" r="3" fill="#f59e0b" />
+            <text x="475" y="145" fill="#f59e0b" font-size="10" font-weight="bold" font-family="monospace">C</text>
+
+            <!-- Point Object O on Axis -->
+            <circle cx="100" cy="130" r="3.5" fill="#10b981" />
+            <text x="95" y="145" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">O</text>
+
+            <!-- Point of Incidence N on Interface -->
+            <circle cx="332" cy="70" r="3" fill="#ffffff" />
+            <text x="338" y="68" fill="#ffffff" font-size="10" font-family="monospace">N</text>
+
+            <!-- Incident Ray ON -->
+            <line x1="100" y1="130" x2="332" y2="70" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arr-ray-curv)" />
+
+            <!-- Normal line passing through Center C and N -->
+            <line x1="240" y1="35" x2="480" y2="130" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3" />
+            <text x="210" y="42" fill="#94a3b8" font-size="9" font-family="monospace">Normal (NC)</text>
+
+            <!-- Refracted Ray NI bending towards normal to form real image I -->
+            <line x1="332" y1="70" x2="560" y2="130" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arr-ray-curv)" />
+            <circle cx="560" cy="130" r="3.5" fill="#ec4899" />
+            <text x="555" y="145" fill="#ec4899" font-size="11" font-weight="bold" font-family="monospace">I</text>
+
+            <!-- Angles alpha, beta, gamma -->
+            <text x="145" y="125" fill="#10b981" font-size="10" font-family="monospace">α</text>
+            <text x="455" y="125" fill="#f59e0b" font-size="10" font-family="monospace">γ</text>
+            <text x="535" y="125" fill="#ec4899" font-size="10" font-family="monospace">β</text>
+
+            <!-- Angles i and r at N -->
+            <text x="300" y="62" fill="#fbbf24" font-size="10" font-family="monospace">i</text>
+            <text x="360" y="78" fill="#fbbf24" font-size="10" font-family="monospace">r</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 9.3A: Refraction at a convex spherical interface of radius $R$ separating medium $\mu_1$ and $\mu_2$.</p>
+        </div>
+
+        <p>1. Consider a point object $O$ placed on the principal axis in medium $\mu_1$. Ray $ON$ strikes the interface at $N$, bending towards the normal $NC$ to converge at image point $I$ in medium $\mu_2$.</p>
+        <p>2. Let $\angle NOC = \alpha$, $\angle NIC = \beta$, and $\angle NCP = \gamma$. By exterior angle theorem of triangles:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\text{In } \triangle ONC: \quad i = \alpha + \gamma$$
+          $$\text{In } \triangle NIC: \quad \gamma = r + \beta \implies r = \gamma - \beta$$
+        </div>
+        <p>3. Drop perpendicular $NM$ on the axis. For paraxial rays (small angles $\alpha, \beta, \gamma$), $M \approx P$, and tangents equal angles:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\alpha \approx \tan\alpha = \frac{NM}{OM} \approx \frac{NM}{-u}, \quad \beta \approx \tan\beta = \frac{NM}{MI} \approx \frac{NM}{v}, \quad \gamma \approx \tan\gamma = \frac{NM}{MC} \approx \frac{NM}{R}$$
+        </div>
+        <p>4. Applying Snell's Law for small angles ($\mu_1 \sin i \approx \mu_2 \sin r \implies \mu_1 i = \mu_2 r$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\mu_1 (\alpha + \gamma) = \mu_2 (\gamma - \beta) \implies \mu_1 \alpha + \mu_2 \beta = (\mu_2 - \mu_1)\gamma$$
+        </div>
+        <p>5. Substituting values of $\alpha, \beta, \gamma$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\mu_1 \left(\frac{NM}{-u}\right) + \mu_2 \left(\frac{NM}{v}\right) = (\mu_2 - \mu_1)\left(\frac{NM}{R}\right)$$
+        </div>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\frac{\mu_2}{v} - \frac{\mu_1}{u} = \frac{\mu_2 - \mu_1}{R}$$
+        </div>
+      </div>
+
+      <!-- Derivation 2: Lens Maker's Formula -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Primary Board Derivation</span>
+          <h4 class="text-white font-semibold text-base mt-1">Deduction of the Lens Maker's Formula for a Double Convex Lens</h4>
+        </div>
+
+        <p>1. Consider a thin double convex lens of refractive index $\mu_2$ placed in a surrounding medium of refractive index $\mu_1$. The radii of curvature of the two surfaces are $R_1$ and $R_2$.</p>
+        <p>2. <strong class="text-white">Refraction at First Surface ($R_1$):</strong> Object $O$ is at distance $u$. Light travels from medium $\mu_1$ to $\mu_2$. It forms an intermediate image $I_1$ at distance $v_1$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\frac{\mu_2}{v_1} - \frac{\mu_1}{u} = \frac{\mu_2 - \mu_1}{R_1} \quad \text{--- [Eq. 1]}$$
+        </div>
+        <p>3. <strong class="text-white">Refraction at Second Surface ($R_2$):</strong> The intermediate image $I_1$ acts as a <em>virtual object</em> for the second surface (object distance $= v_1$). Light travels from lens medium $\mu_2$ back into surrounding medium $\mu_1$. The final image is formed at distance $v$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\frac{\mu_1}{v} - \frac{\mu_2}{v_1} = \frac{\mu_1 - \mu_2}{R_2} = -\frac{\mu_2 - \mu_1}{R_2} \quad \text{--- [Eq. 2]}$$
+        </div>
+        <p>4. Adding Eq. 1 and Eq. 2 (the intermediate term $\frac{\mu_2}{v_1}$ cancels out identically):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\frac{\mu_1}{v} - \frac{\mu_1}{u} = (\mu_2 - \mu_1)\left( \frac{1}{R_1} - \frac{1}{R_2} \right)$$
+        </div>
+        <p>5. Dividing throughout by $\mu_1$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\frac{1}{v} - \frac{1}{u} = \left(\frac{\mu_2}{\mu_1} - 1\right)\left( \frac{1}{R_1} - \frac{1}{R_2} \right) \quad \text{--- [Eq. 3]}$$
+        </div>
+        <p>6. If the object is at infinity ($u = \infty$), by definition the image is formed at the principal focus ($v = f$):</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\frac{1}{f} = \left(\frac{\mu_2}{\mu_1} - 1\right)\left( \frac{1}{R_1} - \frac{1}{R_2} \right) \quad (\text{Lens Maker's Formula})$$
+        </div>
+        <p>7. Comparing Eq. 3 and the Lens Maker's Formula yields the classical <strong class="text-white">Thin Lens Equation</strong>:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$\frac{1}{v} - \frac{1}{u} = \frac{1}{f}$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Immersion in Liquid ($\mu_{\text{liquid}} > \mu_{\text{glass}}$)</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* A glass convex lens ($\mu_g = 1.5$) is placed in carbon disulphide ($\mu_l = 1.65$). How does it behave?
+            <br>• Relative index: $\frac{\mu_g}{\mu_l} - 1 = \frac{1.5}{1.65} - 1 < 0$ (Negative!).
+            <br>• The sign of focal length reverses! The <strong class="text-white">convex lens turns into a DIVERGING (concave) lens</strong>!
+            <br>• If $\mu_l = \mu_g$: $1/f = 0 \implies f \to \infty$. The lens becomes <strong class="text-white">completely invisible</strong> and acts as a plain glass plate.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Cutting a Lens into Halves (Transverse vs Longitudinal)</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            • <strong>Transverse cut (perpendicular to principal axis):</strong> Creates two plano-convex lenses. $R_2 \to \infty \implies \frac{1}{f'} = (\mu-1)\frac{1}{R_1} \implies \mathbf{f' = 2f, P' = P/2}$.
+            <br>• <strong>Longitudinal cut (along principal axis):</strong> Curvatures remain identical ($R_1, R_2$). Focal length is <strong class="text-white">UNCHANGED ($f' = f$)</strong>! However, aperture area is halved, so <strong class="text-white">intensity drops to 50%</strong>.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Sign Convention of $R_1$ and $R_2$</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Never make sign errors in Lens Maker's formula:
+            <br>• <strong>Equiconvex Lens:</strong> $R_1 = +R$ (center to right), $R_2 = -R$ (center to left).
+            $$\frac{1}{f} = (\mu - 1)\left[\frac{1}{+R} - \frac{1}{-R}\right] = \mathbf{\frac{2(\mu - 1)}{R}} \implies f = \frac{R}{2(\mu - 1)}$$
+            • <strong>Equiconcave Lens:</strong> $R_1 = -R$, $R_2 = +R \implies f = -\frac{R}{2(\mu - 1)}$.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Water Bubble Inside Glass / Liquid</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            An air bubble inside water or glass has a convex geometric shape.
+            <br>However, light enters from denser medium ($\mu_w = 1.33$) into rarer air medium ($\mu_a = 1.0$).
+            <br>Hence, an air bubble inside water behaves as a <strong class="text-white">DIVERGING LENS (Concave behavior)</strong>!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A biconvex lens has a focal length of $20\text{ cm}$ in air. Its glass has refractive index $\mu_g = 1.5$. Calculate its focal length when it is completely immersed in water of refractive index $\mu_w = 4/3$.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. In air ($\mu_{\text{air}} = 1$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\frac{1}{f_a} = (\mu_g - 1)\left(\frac{1}{R_1} - \frac{1}{R_2}\right) \implies \frac{1}{20} = (1.5 - 1)\left(\frac{1}{R_1} - \frac{1}{R_2}\right) = 0.5 \left(\frac{1}{R_1} - \frac{1}{R_2}\right)$$
+            $$\left(\frac{1}{R_1} - \frac{1}{R_2}\right) = \frac{1}{10}\text{ cm}^{-1}$$
+          </div>
+          <p>2. When immersed in water ($\mu_w = 4/3$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\frac{1}{f_w} = \left(\frac{\mu_g}{\mu_w} - 1\right)\left(\frac{1}{R_1} - \frac{1}{R_2}\right) = \left(\frac{1.5}{4/3} - 1\right)\left(\frac{1}{10}\right) = \left(\frac{9}{8} - 1\right)\left(\frac{1}{10}\right) = \left(\frac{1}{8}\right)\left(\frac{1}{10}\right) = \frac{1}{80}$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$f_w = 80\text{ cm} = 4 \times f_a$$
+          </div>
+          <p class="text-slate-400"><em>Vital General Result:</em> For glass ($\mu = 1.5$) immersed in water ($\mu = 1.33$), focal length always increases by a factor of exactly <strong class="text-white">4 times</strong> ($f_w = 4 f_a$).</p>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A converging lens of focal length $30\text{ cm}$ is placed in contact coaxially with a diverging lens of focal length $20\text{ cm}$. Find the power and focal length of the combination. Does the system act as a converging or diverging system?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Converging lens: $f_1 = +30\text{ cm} = +0.30\text{ m}$. Diverging lens: $f_2 = -20\text{ cm} = -0.20\text{ m}$.</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$P_1 = \frac{1}{+0.30} = +3.33\text{ D}, \qquad P_2 = \frac{1}{-0.20} = -5.00\text{ D}$$
+          </div>
+          <p>2. Equivalent power of the combination:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$P = P_1 + P_2 = +3.33\text{ D} + (-5.00\text{ D}) = -1.67\text{ Dioptres}$$
+          </div>
+          <p>3. Equivalent focal length ($F$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\frac{1}{F} = \frac{1}{f_1} + \frac{1}{f_2} = \frac{1}{+30} + \frac{1}{-20} = \frac{2 - 3}{60} = -\frac{1}{60} \implies F = -60\text{ cm}$$
+          </div>
+          <p class="text-slate-400">Since $F < 0$ (and $P < 0$), the combination behaves as a <strong class="text-white">Diverging (Concave) System</strong>!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Curved Interface</p>
+          <p class="text-xs font-bold text-white mt-1">$\frac{\mu_2}{v} - \frac{\mu_1}{u} = \frac{\mu_2 - \mu_1}{R}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Lens Maker's Law</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$\frac{1}{f} = (\mu - 1)\left(\frac{1}{R_1} - \frac{1}{R_2}\right)$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Thin Lens Law</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$\frac{1}{v} - \frac{1}{u} = \frac{1}{f}$ ($m = \frac{v}{u}$)</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Liquid Immersion</p>
+          <p class="text-xs font-bold text-rose-400 mt-1">$f_w = 4 f_a$ (Glass in Water)</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Thin Lens Ray Tracer Engine Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('lensCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const lensTypeBtn = document.getElementById('lensTypeBtn');
+      const uSlider = document.getElementById('uSlider');
+      const fSlider = document.getElementById('fSlider');
+      const hSlider = document.getElementById('hSlider');
+
+      const uVal = document.getElementById('uVal');
+      const fSliderVal = document.getElementById('fSliderVal');
+      const hSliderVal = document.getElementById('hSliderVal');
+
+      const vOut = document.getElementById('vOut');
+      const mOut = document.getElementById('mOut');
+      const pOut = document.getElementById('pOut');
+      const natureOut = document.getElementById('natureOut');
+
+      // 'convex' or 'concave'
+      let lensType = 'convex';
+
+      lensTypeBtn.addEventListener('click', () => {
+        lensType = (lensType === 'convex') ? 'concave' : 'convex';
+        lensTypeBtn.textContent = (lensType === 'convex')
+          ? 'Active: Convex Lens (Converging)'
+          : 'Active: Concave Lens (Diverging)';
+      });
+
+      function renderLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const u_cm = parseFloat(uSlider.value);
+        const f_mag = parseFloat(fSlider.value);
+        const ho_cm = parseFloat(hSlider.value);
+
+        // Sign conventions:
+        // Object always on left: u = -u_cm
+        // Convex: f > 0
+        // Concave: f < 0
+        const u = -u_cm;
+        const f = (lensType === 'convex') ? f_mag : -f_mag;
+
+        uVal.textContent = `${u.toFixed(1)} cm`;
+        fSliderVal.textContent = `${f_mag.toFixed(1)} cm`;
+        hSliderVal.textContent = `${ho_cm.toFixed(1)} cm`;
+
+        // Physics Calculation: 1/v - 1/u = 1/f => 1/v = 1/f + 1/u
+        const inv_v = (1 / f) + (1 / u);
+        let v = 0;
+        let m = 0;
+        let hi = 0;
+
+        const powerD = 100 / f; // P = 1 / f(m) = 100 / f(cm)
+        pOut.textContent = `${powerD >= 0 ? '+' : ''}${powerD.toFixed(2)} D`;
+
+        if (Math.abs(inv_v) < 1e-5) {
+          vOut.textContent = 'At Infinity (±∞)';
+          mOut.textContent = 'Infinitely Large';
+          natureOut.textContent = 'Real & Highly Magnified';
+        } else {
+          v = 1 / inv_v;
+          m = v / u;
+          hi = m * ho_cm;
+
+          vOut.textContent = `${v >= 0 ? '+' : ''}${v.toFixed(2)} cm`;
+          mOut.textContent = `${m.toFixed(2)} (${Math.abs(m) > 1 ? 'Magnified' : 'Diminished'})`;
+
+          if (v > 0) {
+            natureOut.textContent = 'Real & Inverted';
+            natureOut.className = 'text-cyan-400 font-bold text-sm mt-0.5';
+          } else {
+            natureOut.textContent = 'Virtual & Erect';
+            natureOut.className = 'text-amber-400 font-bold text-sm mt-0.5';
+          }
+        }
+
+        renderLensRayTracer(lensType, u, v, f, ho_cm, hi);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderLensRayTracer(type, u, v, f, ho, hi) {
+        const lensX = 400; // Centered optical center O
+        const cy = canvas.height / 2;
+        const scalePx = 7.5; // 1 cm = 7.5 px
+
+        // 1. Principal Axis
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(30, cy);
+        ctx.lineTo(canvas.width - 30, cy);
+        ctx.stroke();
+
+        // 2. Optical Center O
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath(); ctx.arc(lensX, cy, 3.5, 0, Math.PI * 2); ctx.fill();
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('O', lensX - 4, cy + 18);
+
+        // 3. Focal Points F1 (Left) and F2 (Right)
+        const fAbsPx = Math.abs(f) * scalePx;
+
+        // F1 (Left)
+        ctx.fillStyle = '#fbbf24';
+        ctx.beginPath(); ctx.arc(lensX - fAbsPx, cy, 3, 0, Math.PI * 2); ctx.fill();
+        ctx.fillText('F₁', lensX - fAbsPx - 6, cy + 18);
+
+        // F2 (Right)
+        ctx.beginPath(); ctx.arc(lensX + fAbsPx, cy, 3, 0, Math.PI * 2); ctx.fill();
+        ctx.fillText('F₂', lensX + fAbsPx - 6, cy + 18);
+
+        // 2F1 and 2F2 Markers
+        ctx.fillStyle = '#94a3b8';
+        ctx.beginPath(); ctx.arc(lensX - 2 * fAbsPx, cy, 2.5, 0, Math.PI * 2); ctx.fill();
+        ctx.fillText('2F₁', lensX - 2 * fAbsPx - 10, cy + 18);
+        ctx.beginPath(); ctx.arc(lensX + 2 * fAbsPx, cy, 2.5, 0, Math.PI * 2); ctx.fill();
+        ctx.fillText('2F₂', lensX + 2 * fAbsPx - 10, cy + 18);
+
+        // 4. Lens Geometry Silhouette
+        ctx.lineWidth = 3.5;
+        ctx.strokeStyle = '#38bdf8';
+        ctx.beginPath();
+        if (type === 'convex') {
+          // Double convex arc
+          ctx.ellipse(lensX, cy, 14, 110, 0, 0, Math.PI * 2);
+        } else {
+          // Double concave inward bow
+          ctx.moveTo(lensX - 12, cy - 110);
+          ctx.lineTo(lensX + 12, cy - 110);
+          ctx.quadraticCurveTo(lensX + 2, cy, lensX + 12, cy + 110);
+          ctx.lineTo(lensX - 12, cy + 110);
+          ctx.quadraticCurveTo(lensX - 2, cy, lensX - 12, cy - 110);
+        }
+        ctx.stroke();
+
+        // 5. Object Arrow (Green)
+        const objXPx = lensX + (u * scalePx); // u is negative
+        const objTopY = cy - (ho * scalePx);
+
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 3.5;
+        ctx.beginPath();
+        ctx.moveTo(objXPx, cy);
+        ctx.lineTo(objXPx, objTopY);
+        ctx.stroke();
+        drawArrowHead(objXPx, objTopY, -Math.PI / 2, '#10b981');
+        ctx.fillStyle = '#10b981';
+        ctx.fillText('Object', objXPx - 18, objTopY - 8);
+
+        // 6. Image Arrow
+        if (isFinite(v)) {
+          const imgXPx = lensX + (v * scalePx);
+          const imgTopY = cy - (hi * scalePx);
+
+          ctx.strokeStyle = (v > 0) ? '#ec4899' : '#38bdf8';
+          ctx.lineWidth = 3;
+          ctx.beginPath();
+          ctx.moveTo(imgXPx, cy);
+          ctx.lineTo(imgXPx, imgTopY);
+          ctx.stroke();
+
+          drawArrowHead(imgXPx, imgTopY, hi >= 0 ? -Math.PI / 2 : Math.PI / 2, (v > 0) ? '#ec4899' : '#38bdf8');
+          ctx.fillStyle = (v > 0) ? '#ec4899' : '#38bdf8';
+          ctx.fillText('Image', imgXPx - 15, hi >= 0 ? imgTopY - 8 : imgTopY + 16);
+
+          // 7. Ray Tracing Paths
+          renderLensRays(objXPx, objTopY, lensX, cy, f, imgXPx, imgTopY, type, v, fAbsPx);
+        }
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Thin Lens Equation: 1/v - 1/u = 1/f | Magnification m = +v/u = ${(v && u) ? (v / u).toFixed(2) : '0'}`, canvas.width / 2, canvas.height - 12);
+      }
+
+      function renderLensRays(ox, oy, lx, cy, f, ix, iy, type, v, fAbsPx) {
+        ctx.save();
+        ctx.lineWidth = 1.4;
+
+        // RAY 1: Parallel to Principal Axis -> refracts through focus
+        ctx.strokeStyle = '#38bdf8';
+        ctx.beginPath();
+        ctx.moveTo(ox, oy);
+        ctx.lineTo(lx, oy); // strikes lens at height oy
+        ctx.stroke();
+
+        if (type === 'convex') {
+          // Passes through real focus F2 on right
+          ctx.beginPath();
+          ctx.moveTo(lx, oy);
+          ctx.lineTo(ix, iy);
+          ctx.stroke();
+
+          // If virtual image on left, virtual dotted backward projection
+          if (v < 0) {
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(lx, oy);
+            ctx.lineTo(ix, iy);
+            ctx.stroke();
+            ctx.setLineDash([]);
+          }
+        } else {
+          // Concave: diverges away from virtual focus F1 on left
+          const focusLeftX = lx - fAbsPx;
+          ctx.beginPath();
+          ctx.moveTo(lx, oy);
+          ctx.lineTo(lx + 180, oy - ((cy - oy) / fAbsPx) * 180);
+          ctx.stroke();
+
+          // Dotted extension backwards to F1 and Image
+          ctx.setLineDash([4, 4]);
+          ctx.beginPath();
+          ctx.moveTo(lx, oy);
+          ctx.lineTo(focusLeftX, cy);
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+
+        // RAY 2: Ray through Optical Center O (passes undeviated)
+        ctx.strokeStyle = '#f43f5e';
+        ctx.beginPath();
+        ctx.moveTo(ox, oy);
+        ctx.lineTo(lx, cy);
+        ctx.lineTo(ix, iy);
+        ctx.stroke();
+
+        if (v < 0) {
+          ctx.setLineDash([4, 4]);
+          ctx.beginPath();
+          ctx.moveTo(ox, oy);
+          ctx.lineTo(ix, iy);
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+
+        ctx.restore();
+      }
+
+      function drawArrowHead(x, y, angle, color) {
+        const headlen = 7;
+        ctx.save();
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x - headlen * Math.cos(angle - Math.PI / 6), y - headlen * Math.sin(angle - Math.PI / 6));
+        ctx.lineTo(x - headlen * Math.cos(angle + Math.PI / 6), y - headlen * Math.sin(angle + Math.PI / 6));
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

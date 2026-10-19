@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Kirchhoff's Rules & Wheatstone Bridge</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 3.4</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 02: Current Electricity • Chapter 03</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Kirchhoff's Rules & The Wheatstone Bridge</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Conservation laws in multi-loop networks, sign conventions, bridge balance derivation, and galvanometer deflection dynamics.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek busy road intersection ko: jitni gaadiyan junction par enter karti hain, utni hi bahar nikalni padti hain—koi gaadi hawa me gayab nahi ho sakti (<strong class="text-white">Kirchhoff's Junction Rule / Conservation of Charge</strong>). Aur agar aap kisi amusement park ke roller coaster track par ek complete round lagakar wapas apni starting seat par aate hain, toh pure ride ke dauran total gain in altitude aur drop in altitude ka net sum zero hota hai (<strong class="text-white">Kirchhoff's Loop Rule / Conservation of Energy</strong>). Jab inhi do rules ko ek diamond network me apply karte hain aur opposite sides ka potential drop equal ho jata hai, toh central bridge branch me current zero ho jata hai—isi ko <strong class="text-white">Balanced Wheatstone Bridge</strong> kehte hain!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Kirchhoff's First & Second Laws (KCL & KVL)</h3>
+          <p class="text-sm text-slate-400 mb-2">Junction rule and closed loop potential summation:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\sum I_{\text{in}} = \sum I_{\text{out}} \implies \sum I = 0 \quad (\text{Junction Rule})$$
+            $$\oint \Delta V = 0 \implies \sum \mathcal{E} + \sum (-IR) = 0 \quad (\text{Loop Rule})$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Physical origin: KCL is based on <strong>Conservation of Charge</strong>; KVL is based on <strong>Conservation of Energy</strong>.</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Wheatstone Bridge Condition</h3>
+          <p class="text-sm text-slate-400 mb-2">Null deflection condition in the galvanometer branch ($I_g = 0$):</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$V_B = V_D \iff \frac{P}{Q} = \frac{R}{S}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Where $P, Q, R, S$ are the four resistance arms. When balanced, the bridge has maximum sensitivity when all four resistors are of equal order of magnitude.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Wheatstone Bridge Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Wheatstone Bridge Balancing Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="autoBalanceBtn" type="button" class="text-xs bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-emerald-600/30 transition border border-emerald-400/30 cursor-pointer">
+            Auto-Balance Bridge (Set S)
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="bridgeCanvas" width="800" height="400" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Arm P</span>
+            <span id="pVal" class="text-cyan-400 font-mono font-bold">10.0 Ω</span>
+          </div>
+          <input id="pSlider" type="range" min="2" max="30" step="1" value="10" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Arm Q</span>
+            <span id="qVal" class="text-amber-400 font-mono font-bold">20.0 Ω</span>
+          </div>
+          <input id="qSlider" type="range" min="2" max="30" step="1" value="20" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Arm R</span>
+            <span id="rVal" class="text-emerald-400 font-mono font-bold">15.0 Ω</span>
+          </div>
+          <input id="rSlider" type="range" min="2" max="30" step="1" value="15" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Arm S (Variable)</span>
+            <span id="sVal" class="text-rose-400 font-mono font-bold">25.0 Ω</span>
+          </div>
+          <input id="sSlider" type="range" min="2" max="50" step="1" value="25" class="w-full accent-rose-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Ratio P / Q:</span>
+          <div id="ratioPQVal" class="text-cyan-400 font-bold text-sm mt-0.5">0.500</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Ratio R / S:</span>
+          <div id="ratioRSVal" class="text-rose-400 font-bold text-sm mt-0.5">0.600</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Bridge Deflection ($I_g$):</span>
+          <div id="igOutputVal" class="text-amber-400 font-bold text-sm mt-0.5">+14.2 mA</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Bridge State:</span>
+          <div id="stateOutputVal" class="text-rose-400 font-bold text-sm mt-0.5">UNBALANCED</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Wheatstone Bridge Balanced Condition -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Deduction of Wheatstone Bridge Balancing Condition Using Kirchhoff's Laws</h4>
+        </div>
+        <p>1. Consider four resistors $P, Q, R, S$ forming closed loop $ABDA$ and $BCDB$. Battery of EMF $\mathcal{E}$ is connected between $A$ and $C$, and galvanometer of resistance $G$ is connected between $B$ and $D$.</p>
+        <p>2. Let main current entering node $A$ be $I$. At node $A$, current splits into $I_1$ through arm $AB$ (resistor $P$) and $I_2$ through arm $AD$ (resistor $R$).</p>
+        <p>3. At node $B$, current $I_g$ flows into the galvanometer. Remaining current through arm $BC$ (resistor $Q$) is $(I_1 - I_g)$.</p>
+        <p>4. At node $D$, current $I_2$ and $I_g$ join together, so current flowing through arm $DC$ (resistor $S$) is $(I_2 + I_g)$.</p>
+        
+        <p class="text-indigo-300 font-semibold mt-2">• Apply Kirchhoff's Loop Rule (KVL) to Loop 1 ($ABDA$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$-I_1 P - I_g G + I_2 R = 0 \implies I_1 P + I_g G = I_2 R \quad \text{--- [Eq. 1]}$$
+        </div>
+
+        <p class="text-indigo-300 font-semibold mt-2">• Apply Kirchhoff's Loop Rule (KVL) to Loop 2 ($BCDB$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$-(I_1 - I_g)Q + (I_2 + I_g)S + I_g G = 0 \quad \text{--- [Eq. 2]}$$
+        </div>
+
+        <p class="text-indigo-300 font-semibold mt-2">• Balanced Condition (Null Deflection in Galvanometer):</p>
+        <p>When the bridge is balanced, potential at node $B$ equals potential at node $D$ ($V_B = V_D$). Thus, no current flows through the galvanometer: <strong class="text-white">$I_g = 0$</strong>.</p>
+        <p>Substitute $I_g = 0$ into Eq. 1:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$I_1 P = I_2 R \quad \text{--- [Eq. 3]}$$
+        </div>
+        <p>Substitute $I_g = 0$ into Eq. 2:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$I_1 Q = I_2 S \quad \text{--- [Eq. 4]}$$
+        </div>
+        <p>Dividing Eq. 3 by Eq. 4:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\frac{I_1 P}{I_1 Q} = \frac{I_2 R}{I_2 S} \implies \frac{P}{Q} = \frac{R}{S}$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Interchanging Battery and Galvanometer</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* What happens to the balance condition if the battery and galvanometer are interchanged?
+            <br>*Answer:* The balance condition <strong class="text-white">REMAINS UNCHANGED</strong>! If $P/Q = R/S$, interchanging source and detector simply swaps conjugate arms ($P/R = Q/S$). The galvanometer still shows zero deflection.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: KVL Sign Convention Mishaps</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            • Moving across a resistor *in the direction of current* $\implies$ Potential drop: $\mathbf{-IR}$.
+            <br>• Moving across a resistor *opposite to current* $\implies$ Potential gain: $\mathbf{+IR}$.
+            <br>• Moving through a cell from negative to positive terminal $\implies \mathbf{+\mathcal{E}}$.
+            <br>• Moving from positive to negative terminal $\implies \mathbf{-\mathcal{E}}$.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Maximum Bridge Sensitivity</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            A Wheatstone bridge is most sensitive (shows maximum noticeable needle deflection for the smallest change in resistance) when all four arms have <strong class="text-white">nearly equal resistances</strong> ($P \approx Q \approx R \approx S$). If one arm is $1\text{ }\Omega$ and another is $10{,}000\text{ }\Omega$, sensitivity drops dramatically.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Resistance of Central Galvanometer Arm at Balance</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            When the bridge is balanced ($I_g = 0$), the central galvanometer branch carries no current. Therefore, it can be <strong class="text-white">completely removed</strong> from equivalent resistance calculations! The network simplifies to $(P+Q)$ in parallel with $(R+S)$: $R_{\text{eq}} = \frac{(P+Q)(R+S)}{(P+Q) + (R+S)}$.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: The four arms of a Wheatstone bridge have the following resistances: $AB = 100\text{ }\Omega$, $BC = 10\text{ }\Omega$, $CD = 5\text{ }\Omega$, and $DA = 60\text{ }\Omega$. A galvanometer of resistance $15\text{ }\Omega$ is connected across $BD$. Calculate the current through the galvanometer when a potential difference of $10\text{ V}$ is maintained across $AC$.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Check bridge balance: $\frac{P}{Q} = \frac{100}{10} = 10$; $\frac{R}{S} = \frac{60}{5} = 12$. Since $10 \ne 12$, bridge is unbalanced ($I_g \ne 0$).</p>
+          <p>2. Apply KVL to Loop 1 ($ABDA$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$-100 I_1 - 15 I_g + 60 I_2 = 0 \implies 20 I_1 + 3 I_g - 12 I_2 = 0 \quad \text{--- [1]}$$
+          </div>
+          <p>3. Apply KVL to Loop 2 ($BCDB$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$-10(I_1 - I_g) + 15 I_g + 5(I_2 + I_g) = 0 \implies -10 I_1 + 30 I_g + 5 I_2 = 0 \implies 2 I_1 - 6 I_g - I_2 = 0 \quad \text{--- [2]}$$
+          </div>
+          <p>4. From Eq. [2]: $I_2 = 2 I_1 - 6 I_g$. Substitute $I_2$ into Eq. [1]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$20 I_1 + 3 I_g - 12(2 I_1 - 6 I_g) = 0 \implies -4 I_1 + 75 I_g = 0 \implies I_1 = \frac{75}{4} I_g = 18.75 I_g$$
+          </div>
+          <p>5. Substitute $I_1$ to get $I_2$: $I_2 = 2(18.75 I_g) - 6 I_g = 31.5 I_g$.</p>
+          <p>6. Apply KVL along outer path through source ($AC$): $100 I_1 + 10(I_1 - I_g) = 10 \implies 110 I_1 - 10 I_g = 10$.</p>
+          <p>Substitute $I_1 = 18.75 I_g$:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$110(18.75 I_g) - 10 I_g = 10 \implies 2062.5 I_g - 10 I_g = 10 \implies 2052.5 I_g = 10$$
+            $$I_g = \frac{10}{2052.5} \approx 4.87 \times 10^{-3}\text{ A} = 4.87\text{ mA}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: In a Wheatstone bridge, $P = 2\text{ }\Omega, Q = 3\text{ }\Omega, R = 6\text{ }\Omega$, and $S = 8\text{ }\Omega$. What resistance $X$ must be connected in parallel across $S$ to balance the bridge?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. For the bridge to be balanced, the effective resistance in the fourth arm ($S'$) must satisfy:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\frac{P}{Q} = \frac{R}{S'} \implies \frac{2}{3} = \frac{6}{S'} \implies S' = \frac{6 \times 3}{2} = 9\text{ }\Omega$$
+          </div>
+          <p>2. But the existing resistance $S = 8\text{ }\Omega$. Notice that connecting a resistor $X$ in parallel can ONLY decrease the equivalent resistance below $8\text{ }\Omega$ ($S_{\text{parallel}} < 8\text{ }\Omega$). It can NEVER increase resistance to $9\text{ }\Omega$!</p>
+          <div class="text-center font-mono text-rose-400 font-bold">
+            $$\text{Verdict: No physical positive resistance } X \text{ can balance the bridge in parallel!}$$
+          </div>
+          <p class="text-slate-400"><em>Exam Trap Note:</em> To balance this bridge, a resistance of $1\text{ }\Omega$ must be connected in <strong>series</strong> with $S$ ($8 + 1 = 9\text{ }\Omega$), not in parallel. Examiners deliberately set this trap to catch blind formula substitution!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Kirchhoff Junction (KCL)</p>
+          <p class="text-xs font-bold text-white mt-1">$\sum I = 0$ (Charge Cons.)</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Kirchhoff Loop (KVL)</p>
+          <p class="text-xs font-bold text-white mt-1">$\sum \Delta V = 0$ (Energy Cons.)</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Wheatstone Balance</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$\frac{P}{Q} = \frac{R}{S} \iff I_g = 0$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Max Sensitivity</p>
+          <p class="text-xs font-bold text-white mt-1">$P \approx Q \approx R \approx S$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Wheatstone Bridge Canvas Simulation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('bridgeCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const pSlider = document.getElementById('pSlider');
+      const qSlider = document.getElementById('qSlider');
+      const rSlider = document.getElementById('rSlider');
+      const sSlider = document.getElementById('sSlider');
+      const autoBalanceBtn = document.getElementById('autoBalanceBtn');
+
+      const pVal = document.getElementById('pVal');
+      const qVal = document.getElementById('qVal');
+      const rVal = document.getElementById('rVal');
+      const sVal = document.getElementById('sVal');
+      const ratioPQVal = document.getElementById('ratioPQVal');
+      const ratioRSVal = document.getElementById('ratioRSVal');
+      const igOutputVal = document.getElementById('igOutputVal');
+      const stateOutputVal = document.getElementById('stateOutputVal');
+
+      let currentPhase = 0;
+
+      autoBalanceBtn.addEventListener('click', () => {
+        const P = parseFloat(pSlider.value);
+        const Q = parseFloat(qSlider.value);
+        const R = parseFloat(rSlider.value);
+        // Balance condition: P / Q = R / S => S = (Q * R) / P
+        const balancedS = Math.round((Q * R) / P);
+        sSlider.value = Math.min(50, Math.max(2, balancedS));
+      });
+
+      function renderLoop() {
+        currentPhase += 0.05;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const P = parseFloat(pSlider.value);
+        const Q = parseFloat(qSlider.value);
+        const R = parseFloat(rSlider.value);
+        const S = parseFloat(sSlider.value);
+
+        pVal.textContent = P.toFixed(1) + ' Ω';
+        qVal.textContent = Q.toFixed(1) + ' Ω';
+        rVal.textContent = R.toFixed(1) + ' Ω';
+        sVal.textContent = S.toFixed(1) + ' Ω';
+
+        const ratioPQ = P / Q;
+        const ratioRS = R / S;
+        ratioPQVal.textContent = ratioPQ.toFixed(3);
+        ratioRSVal.textContent = ratioRS.toFixed(3);
+
+        // Accurate Circuit Solver for Wheatstone Bridge with Supply V0 = 10V and G = 15 ohm
+        const V0 = 10.0;
+        const G = 15.0;
+
+        // Using nodal equations:
+        // At B: (V_B - V0)/P + V_B/Q + (V_B - V_D)/G = 0
+        // At D: (V_D - V0)/R + V_D/S + (V_D - V_B)/G = 0
+        const gP = 1 / P, gQ = 1 / Q, gR = 1 / R, gS = 1 / S, gG = 1 / G;
+        const a1 = gP + gQ + gG;
+        const b1 = -gG;
+        const c1 = gP * V0;
+
+        const a2 = -gG;
+        const b2 = gR + gS + gG;
+        const c2 = gR * V0;
+
+        // Cramer's rule
+        const det = a1 * b2 - a2 * b1;
+        const VB = (c1 * b2 - c2 * b1) / det;
+        const VD = (a1 * c2 - a2 * c1) / det;
+        const Ig = (VB - VD) / G; // Current from B to D
+
+        const ig_mA = Ig * 1000;
+        igOutputVal.textContent = (ig_mA >= 0 ? '+' : '') + ig_mA.toFixed(1) + ' mA';
+
+        const isBalanced = Math.abs(ig_mA) < 0.2;
+        if (isBalanced) {
+          stateOutputVal.textContent = 'PERFECTLY BALANCED (Ig ≈ 0)';
+          stateOutputVal.className = 'text-emerald-400 font-bold text-sm mt-0.5';
+        } else {
+          stateOutputVal.textContent = 'UNBALANCED BRIDGE';
+          stateOutputVal.className = 'text-rose-400 font-bold text-sm mt-0.5';
+        }
+
+        const cx = canvas.width / 2;
+        const cy = 185;
+
+        // Diamond Nodes Coordinates
+        const nodeA = { x: cx - 180, y: cy };
+        const nodeB = { x: cx, y: cy - 105 };
+        const nodeC = { x: cx + 180, y: cy };
+        const nodeD = { x: cx, y: cy + 105 };
+
+        // 1. Bridge Diamond Arms Wire
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(nodeA.x, nodeA.y);
+        ctx.lineTo(nodeB.x, nodeB.y);
+        ctx.lineTo(nodeC.x, nodeC.y);
+        ctx.lineTo(nodeD.x, nodeD.y);
+        ctx.lineTo(nodeA.x, nodeA.y);
+        ctx.stroke();
+
+        // 2. Central Galvanometer Branch (BD)
+        ctx.beginPath();
+        ctx.moveTo(nodeB.x, nodeB.y);
+        ctx.lineTo(cx, cy - 35);
+        ctx.moveTo(cx, cy + 35);
+        ctx.lineTo(nodeD.x, nodeD.y);
+        ctx.stroke();
+
+        // Galvanometer Body & Needle
+        renderGalvanometerDial(cx, cy, Ig);
+
+        // 3. Render 4 Bridge Resistors
+        renderArmResistor((nodeA.x + nodeB.x) / 2, (nodeA.y + nodeB.y) / 2, `P = ${P}Ω`, '#38bdf8');
+        renderArmResistor((nodeB.x + nodeC.x) / 2, (nodeB.y + nodeC.y) / 2, `Q = ${Q}Ω`, '#fbbf24');
+        renderArmResistor((nodeA.x + nodeD.x) / 2, (nodeA.y + nodeD.y) / 2, `R = ${R}Ω`, '#34d399');
+        renderArmResistor((nodeD.x + nodeC.x) / 2, (nodeD.y + nodeC.y) / 2, `S = ${S}Ω`, '#f43f5e');
+
+        // 4. Battery Circuit Connection (AC)
+        const botWireY = 350;
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(nodeA.x, nodeA.y);
+        ctx.lineTo(nodeA.x - 30, nodeA.y);
+        ctx.lineTo(nodeA.x - 30, botWireY);
+        ctx.lineTo(cx - 30, botWireY);
+        ctx.moveTo(cx + 30, botWireY);
+        ctx.lineTo(nodeC.x + 30, botWireY);
+        ctx.lineTo(nodeC.x + 30, nodeC.y);
+        ctx.lineTo(nodeC.x, nodeC.y);
+        ctx.stroke();
+
+        // DC Battery at Bottom
+        renderDCSource(cx, botWireY, '10V');
+
+        // 5. Node Markers (A, B, C, D)
+        drawNodeCircle(nodeA.x, nodeA.y, 'A (10V)');
+        drawNodeCircle(nodeB.x, nodeB.y, `B (${VB.toFixed(1)}V)`);
+        drawNodeCircle(nodeC.x, nodeC.y, 'C (0V)');
+        drawNodeCircle(nodeD.x, nodeD.y, `D (${VD.toFixed(1)}V)`);
+
+        // Flowing Current Beads along Galvanometer branch if unbalanced
+        if (!isBalanced) {
+          const flowDir = Ig > 0 ? 1 : -1; // Downward from B to D if Ig > 0
+          const beadY = cy + (Math.sin(currentPhase * 3 * flowDir) * 26);
+          ctx.fillStyle = '#f59e0b';
+          ctx.beginPath();
+          ctx.arc(cx, beadY, 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Balanced Condition: When P/Q = R/S, potential VB = VD and Galvanometer current Ig = 0', cx, canvas.height - 10);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderGalvanometerDial(x, y, Ig) {
+        // Outer Dial Circle
+        ctx.save();
+        ctx.fillStyle = '#0f172a';
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(x, y, 32, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        // Scale markings (- , 0 , +)
+        ctx.strokeStyle = '#64748b';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(x, y - 28); ctx.lineTo(x, y - 22); // Center 0
+        ctx.moveTo(x - 18, y - 20); ctx.lineTo(x - 14, y - 16);
+        ctx.moveTo(x + 18, y - 20); ctx.lineTo(x + 14, y - 16);
+        ctx.stroke();
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = 'bold 9px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('0', x, y - 14);
+
+        // Needle Deflection Angle (Proportional to Ig)
+        const maxAngle = Math.PI / 3.2; // ~56 degrees max deflection
+        const normDeflection = Math.max(-1, Math.min(1, Ig / 0.05)); // 50mA is full scale
+        const needleAngle = -Math.PI / 2 + (normDeflection * maxAngle);
+
+        const needleLen = 24;
+        ctx.strokeStyle = Math.abs(Ig) < 0.0002 ? '#10b981' : '#f43f5e';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(x, y + 6);
+        ctx.lineTo(x + Math.cos(needleAngle) * needleLen, (y + 6) + Math.sin(needleAngle) * needleLen);
+        ctx.stroke();
+
+        // Center Pivot
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(x, y + 6, 3, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = 'bold 10px monospace';
+        ctx.fillText('G', x, y + 22);
+        ctx.restore();
+      }
+
+      function renderArmResistor(x, y, label, color) {
+        ctx.save();
+        ctx.fillStyle = '#0f172a';
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.roundRect(x - 30, y - 12, 60, 24, 6);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 10px monospace';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(label, x, y);
+        ctx.restore();
+      }
+
+      function drawNodeCircle(x, y, label) {
+        ctx.beginPath();
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        ctx.fillStyle = '#38bdf8';
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 10px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(label, x, y - 12);
+      }
+
+      function renderDCSource(x, y, label) {
+        ctx.save();
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 3;
+        // Long positive plate
+        ctx.beginPath();
+        ctx.moveTo(x - 8, y - 16);
+        ctx.lineTo(x - 8, y + 16);
+        ctx.stroke();
+        // Short negative plate
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        ctx.moveTo(x + 8, y - 9);
+        ctx.lineTo(x + 8, y + 9);
+        ctx.stroke();
+
+        ctx.fillStyle = '#10b981';
+        ctx.font = 'bold 11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(label, x, y + 26);
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

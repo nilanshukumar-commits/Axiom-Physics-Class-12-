@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Atoms: Rutherford & Bohr Model</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError: false,
+      errorColor: '#cbd5e1'
+    });"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      letter-spacing: -0.011em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .font-mono, font-mono {
+      font-family: 'JetBrains Mono', monospace !important;
+    }
+
+    .katex {
+      font-size: 1.05em !important;
+      text-rendering: optimizeLegibility;
+    }
+    .katex-display {
+      margin: 0.6em 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 2px;
+    }
+
+    .math-formula-card {
+      background: radial-gradient(circle at top left, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(56, 189, 248, 0.15);
+    }
+
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; font-size: 10pt !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box, .math-formula-card { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400, .text-slate-500 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2.5 py-0.5 rounded-full ml-2 font-mono">Class 12 • Modules 12.1 & 12.2</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-xl text-xs font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-xs font-bold font-mono text-indigo-400 tracking-wider uppercase">Unit 08: Atoms & Nuclei • Chapter 12</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Rutherford Scattering & Bohr's Quantized Atom</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base leading-relaxed">Geiger-Marsden scattering kinematics, distance of closest approach ($r_0$), impact parameter ($b$), classical collapse paradox, Bohr's postulates, and derivations of orbital radius ($r_n$), velocity ($v_n$), and total energy ($E_n$).</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2 font-mono">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed text-sm md:text-base">
+        Socho ek bohot bade khali football stadium ke beechon-beech ek chota sa kancha (marble) rakha ho. Rutherford ne jab heavy $\alpha$-particles ko gold foil par fire kiya, toh $99.86\%$ kanche bina kisi rukawat ke seedhe nikal gaye, par $\approx 8000$ mein se ek $\alpha$-particle $90^\circ$ se zyada angle par ulti disha mein palat gaya! Rutherford ne kaha: <em>"Yeh utna hi hairatangez tha jaise aap kisi 15-inch ke artillery shell ko tissue paper par fire karein aur woh wapas aakar aapko hi uda de!"</em> 
+        Isse saabit hua ki atom ka $99.999\%$ hissa poori tarah khali hai aur sara positive charge stadium ke center mein ek tiny dense <strong class="text-white font-semibold">Nucleus</strong> mein band hai. Lekin classical physics ne sawal khada kiya: orbiting electron accelerate hokar radiation emit karega aur $10^{-8}\text{ s}$ mein nucleus mein girkar atom ko destroy kar dega! Tab Niels Bohr ne quantum magic introduce kiya: electron kisi bhi arbitrary raste par nahi, balki sirf <strong class="text-white font-semibold">Stationary Non-Radiating Orbits</strong> mein hi ghoom sakta hai jahan uska angular momentum $h/2\pi$ ka integral multiple ho!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-xs font-bold uppercase tracking-wider mb-1 font-mono">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="math-formula-card p-5 rounded-2xl border border-slate-800/80 shadow-inner">
+          <h3 class="text-white font-semibold text-sm tracking-wide mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            1. Rutherford Scattering Kinematics
+          </h3>
+          <p class="text-xs text-slate-400 mb-3">Closest approach distance and impact parameter ($b$):</p>
+          <div class="py-2.5 px-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-cyan-300 font-mono text-center text-sm space-y-1">
+            <div>$$r_0 = \frac{1}{4\pi\varepsilon_0}\frac{2Ze^2}{K} = \frac{1}{4\pi\varepsilon_0}\frac{4Ze^2}{m v^2}$$</div>
+            <div>$$b = \frac{1}{4\pi\varepsilon_0}\frac{Ze^2 \cot(\theta/2)}{K}$$</div>
+          </div>
+          <p class="text-[11px] text-slate-500 mt-3 leading-relaxed">
+            Head-on collision: $b = 0 \implies \cot(\theta/2) = 0 \implies \theta = 180^\circ$ (Direct rebound). Large $b \implies \theta \approx 0^\circ$ (Undeviated).
+          </p>
+        </div>
+
+        <div class="math-formula-card p-5 rounded-2xl border border-slate-800/80 shadow-inner">
+          <h3 class="text-white font-semibold text-sm tracking-wide mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+            2. Bohr's Postulates & Hydrogen Levels
+          </h3>
+          <p class="text-xs text-slate-400 mb-3">Quantized parameters for hydrogen-like atom of atomic number $Z$:</p>
+          <div class="py-2.5 px-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-indigo-300 font-mono text-center text-sm space-y-1">
+            <div>$$L = m v_n r_n = \frac{nh}{2\pi} = n\hbar \quad (n = 1, 2, 3\dots)$$</div>
+            <div>$$r_n = \frac{n^2 h^2 \varepsilon_0}{\pi m Z e^2} = 0.529 \frac{n^2}{Z}\text{ \AA}$$</div>
+            <div>$$E_n = -\frac{m Z^2 e^4}{8 \varepsilon_0^2 h^2 n^2} = -13.6 \frac{Z^2}{n^2}\text{ eV}$$</div>
+          </div>
+          <p class="text-[11px] text-slate-500 mt-3 leading-relaxed">
+            Energy partition: Kinetic Energy $K = -E_n$, Potential Energy $U = 2E_n$, and Total Energy $E_n = K + U = -K$.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Alpha Scattering & Bohr Orbit Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-xs font-bold uppercase tracking-wider font-mono">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Dual-Mode Atomic Simulator</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="simModeToggleBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3.5 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Mode: Rutherford Alpha Trajectory
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="atomCanvas" width="800" height="390" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="param1Label">Impact Parameter ($b$)</span>
+            <span id="param1Val" class="text-cyan-400 font-mono font-bold">2.5 fm</span>
+          </div>
+          <input id="param1Slider" type="range" min="0" max="8.0" step="0.2" value="2.5" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="param2Label">Alpha Energy ($K$) / Quantum ($n$)</span>
+            <span id="param2Val" class="text-amber-400 font-mono font-bold">5.5 MeV</span>
+          </div>
+          <input id="param2Slider" type="range" min="3.0" max="9.0" step="0.5" value="5.5" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Target Atomic Number ($Z$)</span>
+            <span id="zVal" class="text-emerald-400 font-mono font-bold">79 (Gold)</span>
+          </div>
+          <input id="zSlider" type="range" min="29" max="82" step="1" value="79" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Scattering Angle ($\theta$):</span>
+          <div id="readout1" class="text-cyan-400 font-bold text-sm mt-0.5">73.5°</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Closest Approach ($r_0$):</span>
+          <div id="readout2" class="text-amber-400 font-bold text-sm mt-0.5">41.4 fm</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Bohr Radius ($r_n$):</span>
+          <div id="readout3" class="text-emerald-400 font-bold text-sm mt-0.5">0.529 Å (n=1)</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Total Orbit Energy ($E_n$):</span>
+          <div id="readout4" class="text-rose-400 font-bold text-sm mt-0.5">-13.60 eV</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>📝 04. Comprehensive Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Distance of Closest Approach r0 -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">Fundamental Derivation 01</span>
+          <h4 class="text-white font-semibold text-base mt-1">Deduction of the Distance of Closest Approach ($r_0$) in Head-On Collision</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Rutherford Scattering -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 250" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-alpha" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-scat" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f59e0b"/>
+              </marker>
+            </defs>
+
+            <!-- Center Gold Nucleus (+Ze) -->
+            <circle cx="360" cy="130" r="16" fill="#f59e0b" stroke="#ffffff" stroke-width="2" />
+            <text x="345" y="134" fill="#0f172a" font-size="10" font-weight="bold" font-family="monospace">+Ze</text>
+            <text x="330" y="165" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">Gold Nucleus</text>
+
+            <!-- Central Line of Impact (Head-on axis, b = 0) -->
+            <line x1="60" y1="130" x2="600" y2="130" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,4" />
+
+            <!-- Head-on Ray (Rebound at r0) -->
+            <line x1="60" y1="130" x2="290" y2="130" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arr-alpha)" />
+            <!-- Stopping point circle -->
+            <circle cx="290" cy="130" r="4" fill="#ffffff" />
+            <!-- Rebound Ray -->
+            <path d="M 290 130 C 270 120, 240 105, 120 105" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,3" />
+            <text x="210" y="120" fill="#ef4444" font-size="10" font-weight="bold" font-family="monospace">θ = 180° (Rebound)</text>
+
+            <!-- Distance r0 bracket -->
+            <line x1="290" y1="145" x2="360" y2="145" stroke="#fbbf24" stroke-width="1.5" />
+            <line x1="290" y1="140" x2="290" y2="150" stroke="#fbbf24" stroke-width="1.5" />
+            <line x1="360" y1="140" x2="360" y2="150" stroke="#fbbf24" stroke-width="1.5" />
+            <text x="315" y="158" fill="#fbbf24" font-size="11" font-weight="bold" font-family="monospace">r₀</text>
+
+            <!-- Oblique Particle Trajectory (Impact parameter b) -->
+            <!-- Initial line parallel to axis at distance b -->
+            <line x1="60" y1="70" x2="260" y2="70" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr-alpha)" />
+            <text x="100" y="60" fill="#38bdf8" font-size="10" font-family="monospace">Incident α-particle</text>
+
+            <!-- Impact parameter b bracket -->
+            <line x1="120" y1="70" x2="120" y2="130" stroke="#10b981" stroke-width="1.8" />
+            <line x1="115" y1="70" x2="125" y2="70" stroke="#10b981" stroke-width="1.8" />
+            <line x1="115" y1="130" x2="125" y2="130" stroke="#10b981" stroke-width="1.8" />
+            <text x="130" y="105" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">b (Impact param)</text>
+
+            <!-- Hyperbolic Scattered Path -->
+            <path d="M 260 70 C 310 70, 335 85, 460 25" fill="none" stroke="#f59e0b" stroke-width="2.5" />
+            <line x1="460" y1="25" x2="550" y2="-15" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arr-scat)" />
+
+            <!-- Scattering Angle theta -->
+            <line x1="260" y1="70" x2="480" y2="70" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3" />
+            <path d="M 370 70 A 45 45 0 0 1 395 50" fill="none" stroke="#f59e0b" stroke-width="1.5" />
+            <text x="405" y="62" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">θ</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 12.1A: Geiger-Marsden scattering geometry showing distance of closest approach ($r_0$), impact parameter ($b$), and scattering angle ($\theta$).</p>
+        </div>
+
+        <p>1. Consider an $\alpha$-particle of mass $m$, charge $q_1 = +2e$, initially fired from infinity with kinetic energy $K = \frac{1}{2}mv^2$ directly towards a target nucleus of charge $q_2 = +Ze$ in a head-on collision ($b = 0$).</p>
+        <p>2. Due to repulsive Coulomb electrostatic force, the $\alpha$-particle decelerates continuously until at a minimum distance $r_0$ (distance of closest approach), its instantaneous velocity drops to zero ($v = 0$).</p>
+        <p>3. By the Law of Conservation of Energy, the entire initial kinetic energy $K$ is transformed into electrostatic potential energy $U$ at $r_0$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$K = U \implies K = \frac{1}{4\pi\varepsilon_0}\frac{q_1 q_2}{r_0} = \frac{1}{4\pi\varepsilon_0}\frac{(2e)(Ze)}{r_0}$$
+        </div>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$r_0 = \frac{1}{4\pi\varepsilon_0}\frac{2Ze^2}{K} = \frac{1}{4\pi\varepsilon_0}\frac{4Ze^2}{m v^2}$$
+        </div>
+        <p class="text-slate-400"><em>Nuclear Size Upper Bound:</em> For a $7.7\text{ MeV}$ $\alpha$-particle fired on gold ($Z = 79$): $r_0 \approx 30\text{ fm} = 3 \times 10^{-14}\text{ m}$. Since the $\alpha$-particle turns back before touching the actual nuclear surface, the nuclear radius must be strictly less than $r_0$ ($R_{\text{nucleus}} < 10^{-14}\text{ m}$).</p>
+      </div>
+
+      <!-- Derivation 2: Bohr's Radius and Quantized Energy Levels -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">Foundational Derivation 02</span>
+          <h4 class="text-white font-semibold text-base mt-1">Derivations of Bohr's Orbital Radius ($r_n$), Orbital Velocity ($v_n$), and Total Energy ($E_n$)</h4>
+        </div>
+
+        <p>1. Consider an electron of mass $m$ and charge $-e$ revolving in a circular orbit of radius $r_n$ with speed $v_n$ around a nucleus of charge $+Ze$.</p>
+        <p>2. The electrostatic Coulomb force provides the necessary centripetal force:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\frac{m v_n^2}{r_n} = \frac{1}{4\pi\varepsilon_0}\frac{Z e^2}{r_n^2} \implies m v_n^2 r_n = \frac{Z e^2}{4\pi\varepsilon_0} \quad \text{--- [Eq. 1]}$$
+        </div>
+        <p>3. By Bohr's Second Postulate (Angular Momentum Quantization):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$L = m v_n r_n = \frac{nh}{2\pi} \implies v_n = \frac{nh}{2\pi m r_n} \quad \text{--- [Eq. 2]}$$
+        </div>
+        <p>4. Substituting Eq. 2 into Eq. 1:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$m \left( \frac{nh}{2\pi m r_n} \right)^2 r_n = \frac{Z e^2}{4\pi\varepsilon_0} \implies \frac{n^2 h^2}{4\pi^2 m r_n} = \frac{Z e^2}{4\pi\varepsilon_0}$$
+        </div>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$r_n = \frac{n^2 h^2 \varepsilon_0}{\pi m Z e^2} \implies \mathbf{r_n \propto \frac{n^2}{Z}} \quad (r_1 = 0.529\text{ \AA for } H)$$
+        </div>
+        <p>5. Substituting $r_n$ back into Eq. 2 gives Orbital Speed:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$v_n = \frac{Z e^2}{2 \varepsilon_0 n h} \implies \mathbf{v_n \propto \frac{Z}{n}} \quad \left(v_1 = \frac{c}{137} \approx 2.18 \times 10^6\text{ m/s for } H\right)$$
+        </div>
+        <p>6. <strong class="text-white">Total Energy Derivation:</strong></p>
+        <p class="text-slate-400">• Kinetic Energy: $K_n = \frac{1}{2}m v_n^2 = \frac{1}{8\pi\varepsilon_0}\frac{Ze^2}{r_n}$.</p>
+        <p class="text-slate-400">• Potential Energy: $U_n = -\frac{1}{4\pi\varepsilon_0}\frac{Ze^2}{r_n}$.</p>
+        <p class="text-slate-400">• Total Energy: $E_n = K_n + U_n = -\frac{1}{8\pi\varepsilon_0}\frac{Ze^2}{r_n}$. Substituting $r_n$:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$E_n = -\frac{m Z^2 e^4}{8 \varepsilon_0^2 h^2 n^2} = -13.6 \frac{Z^2}{n^2}\text{ eV}$$
+        </div>
+        <p class="text-slate-400"><em>Negative Sign Significance:</em> Total energy is strictly negative, which proves that the electron is bound to the nucleus. An infinite energy ($E = 0$) corresponds to an unbound, completely free electron at rest ($n \to \infty$).</p>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Energy Inter-Relations ($K, U, E$) Signs</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Trap:* If total energy of an electron in an orbit is $-3.4\text{ eV}$, find its kinetic and potential energy.
+            <br>• Kinetic Energy is strictly POSITIVE: $\mathbf{K = -E = +3.4\text{ eV}}$.
+            <br>• Potential Energy is NEGATIVE and DOUBLE the total energy: $\mathbf{U = 2E = -6.8\text{ eV}}$.
+            <br>Verify: $E = K + U = (+3.4) + (-6.8) = -3.4\text{ eV}$.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Classical Collapse Paradox of Rutherford Model</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Why did Rutherford's model fail?*
+            <br>1. <strong>Instability Paradox:</strong> Orbiting electron has centripetal acceleration ($a = v^2/r$). According to classical Maxwellian electrodynamics, an accelerating charge radiates EM energy continuously. Its orbit should shrink into a spiral, collapsing into the nucleus within $\approx 10^{-8}\text{ s}$!
+            <br>2. <strong>Continuous Spectrum Paradox:</strong> Spiral radiation should emit a continuous spectrum, contradicting the discrete line spectrum observed in experiments.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Orbital Frequency vs Revolution Time Scaling</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Time period of orbital revolution:
+            $$T_n = \frac{2\pi r_n}{v_n} \propto \frac{n^2}{1/n} \propto \mathbf{n^3}$$
+            Orbital frequency: $f_n = \frac{1}{T_n} \propto \mathbf{\frac{1}{n^3}}$.
+            As principal quantum number $n$ increases, the time period scales with $n^3$ while velocity drops as $1/n$.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Applicability of Bohr's Theory</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Bohr's model applies strictly to <strong class="text-white font-semibold">SINGLE-ELECTRON (Hydrogen-like) atoms</strong>:
+            <br>• Applicable: $\text{H } (Z=1)$, $\text{He}^+ (Z=2)$, $\text{Li}^{2+} (Z=3)$, $\text{Be}^{3+} (Z=4)$.
+            <br>• NOT applicable to neutral Helium ($\text{He}$), neutral Lithium, or multi-electron atoms because it completely ignores electron-electron mutual repulsion!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-mono">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A $5.0\text{ MeV}$ $\alpha$-particle is projected towards a target nucleus of Gold ($Z = 79$) in a head-on collision. Calculate the distance of closest approach. How will this distance change if the kinetic energy of the $\alpha$-particle is doubled?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> Kinetic energy $K = 5.0\text{ MeV} = 5.0 \times 10^6 \times 1.6 \times 10^{-19}\text{ J} = 8.0 \times 10^{-13}\text{ J}$, $Z = 79$.</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$r_0 = \frac{1}{4\pi\varepsilon_0}\frac{2Ze^2}{K} = \frac{(9 \times 10^9) \times 2 \times 79 \times (1.6 \times 10^{-19})^2}{8.0 \times 10^{-13}}$$
+            $$r_0 = \frac{9 \times 10^9 \times 158 \times 2.56 \times 10^{-38}}{8.0 \times 10^{-13}} = \frac{3640.32 \times 10^{-29}}{8.0 \times 10^{-13}} \approx 4.55 \times 10^{-14}\text{ m} = 45.5\text{ fm}$$
+          </div>
+          <p class="text-slate-400">Since $r_0 \propto \frac{1}{K}$:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\text{If } K \text{ is doubled } (K' = 2K), \text{ the closest approach halves: } r_0' = \frac{r_0}{2} = \frac{45.5}{2} \approx 22.75\text{ fm}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: The ground state energy of a hydrogen atom is $-13.6\text{ eV}$. (a) What are the kinetic and potential energies of the electron in the second excited state? (b) If the electron jumps from the third orbit to the first orbit, calculate the frequency and wavelength of the emitted photon.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. "Second excited state" corresponds to principal quantum number <strong class="text-white font-semibold">$n = 3$</strong> (since $n=1$ is ground state, $n=2$ is 1st excited state).</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$E_3 = -\frac{13.6}{3^2} = -\frac{13.6}{9} \approx -1.51\text{ eV}$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\text{Kinetic Energy: } K = -E_3 = +1.51\text{ eV}$$
+            $$\text{Potential Energy: } U = 2E_3 = 2 \times (-1.51\text{ eV}) = -3.02\text{ eV}$$
+          </div>
+          <p>2. Transition from $n = 3$ to $n = 1$ ($E_1 = -13.6\text{ eV}$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\Delta E = E_3 - E_1 = -1.51 - (-13.6) = +12.09\text{ eV} = 12.09 \times 1.6 \times 10^{-19}\text{ J} \approx 1.934 \times 10^{-18}\text{ J}$$
+          </div>
+          <p>Frequency of emitted photon ($\nu = \Delta E/h$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\nu = \frac{1.934 \times 10^{-18}\text{ J}}{6.63 \times 10^{-34}\text{ J}\cdot\text{s}} \approx 2.92 \times 10^{15}\text{ Hz}$$
+            $$\lambda = \frac{c}{\nu} = \frac{3 \times 10^8}{2.92 \times 10^{15}} \approx 1.027 \times 10^{-7}\text{ m} = 102.7\text{ nm} \quad (\text{Lyman Series, UV})$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 font-mono">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded font-mono">Core Relations</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Closest Approach</p>
+          <p class="text-xs font-bold text-cyan-300 mt-1 font-mono">$r_0 = \frac{1}{4\pi\varepsilon_0}\frac{2Ze^2}{K}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Bohr Radius</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1 font-mono">$r_n \propto \frac{n^2}{Z}$ ($r_1 = 0.53\text{ \AA}$)</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Total Energy</p>
+          <p class="text-xs font-bold text-amber-300 mt-1 font-mono">$E_n = -13.6\frac{Z^2}{n^2}\text{ eV}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Energy Triangle</p>
+          <p class="text-xs font-bold text-rose-400 mt-1 font-mono">$K = -E, U = 2E$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Dual Mode Atomic Simulator Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('atomCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const simModeToggleBtn = document.getElementById('simModeToggleBtn');
+      const param1Slider = document.getElementById('param1Slider');
+      const param2Slider = document.getElementById('param2Slider');
+      const zSlider = document.getElementById('zSlider');
+
+      const param1Label = document.getElementById('param1Label');
+      const param2Label = document.getElementById('param2Label');
+      const param1Val = document.getElementById('param1Val');
+      const param2Val = document.getElementById('param2Val');
+      const zVal = document.getElementById('zVal');
+
+      const readout1 = document.getElementById('readout1');
+      const readout2 = document.getElementById('readout2');
+      const readout3 = document.getElementById('readout3');
+      const readout4 = document.getElementById('readout4');
+
+      // Modes: 'rutherford' or 'bohr'
+      let activeMode = 'rutherford';
+      let electronAngle = 0;
+      let alphaProgress = 0;
+
+      simModeToggleBtn.addEventListener('click', () => {
+        activeMode = (activeMode === 'rutherford') ? 'bohr' : 'rutherford';
+        if (activeMode === 'rutherford') {
+          simModeToggleBtn.textContent = 'Mode: Rutherford Alpha Trajectory';
+          param1Label.textContent = 'Impact Parameter (b in fm)';
+          param2Label.textContent = 'Alpha Kinetic Energy (K in MeV)';
+          param1Slider.min = 0; param1Slider.max = 8.0; param1Slider.step = 0.2; param1Slider.value = 2.5;
+          param2Slider.min = 3.0; param2Slider.max = 9.0; param2Slider.step = 0.5; param2Slider.value = 5.5;
+        } else {
+          simModeToggleBtn.textContent = 'Mode: Bohr Quantized Stationary Orbits';
+          param1Label.textContent = 'Principal Quantum Number (n)';
+          param2Label.textContent = 'Excitation State Control';
+          param1Slider.min = 1; param1Slider.max = 5; param1Slider.step = 1; param1Slider.value = 1;
+          param2Slider.min = 1; param2Slider.max = 5; param2Slider.step = 1; param2Slider.value = 1;
+        }
+      });
+
+      function renderLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const val1 = parseFloat(param1Slider.value);
+        const val2 = parseFloat(param2Slider.value);
+        const Z = parseInt(zSlider.value);
+        zVal.textContent = `${Z}`;
+
+        if (activeMode === 'rutherford') {
+          const b_fm = val1;
+          const K_MeV = val2;
+
+          param1Val.textContent = `${b_fm.toFixed(1)} fm`;
+          param2Val.textContent = `${K_MeV.toFixed(1)} MeV`;
+
+          // Kinematic physics calculations
+          // r0 = (1 / 4pi eps0) * (2 Z e^2 / K)
+          // For K in MeV: r0(fm) = 1.44 * 2 * Z / K_MeV = 2.88 * Z / K_MeV
+          const r0_fm = (2.88 * Z) / K_MeV;
+
+          // theta = 2 * atan( (Z e^2 / 4pi eps0 K) / b ) = 2 * atan( (r0 / 2) / b )
+          let theta_deg = 180;
+          if (b_fm > 0.05) {
+            const cot_half_theta = (2 * b_fm) / r0_fm;
+            const half_theta_rad = Math.atan(1 / cot_half_theta);
+            theta_deg = (2 * half_theta_rad * 180) / Math.PI;
+          }
+
+          readout1.textContent = `${theta_deg.toFixed(1)}°`;
+          readout2.textContent = `${r0_fm.toFixed(1)} fm`;
+          readout3.textContent = 'N/A (Rutherford)';
+          readout4.textContent = 'Continuous Potential';
+
+          alphaProgress += 0.03;
+          if (alphaProgress > 2.0) alphaProgress = 0;
+
+          renderRutherfordCanvas(b_fm, r0_fm, theta_deg, alphaProgress, Z);
+        } else {
+          const n = parseInt(param1Slider.value);
+          param1Val.textContent = `n = ${n}`;
+          param2Val.textContent = n === 1 ? 'Ground State' : `${n-1}th Excited State`;
+
+          // Bohr Physics: rn = 0.529 * n^2 / Z in Angstroms
+          const rn_ang = 0.529 * (n * n) / (Z === 1 ? 1 : Z / 20); // scaling for visibility
+          const En_eV = -13.6 * ((Z === 1 ? 1 : 1) / (n * n));
+
+          readout1.textContent = `Angular L = ${n}ℏ`;
+          readout2.textContent = `v = (${(2.18/n).toFixed(2)}) × 10⁶ m/s`;
+          readout3.textContent = `${(0.529 * n * n).toFixed(2)} Å (H-atom)`;
+          readout4.textContent = `${En_eV.toFixed(2)} eV`;
+
+          electronAngle += (0.05 / (n * 0.7));
+
+          renderBohrCanvas(n, rn_ang, electronAngle, Z);
+        }
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderRutherfordCanvas(b_fm, r0_fm, theta_deg, progress, Z) {
+        const cx = 450;
+        const cy = canvas.height / 2;
+
+        // 1. Central Nucleus (+Ze)
+        ctx.fillStyle = '#f59e0b';
+        ctx.beginPath();
+        ctx.arc(cx, cy, 14, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 10px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`+${Z}`, cx, cy + 3);
+
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`Nucleus (Z = ${Z})`, cx, cy + 30);
+
+        // 2. Central Collision Axis
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 1.2;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(50, cy);
+        ctx.lineTo(canvas.width - 50, cy);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // 3. Trajectory Curve Calculation (Hyperbolic approximation)
+        const scalePx = 2.2;
+        const b_px = b_fm * 18;
+        const startX = 60;
+        const startY = cy - b_px;
+
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+
+        const numSteps = 80;
+        const pathPoints = [];
+
+        for (let i = 0; i <= numSteps; i++) {
+          const t = i / numSteps; // 0 to 1
+          const x = startX + t * 650;
+          // Coulomb repulsion deflection: y shifts upward as x approaches cx
+          const dx = x - cx;
+          const distSq = dx * dx + b_px * b_px;
+          const defl = (1200 / (distSq + 200)) * Math.sin(((theta_deg * Math.PI) / 180) / 2);
+          const y = (x < cx) ? startY - defl * 40 * t : startY - defl * 40 * (1 - t) - (x - cx) * Math.tan(((theta_deg * Math.PI) / 180) / 2) * 0.4;
+          pathPoints.push({ x, y });
+
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        // 4. Moving Alpha Particle along path
+        const curIdx = Math.min(pathPoints.length - 1, Math.floor(progress * (pathPoints.length - 1)));
+        const p = pathPoints[curIdx];
+
+        ctx.fillStyle = '#ef4444';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 5.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 9px monospace';
+        ctx.fillText('α²⁺', p.x, p.y - 8);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '11px monospace';
+        ctx.fillText(`Rutherford Kinematics: b = ${b_fm.toFixed(1)} fm ➔ Scattering Angle θ = ${theta_deg.toFixed(1)}° | Head-on collision rebounds (θ=180°)`, canvas.width / 2, canvas.height - 12);
+      }
+
+      function renderBohrCanvas(n, rn_ang, angle, Z) {
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        // 1. Central Nucleus (+e)
+        ctx.fillStyle = '#ef4444';
+        ctx.beginPath();
+        ctx.arc(cx, cy, 12, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 10px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('+Ze', cx, cy + 3);
+
+        // 2. Render Orbits n = 1 to 5 (Dashed circular tracks)
+        for (let orb = 1; orb <= 5; orb++) {
+          const r_px = 35 + orb * orb * 9;
+          ctx.strokeStyle = (orb === n) ? '#10b981' : '#334155';
+          ctx.lineWidth = (orb === n) ? 2.5 : 1.2;
+          ctx.setLineDash((orb === n) ? [] : [4, 4]);
+
+          ctx.beginPath();
+          ctx.arc(cx, cy, r_px, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.setLineDash([]);
+
+          ctx.fillStyle = (orb === n) ? '#10b981' : '#64748b';
+          ctx.font = '10px monospace';
+          ctx.fillText(`n=${orb}`, cx + r_px + 8, cy);
+        }
+
+        // 3. Orbiting Electron in Active Orbit n
+        const activeRadiusPx = 35 + n * n * 9;
+        const ex = cx + activeRadiusPx * Math.cos(angle);
+        const ey = cy + activeRadiusPx * Math.sin(angle);
+
+        ctx.fillStyle = '#38bdf8';
+        ctx.beginPath();
+        ctx.arc(ex, ey, 6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = 'bold 10px monospace';
+        ctx.fillText('e⁻', ex, ey - 9);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '11px monospace';
+        ctx.fillText(`Bohr Quantization: Orbit Radius r_n ∝ n² | Total Energy E_n = -13.6/n² eV | Angular Momentum L = nℏ`, canvas.width / 2, canvas.height - 12);
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

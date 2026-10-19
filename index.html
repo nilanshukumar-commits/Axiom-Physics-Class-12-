@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 Master Learning Portal</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      letter-spacing: -0.012em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .font-mono, font-mono {
+      font-family: 'JetBrains Mono', monospace !important;
+    }
+    .hero-glow {
+      background: radial-gradient(circle at 50% 15%, rgba(99, 102, 241, 0.18), transparent 65%);
+    }
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(51, 65, 85, 0.7);
+    }
+    .chapter-card {
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .chapter-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(99, 102, 241, 0.45);
+      box-shadow: 0 16px 32px -12px rgba(99, 102, 241, 0.2);
+    }
+    .module-chip {
+      transition: all 0.15s ease;
+    }
+    .module-chip:hover {
+      background-color: rgba(99, 102, 241, 0.25);
+      border-color: rgba(129, 140, 248, 0.6);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+  <!-- Sticky Top Header -->
+  <header class="sticky top-0 z-50 bg-slate-950/85 backdrop-blur-md border-b border-slate-800/80 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-600/30 text-lg">
+          Ψ
+        </div>
+        <div>
+          <span class="text-xl font-extrabold tracking-tight text-white">AXIOM <span class="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">PHYSICS</span></span>
+          <span class="text-[10px] font-mono bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2.5 py-0.5 rounded-full ml-2">Class 12 CBSE</span>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <span class="hidden sm:inline-flex text-xs font-mono bg-slate-900 text-slate-400 px-3 py-1.5 rounded-xl border border-slate-800">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse mr-2 mt-1"></span>
+          14 Chapters • 61 Modules Online
+        </span>
+        <a href="https://github.com/the-axiom-lab" target="_blank" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-1.5 rounded-xl text-xs font-bold transition shadow-md shadow-indigo-600/25">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-glow py-14 px-6 text-center border-b border-slate-900">
+    <div class="max-w-4xl mx-auto space-y-4">
+      <div class="inline-flex items-center space-x-2 bg-indigo-950/70 border border-indigo-700/40 px-3.5 py-1 rounded-full text-indigo-300 text-xs font-mono">
+        <span>⚡ Senior Secondary Physics Digital Repository</span>
+      </div>
+      <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight">
+        Master Physics <span class="bg-gradient-to-r from-indigo-400 via-sky-300 to-emerald-400 bg-clip-text text-transparent">Digital Portal</span>
+      </h1>
+      <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        Complete syllabus index mapping all 14 Class 12 chapters with interactive HTML5 visualizers and printable vector dossiers.
+      </p>
+
+      <!-- Live Filter & Search Bar -->
+      <div class="pt-6 max-w-xl mx-auto">
+        <div class="relative">
+          <input id="searchInput" type="text" placeholder="Search topic, chapter or module (e.g. Gauss, YDSE, Bohr, Rectifier)..." 
+                 class="w-full bg-slate-900/90 border border-slate-700/80 rounded-2xl px-5 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 shadow-xl transition" />
+          <div class="absolute right-4 top-3.5 text-slate-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+        </div>
+
+        <!-- Unit Filter Chips -->
+        <div class="flex flex-wrap justify-center gap-1.5 mt-4 text-[11px] font-mono">
+          <button onclick="filterUnit('all')" class="filter-btn active bg-indigo-600 text-white px-3 py-1 rounded-lg border border-indigo-500">All Units</button>
+          <button onclick="filterUnit('unit-1')" class="filter-btn bg-slate-900 text-slate-400 px-3 py-1 rounded-lg border border-slate-800 hover:text-white">Unit 1</button>
+          <button onclick="filterUnit('unit-2')" class="filter-btn bg-slate-900 text-slate-400 px-3 py-1 rounded-lg border border-slate-800 hover:text-white">Unit 2</button>
+          <button onclick="filterUnit('unit-3')" class="filter-btn bg-slate-900 text-slate-400 px-3 py-1 rounded-lg border border-slate-800 hover:text-white">Unit 3</button>
+          <button onclick="filterUnit('unit-4')" class="filter-btn bg-slate-900 text-slate-400 px-3 py-1 rounded-lg border border-slate-800 hover:text-white">Unit 4</button>
+          <button onclick="filterUnit('unit-5')" class="filter-btn bg-slate-900 text-slate-400 px-3 py-1 rounded-lg border border-slate-800 hover:text-white">Unit 5</button>
+          <button onclick="filterUnit('unit-6')" class="filter-btn bg-slate-900 text-slate-400 px-3 py-1 rounded-lg border border-slate-800 hover:text-white">Unit 6</button>
+          <button onclick="filterUnit('unit-7')" class="filter-btn bg-slate-900 text-slate-400 px-3 py-1 rounded-lg border border-slate-800 hover:text-white">Unit 7</button>
+          <button onclick="filterUnit('unit-8')" class="filter-btn bg-slate-900 text-slate-400 px-3 py-1 rounded-lg border border-slate-800 hover:text-white">Unit 8</button>
+          <button onclick="filterUnit('unit-9')" class="filter-btn bg-slate-900 text-slate-400 px-3 py-1 rounded-lg border border-slate-800 hover:text-white">Unit 9</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Catalog -->
+  <main class="max-w-7xl mx-auto px-6 py-10 flex-1 w-full space-y-12">
+
+    <!-- UNIT 01: ELECTROSTATICS -->
+    <section class="unit-section space-y-4" data-unit="unit-1">
+      <div class="flex items-center space-x-3">
+        <span class="text-xs font-mono bg-blue-950 text-blue-400 border border-blue-800/60 px-2.5 py-0.5 rounded-md font-bold">UNIT 01</span>
+        <h2 class="text-lg font-bold text-white tracking-wide">Electrostatics</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Chapter 1 -->
+        <div class="chapter-card glass-panel rounded-2xl p-5 flex flex-col justify-between" data-search="electric charges and fields coulomb law gauss flux dipole chapter 01 mod 1.2 mod 1.3">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-blue-400 mb-1">
+              <span>Chapter 01</span>
+              <span>Electrostatics</span>
+            </div>
+            <h3 class="text-base font-bold text-white">Electric Charges and Fields</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+              Coulomb's Law, continuous charge distributions, electric field lines, electric dipole, Gauss's Theorem and applications.
+            </p>
+
+            <!-- Micro-Modules Chips -->
+            <div class="mt-4">
+              <span class="text-[10px] font-mono uppercase text-slate-500 font-semibold block mb-2">Interactive Modules</span>
+              <div class="flex flex-wrap gap-2">
+                <a href="Chapter_01.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 1.1 Intro</a>
+                <a href="Chapter_01_Mod_1.2.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 1.2 Coulomb & Field</a>
+                <a href="Chapter_01_Mod_1.3.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 1.3 Gauss's Law</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chapter 2 -->
+        <div class="chapter-card glass-panel rounded-2xl p-5 flex flex-col justify-between" data-search="electrostatic potential and capacitance equipotential surfaces parallel plate dielectric energy chapter 02 mod 2.1 mod 2.2 mod 2.3 mod 2.4 dossier">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-blue-400 mb-1">
+              <span>Chapter 02</span>
+              <a href="Chapter_02_Master_Dossier_Printable.html" class="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1">
+                <span>Print Dossier</span> ➔
+              </a>
+            </div>
+            <h3 class="text-base font-bold text-white">Electrostatic Potential & Capacitance</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+              Electric potential, equipotential surfaces, potential energy of dipole, capacitance, dielectric polarization, series-parallel combinations.
+            </p>
+
+            <div class="mt-4">
+              <span class="text-[10px] font-mono uppercase text-slate-500 font-semibold block mb-2">Interactive Modules & Dossier</span>
+              <div class="flex flex-wrap gap-2">
+                <a href="Chapter_02_Mod_2.1.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 2.1 Potential</a>
+                <a href="Chapter_02_Mod_2.2.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 2.2 Equipotential</a>
+                <a href="Chapter_02_mod_2.3.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 2.3 Capacitors</a>
+                <a href="Chapter_02_Mod_2.4.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 2.4 Dielectrics</a>
+                <a href="Chapter_02_Master_Dossier_Printable.html" class="module-chip bg-indigo-950/70 text-indigo-300 border border-indigo-700/60 px-2.5 py-1 rounded-lg text-xs font-mono font-semibold">Master Dossier</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNIT 02: CURRENT ELECTRICITY -->
+    <section class="unit-section space-y-4" data-unit="unit-2">
+      <div class="flex items-center space-x-3">
+        <span class="text-xs font-mono bg-cyan-950 text-cyan-400 border border-cyan-800/60 px-2.5 py-0.5 rounded-md font-bold">UNIT 02</span>
+        <h2 class="text-lg font-bold text-white tracking-wide">Current Electricity</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Chapter 3 -->
+        <div class="chapter-card glass-panel rounded-2xl p-5 flex flex-col justify-between" data-search="current electricity drift velocity ohm law resistivity kirchhoff rules wheatstone bridge cells chapter 03 mod 3.1 mod 3.2 mod 3.3 mod 3.4 dossier">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-cyan-400 mb-1">
+              <span>Chapter 03</span>
+              <a href="Chapter_03_Master_Dossier_Printable.html" class="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1">
+                <span>Print Dossier</span> ➔
+              </a>
+            </div>
+            <h3 class="text-base font-bold text-white">Current Electricity</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+              Drift velocity, mobility, Ohm's law, temperature dependence of resistance, internal resistance, cells in series/parallel, Kirchhoff's laws.
+            </p>
+
+            <div class="mt-4">
+              <span class="text-[10px] font-mono uppercase text-slate-500 font-semibold block mb-2">Interactive Modules & Dossier</span>
+              <div class="flex flex-wrap gap-2">
+                <a href="Chapter_03_Mod_3.1.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 3.1 Drift Velocity</a>
+                <a href="Chapter_03_Mod_3.2.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 3.2 Resistance</a>
+                <a href="Chapter_03_Mod_3.3.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 3.3 Cells & EMF</a>
+                <a href="Chapter_03_Mod_3.4.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 3.4 Kirchhoff & Bridge</a>
+                <a href="Chapter_03_Master_Dossier_Printable.html" class="module-chip bg-indigo-950/70 text-indigo-300 border border-indigo-700/60 px-2.5 py-1 rounded-lg text-xs font-mono font-semibold">Master Dossier</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNIT 03: MAGNETIC EFFECTS OF CURRENT & MAGNETISM -->
+    <section class="unit-section space-y-4" data-unit="unit-3">
+      <div class="flex items-center space-x-3">
+        <span class="text-xs font-mono bg-teal-950 text-teal-400 border border-teal-800/60 px-2.5 py-0.5 rounded-md font-bold">UNIT 03</span>
+        <h2 class="text-lg font-bold text-white tracking-wide">Magnetic Effects of Current & Magnetism</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Chapter 4 -->
+        <div class="chapter-card glass-panel rounded-2xl p-5 flex flex-col justify-between" data-search="moving charges and magnetism biot savart ampere circuital law lorentz force solenoid galvanometer chapter 04 mod 4.1 mod 4.2 mod 4.3 mod 4.4 mod 4.5 dossier">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-teal-400 mb-1">
+              <span>Chapter 04</span>
+              <a href="Chapter_04_Master_Dossier_Printable.html" class="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1">
+                <span>Print Dossier</span> ➔
+              </a>
+            </div>
+            <h3 class="text-base font-bold text-white">Moving Charges and Magnetism</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+              Biot-Savart Law, Ampere's Circuital Law, magnetic field of solenoid, Lorentz force, torque on current loop, moving coil galvanometer.
+            </p>
+
+            <div class="mt-4">
+              <span class="text-[10px] font-mono uppercase text-slate-500 font-semibold block mb-2">Interactive Modules & Dossier</span>
+              <div class="flex flex-wrap gap-2">
+                <a href="Chapter_04_Mod_4.1.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 4.1 Biot-Savart</a>
+                <a href="Chapter_04_Mod_4.2.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 4.2 Ampere Law</a>
+                <a href="Chapter_04_Mod_4.3.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 4.3 Lorentz Force</a>
+                <a href="Chapter_04_Mod_4.4.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 4.4 Torque & Loop</a>
+                <a href="Chapter_04_Mod_4.5.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 4.5 Galvanometer</a>
+                <a href="Chapter_04_Master_Dossier_Printable.html" class="module-chip bg-indigo-950/70 text-indigo-300 border border-indigo-700/60 px-2.5 py-1 rounded-lg text-xs font-mono font-semibold">Master Dossier</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chapter 5 -->
+        <div class="chapter-card glass-panel rounded-2xl p-5 flex flex-col justify-between" data-search="magnetism and matter bar magnet earth magnetic field dia para ferro magnetic materials hysteresis chapter 05 mod 5.1 mod 5.2 mod 5.3 mod 5.4 dossier">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-teal-400 mb-1">
+              <span>Chapter 05</span>
+              <a href="Chapter_05_Master_Dossier_Printable.html" class="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1">
+                <span>Print Dossier</span> ➔
+              </a>
+            </div>
+            <h3 class="text-base font-bold text-white">Magnetism and Matter</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+              Bar magnet as equivalent solenoid, magnetic dipole moment, Earth's magnetic elements, diamagnetic, paramagnetic, and ferromagnetic substances.
+            </p>
+
+            <div class="mt-4">
+              <span class="text-[10px] font-mono uppercase text-slate-500 font-semibold block mb-2">Interactive Modules & Dossier</span>
+              <div class="flex flex-wrap gap-2">
+                <a href="Chapter_05_Mod_5.1.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 5.1 Dipole</a>
+                <a href="Chapter_05_Mod_5.2.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 5.2 Earth Magnetism</a>
+                <a href="Chapter_05_Mod_5.3.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 5.3 Dia/Para/Ferro</a>
+                <a href="Chapter_05_Mod_5.4.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 5.4 Hysteresis</a>
+                <a href="Chapter_05_Master_Dossier_Printable.html" class="module-chip bg-indigo-950/70 text-indigo-300 border border-indigo-700/60 px-2.5 py-1 rounded-lg text-xs font-mono font-semibold">Master Dossier</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNIT 04: ELECTROMAGNETIC INDUCTION & ALTERNATING CURRENTS -->
+    <section class="unit-section space-y-4" data-unit="unit-4">
+      <div class="flex items-center space-x-3">
+        <span class="text-xs font-mono bg-emerald-950 text-emerald-400 border border-emerald-800/60 px-2.5 py-0.5 rounded-md font-bold">UNIT 04</span>
+        <h2 class="text-lg font-bold text-white tracking-wide">Electromagnetic Induction & Alternating Currents</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Chapter 6 -->
+        <div class="chapter-card glass-panel rounded-2xl p-5 flex flex-col justify-between" data-search="electromagnetic induction faraday lenz law motional emf eddy currents self mutual inductance chapter 06 mod 6.1 mod 6.2 mod 6.3 dossier">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-emerald-400 mb-1">
+              <span>Chapter 06</span>
+              <a href="Chapter_06_Master_Dossier_Printable.html" class="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1">
+                <span>Print Dossier</span> ➔
+              </a>
+            </div>
+            <h3 class="text-base font-bold text-white">Electromagnetic Induction</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+              Faraday's laws, Lenz's law, motional EMF, eddy currents, self and mutual inductance, energy stored in inductor.
+            </p>
+
+            <div class="mt-4">
+              <span class="text-[10px] font-mono uppercase text-slate-500 font-semibold block mb-2">Interactive Modules & Dossier</span>
+              <div class="flex flex-wrap gap-2">
+                <a href="Chapter_06_Mod_6.1.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 6.1 Faraday & Lenz</a>
+                <a href="Chapter_06_Mod_6.2.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 6.2 Motional EMF</a>
+                <a href="Chapter_06_Mod_6.3.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 6.3 Inductance</a>
+                <a href="Chapter_06_Master_Dossier_Printable.html" class="module-chip bg-indigo-950/70 text-indigo-300 border border-indigo-700/60 px-2.5 py-1 rounded-lg text-xs font-mono font-semibold">Master Dossier</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chapter 7 -->
+        <div class="chapter-card glass-panel rounded-2xl p-5 flex flex-col justify-between" data-search="alternating current rms peak phasor lcr series resonance power factor transformer chapter 07 mod 7.1 mod 7.2 mod 7.3 mod 7.4 dossier">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-emerald-400 mb-1">
+              <span>Chapter 07</span>
+              <a href="Chapter_07_Master_Dossier_Printable.html" class="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1">
+                <span>Print Dossier</span> ➔
+              </a>
+            </div>
+            <h3 class="text-base font-bold text-white">Alternating Current</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+              Peak and RMS values, phasor diagrams, AC through R, L, C, series LCR circuit resonance, power in AC circuits, AC generator & transformer.
+            </p>
+
+            <div class="mt-4">
+              <span class="text-[10px] font-mono uppercase text-slate-500 font-semibold block mb-2">Interactive Modules & Dossier</span>
+              <div class="flex flex-wrap gap-2">
+                <a href="Chapter_07_Mod_7.1.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 7.1 RMS & Phasors</a>
+                <a href="Chapter_07_Mod_7.2.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 7.2 LCR Resonance</a>
+                <a href="Chapter_07_Mod_7.3.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 7.3 Power Factor</a>
+                <a href="Chapter_07_Mod_7.4.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 7.4 Transformer</a>
+                <a href="Chapter_07_Master_Dossier_Printable.html" class="module-chip bg-indigo-950/70 text-indigo-300 border border-indigo-700/60 px-2.5 py-1 rounded-lg text-xs font-mono font-semibold">Master Dossier</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNIT 05: ELECTROMAGNETIC WAVES -->
+    <section class="unit-section space-y-4" data-unit="unit-5">
+      <div class="flex items-center space-x-3">
+        <span class="text-xs font-mono bg-violet-950 text-violet-400 border border-violet-800/60 px-2.5 py-0.5 rounded-md font-bold">UNIT 05</span>
+        <h2 class="text-lg font-bold text-white tracking-wide">Electromagnetic Waves</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Chapter 8 -->
+        <div class="chapter-card glass-panel rounded-2xl p-5 flex flex-col justify-between" data-search="electromagnetic waves displacement current maxwell equations em spectrum radio microwaves infrared ultraviolet x rays gamma rays chapter 08 mod 8.1 mod 8.2 mod 8.3 dossier">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-violet-400 mb-1">
+              <span>Chapter 08</span>
+              <a href="Chapter_08_Master_Dossier_Printable.html" class="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1">
+                <span>Print Dossier</span> ➔
+              </a>
+            </div>
+            <h3 class="text-base font-bold text-white">Electromagnetic Waves</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+              Displacement current, Maxwell's equations, transverse nature of EM waves, electromagnetic spectrum characteristics and applications.
+            </p>
+
+            <div class="mt-4">
+              <span class="text-[10px] font-mono uppercase text-slate-500 font-semibold block mb-2">Interactive Modules & Dossier</span>
+              <div class="flex flex-wrap gap-2">
+                <a href="Chapter_08_Mod_8.1.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 8.1 Displacement</a>
+                <a href="Chapter_08_Mod_8.2.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 8.2 EM Waves</a>
+                <a href="Chapter_08_Mod_8.3.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 8.3 EM Spectrum</a>
+                <a href="Chapter_08_Master_Dossier_Printable.html" class="module-chip bg-indigo-950/70 text-indigo-300 border border-indigo-700/60 px-2.5 py-1 rounded-lg text-xs font-mono font-semibold">Master Dossier</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNIT 06: OPTICS -->
+    <section class="unit-section space-y-4" data-unit="unit-6">
+      <div class="flex items-center space-x-3">
+        <span class="text-xs font-mono bg-amber-950 text-amber-400 border border-amber-800/60 px-2.5 py-0.5 rounded-md font-bold">UNIT 06</span>
+        <h2 class="text-lg font-bold text-white tracking-wide">Optics</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Chapter 9 -->
+        <div class="chapter-card glass-panel rounded-2xl p-5 flex flex-col justify-between" data-search="ray optics optical instruments reflection refraction total internal reflection lens maker formula prism microscope telescope chapter 09 mod 9.1 mod 9.2 mod 9.3 mod 9.4 mod 9.5 dossier">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-amber-400 mb-1">
+              <span>Chapter 09</span>
+              <a href="Chapter_09_Master_Dossier_Printable.html" class="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1">
+                <span>Print Dossier</span> ➔
+              </a>
+            </div>
+            <h3 class="text-base font-bold text-white">Ray Optics and Optical Instruments</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+              Refraction at spherical surfaces, Lens Maker's formula, dispersion through prism, compound microscope, and astronomical telescope.
+            </p>
+
+            <div class="mt-4">
+              <span class="text-[10px] font-mono uppercase text-slate-500 font-semibold block mb-2">Interactive Modules & Dossier</span>
+              <div class="flex flex-wrap gap-2">
+                <a href="Chapter_09_Mod_9.1.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 9.1 Refraction & TIR</a>
+                <a href="Chapter_09_Mod_9.2.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 9.2 Lens Maker</a>
+                <a href="Chapter_09_Mod_9.3.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 9.3 Prism</a>
+                <a href="Chapter_09_Mod_9.4.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 9.4 Microscope</a>
+                <a href="Chapter_09_Mod_9.5.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 9.5 Telescope</a>
+                <a href="Chapter_09_Master_Dossier_Printable.html" class="module-chip bg-indigo-950/70 text-indigo-300 border border-indigo-700/60 px-2.5 py-1 rounded-lg text-xs font-mono font-semibold">Master Dossier</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chapter 10 -->
+        <div class="chapter-card glass-panel rounded-2xl p-5 flex flex-col justify-between" data-search="wave optics huygens principle wave front interference ydse single slit diffraction fresnel distance chapter 10 mod 10.1 mod 10.2 mod 10.3 dossier">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-amber-400 mb-1">
+              <span>Chapter 10</span>
+              <a href="Chapter_10_Master_Dossier_Printable.html" class="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1">
+                <span>Print Dossier</span> ➔
+              </a>
+            </div>
+            <h3 class="text-base font-bold text-white">Wave Optics</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+              Huygens' wave theory, proof of reflection & refraction, Young's double slit interference, single slit Fraunhofer diffraction.
+            </p>
+
+            <div class="mt-4">
+              <span class="text-[10px] font-mono uppercase text-slate-500 font-semibold block mb-2">Interactive Modules & Dossier</span>
+              <div class="flex flex-wrap gap-2">
+                <a href="Chapter_10_Mod_10.1.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 10.1 Huygens</a>
+                <a href="Chapter_10_Mod_10.2.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 10.2 YDSE</a>
+                <a href="Chapter_10_Mod_10.3.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 10.3 Diffraction</a>
+                <a href="Chapter_10_Master_Dossier_Printable.html" class="module-chip bg-indigo-950/70 text-indigo-300 border border-indigo-700/60 px-2.5 py-1 rounded-lg text-xs font-mono font-semibold">Master Dossier</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNIT 07: DUAL NATURE OF RADIATION AND MATTER -->
+    <section class="unit-section space-y-4" data-unit="unit-7">
+      <div class="flex items-center space-x-3">
+        <span class="text-xs font-mono bg-rose-950 text-rose-400 border border-rose-800/60 px-2.5 py-0.5 rounded-md font-bold">UNIT 07</span>
+        <h2 class="text-lg font-bold text-white tracking-wide">Dual Nature of Radiation & Matter</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Chapter 11 -->
+        <div class="chapter-card glass-panel rounded-2xl p-5 flex flex-col justify-between" data-search="dual nature photoelectric effect work function stopping potential millikan einstein equation de broglie matter waves chapter 11 mod 11.1 mod 11.2 mod 11.3 dossier">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-rose-400 mb-1">
+              <span>Chapter 11</span>
+              <a href="Chapter_11_Master_Dossier_Printable.html" class="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1">
+                <span>Print Dossier</span> ➔
+              </a>
+            </div>
+            <h3 class="text-base font-bold text-white">Dual Nature of Radiation and Matter</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+              Photoelectric effect experimental observations, Einstein's photoelectric equation, Millikan's slope ($h/e$), de Broglie hypothesis for electrons.
+            </p>
+
+            <div class="mt-4">
+              <span class="text-[10px] font-mono uppercase text-slate-500 font-semibold block mb-2">Interactive Modules & Dossier</span>
+              <div class="flex flex-wrap gap-2">
+                <a href="Chapter_11_Mod_11.1.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 11.1 Photoelectric</a>
+                <a href="Chapter_11_Mod_11.2.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 11.2 Einstein Eq</a>
+                <a href="Chapter_11_Mod_11.3.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 11.3 Matter Waves</a>
+                <a href="Chapter_11_Master_Dossier_Printable.html" class="module-chip bg-indigo-950/70 text-indigo-300 border border-indigo-700/60 px-2.5 py-1 rounded-lg text-xs font-mono font-semibold">Master Dossier</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNIT 08: ATOMS AND NUCLEI -->
+    <section class="unit-section space-y-4" data-unit="unit-8">
+      <div class="flex items-center space-x-3">
+        <span class="text-xs font-mono bg-fuchsia-950 text-fuchsia-400 border border-fuchsia-800/60 px-2.5 py-0.5 rounded-md font-bold">UNIT 08</span>
+        <h2 class="text-lg font-bold text-white tracking-wide">Atoms and Nuclei</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Chapter 12 -->
+        <div class="chapter-card glass-panel rounded-2xl p-5 flex flex-col justify-between" data-search="atoms rutherford alpha scattering closest approach bohr postulates radius energy hydrogen spectrum rydberg formula chapter 12 mod 12.1 mod 12.2 dossier">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-fuchsia-400 mb-1">
+              <span>Chapter 12</span>
+              <a href="Chapter_12_Master_Dossier_Printable.html" class="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1">
+                <span>Print Dossier</span> ➔
+              </a>
+            </div>
+            <h3 class="text-base font-bold text-white">Atoms</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+              Alpha scattering experiment, distance of closest approach, Bohr's postulates, radius and energy derivations, hydrogen emission series.
+            </p>
+
+            <div class="mt-4">
+              <span class="text-[10px] font-mono uppercase text-slate-500 font-semibold block mb-2">Interactive Modules & Dossier</span>
+              <div class="flex flex-wrap gap-2">
+                <a href="Chapter_12_Mod_12.1.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 12.1 Scattering & Bohr</a>
+                <a href="Chapter_12_Mod_12.2.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 12.2 Spectrum & de Broglie</a>
+                <a href="Chapter_12_Master_Dossier_Printable.html" class="module-chip bg-indigo-950/70 text-indigo-300 border border-indigo-700/60 px-2.5 py-1 rounded-lg text-xs font-mono font-semibold">Master Dossier</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chapter 13 -->
+        <div class="chapter-card glass-panel rounded-2xl p-5 flex flex-col justify-between" data-search="nuclei nuclear size density mass defect binding energy curve nuclear force fission fusion q value chapter 13 mod 13.1 mod 13.2 dossier">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-fuchsia-400 mb-1">
+              <span>Chapter 13</span>
+              <a href="Chapter_13_Master_Dossier_Printable.html" class="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1">
+                <span>Print Dossier</span> ➔
+              </a>
+            </div>
+            <h3 class="text-base font-bold text-white">Nuclei</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+              Nuclear radius relation ($R = R_0 A^{1/3}$), invariant density proof, mass defect, binding energy curve, nuclear forces, fission & fusion.
+            </p>
+
+            <div class="mt-4">
+              <span class="text-[10px] font-mono uppercase text-slate-500 font-semibold block mb-2">Interactive Modules & Dossier</span>
+              <div class="flex flex-wrap gap-2">
+                <a href="Chapter_13_Mod_13.1.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 13.1 Binding Energy</a>
+                <a href="Chapter_13_Mod_13.2.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 13.2 Fission & Fusion</a>
+                <a href="Chapter_13_Master_Dossier_Printable.html" class="module-chip bg-indigo-950/70 text-indigo-300 border border-indigo-700/60 px-2.5 py-1 rounded-lg text-xs font-mono font-semibold">Master Dossier</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNIT 09: ELECTRONIC DEVICES -->
+    <section class="unit-section space-y-4" data-unit="unit-9">
+      <div class="flex items-center space-x-3">
+        <span class="text-xs font-mono bg-indigo-950 text-indigo-400 border border-indigo-800/60 px-2.5 py-0.5 rounded-md font-bold">UNIT 09</span>
+        <h2 class="text-lg font-bold text-white tracking-wide">Electronic Devices</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Chapter 14 -->
+        <div class="chapter-card glass-panel rounded-2xl p-5 flex flex-col justify-between" data-search="semiconductor electronics intrinsic extrinsic energy bands pn junction diode rectifier half wave full wave optoelectronic devices led solar cell photodiode chapter 14 mod 14.1 mod 14.2 dossier">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-indigo-400 mb-1">
+              <span>Chapter 14</span>
+              <a href="Chapter_14_Master_Dossier_Printable.html" class="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1">
+                <span>Print Dossier</span> ➔
+              </a>
+            </div>
+            <h3 class="text-base font-bold text-white">Semiconductor Electronics</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+              Energy bands in solids, intrinsic and extrinsic semiconductors, p-n junction diode I-V characteristics, half & full-wave rectifiers, optoelectronics.
+            </p>
+
+            <div class="mt-4">
+              <span class="text-[10px] font-mono uppercase text-slate-500 font-semibold block mb-2">Interactive Modules & Dossier</span>
+              <div class="flex flex-wrap gap-2">
+                <a href="Chapter_14_Mod_14.1.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 14.1 p-n Diode & Bands</a>
+                <a href="Chapter_14_Mod_14.2.html" class="module-chip bg-slate-900/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-lg text-xs font-mono">Mod 14.2 Rectifier & Opto</a>
+                <a href="Chapter_14_Master_Dossier_Printable.html" class="module-chip bg-indigo-950/70 text-indigo-300 border border-indigo-700/60 px-2.5 py-1 rounded-lg text-xs font-mono font-semibold">Master Dossier</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-900 py-8 px-6 text-center text-xs text-slate-500 font-mono mt-auto">
+    <p>AXIOM Physics Laboratory • Class 12 Senior Secondary Physics Series</p>
+    <p class="mt-1">Crafted for CBSE Competency Excellence • Hosted on GitHub Pages</p>
+  </footer>
+
+  <!-- Search & Filter Logic -->
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const cards = document.querySelectorAll('.chapter-card');
+    const unitSections = document.querySelectorAll('.unit-section');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    // Real-time keyword search
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      cards.forEach(card => {
+        const searchData = card.getAttribute('data-search').toLowerCase();
+        const cardText = card.innerText.toLowerCase();
+        if (searchData.includes(query) || cardText.includes(query)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Hide unit sections that have no visible cards
+      unitSections.forEach(section => {
+        const visibleCards = section.querySelectorAll('.chapter-card[style="display: flex;"]');
+        if (visibleCards.length === 0 && query !== '') {
+          section.style.display = 'none';
+        } else {
+          section.style.display = 'block';
+        }
+      });
+    });
+
+    // Tag filter
+    function filterUnit(unit) {
+      filterBtns.forEach(btn => {
+        btn.classList.remove('active', 'bg-indigo-600', 'text-white', 'border-indigo-500');
+        btn.classList.add('bg-slate-900', 'text-slate-400', 'border-slate-800');
+      });
+
+      event.target.classList.add('active', 'bg-indigo-600', 'text-white', 'border-indigo-500');
+      event.target.classList.remove('bg-slate-900', 'text-slate-400', 'border-slate-800');
+
+      unitSections.forEach(section => {
+        if (unit === 'all' || section.getAttribute('data-unit') === unit) {
+          section.style.display = 'block';
+        } else {
+          section.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

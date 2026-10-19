@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Power Factor, Wattless Current & Transformer</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 7.3</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 04: Alternating Current • Chapter 07</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Power Factor, Wattless Current & The Transformer</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Real vs apparent power, power factor correction, quadrature wattless current, mutual flux induction, and laminated core losses.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek fizzy cold drink ke glass ko: glass mein jo liquid hai woh asal drink hai jise aap peete hain (<strong class="text-white">Active / Real Power: $P = V_{\text{rms}}I_{\text{rms}}\cos\phi$</strong>), lekin upar jo jhaag (foam) banta hai woh glass ki jagah toh gher leta hai par pyaas nahi bujhata (<strong class="text-white">Wattless / Reactive Current: $I_{\text{rms}}\sin\phi$</strong>). Poora glass foam samet <strong class="text-white">Apparent Power ($V_{\text{rms}}I_{\text{rms}}$)</strong> hai. Agar jhaag zyada ho, toh electricity company ke motey taar bekar mein current carry karte hain bina koi useful work kiye! Aur jab is power ko hazaron kilometer door bhejna hota hai, toh raste mein taaron ki garmi ($I^2R$) se bachne ke liye hum <strong class="text-white">Transformer</strong> use karte hain: voltage ko hazaron guna badha kar current ko lagbhag zero kar diya jaata hai, taaki energy bina loss ke safely transport ho sake!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. AC Power & Wattless Current</h3>
+          <p class="text-sm text-slate-400 mb-2">Average power dissipated over a complete cycle:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$P_{\text{avg}} = V_{\text{rms}} I_{\text{rms}} \cos\phi = \text{Apparent Power} \times \text{Power Factor}$$
+            $$\text{Power Factor } \cos\phi = \frac{R}{Z} = \frac{\text{True Power}}{\text{Apparent Power}}$$
+            $$I_{\text{wattless}} = I_{\text{rms}} \sin\phi \quad (\text{Consumes zero average power})$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Pure $L$ or $C$: $\phi = 90^\circ \implies \cos 90^\circ = 0 \implies P_{\text{avg}} = 0$. Resonance / Pure $R$: $\phi = 0^\circ \implies \cos 0^\circ = 1$ (Maximum power).</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Ideal Transformer Equations</h3>
+          <p class="text-sm text-slate-400 mb-2">Mutual flux linkage ratio with 100% efficiency:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\frac{V_s}{V_p} = \frac{N_s}{N_p} = \frac{I_p}{I_s} = k \quad (\text{Transformation Ratio})$$
+            $$\eta = \frac{P_{\text{output}}}{P_{\text{input}}} \times 100\% = \frac{V_s I_s}{V_p I_p} \times 100\%$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Step-up Transformer: $k > 1$ ($N_s > N_p, V_s > V_p, I_s < I_p$). Step-down Transformer: $k < 1$ ($N_s < N_p, V_s < V_p, I_s > I_p$).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Live Dual-Coil Transformer & Power Bench) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Mutual Induction Transformer Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="typeToggleBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Mode: Step-Up Transformer (k > 1)
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="transformerCanvas" width="800" height="390" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Primary Voltage ($V_p$)</span>
+            <span id="vpVal" class="text-cyan-400 font-mono font-bold">120 V</span>
+          </div>
+          <input id="vpSlider" type="range" min="50" max="240" step="10" value="120" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Turns Ratio ($N_s / N_p$)</span>
+            <span id="ratioVal" class="text-amber-400 font-mono font-bold">2.50 (Step-Up)</span>
+          </div>
+          <input id="ratioSlider" type="range" min="0.2" max="4.0" step="0.1" value="2.5" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Secondary Load ($R_L$)</span>
+            <span id="loadVal" class="text-emerald-400 font-mono font-bold">50.0 Ω</span>
+          </div>
+          <input id="loadSlider" type="range" min="10" max="200" step="5" value="50" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Secondary Output ($V_s$):</span>
+          <div id="vsOut" class="text-cyan-400 font-bold text-sm mt-0.5">300.0 V</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Secondary Current ($I_s$):</span>
+          <div id="isOut" class="text-amber-400 font-bold text-sm mt-0.5">6.00 A</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Primary Current ($I_p$):</span>
+          <div id="ipOut" class="text-rose-400 font-bold text-sm mt-0.5">15.00 A</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Transfer Power ($P_{\text{in}} \approx P_{\text{out}}$):</span>
+          <div id="powerOut" class="text-emerald-400 font-bold text-sm mt-0.5">1800 W (Ideal)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Comprehensive Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Power in AC Circuit -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation A</span>
+          <h4 class="text-white font-semibold text-base mt-1">Average Power in AC Circuit & The Power Factor</h4>
+        </div>
+        <p>1. Let applied instantaneous alternating voltage and resulting current with phase difference $\phi$ be:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$v = V_0 \sin\omega t, \quad i = I_0 \sin(\omega t - \phi)$$
+        </div>
+        <p>2. Instantaneous power delivered to the circuit: $p = v \times i$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$p = (V_0\sin\omega t) \times [I_0\sin(\omega t - \phi)] = V_0 I_0 \sin\omega t [\sin\omega t\cos\phi - \cos\omega t\sin\phi]$$
+          $$p = V_0 I_0 \sin^2\omega t\cos\phi - V_0 I_0 \sin\omega t\cos\omega t\sin\phi$$
+        </div>
+        <p>3. Using trigonometric identities $\sin^2\omega t = \frac{1 - \cos 2\omega t}{2}$ and $\sin\omega t\cos\omega t = \frac{\sin 2\omega t}{2}$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$p = \frac{V_0 I_0}{2} (1 - \cos 2\omega t)\cos\phi - \frac{V_0 I_0}{2} \sin 2\omega t\sin\phi$$
+        </div>
+        <p>4. Average power over a complete cycle of time period $T$ ($P_{\text{avg}} = \frac{1}{T}\int_0^T p \, dt$):</p>
+        <p class="text-slate-400">• The time averages over a full cycle are: $\langle 1 \rangle = 1$, $\langle \cos 2\omega t \rangle = 0$, and $\langle \sin 2\omega t \rangle = 0$.</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$P_{\text{avg}} = \frac{V_0 I_0}{2}\cos\phi - 0 = \left(\frac{V_0}{\sqrt{2}}\right)\left(\frac{I_0}{\sqrt{2}}\right)\cos\phi$$
+        </div>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$P_{\text{avg}} = V_{\text{rms}} I_{\text{rms}} \cos\phi \quad \text{where } \cos\phi = \frac{R}{Z}$$
+        </div>
+      </div>
+
+      <!-- Derivation 2: Wattless Current Vector Resolution -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation B</span>
+          <h4 class="text-white font-semibold text-base mt-1">Resolution of Current: Active Component vs Wattless Component</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Wattless Current Phasor Resolution -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 210" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-vrms" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f59e0b"/>
+              </marker>
+              <marker id="arr-irms" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-active" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+              </marker>
+              <marker id="arr-wattless" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#ef4444"/>
+              </marker>
+            </defs>
+
+            <!-- Coordinate Axes -->
+            <line x1="80" y1="130" x2="570" y2="130" stroke="#475569" stroke-width="1.2" />
+            <line x1="140" y1="190" x2="140" y2="40" stroke="#475569" stroke-width="1.2" />
+            <circle cx="140" cy="130" r="3.5" fill="#ffffff" />
+            <text x="125" y="145" fill="#cbd5e1" font-size="11" font-family="monospace">O</text>
+
+            <!-- Voltage Reference Vector V_rms along Horizontal Axis -->
+            <line x1="140" y1="130" x2="440" y2="130" stroke="#f59e0b" stroke-width="3.5" marker-end="url(#arr-vrms)" />
+            <text x="448" y="134" fill="#f59e0b" font-size="12" font-weight="bold" font-family="monospace">V_rms (Voltage Reference)</text>
+
+            <!-- Total Current Vector I_rms lagging by angle phi -->
+            <line x1="140" y1="130" x2="350" y2="195" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-irms)" />
+            <text x="360" y="202" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">I_rms</text>
+
+            <!-- Angle phi Arc -->
+            <path d="M 210 130 A 70 70 0 0 1 202 152" fill="none" stroke="#f59e0b" stroke-width="1.8" />
+            <text x="214" y="148" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">φ</text>
+
+            <!-- Component 1: Active In-Phase Component I_rms cos(phi) -->
+            <line x1="140" y1="130" x2="350" y2="130" stroke="#10b981" stroke-width="3" marker-end="url(#arr-active)" />
+            <text x="210" y="118" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">I_rms cosφ (Active / In-Phase)</text>
+
+            <!-- Component 2: Wattless Quadrature Component I_rms sin(phi) -->
+            <line x1="350" y1="130" x2="350" y2="195" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="3,3" />
+            <line x1="140" y1="130" x2="140" y2="195" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arr-wattless)" />
+            <text x="20" y="175" fill="#ef4444" font-size="11" font-weight="bold" font-family="monospace">I_rms sinφ (Wattless)</text>
+            <text x="360" y="165" fill="#ef4444" font-size="10" font-family="monospace">Angle with V_rms = 90°</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 7.3A: Resolution of current phasor $\vec{I}_{\text{rms}}$ into active power component ($I_{\text{rms}}\cos\phi$) and wattless component ($I_{\text{rms}}\sin\phi$).</p>
+        </div>
+
+        <p>1. In an AC circuit where current lags voltage by phase angle $\phi$, resolve $\vec{I}_{\text{rms}}$ into two orthogonal components:</p>
+        <p class="text-slate-400">• <strong class="text-white">Active Component:</strong> $I_{\text{active}} = I_{\text{rms}}\cos\phi$ along $\vec{V}_{\text{rms}}$ (in-phase, phase difference $= 0$).</p>
+        <div class="text-center py-0.5 font-mono text-emerald-400">
+          $$P_1 = V_{\text{rms}} (I_{\text{rms}}\cos\phi) \cos 0^\circ = V_{\text{rms}} I_{\text{rms}}\cos\phi \quad (\text{Real Consumed Power})$$
+        </div>
+        <p class="text-slate-400">• <strong class="text-white">Wattless Component:</strong> $I_{\text{wattless}} = I_{\text{rms}}\sin\phi$ perpendicular to $\vec{V}_{\text{rms}}$ (in quadrature, phase difference $= 90^\circ$).</p>
+        <div class="text-center py-0.5 font-mono text-rose-400">
+          $$P_2 = V_{\text{rms}} (I_{\text{rms}}\sin\phi) \cos 90^\circ = 0 \quad (\text{Wattless Power})$$
+        </div>
+        <p>2. <em>Definition:</em> The component of AC current which consumes zero average power over a complete cycle ($P_2 = 0$) is known as the <strong class="text-white">Wattless Current</strong> ($I_{\text{rms}}\sin\phi$).</p>
+      </div>
+
+      <!-- Derivation 3: Transformer Principle & Transformation Ratio -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation C</span>
+          <h4 class="text-white font-semibold text-base mt-1">Transformer Principle, Formulation of Turns Ratio & Energy Losses</h4>
+        </div>
+
+        <p>1. <strong class="text-white">Principle:</strong> Works on the principle of <strong>Mutual Induction</strong>—whenever current in the primary coil changes, magnetic flux linked with the secondary coil changes, inducing an alternating EMF across it.</p>
+        <p>2. Let an alternating voltage $V_p$ be applied across the primary coil of $N_p$ turns. Let the common magnetic flux linked per turn of the soft iron core be $\Phi$.</p>
+        <p>3. Induced EMF in the primary coil (by Faraday-Lenz law):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\mathcal{E}_p = -N_p \frac{d\Phi}{dt}$$
+        </div>
+        <p>4. The same mutual flux $\Phi$ threads each of the $N_s$ turns of the secondary coil. Induced EMF in the secondary coil:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\mathcal{E}_s = -N_s \frac{d\Phi}{dt}$$
+        </div>
+        <p>5. Assuming ideal conditions (negligible winding resistance and zero flux leakage, so $\mathcal{E}_p = V_p$ and $\mathcal{E}_s = V_s$):</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\frac{V_s}{V_p} = \frac{N_s}{N_p} = k \quad (\text{Transformation Ratio})$$
+        </div>
+        <p>6. For an ideal transformer with zero power loss ($P_{\text{input}} = P_{\text{output}} \implies V_p I_p = V_s I_s$):</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$\frac{V_s}{V_p} = \frac{N_s}{N_p} = \frac{I_p}{I_s} = k$$
+        </div>
+
+        <!-- Energy Losses in Real Transformers -->
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg mt-3 space-y-1.5">
+          <p class="text-indigo-300 font-semibold text-xs">Four Major Energy Losses in Practical Transformers & Their Minimization:</p>
+          <p>• <strong>1. Copper Loss ($I^2R$):</strong> Joule heat in copper windings. <em>Remedy:</em> Use thick copper wire with low resistance for high-current coils.</p>
+          <p>• <strong>2. Eddy Current Loss:</strong> Circulating induced currents in the solid iron core. <em>Remedy:</em> Use a <strong class="text-white">laminated core</strong> composed of thin sheets insulated by varnish.</p>
+          <p>• <strong>3. Hysteresis Loss:</strong> Energy wasted in repeated cyclic magnetization and demagnetization of the core. <em>Remedy:</em> Use <strong class="text-white">soft iron</strong> which has a very narrow hysteresis loop.</p>
+          <p>• <strong>4. Flux Leakage:</strong> All flux produced by primary does not thread secondary. <em>Remedy:</em> Wind secondary directly over primary in a coaxial arrangement.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Connecting a Transformer to a DC Battery Source</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* What happens if a $12\text{ V}$ DC battery is connected across the primary of a step-up transformer?
+            <br>• DC produces a constant, steady magnetic flux ($d\Phi/dt = 0$).
+            <br>• Secondary voltage is strictly <strong class="text-white">ZERO ($V_s = 0$)</strong> because induction requires changing flux!
+            <br>• In primary, back-EMF is zero ($X_L = 0$); only tiny ohmic resistance $R_p$ opposes current. A massive direct current flows, and the <strong class="text-white">primary coil burns out immediately</strong>!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: High Voltage Long-Distance Transmission Logic</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Why transmit power at $400{,}000\text{ V}$ instead of $220\text{ V}$?*
+            <br>Power to be transmitted is constant: $P = V I \implies I = P/V$.
+            <br>Heat loss in transmission cables of resistance $R_c$:
+            $$P_{\text{loss}} = I^2 R_c = \left(\frac{P}{V}\right)^2 R_c = \frac{P^2 R_c}{\mathbf{V^2}} \propto \frac{1}{V^2}$$
+            Stepping up voltage by a factor of $100$ reduces line power losses by a factor of <strong class="text-white">$10{,}000$ ($100^2$)</strong>!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Conservation of Energy in Step-Up Transformers</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Does a step-up transformer violate Conservation of Energy because $V_s > V_p$?
+            <br><strong class="text-white">NO!</strong> When voltage increases ($V_s > V_p$), the current decreases in the exact same proportion ($I_s < I_p$).
+            Power output can never exceed power input: $P_s \le P_p$. Voltage is stepped up at the expense of current!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Frequency Invariance through a Transformer</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            A transformer changes voltage and current, but the <strong class="text-white">frequency of the AC supply remains strictly UNCHANGED ($f_s = f_p$)</strong>. If input is $50\text{ Hz}$, output is always $50\text{ Hz}$.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A transformer has 200 turns in the primary coil and 800 turns in the secondary coil. The primary is connected to an AC mains supply of $220\text{ V}, 50\text{ Hz}$. If a load of resistance $440\text{ }\Omega$ is connected across the secondary, find (i) secondary voltage, (ii) secondary current, (iii) primary current, and (iv) input power, assuming an ideal transformer.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Given: $N_p = 200$, $N_s = 800$, $V_p = 220\text{ V}$, $R_L = 440\text{ }\Omega$.</p>
+          <p>Transformation ratio $k = \frac{N_s}{N_p} = \frac{800}{200} = 4$ (Step-Up).</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$V_s = k \times V_p = 4 \times 220\text{ V} = 880\text{ Volts}$$
+          </div>
+          <p>2. Secondary current ($I_s$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$I_s = \frac{V_s}{R_L} = \frac{880\text{ V}}{440\text{ }\Omega} = 2.0\text{ Amperes}$$
+          </div>
+          <p>3. Primary current ($I_p$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\frac{I_p}{I_s} = \frac{N_s}{N_p} = 4 \implies I_p = 4 \times I_s = 4 \times 2.0 = 8.0\text{ Amperes}$$
+          </div>
+          <p>4. Input power:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$P_{\text{in}} = V_p I_p = 220 \times 8.0 = 1760\text{ Watts} \quad (P_{\text{out}} = V_s I_s = 880 \times 2.0 = 1760\text{ W})$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: In a series circuit, an alternating voltage $v = 200\sqrt{2}\sin(100t)\text{ V}$ produces a current $i = 5\sqrt{2}\sin(100t - \frac{\pi}{3})\text{ A}$. Calculate (i) peak and RMS voltage and current, (ii) power factor of the circuit, (iii) average active power consumed, and (iv) magnitude of the wattless current.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. From given equations: $V_0 = 200\sqrt{2}\text{ V} \implies V_{\text{rms}} = 200\text{ V}$.</p>
+          <p>$I_0 = 5\sqrt{2}\text{ A} \implies I_{\text{rms}} = 5\text{ A}$. Phase angle $\phi = \frac{\pi}{3} = 60^\circ$.</p>
+          <p>2. Power factor:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\cos\phi = \cos 60^\circ = 0.50 \quad (\text{Lagging})$$
+          </div>
+          <p>3. Average real power consumed:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$P_{\text{avg}} = V_{\text{rms}} I_{\text{rms}} \cos\phi = 200 \times 5 \times 0.50 = 500\text{ Watts}$$
+          </div>
+          <p>4. Wattless current component:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$I_{\text{wattless}} = I_{\text{rms}} \sin\phi = 5 \times \sin 60^\circ = 5 \times \frac{\sqrt{3}}{2} \approx 4.33\text{ Amperes}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Power Factor</p>
+          <p class="text-xs font-bold text-white mt-1">$\cos\phi = \frac{R}{Z}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Wattless Current</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$I_w = I_{\text{rms}}\sin\phi$ ($P=0$)</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Turns Ratio</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$k = \frac{V_s}{V_p} = \frac{N_s}{N_p} = \frac{I_p}{I_s}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Laminated Core</p>
+          <p class="text-xs font-bold text-rose-400 mt-1">Cuts Eddy Current Loss</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Mutual Induction Transformer Simulation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('transformerCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const typeToggleBtn = document.getElementById('typeToggleBtn');
+      const vpSlider = document.getElementById('vpSlider');
+      const ratioSlider = document.getElementById('ratioSlider');
+      const loadSlider = document.getElementById('loadSlider');
+
+      const vpVal = document.getElementById('vpVal');
+      const ratioVal = document.getElementById('ratioVal');
+      const loadVal = document.getElementById('loadVal');
+
+      const vsOut = document.getElementById('vsOut');
+      const isOut = document.getElementById('isOut');
+      const ipOut = document.getElementById('ipOut');
+      const powerOut = document.getElementById('powerOut');
+
+      let isStepUp = true;
+      let phaseAngle = 0;
+
+      typeToggleBtn.addEventListener('click', () => {
+        isStepUp = !isStepUp;
+        if (isStepUp) {
+          ratioSlider.value = 2.5;
+          typeToggleBtn.textContent = 'Mode: Step-Up Transformer (k > 1)';
+        } else {
+          ratioSlider.value = 0.4;
+          typeToggleBtn.textContent = 'Mode: Step-Down Transformer (k < 1)';
+        }
+      });
+
+      function renderLoop() {
+        phaseAngle += 0.05;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const Vp = parseFloat(vpSlider.value);
+        const k = parseFloat(ratioSlider.value);
+        const R_load = parseFloat(loadSlider.value);
+
+        vpVal.textContent = `${Vp.toFixed(0)} V`;
+        ratioVal.textContent = `${k.toFixed(2)} (${k >= 1 ? 'Step-Up' : 'Step-Down'})`;
+        loadVal.textContent = `${R_load.toFixed(1)} Ω`;
+
+        // Physics Calculation
+        const Vs = Vp * k;
+        const Is = Vs / R_load;
+        const Ip = Is * k; // Ideal transformer: Vp * Ip = Vs * Is => Ip = Is * (Vs / Vp) = Is * k
+        const power = Vs * Is;
+
+        vsOut.textContent = `${Vs.toFixed(1)} V`;
+        isOut.textContent = `${Is.toFixed(2)} A`;
+        ipOut.textContent = `${Ip.toFixed(2)} A`;
+        powerOut.textContent = `${power.toFixed(0)} W (Ideal)`;
+
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        renderTransformerCore(cx, cy, k, phaseAngle, Vp, Vs, Ip, Is, R_load);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderTransformerCore(cx, cy, k, phase, Vp, Vs, Ip, Is, R_load) {
+        // Core dimensions
+        const outerW = 280, outerH = 220;
+        const coreThick = 44;
+        const innerW = outerW - 2 * coreThick;
+        const innerH = outerH - 2 * coreThick;
+
+        const leftOuterX = cx - outerW / 2;
+        const topOuterY = cy - outerH / 2 - 10;
+
+        // 1. Laminated Soft Iron Core (Square toroidal frame)
+        ctx.fillStyle = '#1e293b';
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 3;
+
+        // Outer Rectangle
+        ctx.fillRect(leftOuterX, topOuterY, outerW, outerH);
+        ctx.strokeRect(leftOuterX, topOuterY, outerW, outerH);
+
+        // Inner Cutout
+        ctx.fillStyle = '#020617';
+        ctx.fillRect(leftOuterX + coreThick, topOuterY + coreThick, innerW, innerH);
+        ctx.strokeRect(leftOuterX + coreThick, topOuterY + coreThick, innerW, innerH);
+
+        // Core laminations lines
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 1;
+        for (let y = topOuterY + 8; y < topOuterY + outerH; y += 12) {
+          ctx.beginPath();
+          ctx.moveTo(leftOuterX, y); ctx.lineTo(leftOuterX + coreThick, y);
+          ctx.moveTo(leftOuterX + outerW - coreThick, y); ctx.lineTo(leftOuterX + outerW, y);
+          ctx.stroke();
+        }
+
+        // 2. Circulating Mutual Magnetic Flux (Φ) inside Core
+        const fluxAlpha = Math.abs(Math.sin(phase));
+        ctx.strokeStyle = `rgba(56, 189, 248, ${0.25 + 0.6 * fluxAlpha})`;
+        ctx.lineWidth = 2.5;
+        ctx.setLineDash([8, 6]);
+
+        const fluxMidX = leftOuterX + coreThick / 2;
+        const fluxMidRightX = leftOuterX + outerW - coreThick / 2;
+        const fluxMidTopY = topOuterY + coreThick / 2;
+        const fluxMidBotY = topOuterY + outerH - coreThick / 2;
+
+        ctx.beginPath();
+        ctx.moveTo(fluxMidX, fluxMidTopY);
+        ctx.lineTo(fluxMidRightX, fluxMidTopY);
+        ctx.lineTo(fluxMidRightX, fluxMidBotY);
+        ctx.lineTo(fluxMidX, fluxMidBotY);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = 'bold 10px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Mutual Magnetic Flux (Φ)', cx, topOuterY + coreThick / 2 + 3);
+
+        // 3. Primary Winding (Left Limb)
+        const primaryTurns = 8;
+        const pStepY = innerH / primaryTurns;
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 4;
+        for (let i = 0; i < primaryTurns; i++) {
+          const wy = topOuterY + coreThick + i * pStepY + 4;
+          ctx.beginPath();
+          ctx.moveTo(leftOuterX - 8, wy);
+          ctx.lineTo(leftOuterX + coreThick + 8, wy + 8);
+          ctx.stroke();
+        }
+
+        // Primary Circuit Lines & AC Source
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(leftOuterX - 8, topOuterY + coreThick + 4);
+        ctx.lineTo(leftOuterX - 70, topOuterY + coreThick + 4);
+        ctx.lineTo(leftOuterX - 70, cy - 25);
+        ctx.moveTo(leftOuterX - 8, topOuterY + coreThick + (primaryTurns - 1) * pStepY + 4);
+        ctx.lineTo(leftOuterX - 70, topOuterY + coreThick + (primaryTurns - 1) * pStepY + 4);
+        ctx.lineTo(leftOuterX - 70, cy + 25);
+        ctx.stroke();
+
+        // Primary AC Source
+        ctx.fillStyle = '#0f172a';
+        ctx.strokeStyle = '#f59e0b';
+        ctx.beginPath();
+        ctx.arc(leftOuterX - 70, cy, 18, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = 'bold 10px monospace';
+        ctx.fillText('~ Vp', leftOuterX - 70, cy - 4);
+        ctx.fillText(`${Vp}V`, leftOuterX - 70, cy + 9);
+
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`PRIMARY: Np`, leftOuterX - 70, topOuterY - 5);
+        ctx.fillText(`Ip = ${Ip.toFixed(1)}A`, leftOuterX - 70, topOuterY + 12);
+
+        // 4. Secondary Winding (Right Limb)
+        // Scaled turns based on k
+        const secTurns = Math.max(3, Math.min(18, Math.round(primaryTurns * k)));
+        const sStepY = innerH / secTurns;
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = k > 1 ? 2.5 : 5.5; // Thinner wire if step-up (lower current), thicker wire if step-down!
+        for (let i = 0; i < secTurns; i++) {
+          const wy = topOuterY + coreThick + i * sStepY + 3;
+          ctx.beginPath();
+          ctx.moveTo(leftOuterX + outerW - coreThick - 8, wy);
+          ctx.lineTo(leftOuterX + outerW + 8, wy + 6);
+          ctx.stroke();
+        }
+
+        // Secondary Circuit Lines & Load Resistor
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(leftOuterX + outerW + 8, topOuterY + coreThick + 3);
+        ctx.lineTo(leftOuterX + outerW + 70, topOuterY + coreThick + 3);
+        ctx.lineTo(leftOuterX + outerW + 70, cy - 35);
+        ctx.moveTo(leftOuterX + outerW + 8, topOuterY + coreThick + (secTurns - 1) * sStepY + 3);
+        ctx.lineTo(leftOuterX + outerW + 70, topOuterY + coreThick + (secTurns - 1) * sStepY + 3);
+        ctx.lineTo(leftOuterX + outerW + 70, cy + 35);
+        ctx.stroke();
+
+        // Load Resistor ZigZag
+        renderZigZagVertical(leftOuterX + outerW + 70, cy - 35, 70, `R_L=${R_load}Ω`, '#10b981');
+
+        ctx.font = 'bold 11px monospace';
+        ctx.fillStyle = '#10b981';
+        ctx.fillText(`SECONDARY: Ns`, leftOuterX + outerW + 70, topOuterY - 5);
+        ctx.fillText(`Vs = ${Vs.toFixed(0)}V`, leftOuterX + outerW + 70, topOuterY + 12);
+        ctx.fillText(`Is = ${Is.toFixed(2)}A`, leftOuterX + outerW + 70, topOuterY + 28);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Transformer Law: Vs/Vp = Ns/Np = Ip/Is = ${k.toFixed(2)} | Frequency remains invariant (f = 50 Hz)`, cx, canvas.height - 12);
+      }
+
+      function renderZigZagVertical(x, y, h, label, color) {
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        const steps = 6;
+        const dy = h / steps;
+        for (let i = 1; i < steps; i++) {
+          const dx = (i % 2 === 0) ? -8 : 8;
+          ctx.lineTo(x + dx, y + i * dy);
+        }
+        ctx.lineTo(x, y + h);
+        ctx.stroke();
+
+        ctx.fillStyle = color;
+        ctx.font = 'bold 10px monospace';
+        ctx.textAlign = 'left';
+        ctx.fillText(label, x + 14, y + h / 2 + 4);
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

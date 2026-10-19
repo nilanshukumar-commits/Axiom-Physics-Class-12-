@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Series LCR Circuit & Resonance</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 7.2</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 04: Alternating Current • Chapter 07</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Series LCR Circuit, Resonance & Quality Factor</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Impedance phasor triangle, analytical phase angles, resonance frequency condition, bandwidth, and radio receiver tuning mechanics.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek child ke swing (jhule) ko: inductor us jhule ka bhari mass (inertia) hai aur capacitor uski elastic rope/spring tension hai. Inductor voltage ko $90^\circ$ aage dhakelta hai, jabki capacitor current ko $90^\circ$ aage khinchta hai—yani dono ek dusre ke <strong>theek $180^\circ$ opposite (anti-parallel)</strong> ladte hain! Jab applied AC frequency natural frequency se match kar jaati hai, toh inductor aur capacitor ka reactance ek dusre ko <strong class="text-white">100% cancel kar deta hai ($X_L = X_C$)</strong>. Poore circuit ka opposition drop hokar sirf pure resistance $R$ bachta hai, aur current achanak explode hokar peak par pahunch jata hai—isi ko <strong class="text-white">Electrical Resonance</strong> kehte hain! Hamare radio receiver ka knob ghumana asal mein capacitor $C$ ko badal kar isi resonance frequency ko target station ke frequency se match karna hota hai!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Impedance & Phase Angle</h3>
+          <p class="text-sm text-slate-400 mb-2">Total effective opposition $Z$ and phase lag/lead $\phi$:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$Z = \sqrt{R^2 + (X_L - X_C)^2}$$
+            $$\tan\phi = \frac{X_L - X_C}{R} = \frac{\omega L - \frac{1}{\omega C}}{R}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">If $X_L > X_C$: Inductive ($\phi > 0$, $v$ leads $i$). If $X_C > X_L$: Capacitive ($\phi < 0$, $i$ leads $v$). If $X_L = X_C$: Purely resistive ($\phi = 0$).</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Resonance & Quality Factor (Q)</h3>
+          <p class="text-sm text-slate-400 mb-2">Condition for maximum current amplitude $I_{\max} = V_0 / R$:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\omega_0 = \frac{1}{\sqrt{LC}} \implies f_0 = \frac{1}{2\pi\sqrt{LC}}$$
+            $$Q = \frac{\omega_0 L}{R} = \frac{1}{\omega_0 C R} = \frac{1}{R}\sqrt{\frac{L}{C}} = \frac{\omega_0}{2\Delta\omega}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Bandwidth $2\Delta\omega = \frac{R}{L}$. Lower $R$ gives a sharper resonance peak and higher selectivity for tuning circuits.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Impedance Triangle & Resonance Response Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Series LCR Impedance Triangle & Resonance Response</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="snapResonanceBtn" type="button" class="text-xs bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-emerald-600/30 transition border border-emerald-400/30 cursor-pointer">
+            Snap to Resonance (f = f₀)
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="lcrCanvas" width="800" height="390" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Frequency ($f$)</span>
+            <span id="fVal" class="text-cyan-400 font-mono font-bold">50.0 Hz</span>
+          </div>
+          <input id="fSlider" type="range" min="10" max="200" step="1" value="50" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Inductance ($L$)</span>
+            <span id="lVal" class="text-amber-400 font-mono font-bold">200 mH</span>
+          </div>
+          <input id="lSlider" type="range" min="50" max="500" step="10" value="200" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Capacitance ($C$)</span>
+            <span id="cVal" class="text-rose-400 font-mono font-bold">50.0 µF</span>
+          </div>
+          <input id="cSlider" type="range" min="5" max="100" step="1" value="50" class="w-full accent-rose-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Resistance ($R$)</span>
+            <span id="rVal" class="text-emerald-400 font-mono font-bold">25.0 Ω</span>
+          </div>
+          <input id="rSlider" type="range" min="5" max="100" step="1" value="25" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Total Impedance ($Z$):</span>
+          <div id="zOut" class="text-cyan-400 font-bold text-sm mt-0.5">25.00 Ω</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Resonant Frequency ($f_0$):</span>
+          <div id="f0Out" class="text-amber-400 font-bold text-sm mt-0.5">50.33 Hz</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Phase Angle ($\phi$):</span>
+          <div id="phiOut" class="text-rose-400 font-bold text-sm mt-0.5">0.0° (Resistive)</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Quality Factor ($Q$):</span>
+          <div id="qOut" class="text-emerald-400 font-bold text-sm mt-0.5">2.53 (Sharpness)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Series LCR Circuit Phasor Derivation -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Primary Board Derivation</span>
+          <h4 class="text-white font-semibold text-base mt-1">Impedance & Phase Angle of Series LCR Circuit via Phasor Analysis</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: LCR Circuit & Phasor Triangle -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 240" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-v-net" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f59e0b"/>
+              </marker>
+              <marker id="arr-vl" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#ef4444"/>
+              </marker>
+              <marker id="arr-vc" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-vr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+              </marker>
+            </defs>
+
+            <!-- Circuit Block (Left) -->
+            <rect x="40" y="30" width="220" height="170" fill="rgba(15, 23, 42, 0.6)" stroke="#334155" stroke-width="1.8" rx="8" />
+            <text x="60" y="52" fill="#cbd5e1" font-size="11" font-weight="bold" font-family="monospace">Series LCR Circuit</text>
+
+            <!-- AC Source -->
+            <circle cx="70" cy="115" r="15" fill="#0f172a" stroke="#38bdf8" stroke-width="2" />
+            <path d="M 63 115 Q 67 109 70 115 T 77 115" fill="none" stroke="#38bdf8" stroke-width="2" />
+            <text x="52" y="146" fill="#38bdf8" font-size="9" font-family="monospace">v = V₀sinωt</text>
+
+            <line x1="70" y1="100" x2="70" y2="70" stroke="#94a3b8" stroke-width="2" />
+            <line x1="70" y1="70" x2="110" y2="70" stroke="#94a3b8" stroke-width="2" />
+
+            <!-- Resistor R -->
+            <path d="M 110 70 L 115 63 L 125 77 L 135 63 L 145 77 L 155 63 L 160 70" fill="none" stroke="#10b981" stroke-width="2" />
+            <text x="130" y="58" fill="#10b981" font-size="10" font-family="monospace">R</text>
+
+            <!-- Inductor L -->
+            <line x1="160" y1="70" x2="175" y2="70" stroke="#94a3b8" stroke-width="2" />
+            <path d="M 175 70 Q 183 60 191 70 Q 199 60 207 70 Q 215 60 223 70" fill="none" stroke="#ef4444" stroke-width="2" />
+            <text x="195" y="58" fill="#ef4444" font-size="10" font-family="monospace">L</text>
+
+            <!-- Capacitor C -->
+            <line x1="223" y1="70" x2="235" y2="70" stroke="#94a3b8" stroke-width="2" />
+            <line x1="235" y1="70" x2="235" y2="105" stroke="#94a3b8" stroke-width="2" />
+            <line x1="225" y1="105" x2="245" y2="105" stroke="#38bdf8" stroke-width="2.5" />
+            <line x1="225" y1="113" x2="245" y2="113" stroke="#38bdf8" stroke-width="2.5" />
+            <text x="210" y="112" fill="#38bdf8" font-size="10" font-family="monospace">C</text>
+
+            <line x1="235" y1="113" x2="235" y2="160" stroke="#94a3b8" stroke-width="2" />
+            <line x1="235" y1="160" x2="70" y2="160" stroke="#94a3b8" stroke-width="2" />
+            <line x1="70" y1="160" x2="70" y2="130" stroke="#94a3b8" stroke-width="2" />
+
+            <!-- Phasor Diagram (Right) -->
+            <rect x="290" y="30" width="320" height="170" fill="rgba(15, 23, 42, 0.8)" stroke="#334155" stroke-width="1.8" rx="8" />
+            <text x="310" y="52" fill="#cbd5e1" font-size="11" font-weight="bold" font-family="monospace">Impedance Phasor Triangle (V_L > V_C)</text>
+
+            <line x1="330" y1="125" x2="570" y2="125" stroke="#475569" stroke-width="1.2" />
+            <line x1="380" y1="185" x2="380" y2="55" stroke="#475569" stroke-width="1.2" />
+            <circle cx="380" cy="125" r="3" fill="#ffffff" />
+            <text x="370" y="138" fill="#cbd5e1" font-size="10" font-family="monospace">O</text>
+
+            <!-- V_R Phasor (Horizontal Green) -->
+            <line x1="380" y1="125" x2="480" y2="125" stroke="#10b981" stroke-width="3" marker-end="url(#arr-vr)" />
+            <text x="440" y="140" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">V_R = I·R</text>
+
+            <!-- V_L Phasor (Upward Red) -->
+            <line x1="380" y1="125" x2="380" y2="60" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-vl)" />
+            <text x="345" y="70" fill="#ef4444" font-size="10" font-family="monospace">V_L = I·X_L</text>
+
+            <!-- V_C Phasor (Downward Cyan) -->
+            <line x1="380" y1="125" x2="380" y2="165" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr-vc)" />
+            <text x="345" y="170" fill="#38bdf8" font-size="10" font-family="monospace">V_C = I·X_C</text>
+
+            <!-- Net Reactive Vector (V_L - V_C) -->
+            <line x1="480" y1="125" x2="480" y2="80" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,3" />
+            <text x="490" y="105" fill="#ef4444" font-size="10" font-family="monospace">(V_L - V_C)</text>
+
+            <!-- Resultant Hypotenuse V0 -->
+            <line x1="380" y1="125" x2="480" y2="80" stroke="#f59e0b" stroke-width="3.5" marker-end="url(#arr-v-net)" />
+            <text x="420" y="95" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">V₀ = I·Z</text>
+
+            <!-- Phase Angle phi arc -->
+            <path d="M 415 125 A 35 35 0 0 0 410 112" fill="none" stroke="#f59e0b" stroke-width="1.8" />
+            <text x="420" y="120" fill="#f59e0b" font-size="10" font-weight="bold" font-family="monospace">φ</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 7.2A: Series LCR Circuit and corresponding phasor diagram; $V_L$ and $V_C$ oppose each other along the vertical axis.</p>
+        </div>
+
+        <p>1. In a series circuit, current $i = I_0\sin\omega t$ is identical through all three components at every instant.</p>
+        <p>2. Individual voltage phasors with respect to current $i$:</p>
+        <p class="text-slate-400">• Voltage across resistor $\vec{V}_R$ is in phase with current: $V_R = I R$.</p>
+        <p class="text-slate-400">• Voltage across inductor $\vec{V}_L$ leads current by $\pi/2$: $V_L = I X_L = I(\omega L)$.</p>
+        <p class="text-slate-400">• Voltage across capacitor $\vec{V}_C$ lags current by $\pi/2$: $V_C = I X_C = I(1/\omega C)$.</p>
+        <p>3. Since $\vec{V}_L$ and $\vec{V}_C$ point along the exact opposite directions ($180^\circ$ apart), their net vector resultant is $(\vec{V}_L - \vec{V}_C)$ perpendicular to $\vec{V}_R$.</p>
+        <p>4. Applying the Pythagorean theorem on the right-angled phasor triangle:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$V_0^2 = V_R^2 + (V_L - V_C)^2 = (I_0 R)^2 + [I_0(X_L - X_C)]^2 = I_0^2 \left[ R^2 + (X_L - X_C)^2 \right]$$
+        </div>
+        <p>5. Total circuit Impedance $Z = \frac{V_0}{I_0}$:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$Z = \sqrt{R^2 + (X_L - X_C)^2} = \sqrt{R^2 + \left(\omega L - \frac{1}{\omega C}\right)^2}$$
+        </div>
+        <p>6. The phase angle $\phi$ by which applied voltage leads current:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$\tan\phi = \frac{V_L - V_C}{V_R} = \frac{X_L - X_C}{R} = \frac{\omega L - \frac{1}{\omega C}}{R}$$
+        </div>
+      </div>
+
+      <!-- Derivation 2: Resonance Condition & Quality Factor -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation B</span>
+          <h4 class="text-white font-semibold text-base mt-1">Series Resonance Condition, Bandwidth & Sharpness (Quality Factor Q)</h4>
+        </div>
+        <p>1. Current amplitude is $I_0 = \frac{V_0}{\sqrt{R^2 + (\omega L - \frac{1}{\omega C})^2}}$. Current reaches its absolute maximum when impedance $Z$ is minimum.</p>
+        <p>2. $Z$ is minimum when the net reactance term vanishes identically:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$X_L - X_C = 0 \implies \omega_0 L = \frac{1}{\omega_0 C} \implies \omega_0^2 = \frac{1}{LC}$$
+        </div>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\omega_0 = \frac{1}{\sqrt{LC}} \implies f_0 = \frac{1}{2\pi\sqrt{LC}}$$
+        </div>
+        <p>3. At resonance ($\omega = \omega_0$):</p>
+        <p class="text-slate-400">• Minimum Impedance: $Z_{\min} = R$.</p>
+        <p class="text-slate-400">• Maximum Current: $I_{\max} = \frac{V_0}{R}$.</p>
+        <p class="text-slate-400">• Power Factor: $\cos\phi = \frac{R}{Z} = 1$ (Phase angle $\phi = 0^\circ$).</p>
+        <p>4. <em>Bandwidth & Quality Factor ($Q$):</em> At half-power frequencies ($\omega = \omega_0 \pm \Delta\omega$), current drops to $I_{\max}/\sqrt{2}$. Bandwidth is $2\Delta\omega = \frac{R}{L}$. Quality factor $Q$ measures the sharpness of resonance:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$Q = \frac{\omega_0}{2\Delta\omega} = \frac{\omega_0 L}{R} = \frac{1}{\omega_0 C R} = \frac{1}{R}\sqrt{\frac{L}{C}}$$
+        </div>
+        <p class="text-slate-400"><em>Tuning Selectivity:</em> A higher $Q$ factor (smaller $R$, larger $L/C$ ratio) produces a narrower, taller resonance curve, enabling a radio receiver to reject adjacent channel noise and tune sharply into one target broadcasting frequency.</p>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: The "Algebraic Sum of Voltages" Fallacy</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* In a series LCR circuit, voltmeters read $V_R = 80\text{ V}$, $V_L = 100\text{ V}$, and $V_C = 40\text{ V}$. What is the total applied supply voltage?
+            <br>*Trap Answer:* $80 + 100 + 40 = 220\text{ V}$ (Scalar addition is completely wrong!).
+            <br>*Correct Vector Addition:*
+            $$V = \sqrt{V_R^2 + (V_L - V_C)^2} = \sqrt{80^2 + (100 - 40)^2} = \sqrt{6400 + 3600} = \mathbf{100\text{ Volts}}!$$
+            AC voltages add as orthogonal vectors (phasors), never as scalar numbers.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Voltage Magnification at Resonance ($V_L > V_{\text{source}}$)</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Counter-Intuitive Reality:* At resonance, total supply voltage drops purely across resistor ($V_R = V$). However, the individual voltage across inductor or capacitor is:
+            $$V_L = I_0 X_L = \left(\frac{V}{R}\right)(\omega_0 L) = \left(\frac{\omega_0 L}{R}\right) V = \mathbf{Q \times V}!$$
+            If $Q = 20$ and supply is $10\text{ V}$, $V_L$ and $V_C$ can reach <strong class="text-white">200 Volts</strong> each! (They cancel out across the pair, but individual insulation can break down).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Can a Series LC Circuit Resonate with DC ($f = 0$)?</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Exam Trap:* Resonance requires $X_L = X_C$. At $f = 0$, $X_L = 0$ while $X_C \to \infty$. Thus, a series LCR circuit <strong class="text-white">CANNOT resonate at DC</strong>. The capacitor permanently blocks current flow ($I = 0$).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Effect of Frequency Variation on Circuit Nature</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            • At low frequencies ($f < f_0$): $X_C > X_L \implies$ Circuit is predominantly <strong class="text-white">Capacitive</strong> ($i$ leads $v$).
+            <br>• At resonant frequency ($f = f_0$): $X_L = X_C \implies$ Circuit is purely <strong class="text-white">Resistive</strong> ($i$ and $v$ in phase).
+            <br>• At high frequencies ($f > f_0$): $X_L > X_C \implies$ Circuit is predominantly <strong class="text-white">Inductive</strong> ($v$ leads $i$).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A series LCR circuit with $R = 20\text{ }\Omega$, $L = 1.5\text{ H}$, and $C = 35\text{ }\mu\text{F}$ is connected to a variable-frequency $200\text{ V}$ AC supply. (i) What is the resonant angular frequency $\omega_0$ of the circuit? (ii) What is the current amplitude at resonance? (iii) Find the Quality factor $Q$ of the circuit.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Resonant angular frequency ($\omega_0$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\omega_0 = \frac{1}{\sqrt{LC}} = \frac{1}{\sqrt{1.5 \times (35 \times 10^{-6})}} = \frac{1}{\sqrt{5.25 \times 10^{-5}}} = \frac{1}{7.245 \times 10^{-3}} \approx 138.0\text{ rad/s}$$
+          </div>
+          <p>2. At resonance, total impedance is minimum: $Z = R = 20\text{ }\Omega$.</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$V_0 = \sqrt{2} \times V_{\text{rms}} = 1.414 \times 200 \approx 282.8\text{ V}$$
+          </div>
+          <p>Peak current amplitude at resonance:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$I_0 = \frac{V_0}{R} = \frac{282.8\text{ V}}{20\text{ }\Omega} \approx 14.14\text{ A} \quad (I_{\text{rms}} = 10\text{ A})$$
+          </div>
+          <p>3. Quality factor $Q$:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$Q = \frac{\omega_0 L}{R} = \frac{138.0 \times 1.5}{20} = \frac{207.0}{20} = 10.35$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A series LCR circuit has $L = 8.0\text{ H}, C = 0.5\text{ }\mu\text{F}$, and $R = 100\text{ }\Omega$. Calculate the resonant frequency, the bandwidth of the circuit, and the two half-power frequencies at which the power dissipated drops to half of its maximum value.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Resonant angular frequency:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\omega_0 = \frac{1}{\sqrt{LC}} = \frac{1}{\sqrt{8.0 \times (0.5 \times 10^{-6})}} = \frac{1}{\sqrt{4.0 \times 10^{-6}}} = \frac{1}{2.0 \times 10^{-3}} = 500\text{ rad/s}$$
+            $$f_0 = \frac{\omega_0}{2\pi} = \frac{500}{2\pi} \approx 79.58\text{ Hz}$$
+          </div>
+          <p>2. Bandwidth ($2\Delta\omega$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$2\Delta\omega = \frac{R}{L} = \frac{100\text{ }\Omega}{8.0\text{ H}} = 12.5\text{ rad/s} \implies \Delta\omega = 6.25\text{ rad/s}$$
+          </div>
+          <p>3. Half-power angular frequencies ($\omega_1$ and $\omega_2$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\omega_1 = \omega_0 - \Delta\omega = 500 - 6.25 = 493.75\text{ rad/s}$$
+            $$\omega_2 = \omega_0 + \Delta\omega = 500 + 6.25 = 506.25\text{ rad/s}$$
+          </div>
+          <p>Quality factor for reference: $Q = \frac{\omega_0}{2\Delta\omega} = \frac{500}{12.5} = 40.0$.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Total Impedance</p>
+          <p class="text-xs font-bold text-white mt-1">$Z = \sqrt{R^2 + (X_L - X_C)^2}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Resonant Angular Freq</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$\omega_0 = \frac{1}{\sqrt{LC}}$ ($Z_{\min} = R$)</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Quality Factor (Q)</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$Q = \frac{1}{R}\sqrt{\frac{L}{C}} = \frac{\omega_0 L}{R}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Bandwidth</p>
+          <p class="text-xs font-bold text-rose-400 mt-1">$2\Delta\omega = \frac{R}{L}$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS LCR Impedance Triangle & Resonance Response Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('lcrCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const fSlider = document.getElementById('fSlider');
+      const lSlider = document.getElementById('lSlider');
+      const cSlider = document.getElementById('cSlider');
+      const rSlider = document.getElementById('rSlider');
+      const snapResonanceBtn = document.getElementById('snapResonanceBtn');
+
+      const fVal = document.getElementById('fVal');
+      const lVal = document.getElementById('lVal');
+      const cVal = document.getElementById('cVal');
+      const rVal = document.getElementById('rVal');
+
+      const zOut = document.getElementById('zOut');
+      const f0Out = document.getElementById('f0Out');
+      const phiOut = document.getElementById('phiOut');
+      const qOut = document.getElementById('qOut');
+
+      snapResonanceBtn.addEventListener('click', () => {
+        const L = parseFloat(lSlider.value) * 1e-3;
+        const C = parseFloat(cSlider.value) * 1e-6;
+        const f0 = 1 / (2 * Math.PI * Math.sqrt(L * C));
+        fSlider.value = Math.max(10, Math.min(200, Math.round(f0)));
+      });
+
+      function renderLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const f = parseFloat(fSlider.value);
+        const L_mH = parseFloat(lSlider.value);
+        const C_uF = parseFloat(cSlider.value);
+        const R = parseFloat(rSlider.value);
+
+        const L = L_mH * 1e-3;
+        const C = C_uF * 1e-6;
+        const omega = 2 * Math.PI * f;
+
+        fVal.textContent = `${f.toFixed(1)} Hz`;
+        lVal.textContent = `${L_mH.toFixed(0)} mH`;
+        cVal.textContent = `${C_uF.toFixed(1)} µF`;
+        rVal.textContent = `${R.toFixed(1)} Ω`;
+
+        // Physics Calculation
+        const XL = omega * L;
+        const XC = 1 / (omega * C);
+        const netX = XL - XC;
+        const Z = Math.sqrt(R * R + netX * netX);
+        const f0 = 1 / (2 * Math.PI * Math.sqrt(L * C));
+        const omega0 = 2 * Math.PI * f0;
+        const phiRad = Math.atan2(netX, R);
+        const phiDeg = (phiRad * 180 / Math.PI);
+        const Q = (omega0 * L) / R;
+
+        const V0 = 100.0;
+        const I0 = V0 / Z;
+
+        zOut.textContent = `${Z.toFixed(2)} Ω`;
+        f0Out.textContent = `${f0.toFixed(2)} Hz`;
+
+        if (Math.abs(phiDeg) < 1.0) {
+          phiOut.textContent = '0.0° (Resistive Resonance)';
+          phiOut.className = 'text-emerald-400 font-bold text-sm mt-0.5';
+        } else if (phiDeg > 0) {
+          phiOut.textContent = `+${phiDeg.toFixed(1)}° (Inductive - V leads)`;
+          phiOut.className = 'text-rose-400 font-bold text-sm mt-0.5';
+        } else {
+          phiOut.textContent = `${phiDeg.toFixed(1)}° (Capacitive - I leads)`;
+          phiOut.className = 'text-cyan-400 font-bold text-sm mt-0.5';
+        }
+
+        qOut.textContent = `${Q.toFixed(2)}`;
+
+        // Canvas Split Layout: Left = Impedance Triangle; Right = Resonance Response Curve
+        renderImpedanceTriangle(180, 200, R, XL, XC, netX, Z, phiRad);
+        renderResonanceCurve(440, 200, f, f0, L, C, R, V0);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderImpedanceTriangle(cx, cy, R, XL, XC, netX, Z, phi) {
+        // Coordinate axes
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(cx - 100, cy); ctx.lineTo(cx + 120, cy);
+        ctx.moveTo(cx, cy - 120); ctx.lineTo(cx, cy + 120);
+        ctx.stroke();
+
+        ctx.fillStyle = '#64748b';
+        ctx.font = '10px monospace';
+        ctx.fillText('+jX (Inductive)', cx - 75, cy - 110);
+        ctx.fillText('-jX (Capacitive)', cx - 75, cy + 115);
+
+        // Vector Scales: 1 ohm = 1.4 px
+        const scale = 1.3;
+        const maxDraw = 105;
+        const rLen = Math.min(maxDraw, R * scale);
+        const netXLen = Math.max(-maxDraw, Math.min(maxDraw, netX * scale));
+
+        // 1. Horizontal Resistance R (Green)
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 3.5;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + rLen, cy);
+        ctx.stroke();
+        ctx.fillStyle = '#10b981';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`R = ${R.toFixed(0)}Ω`, cx + rLen / 2 - 15, cy + 16);
+
+        // 2. Vertical Net Reactance (XL - XC) (Red/Cyan)
+        ctx.strokeStyle = netX >= 0 ? '#ef4444' : '#38bdf8';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(cx + rLen, cy);
+        ctx.lineTo(cx + rLen, cy - netXLen);
+        ctx.stroke();
+
+        ctx.fillStyle = netX >= 0 ? '#ef4444' : '#38bdf8';
+        ctx.font = 'bold 10px monospace';
+        const labelX = (netX >= 0) ? `(XL-XC)=+${netX.toFixed(1)}Ω` : `(XL-XC)=${netX.toFixed(1)}Ω`;
+        ctx.fillText(labelX, cx + rLen + 8, cy - netXLen / 2 + 4);
+
+        // 3. Hypotenuse Resultant Impedance Z (Amber Arrow)
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + rLen, cy - netXLen);
+        ctx.stroke();
+
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`Z = ${Z.toFixed(1)}Ω`, (cx + cx + rLen) / 2 - 25, (cy + cy - netXLen) / 2 - 10);
+
+        // Angle phi arc
+        ctx.strokeStyle = '#fbbf24';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 32, 0, -phi, phi > 0);
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(cx, cy, 3.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#cbd5e1';
+        ctx.font = 'bold 11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Impedance Phasor Triangle', cx, cy + 140);
+      }
+
+      function renderResonanceCurve(gx, gy, currentF, f0, L, C, R, V0) {
+        const gw = 310, gh = 200;
+        const originX = gx;
+        const originY = gy + 75;
+
+        // Display screen housing
+        ctx.fillStyle = '#090d16';
+        ctx.fillRect(gx - 15, gy - gh / 2 - 10, gw + 30, gh + 20);
+        ctx.strokeStyle = '#1e293b';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(gx - 15, gy - gh / 2 - 10, gw + 30, gh + 20);
+
+        // Baseline (f-axis)
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(originX, originY);
+        ctx.lineTo(originX + gw, originY);
+        ctx.stroke();
+
+        // Frequency range plotted: 10 Hz to 200 Hz
+        const fMin = 10, fMax = 200;
+        const maxI = V0 / R; // Peak current at resonance
+
+        // Draw Continuous Resonance Response Curve: I(f) = V0 / Z(f)
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+
+        for (let px = 0; px <= gw; px++) {
+          const freqVal = fMin + (px / gw) * (fMax - fMin);
+          const wVal = 2 * Math.PI * freqVal;
+          const zVal = Math.sqrt(R * R + Math.pow(wVal * L - 1 / (wVal * C), 2));
+          const iVal = V0 / zVal;
+
+          const py = originY - (iVal / maxI) * 135;
+          if (px === 0) ctx.moveTo(originX + px, py);
+          else ctx.lineTo(originX + px, py);
+        }
+        ctx.stroke();
+
+        // Vertical Dashed Resonant Frequency Line (f0)
+        const f0_px = originX + ((f0 - fMin) / (fMax - fMin)) * gw;
+        if (f0_px >= originX && f0_px <= originX + gw) {
+          ctx.strokeStyle = '#10b981';
+          ctx.lineWidth = 1.5;
+          ctx.setLineDash([4, 4]);
+          ctx.beginPath();
+          ctx.moveTo(f0_px, originY);
+          ctx.lineTo(f0_px, originY - 145);
+          ctx.stroke();
+          ctx.setLineDash([]);
+
+          ctx.fillStyle = '#10b981';
+          ctx.font = 'bold 10px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText(`f₀=${f0.toFixed(1)}Hz`, f0_px, originY - 150);
+        }
+
+        // Active Operating Frequency Pointer Marker
+        const current_px = originX + ((currentF - fMin) / (fMax - fMin)) * gw;
+        const currentW = 2 * Math.PI * currentF;
+        const currentZ = Math.sqrt(R * R + Math.pow(currentW * L - 1 / (currentW * C), 2));
+        const currentI = V0 / currentZ;
+        const activeY = originY - (currentI / maxI) * 135;
+
+        ctx.beginPath();
+        ctx.arc(current_px, activeY, 5.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#f59e0b';
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = 'bold 10px monospace';
+        ctx.fillText(`I₀ = ${currentI.toFixed(2)}A`, current_px, activeY - 12);
+
+        // Half-Power (-3dB) line marker
+        const halfPowerY = originY - (1 / Math.SQRT2) * 135;
+        ctx.strokeStyle = '#ec4899';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([2, 4]);
+        ctx.beginPath();
+        ctx.moveTo(originX, halfPowerY);
+        ctx.lineTo(originX + gw, halfPowerY);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = '#ec4899';
+        ctx.font = '9px monospace';
+        ctx.fillText('I_max / √2 (Half Power)', originX + 70, halfPowerY - 4);
+
+        ctx.fillStyle = '#cbd5e1';
+        ctx.font = 'bold 11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Tuning Resonance Response I(f)', gx + gw / 2, gy - gh / 2 + 10);
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

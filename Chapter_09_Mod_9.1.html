@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Spherical Mirrors & Mirror Formula</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 9.1</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 06: Optics • Chapter 09 (Ray Optics)</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Spherical Mirrors, Mirror Formula & Magnification</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Cartesian sign conventions, paraxial ray approximation, geometrical derivation of $f = R/2$ and $1/v + 1/u = 1/f$, transverse & longitudinal magnification.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Kabhi kisi shiny stainless steel spoon (chammach) mein apna chehra dekha hai? Jab aap spoon ke andar wale hisse (concave cavity) mein dekhte hain, toh chehra ulta (inverted) dikhta hai, lekin jaise hi aap spoon ko aankh ke bilkul kareeb laate hain, achanak ek seedha aur vishalkay (magnified virtual) chehra nazar aane lagta hai! Wahi spoon jab ulti ki jaati hai (convex bulge), toh aap chahe kitni bhi door ya paas chale jayein, chehra hamesha chhota (diminished) aur seedha (erect) hi rehta hai (isiliye vehicles mein rear-view mirror convex hota hai taaki piche ka poora traffic ek chote mirror mein fit ho sake). Yeh saara magic kisi mystery ka nahi, balki do basic laws of reflection aur geometry ke <strong class="text-white">Mirror Formula ($\frac{1}{v} + \frac{1}{u} = \frac{1}{f}$)</strong> ka strict mathematical outcome hai!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Cartesian Sign Convention & Focus Relation</h3>
+          <p class="text-sm text-slate-400 mb-2">Strict rules for all optical derivations:</p>
+          <ul class="text-xs text-slate-300 space-y-1 list-disc list-inside">
+            <li>All distances are measured from the <strong>Pole ($P$)</strong> along the principal axis.</li>
+            <li>Distances measured in the <strong>direction of incident light</strong> are taken as <strong>Positive ($+$)</strong>; opposite are <strong>Negative ($-$)</strong>.</li>
+            <li>Heights above principal axis are positive ($+$); below are negative ($-$).</li>
+          </ul>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$f = \frac{R}{2} \quad \begin{cases} f < 0 & (\text{Concave Mirror}) \\ f > 0 & (\text{Convex Mirror}) \end{cases}$$
+          </div>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Mirror Formula & Linear Magnification</h3>
+          <p class="text-sm text-slate-400 mb-2">Relation between object distance ($u$), image distance ($v$), and focal length ($f$):</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\frac{1}{v} + \frac{1}{u} = \frac{1}{f} = \frac{2}{R}$$
+            $$m = \frac{h_i}{h_o} = -\frac{v}{u} = \frac{f}{f - u} = \frac{f - v}{f}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Magnification sign rules: $m < 0 \implies$ Real & Inverted image; $m > 0 \implies$ Virtual & Erect image.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Ray Tracing & Mirror Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Spherical Mirror Ray Tracer Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="mirrorTypeBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Active: Concave Mirror (Converging)
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="mirrorCanvas" width="800" height="380" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Object Position ($u$)</span>
+            <span id="uVal" class="text-cyan-400 font-mono font-bold">-28.0 cm</span>
+          </div>
+          <input id="uSlider" type="range" min="4" max="50" step="0.5" value="28" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Focal Length Magnitude ($\vert{}f\vert{}$)</span>
+            <span id="fSliderVal" class="text-amber-400 font-mono font-bold">14.0 cm</span>
+          </div>
+          <input id="fSlider" type="range" min="8" max="25" step="1" value="14" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Object Height ($h_o$)</span>
+            <span id="hSliderVal" class="text-emerald-400 font-mono font-bold">5.0 cm</span>
+          </div>
+          <input id="hSlider" type="range" min="2" max="10" step="0.5" value="5" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Image Distance ($v$):</span>
+          <div id="vOut" class="text-cyan-400 font-bold text-sm mt-0.5">-28.00 cm</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Magnification ($m = -v/u$):</span>
+          <div id="mOut" class="text-amber-400 font-bold text-sm mt-0.5">-1.00 (Same Size)</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Image Height ($h_i$):</span>
+          <div id="hiOut" class="text-rose-400 font-bold text-sm mt-0.5">-5.00 cm</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Nature of Image:</span>
+          <div id="natureOut" class="text-emerald-400 font-bold text-sm mt-0.5">Real & Inverted</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Comprehensive Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: f = R/2 proof -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Fundamental Proof</span>
+          <h4 class="text-white font-semibold text-base mt-1">Relation Between Focal Length ($f$) and Radius of Curvature ($R$)</h4>
+        </div>
+        <p>1. Consider a ray parallel to principal axis incident at point $M$ on a concave mirror of small aperture, reflecting through principal focus $F$. The normal to the surface at $M$ passes through the Center of Curvature $C$.</p>
+        <p>2. By law of reflection, angle of incidence equals angle of reflection: $\angle i = \angle r$. Since the incident ray is parallel to the principal axis, alternate interior angle $\angle MCF = \angle i = \theta$. Therefore, in $\triangle CFM$, $\angle CFM = 2\theta$ (exterior angle) and $\angle MCF = \theta$.</p>
+        <p>3. Drop perpendicular $MD$ from point $M$ to the principal axis. For paraxial rays (small aperture), point $D$ lies very close to pole $P$ ($D \approx P$), and $\tan\theta \approx \theta$, $\tan 2\theta \approx 2\theta$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\tan\theta = \frac{MD}{CD} \approx \frac{MD}{CP} = \frac{MD}{R}, \qquad \tan 2\theta = \frac{MD}{FD} \approx \frac{MD}{FP} = \frac{MD}{f}$$
+        </div>
+        <p>4. Since $2\theta = 2 \times \theta$:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\frac{MD}{f} = 2 \left( \frac{MD}{R} \right) \implies f = \frac{R}{2}$$
+        </div>
+      </div>
+
+      <!-- Derivation 2: Mirror Formula Proof with Embedded Schematic -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Primary Board Derivation</span>
+          <h4 class="text-white font-semibold text-base mt-1">The Mirror Equation ($\frac{1}{v} + \frac{1}{u} = \frac{1}{f}$) for a Concave Mirror</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Concave Mirror Ray Diagram -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 250" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-ray" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+            </defs>
+
+            <!-- Principal Axis -->
+            <line x1="40" y1="140" x2="600" y2="140" stroke="#475569" stroke-width="1.8" />
+            <text x="590" y="132" fill="#94a3b8" font-size="10" font-family="monospace">Axis</text>
+
+            <!-- Concave Mirror Arc (Aperture) -->
+            <path d="M 520 40 Q 550 140, 520 240" fill="none" stroke="#38bdf8" stroke-width="4" />
+            <!-- Silvered Back Hatching -->
+            <g stroke="#64748b" stroke-width="1.2">
+              <line x1="528" y1="45" x2="538" y2="52" /><line x1="535" y1="75" x2="545" y2="82" />
+              <line x1="540" y1="105" x2="550" y2="112" /><line x1="542" y1="135" x2="552" y2="142" />
+              <line x1="540" y1="165" x2="550" y2="172" /><line x1="535" y1="195" x2="545" y2="202" />
+              <line x1="528" y1="225" x2="538" y2="232" />
+            </g>
+
+            <!-- Cardinal Points on Axis -->
+            <circle cx="536" cy="140" r="3.5" fill="#ffffff" />
+            <text x="542" y="152" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace">P (Pole)</text>
+
+            <circle cx="410" cy="140" r="3" fill="#fbbf24" />
+            <text x="405" y="156" fill="#fbbf24" font-size="11" font-weight="bold" font-family="monospace">F</text>
+
+            <circle cx="280" cy="140" r="3" fill="#f59e0b" />
+            <text x="275" y="156" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">C</text>
+
+            <!-- Object AB beyond C -->
+            <line x1="120" y1="140" x2="120" y2="60" stroke="#10b981" stroke-width="3.5" marker-end="url(#arr-ray)" />
+            <text x="110" y="55" fill="#10b981" font-size="12" font-weight="bold" font-family="monospace">A</text>
+            <text x="112" y="156" fill="#10b981" font-size="12" font-weight="bold" font-family="monospace">B</text>
+
+            <!-- Ray 1: Parallel to axis, reflects through focus F -->
+            <line x1="120" y1="60" x2="532" y2="60" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arr-ray)" />
+            <line x1="532" y1="60" x2="210" y2="190" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arr-ray)" />
+
+            <!-- Ray 2: Incident at Pole P with angle i = r -->
+            <line x1="120" y1="60" x2="536" y2="140" stroke="#f43f5e" stroke-width="1.6" />
+            <line x1="536" y1="140" x2="210" y2="190" stroke="#f43f5e" stroke-width="1.6" />
+
+            <!-- Inverted Image A'B' between C and F -->
+            <line x1="210" y1="140" x2="210" y2="190" stroke="#ec4899" stroke-width="3" marker-end="url(#arr-ray)" />
+            <text x="215" y="132" fill="#ec4899" font-size="11" font-weight="bold" font-family="monospace">B'</text>
+            <text x="215" y="205" fill="#ec4899" font-size="11" font-weight="bold" font-family="monospace">A'</text>
+
+            <!-- Distance Dimension Brackets -->
+            <line x1="120" y1="225" x2="536" y2="225" stroke="#94a3b8" stroke-width="1.2" />
+            <text x="310" y="238" fill="#94a3b8" font-size="10" font-family="monospace">u (Object distance)</text>
+
+            <line x1="210" y1="20" x2="536" y2="20" stroke="#94a3b8" stroke-width="1.2" />
+            <text x="360" y="16" fill="#94a3b8" font-size="10" font-family="monospace">v (Image distance)</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 9.1A: Real image formation by a concave mirror for an object placed beyond the Center of Curvature ($C$).</p>
+        </div>
+
+        <p>1. Consider similar right-angled triangles $\triangle A'B'P$ and $\triangle ABP$ (formed by rays incident at Pole $P$ with $\angle i = \angle r$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\frac{A'B'}{AB} = \frac{B'P}{BP} \quad \text{--- [Eq. 1]}$$
+        </div>
+        <p>2. Consider similar right-angled triangles $\triangle A'B'F$ and $\triangle MPF$ (where $MP \perp \text{axis}$ is the incident aperture height, so $MP = AB$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\frac{A'B'}{MP} = \frac{A'B'}{AB} = \frac{B'F}{FP} \quad \text{--- [Eq. 2]}$$
+        </div>
+        <p>3. Equating Eq. 1 and Eq. 2:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\frac{B'P}{BP} = \frac{B'F}{FP} = \frac{B'P - FP}{FP}$$
+        </div>
+        <p>4. Applying Cartesian Sign Convention:</p>
+        <p class="text-slate-400">• Object distance $BP = -u$</p>
+        <p class="text-slate-400">• Image distance $B'P = -v$</p>
+        <p class="text-slate-400">• Focal length $FP = -f$</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\frac{-v}{-u} = \frac{-v - (-f)}{-f} \implies \frac{v}{u} = \frac{-v + f}{-f} = \frac{v - f}{f} = \frac{v}{f} - 1$$
+        </div>
+        <p>5. Dividing throughout by $v$ (or rearranging):</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\frac{1}{u} = \frac{1}{f} - \frac{1}{v} \implies \frac{1}{v} + \frac{1}{u} = \frac{1}{f}$$
+        </div>
+        <p class="text-slate-400"><em>Linear Magnification:</em> From Eq. 1 with sign conventions ($AB = +h_o$, $A'B' = -h_i$):</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$\frac{-h_i}{+h_o} = \frac{-v}{-u} \implies m = \frac{h_i}{h_o} = -\frac{v}{u} = \frac{f}{f - u}$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Mirror Immersed in Water or Another Medium</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* A concave mirror of focal length $f = 20\text{ cm}$ in air is immersed in water ($\mu = 4/3$). What will be its new focal length?
+            <br>*Correct Answer:* <strong class="text-white">REMAINS UNCHANGED ($f = 20\text{ cm}$)!</strong>
+            Laws of reflection are independent of the surrounding refractive index ($f = R/2$ is a pure geometrical property). In contrast, a glass lens changes its focal length dramatically when immersed in liquid!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Covering Half the Aperture of a Mirror</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Exam Trap:* What happens to the image if the lower half of a concave mirror is painted black with opaque paint?
+            <br>• The <strong class="text-white">full complete image is still formed</strong>! Every single point on the mirror reflects rays from all parts of the object.
+            <br>• However, the total amount of reflected light energy is halved; hence the <strong class="text-white">brightness (intensity) of the image reduces by 50%</strong> ($I \propto \text{Area}$).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Convex Mirror Field of View</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Why is a convex mirror preferred as a driver's rear-view mirror over a plane mirror?
+            <br>1. It always forms an <strong class="text-white">erect and diminished image</strong> ($m < 1$) for all positions of the object.
+            <br>2. Because it curves outwards, it offers a <strong class="text-white">much wider field of view</strong> than a plane mirror of the same size.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Longitudinal vs Transverse Magnification</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            If a small line element $du$ lies along the principal axis, differentiating $\frac{1}{v} + \frac{1}{u} = \frac{1}{f}$:
+            $$-\frac{1}{v^2}dv - \frac{1}{u^2}du = 0 \implies m_L = \frac{dv}{du} = -\frac{v^2}{u^2} = -m^2$$
+            Longitudinal magnification of a small object along the axis is proportional to the <strong>square of linear transverse magnification</strong> ($m_L = -m^2$).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: An object is placed at (i) $10\text{ cm}$, (ii) $5\text{ cm}$ in front of a concave mirror of radius of curvature $15\text{ cm}$. Find the position, nature, and magnification of the image in each case.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> Focal length $f = R/2 = -15/2 = -7.5\text{ cm}$.</p>
+          <p><strong>Case (i): $u = -10\text{ cm}$ (Object between $F$ and $C$):</strong></p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\frac{1}{v} = \frac{1}{f} - \frac{1}{u} = \frac{1}{-7.5} - \frac{1}{-10} = -\frac{2}{15} + \frac{1}{10} = \frac{-4 + 3}{30} = -\frac{1}{30} \implies v = -30\text{ cm}$$
+            $$m = -\frac{v}{u} = -\frac{-30}{-10} = -3.0$$
+          </div>
+          <p class="text-slate-400">Image is at $30\text{ cm}$ in front of mirror, <strong>Real, Inverted, and 3 times Magnified</strong>.</p>
+
+          <p class="mt-2"><strong>Case (ii): $u = -5\text{ cm}$ (Object between Pole and $F$):</strong></p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\frac{1}{v} = \frac{1}{-7.5} - \frac{1}{-5} = -\frac{2}{15} + \frac{1}{5} = \frac{-2 + 3}{15} = +\frac{1}{15} \implies v = +15\text{ cm}$$
+            $$m = -\frac{v}{u} = -\frac{+15}{-5} = +3.0$$
+          </div>
+          <p class="text-slate-400">Image is at $15\text{ cm}$ behind the mirror, <strong>Virtual, Erect, and 3 times Magnified</strong>.</p>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A square wire of side $3.0\text{ cm}$ is placed $25\text{ cm}$ away from a concave mirror of focal length $10\text{ cm}$. What is the area enclosed by the image of the wire, given that the centre of the wire is on the principal axis and its plane is normal to the axis?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Given: $u = -25\text{ cm}, f = -10\text{ cm}$.</p>
+          <p>2. Direct magnification formula:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$m = \frac{f}{f - u} = \frac{-10}{-10 - (-25)} = \frac{-10}{-10 + 25} = \frac{-10}{15} = -\frac{2}{3}$$
+          </div>
+          <p>3. Side of image of the square wire:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$l' = |m| \times l = \left(\frac{2}{3}\right) \times 3.0\text{ cm} = 2.0\text{ cm}$$
+          </div>
+          <p>4. Area of image:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\text{Area} = (l')^2 = m^2 \times A_o = \left(-\frac{2}{3}\right)^2 \times (3.0\text{ cm})^2 = \frac{4}{9} \times 9.0 = 4.0\text{ cm}^2$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Mirror Formula</p>
+          <p class="text-xs font-bold text-white mt-1">$\frac{1}{v} + \frac{1}{u} = \frac{1}{f}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Focal Relation</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$f = R/2$ (Medium Indep.)</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Linear Magnification</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$m = -\frac{v}{u} = \frac{f}{f-u}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Areal Magnification</p>
+          <p class="text-xs font-bold text-rose-400 mt-1">$A_{\text{image}} = m^2 A_{\text{obj}}$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Spherical Mirror Ray Tracer Engine Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('mirrorCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const mirrorTypeBtn = document.getElementById('mirrorTypeBtn');
+      const uSlider = document.getElementById('uSlider');
+      const fSlider = document.getElementById('fSlider');
+      const hSlider = document.getElementById('hSlider');
+
+      const uVal = document.getElementById('uVal');
+      const fSliderVal = document.getElementById('fSliderVal');
+      const hSliderVal = document.getElementById('hSliderVal');
+
+      const vOut = document.getElementById('vOut');
+      const mOut = document.getElementById('mOut');
+      const hiOut = document.getElementById('hiOut');
+      const natureOut = document.getElementById('natureOut');
+
+      // 'concave' or 'convex'
+      let mirrorType = 'concave';
+
+      mirrorTypeBtn.addEventListener('click', () => {
+        mirrorType = (mirrorType === 'concave') ? 'convex' : 'concave';
+        mirrorTypeBtn.textContent = (mirrorType === 'concave')
+          ? 'Active: Concave Mirror (Converging)'
+          : 'Active: Convex Mirror (Diverging)';
+      });
+
+      function renderLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const u_cm = parseFloat(uSlider.value); // distance from mirror (always positive slider, treated as -u)
+        const f_mag = parseFloat(fSlider.value);
+        const ho_cm = parseFloat(hSlider.value);
+
+        // Sign convention application:
+        // Concave: f < 0
+        // Convex: f > 0
+        // Object always in front: u is negative (-u_cm)
+        const u = -u_cm;
+        const f = (mirrorType === 'concave') ? -f_mag : f_mag;
+
+        uVal.textContent = `${u.toFixed(1)} cm`;
+        fSliderVal.textContent = `${f_mag.toFixed(1)} cm`;
+        hSliderVal.textContent = `${ho_cm.toFixed(1)} cm`;
+
+        // Physics Calculation: 1/v = 1/f - 1/u
+        const inv_v = (1 / f) - (1 / u);
+        let v = 0;
+        let m = 0;
+        let hi = 0;
+
+        if (Math.abs(inv_v) < 1e-5) {
+          v = -Infinity;
+          m = -Infinity;
+          vOut.textContent = 'At Infinity (±∞)';
+          mOut.textContent = 'Infinitely Large';
+          hiOut.textContent = 'Infinitely Large';
+          natureOut.textContent = 'Real & Highly Magnified';
+        } else {
+          v = 1 / inv_v;
+          m = - (v / u);
+          hi = m * ho_cm;
+
+          vOut.textContent = `${v.toFixed(2)} cm`;
+          mOut.textContent = `${m.toFixed(2)} (${Math.abs(m) > 1 ? 'Magnified' : 'Diminished'})`;
+          hiOut.textContent = `${hi.toFixed(2)} cm`;
+
+          if (v < 0) {
+            natureOut.textContent = 'Real & Inverted';
+            natureOut.className = 'text-cyan-400 font-bold text-sm mt-0.5';
+          } else {
+            natureOut.textContent = 'Virtual & Erect';
+            natureOut.className = 'text-amber-400 font-bold text-sm mt-0.5';
+          }
+        }
+
+        renderRayTracer(mirrorType, u, v, f, ho_cm, hi);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderRayTracer(type, u, v, f, ho, hi) {
+        const poleX = 560; // Mirror pole positioned on right side of canvas
+        const cy = canvas.height / 2;
+        const scalePx = 8.5; // 1 cm = 8.5 px
+
+        // 1. Principal Axis
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(30, cy);
+        ctx.lineTo(canvas.width - 30, cy);
+        ctx.stroke();
+
+        // 2. Spherical Mirror Curve
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = '#38bdf8';
+        ctx.beginPath();
+        if (type === 'concave') {
+          // Curving leftwards (cavity facing object on left)
+          ctx.arc(poleX + 160, cy, 160, Math.PI - 0.55, Math.PI + 0.55);
+        } else {
+          // Curving rightwards (bulge facing object on left)
+          ctx.arc(poleX - 160, cy, 160, -0.55, 0.55);
+        }
+        ctx.stroke();
+
+        // Pole P
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath(); ctx.arc(poleX, cy, 3.5, 0, Math.PI * 2); ctx.fill();
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('P', poleX + 8, cy - 8);
+
+        // Focal Point F and Center C
+        const fPx = poleX + (f * scalePx);
+        const cPx = poleX + (2 * f * scalePx);
+
+        // Render F
+        ctx.fillStyle = '#fbbf24';
+        ctx.beginPath(); ctx.arc(fPx, cy, 3.5, 0, Math.PI * 2); ctx.fill();
+        ctx.fillText('F', fPx - 4, cy + 18);
+
+        // Render C
+        ctx.fillStyle = '#f59e0b';
+        ctx.beginPath(); ctx.arc(cPx, cy, 3.5, 0, Math.PI * 2); ctx.fill();
+        ctx.fillText('C', cPx - 4, cy + 18);
+
+        // 3. Object Arrow AB (Green)
+        const objXPx = poleX + (u * scalePx); // u is negative, moves left of P
+        const objTopY = cy - (ho * scalePx);
+
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 3.5;
+        ctx.beginPath();
+        ctx.moveTo(objXPx, cy);
+        ctx.lineTo(objXPx, objTopY);
+        ctx.stroke();
+
+        // Arrowhead on Object
+        drawArrowHead(objXPx, objTopY, -Math.PI / 2, '#10b981');
+        ctx.fillStyle = '#10b981';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('Object', objXPx - 18, objTopY - 8);
+
+        // 4. Image Arrow A'B'
+        if (isFinite(v)) {
+          const imgXPx = poleX + (v * scalePx);
+          const imgTopY = cy - (hi * scalePx);
+
+          ctx.strokeStyle = (v < 0) ? '#ec4899' : '#38bdf8';
+          ctx.lineWidth = 3;
+          ctx.beginPath();
+          ctx.moveTo(imgXPx, cy);
+          ctx.lineTo(imgXPx, imgTopY);
+          ctx.stroke();
+
+          drawArrowHead(imgXPx, imgTopY, hi >= 0 ? -Math.PI / 2 : Math.PI / 2, (v < 0) ? '#ec4899' : '#38bdf8');
+          ctx.fillStyle = (v < 0) ? '#ec4899' : '#38bdf8';
+          ctx.fillText('Image', imgXPx - 15, (hi >= 0) ? imgTopY - 8 : imgTopY + 16);
+
+          // 5. Principal Rays Tracing
+          renderOpticalRays(objXPx, objTopY, poleX, cy, fPx, imgXPx, imgTopY, type, v);
+        }
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Mirror Formula: 1/v + 1/u = 1/f | Magnification m = -v/u = ${(v && u) ? (-v / u).toFixed(2) : '0'}`, canvas.width / 2, canvas.height - 12);
+      }
+
+      function renderOpticalRays(ox, oy, px, cy, fx, ix, iy, type, v) {
+        ctx.save();
+        ctx.lineWidth = 1.4;
+
+        // Ray 1: Parallel to Principal Axis -> reflects through/from Focus F
+        ctx.strokeStyle = '#38bdf8';
+        ctx.beginPath();
+        ctx.moveTo(ox, oy);
+        ctx.lineTo(px, oy); // strikes mirror at height oy
+        ctx.stroke();
+
+        if (type === 'concave') {
+          ctx.beginPath();
+          ctx.moveTo(px, oy);
+          ctx.lineTo(ix, iy);
+          ctx.stroke();
+          // Virtual dotted extension if image is behind mirror
+          if (v > 0) {
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(px, oy);
+            ctx.lineTo(ix, iy);
+            ctx.stroke();
+            ctx.setLineDash([]);
+          }
+        } else {
+          // Convex: diverges away from virtual focus F behind mirror
+          ctx.beginPath();
+          ctx.moveTo(px, oy);
+          ctx.lineTo(px - 140, oy - 90);
+          ctx.stroke();
+          // Virtual dotted backward ray to focus F and image
+          ctx.setLineDash([4, 4]);
+          ctx.beginPath();
+          ctx.moveTo(px, oy);
+          ctx.lineTo(fx, cy);
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+
+        // Ray 2: Incident at Pole P (reflects symmetrically with angle i = r)
+        ctx.strokeStyle = '#f43f5e';
+        ctx.beginPath();
+        ctx.moveTo(ox, oy);
+        ctx.lineTo(px, cy);
+        ctx.stroke();
+
+        const reflectedSlope = (cy - oy) / (px - ox);
+        ctx.beginPath();
+        ctx.moveTo(px, cy);
+        ctx.lineTo(px - 160, cy + reflectedSlope * 160);
+        ctx.stroke();
+
+        if (v > 0) {
+          // Dotted virtual extension into mirror
+          ctx.setLineDash([4, 4]);
+          ctx.beginPath();
+          ctx.moveTo(px, cy);
+          ctx.lineTo(ix, iy);
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+
+        ctx.restore();
+      }
+
+      function drawArrowHead(x, y, angle, color) {
+        const headlen = 7;
+        ctx.save();
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x - headlen * Math.cos(angle - Math.PI / 6), y - headlen * Math.sin(angle - Math.PI / 6));
+        ctx.lineTo(x - headlen * Math.cos(angle + Math.PI / 6), y - headlen * Math.sin(angle + Math.PI / 6));
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class 12 Physics | Chapter 6 - Electromagnetic Induction Master Dossier</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    /* Print Optimization Rules */
+    @page {
+      size: A4 portrait;
+      margin: 12mm 14mm 12mm 14mm;
+    }
+
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        font-size: 10.5pt !important;
+        line-height: 1.35 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .avoid-break {
+        page-break-inside: avoid;
+      }
+      .print-border {
+        border: 1px solid #1e293b !important;
+      }
+      .print-table th {
+        background-color: #f1f5f9 !important;
+        color: #000000 !important;
+        border: 1px solid #94a3b8 !important;
+      }
+      .print-table td {
+        border: 1px solid #cbd5e1 !important;
+        color: #000000 !important;
+      }
+      .formula-box {
+        background: #f8fafc !important;
+        border-left: 3px solid #0f172a !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Sticky Top Action Bar (Auto-hidden in Print/PDF) -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex flex-wrap justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <div>
+        <span class="text-lg font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+        <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Open Access</span>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-3 mt-2 sm:mt-0">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-indigo-600/30 active:scale-95 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>Save as PDF (Clean Vector)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Body Container -->
+  <main class="max-w-4xl mx-auto px-4 py-8 md:py-12 space-y-10 print:p-0 print:m-0 print:space-y-6">
+
+    <!-- Dossier Title Block -->
+    <div class="border-b-2 border-indigo-500/40 pb-5 print:border-black print:pb-3">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-indigo-400 print:text-black">CBSE Class XII • Unit 04 (Electromagnetic Induction)</p>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1 print:text-black print:text-2xl">
+            Chapter 06: Electromagnetic Induction
+          </h1>
+          <p class="text-slate-400 mt-1 text-sm print:text-gray-700">Master Revision Dossier • Faraday-Lenz Laws, Motional Induction, Energy Balance, Solenoid Inductances & AC Generator</p>
+        </div>
+        <div class="hidden sm:block text-right text-xs text-slate-500 print:block print:text-black">
+          <p class="font-mono">Open Access Initiative</p>
+          <p class="font-mono">Unit IV Bracket: Board Weightage Core</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: Master Formula & Physical Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        1. Definitive Formula & Induction Parameter Matrix
+      </h2>
+      <div class="overflow-x-auto rounded-xl border border-slate-800 print:border-black">
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase tracking-wider border-b border-slate-800 font-semibold">
+            <tr>
+              <th class="p-2.5 border-r border-slate-800">Concept</th>
+              <th class="p-2.5 border-r border-slate-800">Mathematical Formulation</th>
+              <th class="p-2.5 border-r border-slate-800">SI Unit / Dim</th>
+              <th class="p-2.5">Boundary Conditions & Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/80 text-slate-300">
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Magnetic Flux ($\Phi_B$)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\Phi_B = \vec{B}\cdot\vec{A} = BA\cos\theta$$</td>
+              <td class="p-2.5">$\text{Weber (Wb)} = \text{T}\cdot\text{m}^2$<br>$[\text{M}^1\text{L}^2\text{T}^{-2}\text{A}^{-1}]$</td>
+              <td class="p-2.5 text-[11px]">Scalar quantity. $\theta$ is angle between $\vec{B}$ and normal area vector $\hat{n}$. $\Phi = 0$ when plane of loop is parallel to field.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Faraday-Lenz Law</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\mathcal{E} = -N\frac{d\Phi_B}{dt}, \quad I = -\frac{N}{R}\frac{d\Phi_B}{dt}$$</td>
+              <td class="p-2.5">$\text{Volt (V)}$</td>
+              <td class="p-2.5 text-[11px]">Negative sign represents Lenz's law (opposition to flux change). Grounded in Law of Conservation of Energy.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Induced Charge ($\Delta q$)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\Delta q = \frac{N|\Delta\Phi_B|}{R}$$</td>
+              <td class="p-2.5">$\text{Coulomb (C)}$</td>
+              <td class="p-2.5 text-[11px]">Strictly independent of time $\Delta t$ or speed of withdrawal! Depends only on net flux change and loop resistance.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Translational Motional EMF</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\mathcal{E} = Bvl \quad (\vec{v}\perp\vec{B}\perp\vec{l})$$</td>
+              <td class="p-2.5">$\text{Volt (V)}$</td>
+              <td class="p-2.5 text-[11px]">Arises from magnetic Lorentz force on free electrons. Polarity determined by Fleming's Right-Hand Rule.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Rotating Conductor EMF</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\mathcal{E} = \frac{1}{2}B\omega l^2 = B f (\pi l^2) = B f A$$</td>
+              <td class="p-2.5">$\text{Volt (V)}$</td>
+              <td class="p-2.5 text-[11px]">Between center axle and outer rim. For a wheel with $N$ spokes, EMF remains unchanged (spokes in parallel).</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Mechanical-Electrical Power</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$P_{\text{mech}} = F_{\text{ext}}v = \frac{B^2 l^2 v^2}{R} = I^2 R = P_{\text{Joule}}$$</td>
+              <td class="p-2.5">$\text{Watt (W)}$</td>
+              <td class="p-2.5 text-[11px]">Retarding magnetic force $F_m = \frac{B^2 l^2 v}{R}$ opposes velocity; external work completely converts to Joule heat.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Self-Inductance of Solenoid</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$L = \frac{\mu_0 N^2 A}{l} = \mu_0 n^2 A l = \mu_0 n^2 V$$</td>
+              <td class="p-2.5">$\text{Henry (H)} = \text{V}\cdot\text{s/A}$<br>$[\text{M}^1\text{L}^2\text{T}^{-2}\text{A}^{-2}]$</td>
+              <td class="p-2.5 text-[11px]">Self-induced back-EMF $\mathcal{E} = -L\frac{dI}{dt}$. With magnetic core: $L = \mu_r \mu_0 n^2 A l$. Note $L \propto N^2$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Coaxial Mutual Inductance</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$M = \mu_0 n_1 n_2 (\pi r_1^2) l = \frac{\mu_0 N_1 N_2 A_1}{l}$$</td>
+              <td class="p-2.5">$\text{Henry (H)}$</td>
+              <td class="p-2.5 text-[11px]">Reciprocity theorem holds: $M_{12} = M_{21}$. Always uses the cross-sectional area of the inner solenoid $A_1$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Magnetic Energy & Density</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$U = \frac{1}{2}LI^2, \quad u_B = \frac{B^2}{2\mu_0}$$</td>
+              <td class="p-2.5">$U: \text{Joule (J)}$<br>$u_B: \text{J/m}^3$</td>
+              <td class="p-2.5 text-[11px]">Energy is stored in the magnetic field volume of the inductor, analogous to capacitor electrostatic energy $u_E = \frac{1}{2}\varepsilon_0 E^2$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">AC Generator Equation</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\mathcal{E} = \mathcal{E}_0\sin\omega t, \quad \mathcal{E}_0 = NBA\omega$$</td>
+              <td class="p-2.5">$\text{Volt (V)}$</td>
+              <td class="p-2.5 text-[11px]">Flux is $\Phi = NBA\cos\omega t$. When $\Phi$ is maximum ($\theta=0^\circ$), induced EMF is zero ($\sin 0^\circ = 0$). $\mathcal{E}$ leads $\Phi$ by $90^\circ$.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 2: Stepwise Derivations Blueprint -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        2. Core Derivations Blueprint (Step-by-Step Board Proofs)
+      </h2>
+
+      <!-- Proof 1: Motional EMF & Energy Balance -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 6.1: Motional EMF on Sliding Conductor & Mechanical-Electrical Energy Equivalence
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. A rod of length $l$ moves at constant velocity $v = \frac{dx}{dt}$ along parallel rails connected across resistance $R$ in uniform perpendicular field $B$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Flux enclosed: $\Phi_B = Blx$. By Faraday's Law, induced EMF:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$\mathcal{E} = -\frac{d\Phi_B}{dt} = -Bl\frac{dx}{dt} = -Bvl \implies |\mathcal{E}| = Bvl$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. Induced current: $I = \frac{\mathcal{E}}{R} = \frac{Bvl}{R}$. Conductor experiences opposing magnetic retarding force: $F_m = IlB = \frac{B^2 l^2 v}{R}$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          4. Mechanical power required to pull the rod at constant velocity $v$:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$P_{\text{mech}} = F_{\text{ext}} \cdot v = \left(\frac{B^2 l^2 v}{R}\right)v = \frac{B^2 l^2 v^2}{R}$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          5. Electrical Joule heat dissipation rate in resistor $R$:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$P_{\text{Joule}} = I^2 R = \left(\frac{Bvl}{R}\right)^2 R = \frac{B^2 l^2 v^2}{R} \equiv P_{\text{mech}} \quad (\text{Energy is Strictly Conserved})$$
+        </div>
+      </div>
+
+      <!-- Proof 2: Rotating Rod in Magnetic Field -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 6.2: Motional EMF in a Rotating Conducting Rod ($\mathcal{E} = \frac{1}{2}B\omega l^2$)
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Consider a rod of length $l$ rotating with angular velocity $\omega$ about one end in a plane perpendicular to magnetic field $B$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Radial element $dr$ at distance $r$ from pivot moves with linear velocity $v = \omega r$. Elementary EMF across $dr$:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$d\mathcal{E} = B v \, dr = B (\omega r) dr = B\omega r \, dr$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. Total EMF induced across the full length between center pivot and outer rim:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\mathcal{E} = \int_0^l B\omega r \, dr = B\omega \left[\frac{r^2}{2}\right]_0^l = \frac{1}{2}B\omega l^2 = B f (\pi l^2) = B f A$$
+        </div>
+      </div>
+
+      <!-- Proof 3: Self-Inductance of a Long Solenoid -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 6.3: Self-Inductance of a Long Uniform Solenoid ($L = \mu_0 n^2 A l$)
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. For a solenoid of length $l$, area $A$, total turns $N$ ($n = N/l$) carrying current $I$: Field inside is $B = \mu_0 n I = \mu_0 \left(\frac{N}{l}\right)I$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Flux linked per turn: $\Phi_1 = BA = \mu_0 \left(\frac{N}{l}\right) I A$. Total flux linkage for all $N$ turns:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$N\Phi_B = N \left[\mu_0 \frac{N}{l} I A\right] = \frac{\mu_0 N^2 A}{l} I$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. Comparing with $N\Phi_B = LI$:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$L = \frac{\mu_0 N^2 A}{l} = \mu_0 n^2 A l = \mu_0 n^2 V$$
+        </div>
+      </div>
+
+      <!-- Proof 4: AC Generator Output -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 6.4: Alternating EMF Generated in a Rotating Armature Coil
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Coil of $N$ turns and area $A$ rotates at angular velocity $\omega$ in field $B$. At time $t$, angle between $\vec{A}$ and $\vec{B}$ is $\theta = \omega t$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Instantaneous magnetic flux: $\Phi_B = N (\vec{B}\cdot\vec{A}) = NBA\cos\omega t$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          3. Differentiating with respect to time according to Faraday's Law:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\mathcal{E} = -\frac{d\Phi_B}{dt} = -NBA(-\omega\sin\omega t) = NBA\omega\sin\omega t = \mathcal{E}_0\sin\omega t \quad (\mathcal{E}_0 = NBA\omega)$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: High-Yield Exam Trap Matrix -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-rose-400 print:text-black border-l-4 border-rose-500 print:border-black pl-2.5">
+        3. High-Yield "Red Alert" Exam Trap Matrix
+      </h2>
+
+      <!-- Core Comparative Matrix Table -->
+      <div class="rounded-xl border border-rose-900/40 print-border overflow-hidden">
+        <div class="bg-rose-950/40 print:bg-gray-100 p-2.5 border-b border-rose-900/40 print:border-black">
+          <p class="text-xs font-bold text-rose-300 print:text-black uppercase">
+            Master Trap 1: Induced Effects across Standard Physical Configurations
+          </p>
+        </div>
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase font-semibold">
+            <tr>
+              <th class="p-2 border border-slate-800">Physical Scenario</th>
+              <th class="p-2 border border-slate-800 text-cyan-400 print:text-black">Induced EMF ($\mathcal{E}$)</th>
+              <th class="p-2 border border-slate-800 text-amber-400 print:text-black">Induced Current ($I$)</th>
+              <th class="p-2 border border-slate-800 text-emerald-400 print:text-black">Kinematics / Board Verdict</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Magnet falling in long copper pipe</td>
+              <td class="p-2 font-mono text-cyan-300 print:text-black">$\mathcal{E} \ne 0$</td>
+              <td class="p-2 font-mono text-amber-300 print:text-black">$I_{\text{eddy}} \ne 0$</td>
+              <td class="p-2 text-[11px]">Upward Lenz drag causes $a < g$; reaches steady terminal velocity ($a = 0$).</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Magnet falling through cut ring</td>
+              <td class="p-2 font-mono text-cyan-300 print:text-black">$\mathcal{E} \ne 0$</td>
+              <td class="p-2 font-mono text-rose-400 print:text-black">$I = 0$ (Broken loop)</td>
+              <td class="p-2 text-[11px]">No retarding magnetic force acts; falls freely with $a = g$.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Fast vs Slow magnet withdrawal</td>
+              <td class="p-2 font-mono">$\mathcal{E}_{\text{fast}} > \mathcal{E}_{\text{slow}}$</td>
+              <td class="p-2 font-mono">$I_{\text{fast}} > I_{\text{slow}}$</td>
+              <td class="p-2 text-[11px] font-bold text-emerald-400 print:text-black">Total charge $\Delta q = \Delta\Phi/R$ is identical in both cases!</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Airplane flying horizontally</td>
+              <td class="p-2 font-mono text-cyan-300 print:text-black">$\mathcal{E} = B_V v l$</td>
+              <td class="p-2 font-mono text-rose-400 print:text-black">$I = 0$ (Open wings)</td>
+              <td class="p-2 text-[11px]">Horizontal component $B_H \parallel \vec{v} \implies$ Only vertical component $B_V$ induces EMF.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Bicycle wheel with $N$ metallic spokes</td>
+              <td class="p-2 font-mono text-cyan-300 print:text-black">$\mathcal{E} = \frac{1}{2}B\omega l^2$</td>
+              <td class="p-2 font-mono">Parallel network</td>
+              <td class="p-2 text-[11px]">All spokes are in parallel between axle and rim; EMF is independent of spoke count $N$.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Critical Pitfalls Grid -->
+      <div class="grid sm:grid-cols-2 gap-3 text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 2: Mutual Inductance Area Selection</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            For two coaxial solenoids where outer radius is $r_2$ and inner radius is $r_1$ ($r_2 > r_1$):
+            $$M = \mu_0 n_1 n_2 (\pi r_1^2) l = \frac{\mu_0 N_1 N_2 A_1}{l}$$
+            Never use $\pi r_2^2$! The magnetic field of the outer solenoid threads only through the physical cross-section of the inner solenoid. Area is strictly <strong class="text-white print:text-black">$A_{\text{inner}} = \pi r_1^2$</strong>.
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 3: AC Generator Quadrature Phase Shift</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            $$\Phi_B = NBA\cos\omega t \quad \text{vs} \quad \mathcal{E} = NBA\omega\sin\omega t$$
+            When coil plane $\perp \vec{B}$ ($\omega t = 0^\circ$): Flux is maximum ($\Phi_{\max} = NBA$), but induced EMF is <strong class="text-white print:text-black">ZERO</strong> ($d\Phi/dt = 0$).
+            When coil plane $\parallel \vec{B}$ ($\omega t = 90^\circ$): Flux is zero, but induced EMF is <strong class="text-white print:text-black">MAXIMUM</strong> ($\mathcal{E}_0 = NBA\omega$).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Handcrafted Exemplar Numericals -->
+    <section class="space-y-4 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-amber-400 print:text-black border-l-4 border-amber-500 print:border-black pl-2.5">
+        4. Handcrafted Exemplars (Analytical Numerical Solutions)
+      </h2>
+
+      <!-- Problem 1 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black">Problem 1: Rotating Conductor Wheel Across Earth's Magnetic Field</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden">Exemplar 01</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          A wheel with 10 metallic spokes each $0.5\text{ m}$ long is rotated at $120\text{ rev/min}$ in a plane normal to the horizontal component of Earth’s magnetic field $B_H = 0.40\text{ G}$. What is the induced EMF between the axle and the rim of the wheel?
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> Length $l = 0.5\text{ m}$, frequency $f = \frac{120}{60} = 2\text{ rev/s}$, $\omega = 2\pi f = 4\pi\text{ rad/s}$. Field $B = 0.40 \times 10^{-4}\text{ T}$.</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$\mathcal{E} = \frac{1}{2} B \omega l^2 = \frac{1}{2} \times (0.40 \times 10^{-4}) \times (4\pi) \times (0.5)^2$$
+          </div>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$\mathcal{E} = 0.20 \times 10^{-4} \times 4\pi \times 0.25 = 2.0 \times 10^{-5}\pi\text{ V} \approx 6.28 \times 10^{-5}\text{ Volts} = 62.8\text{ }\mu\text{V}$$
+          </div>
+          <p class="text-slate-400 print:text-black"><em>Note:</em> The number of spokes (10) does not change the result because all spokes are in parallel.</p>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black">Problem 2: Solenoid Self-Inductance & Current Reversal Back-EMF</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden">Exemplar 02</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          A solenoid of length $50\text{ cm}$ and area $4.0\text{ cm}^2$ has $500\text{ turns}$. If a current of $2.0\text{ A}$ flowing through it is reversed in $0.10\text{ s}$, calculate (i) self-inductance $L$, (ii) induced back-EMF, and (iii) stored magnetic energy.
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> $l = 0.5\text{ m}$, $A = 4 \times 10^{-4}\text{ m}^2$, $N = 500$:</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$L = \frac{\mu_0 N^2 A}{l} = \frac{(4\pi \times 10^{-7}) \times (500)^2 \times (4 \times 10^{-4})}{0.50} = 8\pi \times 10^{-5}\text{ H} \approx 2.51 \times 10^{-4}\text{ H}$$
+          </div>
+          <p class="text-slate-400 print:text-black">Current change: $\Delta I = (-2) - (+2) = -4\text{ A} \implies \frac{dI}{dt} = \frac{-4}{0.10} = -40\text{ A/s}$.</p>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$\mathcal{E} = -L \frac{dI}{dt} = -(2.51 \times 10^{-4}) \times (-40) \approx +10.05\text{ mV}$$
+            $$U = \frac{1}{2} L I^2 = \frac{1}{2} \times (2.51 \times 10^{-4}) \times (2.0)^2 \approx 5.03 \times 10^{-4}\text{ J} = 0.503\text{ mJ}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Printable Cut-Out Flashcard Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        5. Printable Pocket Flashcard Grid
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Induced Charge</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1">$\Delta q = \frac{\Delta\Phi_B}{R}$ (Time Free)</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Motional EMF</p>
+          <p class="font-bold text-white print:text-black text-xs mt-1">$\mathcal{E} = Bvl$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Solenoid $L$</p>
+          <p class="font-bold text-white print:text-black text-[11px] mt-1">$L = \mu_0 n^2 A l$ ($L \propto N^2$)</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Peak AC Voltage</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1">$\mathcal{E}_0 = NBA\omega$</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Document Footer -->
+    <footer class="pt-6 border-t border-slate-800 text-center text-xs text-slate-500 print:text-black print:pt-3">
+      <p>AXIOM Physics Class 12 • Open Access Physics Initiative • Distributed under Creative Commons Free Access</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>

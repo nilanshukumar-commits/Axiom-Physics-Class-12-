@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class 12 Physics | Chapter 8 - Electromagnetic Waves Master Dossier</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    /* Print Optimization Rules */
+    @page {
+      size: A4 portrait;
+      margin: 12mm 14mm 12mm 14mm;
+    }
+
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        font-size: 10.5pt !important;
+        line-height: 1.35 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .avoid-break {
+        page-break-inside: avoid;
+      }
+      .print-border {
+        border: 1px solid #1e293b !important;
+      }
+      .print-table th {
+        background-color: #f1f5f9 !important;
+        color: #000000 !important;
+        border: 1px solid #94a3b8 !important;
+      }
+      .print-table td {
+        border: 1px solid #cbd5e1 !important;
+        color: #000000 !important;
+      }
+      .formula-box {
+        background: #f8fafc !important;
+        border-left: 3px solid #0f172a !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Sticky Top Action Bar (Auto-hidden in Print/PDF) -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex flex-wrap justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <div>
+        <span class="text-lg font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+        <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Open Access</span>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-3 mt-2 sm:mt-0">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-indigo-600/30 active:scale-95 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>Save as PDF (Clean Vector)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Body Container -->
+  <main class="max-w-4xl mx-auto px-4 py-8 md:py-12 space-y-10 print:p-0 print:m-0 print:space-y-6">
+
+    <!-- Dossier Title Block -->
+    <div class="border-b-2 border-indigo-500/40 pb-5 print:border-black print:pb-3">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-indigo-400 print:text-black">CBSE Class XII • Unit 05 (Electromagnetic Waves)</p>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1 print:text-black print:text-2xl">
+            Chapter 08: Electromagnetic Waves
+          </h1>
+          <p class="text-slate-400 mt-1 text-sm print:text-gray-700">Master Revision Dossier • Displacement Current, Maxwell's Equations, Wave Propagation, Energy Dynamics & Complete Spectrum</p>
+        </div>
+        <div class="hidden sm:block text-right text-xs text-slate-500 print:block print:text-black">
+          <p class="font-mono">Open Access Initiative</p>
+          <p class="font-mono">Unit V Weightage Core</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: Master Formula & Wave Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        1. Definitive Formula & Physical Quantities Matrix
+      </h2>
+      <div class="overflow-x-auto rounded-xl border border-slate-800 print:border-black">
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase tracking-wider border-b border-slate-800 font-semibold">
+            <tr>
+              <th class="p-2.5 border-r border-slate-800">Concept</th>
+              <th class="p-2.5 border-r border-slate-800">Mathematical Formulation</th>
+              <th class="p-2.5 border-r border-slate-800">SI Unit / Dim</th>
+              <th class="p-2.5">Boundary Conditions & Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/80 text-slate-300">
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Displacement Current</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$I_d = \varepsilon_0 \frac{d\Phi_E}{dt} = \varepsilon_0 A \frac{dE}{dt}$$</td>
+              <td class="p-2.5">$\text{Ampere (A)}$<br>$[\text{A}]$</td>
+              <td class="p-2.5 text-[11px]">Exists inside capacitor gap during charging/discharging. Equal in magnitude to conduction current ($I_c \equiv I_d$). Zero when fully charged DC.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Ampere-Maxwell Law</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\oint \vec{B}\cdot d\vec{l} = \mu_0 (I_c + I_d) = \mu_0 I_c + \mu_0 \varepsilon_0 \frac{d\Phi_E}{dt}$$</td>
+              <td class="p-2.5">$\text{Tesla}\cdot\text{m}$</td>
+              <td class="p-2.5 text-[11px]">Resolves inconsistency of Ampere's circuital law. Establishes that time-varying electric flux generates a circulating magnetic field.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Wave Speed in Vacuum</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$c = \frac{1}{\sqrt{\mu_0 \varepsilon_0}} = \frac{E_0}{B_0} = \frac{\omega}{k}$$</td>
+              <td class="p-2.5">$\text{m/s}$<br>$[\text{L}\text{T}^{-1}]$</td>
+              <td class="p-2.5 text-[11px]">$c \approx 3.0 \times 10^8\text{ m/s}$. In material medium: $v = \frac{1}{\sqrt{\mu \varepsilon}} = \frac{c}{\sqrt{\mu_r \varepsilon_r}} = \frac{c}{n}$. Independent of frequency.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Field Amplitudes Ratio</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\frac{E_0}{B_0} = \frac{E_{\text{rms}}}{B_{\text{rms}}} = c$$</td>
+              <td class="p-2.5">$\text{m/s}$</td>
+              <td class="p-2.5 text-[11px]">$E_0 = c B_0$. Electric field amplitude is numerical factor of $3 \times 10^8$ larger than magnetic field amplitude in SI units.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Average Energy Density</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$u_{\text{avg}} = \frac{1}{2}\varepsilon_0 E_0^2 = \varepsilon_0 E_{\text{rms}}^2 = \frac{B_0^2}{2\mu_0} = \frac{B_{\text{rms}}^2}{\mu_0}$$</td>
+              <td class="p-2.5">$\text{J/m}^3$<br>$[\text{M}^1\text{L}^{-1}\text{T}^{-2}]$</td>
+              <td class="p-2.5 text-[11px]">Exact 50%-50% equal energy distribution between electric and magnetic vectors: $\langle u_E \rangle \equiv \langle u_B \rangle = \frac{1}{4}\varepsilon_0 E_0^2$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Poynting Vector & Intensity</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\vec{S} = \frac{1}{\mu_0}(\vec{E}\times\vec{B}), \quad I = \langle S \rangle = u_{\text{avg}} c = \frac{1}{2}\varepsilon_0 c E_0^2$$</td>
+              <td class="p-2.5">$\text{W/m}^2$<br>$[\text{M}^1\text{T}^{-3}]$</td>
+              <td class="p-2.5 text-[11px]">Direction of $\vec{S}$ gives direction of energy propagation ($\hat{c} = \hat{E}\times\hat{B}$). Time average of $|\vec{S}|$ represents intensity $I$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Radiation Momentum & Force</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$p = \frac{U}{c} \text{ (Abs)}, \quad p = \frac{2U}{c} \text{ (Ref)}$$</td>
+              <td class="p-2.5">$\text{kg}\cdot\text{m/s}$</td>
+              <td class="p-2.5 text-[11px]">Radiation force $F = \frac{IA}{c}$ (Complete absorption); $F = \frac{2IA}{c}$ (Complete reflection / perfect mirror).</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Radiation Pressure</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$P_{\text{rad}} = \frac{I}{c} \text{ (Abs)}, \quad P_{\text{rad}} = \frac{2I}{c} \text{ (Ref)}$$</td>
+              <td class="p-2.5">$\text{N/m}^2 \text{ (Pa)}$</td>
+              <td class="p-2.5 text-[11px]">Mechanical pressure exerted by photons colliding on exposed surface area. Twice as large on reflecting surfaces.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 2: Stepwise Derivations Blueprint -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        2. Core Derivations Blueprint (Step-by-Step Board Proofs)
+      </h2>
+
+      <!-- Proof 1: Displacement Current Derivation -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 8.1: Deduction of Displacement Current & Consistency of Ampere's Law
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Consider a parallel plate capacitor of plate area $A$ charging with conduction current $I_c = \frac{dq}{dt}$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. For a flat surface $S_1$ spanning an Amperian loop $C$ outside the plates: $\oint \vec{B}\cdot d\vec{l} = \mu_0 I_c$. For a pot-shaped surface $S_2$ passing through the capacitor gap: $\oint \vec{B}\cdot d\vec{l} = 0$ (no physical wire crosses $S_2$). This is Ampere's inconsistency.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          3. Electric field between capacitor plates at any instant: $E = \frac{\sigma}{\varepsilon_0} = \frac{q}{\varepsilon_0 A}$. Electric flux through surface $S_2$:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$\Phi_E = E A = \left(\frac{q}{\varepsilon_0 A}\right) A = \frac{q}{\varepsilon_0} \implies q = \varepsilon_0 \Phi_E$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          4. Differentiating with respect to time $t$:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$I_c = \frac{dq}{dt} = \varepsilon_0 \frac{d\Phi_E}{dt} = I_d \implies \oint \vec{B}\cdot d\vec{l} = \mu_0 (I_c + I_d)$$
+        </div>
+      </div>
+
+      <!-- Proof 2: Speed of Light & Wave Equation -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 8.2: Electromagnetic Wave Speed and Amplitude Ratio ($E_0 = c B_0$)
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. In vacuum ($\rho = 0, I_c = 0$), Maxwell's equations relating spatial and temporal variations of plane wave ($E_y, B_z$ propagating along $+x$):
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$\frac{\partial E_y}{\partial x} = -\frac{\partial B_z}{\partial t} \quad \text{and} \quad -\frac{\partial B_z}{\partial x} = \mu_0 \varepsilon_0 \frac{\partial E_y}{\partial t}$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          2. Differentiating and combining gives the wave equation: $\frac{\partial^2 E_y}{\partial x^2} = \mu_0 \varepsilon_0 \frac{\partial^2 E_y}{\partial t^2}$. Comparing with standard wave equation $\frac{\partial^2 y}{\partial x^2} = \frac{1}{c^2}\frac{\partial^2 y}{\partial t^2}$:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$c = \frac{1}{\sqrt{\mu_0 \varepsilon_0}} \approx 3.0 \times 10^8\text{ m/s}$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. Substituting $E_y = E_0\sin(kx - \omega t)$ and $B_z = B_0\sin(kx - \omega t)$: $k E_0 \cos(kx - \omega t) = \omega B_0 \cos(kx - \omega t)$:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\frac{E_0}{B_0} = \frac{\omega}{k} = c \implies E_0 = c B_0 \quad \text{and} \quad E_{\text{rms}} = c B_{\text{rms}}$$
+        </div>
+      </div>
+
+      <!-- Proof 3: Equal Energy Partition -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 8.3: Proof of Equal Energy Distribution ($\langle u_E \rangle \equiv \langle u_B \rangle$)
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Time-averaged electric energy density: $\langle u_E \rangle = \frac{1}{2}\varepsilon_0 \langle E^2 \rangle = \frac{1}{2}\varepsilon_0 \left(\frac{E_0^2}{2}\right) = \frac{1}{4}\varepsilon_0 E_0^2$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Time-averaged magnetic energy density: $\langle u_B \rangle = \frac{\langle B^2 \rangle}{2\mu_0} = \frac{B_0^2}{4\mu_0}$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          3. Substitute $B_0 = E_0/c$ and $c^2 = \frac{1}{\mu_0\varepsilon_0}$ into the magnetic energy density:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\langle u_B \rangle = \frac{(E_0/c)^2}{4\mu_0} = \frac{E_0^2}{4\mu_0 c^2} = \frac{E_0^2}{4\mu_0 \left(\frac{1}{\mu_0\varepsilon_0}\right)} = \frac{1}{4}\varepsilon_0 E_0^2 \equiv \langle u_E \rangle \implies u_{\text{total}} = \frac{1}{2}\varepsilon_0 E_0^2 = \varepsilon_0 E_{\text{rms}}^2$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: Complete Electromagnetic Spectrum Master Table -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        3. Complete Electromagnetic Spectrum (Wavelength, Frequency, Production, Detection & 3 Uses)
+      </h2>
+
+      <div class="overflow-x-auto rounded-xl border border-slate-800 print:border-black">
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase font-semibold">
+            <tr>
+              <th class="p-2 border border-slate-800">Wave Type</th>
+              <th class="p-2 border border-slate-800 text-cyan-400 print:text-black">Wavelength Range</th>
+              <th class="p-2 border border-slate-800 text-amber-400 print:text-black">Frequency Range</th>
+              <th class="p-2 border border-slate-800">Production Mechanism</th>
+              <th class="p-2 border border-slate-800">Detection Method</th>
+              <th class="p-2 border border-slate-800 text-emerald-400 print:text-black">3 High-Yield Uses</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">1. Radio Waves</td>
+              <td class="p-2 font-mono">&gt; $0.1\text{ m}$<br>($10^3\text{m} - 0.1\text{m}$)</td>
+              <td class="p-2 font-mono">$10^4 - 10^9\text{ Hz}$<br>($500\text{kHz} - 1000\text{MHz}$)</td>
+              <td class="p-2 text-[11px]">Accelerated charges in conducting wires; LC tuned oscillators.</td>
+              <td class="p-2 text-[11px]">Receiver aerials, tuned LC antenna circuits.</td>
+              <td class="p-2 text-[11px]">
+                1. AM/FM radio broadcasting.<br>
+                2. Television transmission (VHF/UHF).<br>
+                3. Cellular mobile phone communication.
+              </td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">2. Microwaves</td>
+              <td class="p-2 font-mono">$0.1\text{ m} - 1.0\text{ mm}$<br>($10^{-1} - 10^{-3}\text{ m}$)</td>
+              <td class="p-2 font-mono">$1\text{ GHz} - 300\text{ GHz}$<br>($10^9 - 3\times 10^{11}\text{ Hz}$)</td>
+              <td class="p-2 text-[11px]">Special vacuum tubes: Klystron, Magnetron, Gunn diodes.</td>
+              <td class="p-2 text-[11px]">Point-contact crystal diodes, semiconductor detectors.</td>
+              <td class="p-2 text-[11px]">
+                1. Aircraft & defense RADAR navigation.<br>
+                2. Microwave ovens (resonant water heating).<br>
+                3. Satellite telecommunication & Wi-Fi.
+              </td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">3. Infrared (Heat)</td>
+              <td class="p-2 font-mono">$1\text{ mm} - 700\text{ nm}$<br>($10^{-3} - 7\times 10^{-7}\text{ m}$)</td>
+              <td class="p-2 font-mono">$3\times 10^{11} - 4\times 10^{14}\text{ Hz}$</td>
+              <td class="p-2 text-[11px]">Thermal vibration of molecules in hot bodies and atoms.</td>
+              <td class="p-2 text-[11px]">Thermopiles, bolometers, infrared photographic film.</td>
+              <td class="p-2 text-[11px]">
+                1. Remote controls for TV and appliances.<br>
+                2. Night-vision military surveillance & haze photography.<br>
+                3. Muscular pain physiotherapy lamps.
+              </td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">4. Visible Light</td>
+              <td class="p-2 font-mono">$700\text{ nm} - 400\text{ nm}$<br>($7\times 10^{-7} - 4\times 10^{-7}\text{ m}$)</td>
+              <td class="p-2 font-mono">$4\times 10^{14} - 7.5\times 10^{14}\text{ Hz}$</td>
+              <td class="p-2 text-[11px]">Transitions of valence electrons in excited incandescent atoms.</td>
+              <td class="p-2 text-[11px]">Human retinas, photographic emulsion, photocells.</td>
+              <td class="p-2 text-[11px]">
+                1. Human physiological ocular vision (VIBGYOR).<br>
+                2. High-speed optical fiber communications.<br>
+                3. Biological photosynthesis in green plants.
+              </td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">5. Ultraviolet (UV)</td>
+              <td class="p-2 font-mono">$400\text{ nm} - 1\text{ nm}$<br>($4\times 10^{-7} - 10^{-9}\text{ m}$)</td>
+              <td class="p-2 font-mono">$7.5\times 10^{14} - 10^{16}\text{ Hz}$</td>
+              <td class="p-2 text-[11px]">Very hot bodies (Sun), electric arcs, mercury vapor discharge lamps.</td>
+              <td class="p-2 text-[11px]">Photocells, fluorescent screens, photographic paper.</td>
+              <td class="p-2 text-[11px]">
+                1. Water purification (bactericidal action).<br>
+                2. Detection of forged currency & signatures.<br>
+                3. LASIK precision corneal eye surgery.
+              </td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">6. X-Rays</td>
+              <td class="p-2 font-mono">$1\text{ nm} - 10^{-3}\text{ nm}$<br>($10^{-9} - 10^{-12}\text{ m}$)</td>
+              <td class="p-2 font-mono">$10^{16} - 3\times 10^{19}\text{ Hz}$</td>
+              <td class="p-2 text-[11px]">Bombardment of heavy metal target (Tungsten) by fast electrons.</td>
+              <td class="p-2 text-[11px]">Photographic film, GM counters, ionization chambers.</td>
+              <td class="p-2 text-[11px]">
+                1. Diagnostic radiography (bone fractures & CT scans).<br>
+                2. Crystallography & lattice structure analysis.<br>
+                3. Airport luggage security scanners.
+              </td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">7. Gamma Rays ($\gamma$)</td>
+              <td class="p-2 font-mono">&lt; $10^{-3}\text{ nm}$<br>($&lt; 10^{-12}\text{ m}$)</td>
+              <td class="p-2 font-mono">&gt; $3\times 10^{19}\text{ Hz}$<br>($10^{19} - 10^{23}\text{ Hz}$)</td>
+              <td class="p-2 text-[11px]">Radioactive decay of atomic nuclei; nuclear de-excitation.</td>
+              <td class="p-2 text-[11px]">Ionization chambers, scintillation counters.</td>
+              <td class="p-2 text-[11px]">
+                1. Oncology radiotherapy (killing cancer cells).<br>
+                2. Preservation of packaged food (sterilization).<br>
+                3. Probing fundamental nuclear energy levels.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 4: High-Yield Exam Trap Matrix -->
+    <section class="space-y-4 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-rose-400 print:text-black border-l-4 border-rose-500 print:border-black pl-2.5">
+        4. High-Yield "Red Alert" Exam Trap Matrix
+      </h2>
+
+      <div class="grid sm:grid-cols-2 gap-3 text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 1: Displacement Current in Steady DC</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            In a fully charged capacitor connected to a DC battery, the electric field is constant ($d\Phi_E/dt = 0$).
+            <br>Therefore, displacement current is strictly <strong class="text-white print:text-black">ZERO ($I_d = 0$)</strong>.
+            $I_d$ exists <strong class="text-white print:text-black">ONLY during charging or discharging</strong> when electric flux varies with time.
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 2: X-Rays vs Gamma Rays Overlap Duality</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            An X-ray and a $\gamma$-ray can have identical wavelength ($\sim 10^{-11}\text{ m}$) and identical speed ($c$).
+            <br>They are distinguished <strong class="text-white print:text-black">ONLY by their ORIGIN</strong>:
+            <br>• X-rays originate from atomic electron transitions or sudden electron decelerations.
+            <br>• Gamma rays originate exclusively from nuclear de-excitation inside radioactive nuclei.
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 3: Vacuum Speed Invariance (1:1 Ratio)</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            *Board Trap:* "Compare the speed of a $100\text{ kHz}$ radio wave with a $10^{22}\text{ Hz}$ gamma ray in vacuum."
+            <br>*Correct Answer:* <strong class="text-white print:text-black">RATIO IS EXACTLY 1:1!</strong>
+            All EM waves travel with identical velocity $c = \frac{1}{\sqrt{\mu_0\varepsilon_0}} \approx 3.0 \times 10^8\text{ m/s}$ in vacuum, independent of frequency, wavelength, or intensity.
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 4: Equal Energy Partition (1:1 Ratio)</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            Although $E_0 = c B_0$ (meaning $E_0$ is $3 \times 10^8$ times larger numerically than $B_0$), energy is shared equally:
+            $$\langle u_E \rangle = \frac{1}{4}\varepsilon_0 E_0^2 \equiv \langle u_B \rangle = \frac{B_0^2}{4\mu_0}$$
+            Exactly <strong class="text-white print:text-black">50% of total wave energy</strong> is transported by the electric field, and 50% by the magnetic field.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Handcrafted Exemplar Numericals -->
+    <section class="space-y-4 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-amber-400 print:text-black border-l-4 border-amber-500 print:border-black pl-2.5">
+        5. Handcrafted Exemplars (Analytical Numerical Solutions)
+      </h2>
+
+      <!-- Problem 1 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black">Problem 1: Capacitor Charging & Induced Magnetic Field</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden">Exemplar 01</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          A parallel plate capacitor with circular plates of radius $R = 12\text{ cm}$ is charged by a current of $0.15\text{ A}$. Calculate (i) displacement current, (ii) rate of change of electric flux, and (iii) magnetic field induced at $r = 6.0\text{ cm}$ from the central axis.
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong></p>
+          <p class="text-slate-400 print:text-black">1. $I_d = I_c = 0.15\text{ A}$.</p>
+          <p class="text-slate-400 print:text-black">2. $\frac{d\Phi_E}{dt} = \frac{I_d}{\varepsilon_0} = \frac{0.15}{8.854 \times 10^{-12}} \approx 1.69 \times 10^{10}\text{ V}\cdot\text{m/s}$.</p>
+          <p class="text-slate-400 print:text-black">3. At $r = 6.0\text{ cm} = 0.06\text{ m}$ ($r \le R = 0.12\text{ m}$):</p>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$B = \frac{\mu_0 I_d r}{2\pi R^2} = \frac{(4\pi \times 10^{-7}) \times 0.15 \times 0.06}{2\pi \times (0.12)^2} = \frac{2 \times 10^{-7} \times 0.009}{0.0144} = 1.25 \times 10^{-7}\text{ Tesla} = 0.125\text{ }\mu\text{T}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black">Problem 2: Wave Field Amplitudes, Intensity & Radiation Force</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden">Exemplar 02</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          A plane electromagnetic wave has electric field amplitude $E_0 = 120\text{ V/m}$ and frequency $50\text{ MHz}$. (i) Find $B_0, \omega$, and $k$. (ii) Calculate wave intensity $I$. (iii) Determine radiation force on a completely absorbing surface of area $1.5\text{ m}^2$.
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong></p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$B_0 = \frac{E_0}{c} = \frac{120}{3 \times 10^8} = 4.0 \times 10^{-7}\text{ T} = 0.40\text{ }\mu\text{T}$$
+            $$\omega = 2\pi f = 2\pi(50 \times 10^6) = 100\pi \times 10^6 \approx 3.14 \times 10^8\text{ rad/s}$$
+            $$k = \frac{\omega}{c} = \frac{3.14 \times 10^8}{3 \times 10^8} \approx 1.05\text{ rad/m}$$
+          </div>
+          <p class="text-slate-400 print:text-black">Intensity and radiation force:</p>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$I = \frac{1}{2}\varepsilon_0 c E_0^2 = \frac{1}{2}(8.854 \times 10^{-12})(3 \times 10^8)(120)^2 \approx 19.12\text{ W/m}^2$$
+            $$F = \frac{I A}{c} = \frac{19.12 \times 1.5}{3 \times 10^8} \approx 9.56 \times 10^{-8}\text{ Newtons}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: Printable Cut-Out Flashcard Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        6. Printable Pocket Flashcard Grid
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Displacement Current</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1">$I_d = \varepsilon_0\frac{d\Phi_E}{dt}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Wave Speed</p>
+          <p class="font-bold text-white print:text-black text-xs mt-1">$c = \frac{1}{\sqrt{\mu_0\varepsilon_0}} = \frac{E_0}{B_0}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Energy Partition</p>
+          <p class="font-bold text-white print:text-black text-[11px] mt-1">$u_E = u_B = \frac{1}{4}\varepsilon_0 E_0^2$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Radiation Pressure</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1">$P = \frac{I}{c}$ (Abs), $\frac{2I}{c}$ (Ref)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Document Footer -->
+    <footer class="pt-6 border-t border-slate-800 text-center text-xs text-slate-500 print:text-black print:pt-3">
+      <p>AXIOM Physics Class 12 • Open Access Physics Initiative • Distributed under Creative Commons Free Access</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>

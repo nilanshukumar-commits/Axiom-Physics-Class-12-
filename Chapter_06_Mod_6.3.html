@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Inductance & AC Generator</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 6.3</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 04: Electromagnetic Induction • Chapter 06</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Inductance & The AC Generator</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Electrical inertia, solenoid self & mutual inductance, stored magnetic energy, and working principle of the alternating current generator.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Mechanics mein jaise mass $m$ linear inertia hota hai jo achanak speed badhane ya rokne ka virodh karta hai, theek waise hi electrical circuits mein <strong class="text-white">Inductance ($L$) electrical inertia hai</strong>! Jab aap switch on karte hain, inductor ek opposing back-EMF ($\mathcal{E} = -L\frac{dI}{dt}$) paida karke current ko achanak badhne se rokta hai, aur switch off karte waqt current ko girne se rokta hai (spark ke roop mein). Aur jab aap ek rectangular coil ko magnetic field mein lagatar ghumate hain, toh har aadhi cycle mein area vector $\vec{A}$ aur $\vec{B}$ ka angle $0^\circ \to 90^\circ \to 180^\circ$ continuous change hota hai—isi mechanical rotation se paida hoti hai hamare gharon ki <strong class="text-white">Alternating Current (AC)</strong>!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Self & Mutual Inductance</h3>
+          <p class="text-sm text-slate-400 mb-2">Flux linkage proportional to circuit currents:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$N\Phi_B = L I \implies \mathcal{E} = -L \frac{dI}{dt}$$
+            $$N_2\Phi_2 = M I_1 \implies \mathcal{E}_2 = -M \frac{dI_1}{dt}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">SI Unit: $\text{Henry (H)} = \text{Wb/A} = \text{V}\cdot\text{s/A}$. Scalar quantity depending on coil geometry and core permeability.</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. AC Generator Equation & Energy</h3>
+          <p class="text-sm text-slate-400 mb-2">Sinusoidal voltage and magnetic field energy density:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\mathcal{E} = \mathcal{E}_0 \sin\omega t \quad \text{where } \mathcal{E}_0 = N B A \omega$$
+            $$U = \frac{1}{2} L I^2, \quad u_B = \frac{B^2}{2\mu_0}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Notice: When magnetic flux $\Phi = BA\cos\omega t$ is maximum ($\theta=0^\circ$), induced EMF $\mathcal{E}$ is zero ($d\Phi/dt = 0$)!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (3D Rotating Armature & AC Waveform Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: AC Generator Armature & Waveform Simulator</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="animToggleBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Pause Rotation
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="generatorCanvas" width="800" height="400" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Rotation Speed ($f = \omega/2\pi$)</span>
+            <span id="speedVal" class="text-cyan-400 font-mono font-bold">1.0 Hz (6.28 rad/s)</span>
+          </div>
+          <input id="speedSlider" type="range" min="0.2" max="3.0" step="0.1" value="1.0" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Magnetic Field ($B$)</span>
+            <span id="fieldVal" class="text-amber-400 font-mono font-bold">1.20 Tesla</span>
+          </div>
+          <input id="fieldSlider" type="range" min="0.2" max="2.5" step="0.1" value="1.2" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Armature Turns ($N$)</span>
+            <span id="turnsVal" class="text-emerald-400 font-mono font-bold">200 Turns</span>
+          </div>
+          <input id="turnsSlider" type="range" min="50" max="500" step="25" value="200" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Peak Voltage ($\mathcal{E}_0 = NBA\omega$):</span>
+          <div id="peakVoltVal" class="text-cyan-400 font-bold text-sm mt-0.5">30.16 V</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Instantaneous EMF ($\mathcal{E}$):</span>
+          <div id="instEmfVal" class="text-amber-400 font-bold text-sm mt-0.5">+21.32 V</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Instantaneous Flux ($\Phi$):</span>
+          <div id="instFluxVal" class="text-emerald-400 font-bold text-sm mt-0.5">14.2 mWb</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Phase Relation:</span>
+          <div class="text-indigo-300 font-bold text-sm mt-0.5">EMF leads Flux by 90°</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: AC Generator Principle & Mathematical Formulation -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Primary Board Derivation</span>
+          <h4 class="text-white font-semibold text-base mt-1">Mathematical Derivation of Alternating EMF Generated in a Rotating Coil</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Rotating Coil & Slip Ring Assembly -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 250" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-axis-rot" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+              <marker id="arr-bfield-gen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+            </defs>
+
+            <!-- Permanent Magnetic Poles (North Red, South Blue) -->
+            <rect x="50" y="60" width="80" height="130" fill="#991b1b" stroke="#ef4444" stroke-width="2" />
+            <text x="80" y="132" fill="#ffffff" font-size="22" font-weight="bold" font-family="monospace">N</text>
+
+            <rect x="520" y="60" width="80" height="130" fill="#1e3a8a" stroke="#3b82f6" stroke-width="2" />
+            <text x="550" y="132" fill="#ffffff" font-size="22" font-weight="bold" font-family="monospace">S</text>
+
+            <!-- Magnetic Field Lines from N to S -->
+            <g stroke="#38bdf8" stroke-width="1.5">
+              <line x1="130" y1="80" x2="515" y2="80" marker-end="url(#arr-bfield-gen)" />
+              <line x1="130" y1="125" x2="515" y2="125" marker-end="url(#arr-bfield-gen)" />
+              <line x1="130" y1="170" x2="515" y2="170" marker-end="url(#arr-bfield-gen)" />
+            </g>
+            <text x="470" y="70" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">B Field ➔</text>
+
+            <!-- Rotation Central Axis (Dashed line) -->
+            <line x1="325" y1="20" x2="325" y2="230" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,4" />
+            <text x="335" y="30" fill="#fbbf24" font-size="11" font-family="monospace">Axis of Rotation</text>
+
+            <!-- Rectangular Armature Coil in 3D Perspective (Tilted) -->
+            <polygon points="250,70 400,95 400,185 250,160" fill="rgba(16, 185, 129, 0.25)" stroke="#10b981" stroke-width="3" />
+            <text x="235" y="65" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">A</text>
+            <text x="408" y="90" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">B</text>
+            <text x="408" y="195" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">C</text>
+            <text x="235" y="170" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">D</text>
+
+            <!-- Angular Velocity curved arrow -->
+            <path d="M 310 40 A 20 15 0 0 1 345 40" fill="none" stroke="#fbbf24" stroke-width="2" marker-end="url(#arr-axis-rot)" />
+            <text x="350" y="45" fill="#fbbf24" font-size="11" font-weight="bold" font-family="monospace">ω</text>
+
+            <!-- Area Vector Normal to Coil -->
+            <line x1="325" y1="125" x2="365" y2="70" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arr-axis-rot)" />
+            <text x="372" y="75" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">Area Vector A</text>
+
+            <!-- Slip Rings R1, R2 and Carbon Brushes B1, B2 at Bottom -->
+            <ellipse cx="325" cy="195" rx="14" ry="5" fill="#ca8a04" stroke="#eab308" stroke-width="1.5" />
+            <ellipse cx="325" cy="212" rx="14" ry="5" fill="#ca8a04" stroke="#eab308" stroke-width="1.5" />
+            <text x="345" y="200" fill="#cbd5e1" font-size="9" font-family="monospace">Slip Rings (R₁, R₂)</text>
+
+            <rect x="302" y="193" width="7" height="6" fill="#334155" />
+            <rect x="341" y="210" width="7" height="6" fill="#334155" />
+            <text x="245" y="218" fill="#94a3b8" font-size="9" font-family="monospace">Carbon Brushes</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 6.3A: Essential components of an AC generator: Armature coil $ABCD$, permanent magnet poles, slip rings, and carbon brushes.</p>
+        </div>
+
+        <p>1. Consider a rectangular coil of $N$ turns and cross-sectional area $A$ rotating with constant angular velocity $\omega$ in a uniform magnetic field $\vec{B}$.</p>
+        <p>2. At time $t = 0$, let the plane of the coil be perpendicular to $\vec{B}$ (i.e. normal area vector $\vec{A}$ is parallel to $\vec{B}$, so $\theta = 0^\circ$). At time $t$, angle between $\vec{A}$ and $\vec{B}$ is $\theta = \omega t$.</p>
+        <p>3. Instantaneous magnetic flux linked with the $N$-turn coil:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\Phi_B = N (\vec{B}\cdot\vec{A}) = N B A \cos\omega t$$
+        </div>
+        <p>4. By Faraday's Law of induction, induced EMF is the negative rate of change of flux:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\mathcal{E} = -\frac{d\Phi_B}{dt} = -\frac{d}{dt}(N B A \cos\omega t) = -N B A (-\omega\sin\omega t)$$
+        </div>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\mathcal{E} = N B A \omega \sin\omega t = \mathcal{E}_0 \sin\omega t \quad \text{where } \mathcal{E}_0 = N B A \omega$$
+        </div>
+        <p>5. If external load circuit has resistance $R$, the induced alternating current:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$I = \frac{\mathcal{E}}{R} = \frac{\mathcal{E}_0}{R}\sin\omega t = I_0 \sin\omega t$$
+        </div>
+      </div>
+
+      <!-- Derivation 2: Self-Inductance of a Long Solenoid -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation B</span>
+          <h4 class="text-white font-semibold text-base mt-1">Self-Inductance of a Long Uniform Solenoid</h4>
+        </div>
+        <p>1. Consider a long solenoid of length $l$, cross-sectional area $A$, and total turns $N$ (turns per unit length $n = N/l$).</p>
+        <p>2. Magnetic field inside the solenoid when carrying current $I$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$B = \mu_0 n I = \mu_0 \left(\frac{N}{l}\right) I$$
+        </div>
+        <p>3. Magnetic flux through each single turn: $\Phi_1 = B A = \mu_0 \left(\frac{N}{l}\right) I A$.</p>
+        <p>4. Total magnetic flux linkage across all $N$ turns of the solenoid:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$N\Phi_B = N \left[ \mu_0 \frac{N}{l} I A \right] = \frac{\mu_0 N^2 A}{l} I$$
+        </div>
+        <p>5. By definition of self-inductance ($N\Phi_B = L I$):</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$L = \frac{\mu_0 N^2 A}{l} = \mu_0 n^2 A l = \mu_0 n^2 V$$
+        </div>
+        <p class="text-slate-400"><em>Magnetic Core Insertion:</em> If a core of relative permeability $\mu_r$ is placed inside: $L = \mu_r \mu_0 n^2 A l$.</p>
+      </div>
+
+      <!-- Derivation 3: Mutual Inductance of Two Coaxial Solenoids -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation C</span>
+          <h4 class="text-white font-semibold text-base mt-1">Mutual Inductance of Two Long Coaxial Solenoids</h4>
+        </div>
+        <p>1. Consider two long coaxial solenoids $S_1$ and $S_2$ of common length $l$. Inner solenoid $S_1$ has radius $r_1$, turns $N_1$ ($n_1 = N_1/l$). Outer solenoid $S_2$ has radius $r_2$ ($r_2 > r_1$), turns $N_2$ ($n_2 = N_2/l$).</p>
+        <p>2. Pass current $I_2$ through outer solenoid $S_2$. The uniform magnetic field produced inside $S_2$ is $B_2 = \mu_0 n_2 I_2$.</p>
+        <p>3. This field passes through inner solenoid $S_1$ of cross-sectional area $A_1 = \pi r_1^2$. Total flux linked with all $N_1$ turns of inner solenoid:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$N_1 \Phi_1 = N_1 (B_2 A_1) = (n_1 l) (\mu_0 n_2 I_2) (\pi r_1^2) = \mu_0 n_1 n_2 (\pi r_1^2) l I_2$$
+        </div>
+        <p>4. By definition of mutual inductance ($N_1\Phi_1 = M_{12} I_2$):</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$M_{12} = M_{21} = M = \mu_0 n_1 n_2 (\pi r_1^2) l = \frac{\mu_0 N_1 N_2 A_1}{l}$$
+        </div>
+        <p class="text-slate-400"><em>Reciprocity Theorem:</em> Mutual inductance is symmetric ($M_{12} = M_{21}$) and depends strictly on the area of the <strong>smaller inner core ($A_1 = \pi r_1^2$)</strong>!</p>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Phase Difference Between Flux and Induced EMF</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* In an AC generator, when the plane of the armature coil is perpendicular to magnetic field lines, what is the induced EMF?
+            <br>• When plane $\perp \vec{B}$: Normal vector $\vec{A} \parallel \vec{B} \implies \Phi_B = NBA\cos 0^\circ = \mathbf{\Phi_{\max}}$.
+            <br>• However, $\mathcal{E} = -d\Phi/dt = \mathcal{E}_0\sin 0^\circ = \mathbf{0}$!
+            <br>Induced EMF is <strong class="text-white">ZERO when flux is maximum</strong>, and maximum when flux is zero ($\Delta\phi = 90^\circ$ phase shift).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Dependence of Self-Inductance on Turns ($L \propto N^2$)</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Exam Trap:* If a wire of length $L_w$ is wound into a solenoid of $N$ turns, and then rewound into a solenoid of $2N$ turns with the same total wire length:
+            <br>Because total wire length is constant, $2\pi r \times N = \text{const} \implies r \propto 1/N \implies A = \pi r^2 \propto 1/N^2$.
+            <br>Length of solenoid $l \propto N$.
+            <br>$$L = \frac{\mu_0 N^2 A}{l} \propto \frac{N^2 (1/N^2)}{N} \propto \frac{1}{N}$$
+            Always read whether the solenoid is *stretched* or *rewound with the same wire length*!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Area in Mutual Inductance of Unequal Solenoids</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            When deriving mutual inductance between outer solenoid of radius $r_2$ and inner solenoid of radius $r_1$ ($r_2 > r_1$):
+            <br>Never use area of the outer solenoid $\pi r_2^2$! The field $B$ is only linked through the turns of the inner solenoid across its physical cross-section $\pi r_1^2$. The formula strictly uses <strong class="text-white">$A_{\text{inner}} = \pi r_1^2$</strong>.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Why are Resistance Coils Doubly Wound?</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Standard resistance boxes use wires folded back on themselves and then wound non-inductively (bifilar winding). Current flows in opposite directions in adjacent wires, so their magnetic fields cancel out everywhere ($\Phi_{\text{net}} = 0$). This reduces self-inductance to <strong class="text-white">near zero ($L \approx 0$)</strong>, preventing false inductive voltage spikes during switching!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: An AC generator consists of a coil of $50\text{ turns}$ and area $2.5\text{ m}^2$ rotating at an angular speed of $60\text{ rad/s}$ in a uniform magnetic field $B = 0.30\text{ T}$ between two fixed poles. The resistance of the circuit including that of the coil is $500\text{ }\Omega$. (i) What is the maximum current drawn from the generator? (ii) What is the maximum power dissipation in the coil?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Peak EMF ($\mathcal{E}_0$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\mathcal{E}_0 = N B A \omega = 50 \times (0.30\text{ T}) \times (2.5\text{ m}^2) \times (60\text{ rad/s}) = 2250\text{ Volts}$$
+          </div>
+          <p>2. Maximum current drawn ($I_0$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$I_0 = \frac{\mathcal{E}_0}{R} = \frac{2250\text{ V}}{500\text{ }\Omega} = 4.5\text{ Amperes}$$
+          </div>
+          <p>3. Maximum instantaneous power dissipation:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$P_{\max} = \mathcal{E}_0 I_0 = 2250 \times 4.5 = 10{,}125\text{ Watts} = 10.125\text{ kW}$$
+          </div>
+          <p class="text-slate-400"><em>Note on Average Power:</em> Over a complete cycle, average power dissipated is $P_{\text{avg}} = \frac{1}{2}\mathcal{E}_0 I_0 = 5062.5\text{ W}$.</p>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A solenoid of length $50\text{ cm}$ with cross-sectional area $4.0\text{ cm}^2$ has $500\text{ turns}$. If a current of $2.0\text{ A}$ flowing through it is reversed in direction in $0.10\text{ s}$, find (i) self-inductance of the solenoid, (ii) magnitude of back-EMF induced during current reversal, and (iii) magnetic energy stored before reversal.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Length $l = 0.50\text{ m}$, Area $A = 4.0 \times 10^{-4}\text{ m}^2$, $N = 500$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$L = \frac{\mu_0 N^2 A}{l} = \frac{(4\pi \times 10^{-7}) \times (500)^2 \times (4.0 \times 10^{-4})}{0.50} = \frac{(4\pi \times 10^{-7}) \times (2.5 \times 10^5) \times (4.0 \times 10^{-4})}{0.50}$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$L = \frac{4\pi \times 10^{-5}}{0.50} = 8\pi \times 10^{-5}\text{ H} \approx 2.51 \times 10^{-4}\text{ H} = 0.251\text{ mH}$$
+          </div>
+          <p>2. Rate of change of current: Initial $I_1 = +2\text{ A}$, reversed $I_2 = -2\text{ A}$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\Delta I = I_2 - I_1 = -2 - 2 = -4\text{ A} \implies \frac{dI}{dt} = \frac{-4\text{ A}}{0.10\text{ s}} = -40\text{ A/s}$$
+          </div>
+          <p>Induced back-EMF:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\mathcal{E} = -L \frac{dI}{dt} = -(2.513 \times 10^{-4}\text{ H}) \times (-40\text{ A/s}) = +0.01005\text{ V} \approx 10.05\text{ mV}$$
+          </div>
+          <p>3. Stored magnetic energy $U$:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$U = \frac{1}{2} L I^2 = \frac{1}{2} \times (2.513 \times 10^{-4}\text{ H}) \times (2.0\text{ A})^2 = 5.03 \times 10^{-4}\text{ Joules} = 0.503\text{ mJ}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Self-Inductance</p>
+          <p class="text-xs font-bold text-white mt-1">$L = \frac{\mu_0 N^2 A}{l}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Mutual Inductance</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$M = \frac{\mu_0 N_1 N_2 A_1}{l}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">AC Peak Voltage</p>
+          <p class="text-xs font-bold text-white mt-1">$\mathcal{E}_0 = N B A \omega$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Stored Energy</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$U = \frac{1}{2} L I^2$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS 3D Armature & Real-Time AC Waveform Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('generatorCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const animToggleBtn = document.getElementById('animToggleBtn');
+      const speedSlider = document.getElementById('speedSlider');
+      const fieldSlider = document.getElementById('fieldSlider');
+      const turnsSlider = document.getElementById('turnsSlider');
+
+      const speedVal = document.getElementById('speedVal');
+      const fieldVal = document.getElementById('fieldVal');
+      const turnsVal = document.getElementById('turnsVal');
+
+      const peakVoltVal = document.getElementById('peakVoltVal');
+      const instEmfVal = document.getElementById('instEmfVal');
+      const instFluxVal = document.getElementById('instFluxVal');
+
+      let isRunning = true;
+      let rotAngle = 0; // omega * t in radians
+      const waveformHistory = []; // records past EMF points
+
+      animToggleBtn.addEventListener('click', () => {
+        isRunning = !isRunning;
+        animToggleBtn.textContent = isRunning ? 'Pause Rotation' : 'Resume Rotation';
+      });
+
+      function renderLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const freq = parseFloat(speedSlider.value); // Hz
+        const B = parseFloat(fieldSlider.value); // Tesla
+        const N = parseInt(turnsSlider.value);
+        const omega = 2 * Math.PI * freq; // rad/s
+        const A = 0.02; // 0.02 m² coil area
+
+        speedVal.textContent = `${freq.toFixed(1)} Hz (${omega.toFixed(2)} rad/s)`;
+        fieldVal.textContent = `${B.toFixed(2)} Tesla`;
+        turnsVal.textContent = `${N} Turns`;
+
+        if (isRunning) {
+          rotAngle += (omega * 0.016); // step dt = 16ms
+        }
+
+        // Physics Calculation
+        const peakEMF = N * B * A * omega; // Volts
+        const instEMF = peakEMF * Math.sin(rotAngle);
+        const maxFlux = N * B * A;
+        const instFlux = maxFlux * Math.cos(rotAngle);
+
+        peakVoltVal.textContent = `${peakEMF.toFixed(2)} V`;
+        instEmfVal.textContent = `${instEMF >= 0 ? '+' : ''}${instEMF.toFixed(2)} V`;
+        instFluxVal.textContent = `${(instFlux * 1e3).toFixed(1)} mWb`;
+
+        // Store waveform point
+        waveformHistory.push(instEMF);
+        if (waveformHistory.length > 220) waveformHistory.shift();
+
+        // Canvas Split Layout: Left Pane = 3D Rotating Armature; Right Pane = Live Sinusoidal Waveform
+        render3DArmature(170, 200, rotAngle, B);
+        renderLiveWaveform(460, 200, waveformHistory, peakEMF, instEMF);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function render3DArmature(cx, cy, angle, B) {
+        // 1. Magnetic Pole Faces
+        const poleW = 40, poleH = 140;
+        // North (Left)
+        ctx.fillStyle = '#991b1b';
+        ctx.fillRect(cx - 130, cy - poleH / 2, poleW, poleH);
+        ctx.strokeStyle = '#ef4444';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(cx - 130, cy - poleH / 2, poleW, poleH);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 16px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('N', cx - 110, cy + 6);
+
+        // South (Right)
+        ctx.fillStyle = '#1e3a8a';
+        ctx.fillRect(cx + 90, cy - poleH / 2, poleW, poleH);
+        ctx.strokeStyle = '#3b82f6';
+        ctx.strokeRect(cx + 90, cy - poleH / 2, poleW, poleH);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText('S', cx + 110, cy + 6);
+
+        // Magnetic Field Lines across gap
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.25)';
+        ctx.lineWidth = 1.2;
+        for (let y = cy - 50; y <= cy + 50; y += 25) {
+          ctx.beginPath();
+          ctx.moveTo(cx - 90, y);
+          ctx.lineTo(cx + 90, y);
+          ctx.stroke();
+        }
+
+        // 2. Central Vertical Rotation Axis
+        ctx.strokeStyle = '#64748b';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - 85);
+        ctx.lineTo(cx, cy + 95);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // 3. 3D Rotating Armature Rectangular Coil
+        // In 3D isometric perspective: horizontal width foreshortens as cos(angle)
+        const coilHalfW = 55 * Math.cos(angle);
+        const coilHalfH = 65;
+        const depthOffset = 18 * Math.sin(angle); // adds 3D depth tilt
+
+        ctx.save();
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 3.5;
+        ctx.fillStyle = 'rgba(16, 185, 129, 0.2)';
+
+        ctx.beginPath();
+        ctx.moveTo(cx - coilHalfW, cy - coilHalfH - depthOffset);
+        ctx.lineTo(cx + coilHalfW, cy - coilHalfH + depthOffset);
+        ctx.lineTo(cx + coilHalfW, cy + coilHalfH + depthOffset);
+        ctx.lineTo(cx - coilHalfW, cy + coilHalfH - depthOffset);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        // Normal Area Vector Arrow projecting from coil center
+        const normalLen = 42;
+        const normX = cx + normalLen * Math.sin(angle);
+        const normY = cy - normalLen * Math.cos(angle) * 0.4;
+        drawArrow(cx, cy, normX, normY, '#f59e0b', 'A');
+
+        ctx.restore();
+
+        // Rotation curved indicator
+        ctx.strokeStyle = '#fbbf24';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(cx, cy - 90, 16, angle, angle + 1.2);
+        ctx.stroke();
+
+        ctx.fillStyle = '#cbd5e1';
+        ctx.font = 'bold 11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Armature Rotation', cx, cy + 125);
+      }
+
+      function renderLiveWaveform(gx, gy, history, peak, current) {
+        const gw = 280, gh = 180;
+        const originX = gx;
+        const originY = gy;
+
+        // Waveform Screen Housing
+        ctx.fillStyle = '#090d16';
+        ctx.fillRect(gx - 20, gy - gh / 2, gw + 40, gh);
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(gx - 20, gy - gh / 2, gw + 40, gh);
+
+        // Center Zero Line
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([3, 3]);
+        ctx.beginPath();
+        ctx.moveTo(gx - 10, originY);
+        ctx.lineTo(gx + gw + 10, originY);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '10px monospace';
+        ctx.textAlign = 'right';
+        ctx.fillText(`+Ɛ₀ (${peak.toFixed(1)}V)`, gx - 25, originY - gh / 2 + 16);
+        ctx.fillText('0 V', gx - 25, originY + 4);
+        ctx.fillText(`-Ɛ₀ (-${peak.toFixed(1)}V)`, gx - 25, originY + gh / 2 - 8);
+
+        // Draw Historical Sine Wave Curve
+        if (history.length > 1) {
+          ctx.strokeStyle = '#38bdf8';
+          ctx.lineWidth = 2.5;
+          ctx.beginPath();
+          const scaleY = (gh / 2 - 18) / (peak || 1);
+
+          for (let i = 0; i < history.length; i++) {
+            const x = gx + (i * (gw / 220));
+            const y = originY - (history[i] * scaleY);
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+
+          // Leading Active Voltage Point
+          const activeX = gx + ((history.length - 1) * (gw / 220));
+          const activeY = originY - (current * scaleY);
+          ctx.beginPath();
+          ctx.arc(activeX, activeY, 5, 0, Math.PI * 2);
+          ctx.fillStyle = '#f59e0b';
+          ctx.fill();
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        }
+
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = 'bold 11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Alternating Output: Ɛ = Ɛ₀ sin(ωt)', gx + gw / 2, gy - gh / 2 - 10);
+      }
+
+      function drawArrow(fromX, fromY, toX, toY, color, labelText) {
+        const angle = Math.atan2(toY - fromY, toX - fromX);
+        const headlen = 7;
+
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+        ctx.moveTo(fromX, fromY);
+        ctx.lineTo(toX, toY);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(toX, toY);
+        ctx.lineTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
+        ctx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
+        ctx.closePath();
+        ctx.fill();
+
+        if (labelText) {
+          ctx.fillStyle = color;
+          ctx.font = 'bold 10px monospace';
+          ctx.fillText(labelText, toX + 6, toY + 2);
+        }
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Lorentz Force & Helical Motion</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 4.3</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 03: Magnetic Effects of Current • Chapter 04[cite: 12, 13]</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Lorentz Force & Particle Trajectories in E and B Fields</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Cross-product dynamics, circular orbits, helical pitch, zero-work theorem, and velocity selector crossed fields.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Electric field ek accelerator pedal jaisa hai: chahe particle ruka ho ya chal raha ho, yeh uspar force lagakar uski kinetic energy badha deta hai. Lekin <strong class="text-white">Magnetic Field ek pure steering wheel hai</strong>! Ruke hue charge par yeh zero force lagata hai ($v = 0 \implies F_B = 0$)[cite: 13]. Aur jab charge chalta hai, toh yeh force hamesha velocity ke strictly perpendicular ($90^\circ$) lagata hai[cite: 13]. Iska matlab magnetic force kabhi particle ki <strong class="text-white">speed ya kinetic energy change nahi kar sakta</strong> ($W = 0$)—yeh sirf uska path bend karta hai. Agar injection perpendicular ho toh circular orbit banta hai, aur agar kisi angle $\theta$ par ho toh corkscrew spring jaisi <strong class="text-white">Helical Motion</strong> ban jati hai!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Lorentz Force & Work Theorem</h3>
+          <p class="text-sm text-slate-400 mb-2">Total electromagnetic force acting on charge $q$ moving with velocity $\vec{v}$[cite: 13]:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\vec{F} = \vec{F}_E + \vec{F}_B = q\vec{E} + q(\vec{v} \times \vec{B})$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Zero-work identity: Since $\vec{F}_B \perp \vec{v}$, instantaneous power $P = \vec{F}_B \cdot \vec{v} = 0 \implies W = \Delta K = 0$ (speed is constant).</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Circular Orbit & Helical Parameters</h3>
+          <p class="text-sm text-slate-400 mb-2">Centripetal equilibrium ($qv_\perp B = \frac{mv_\perp^2}{r}$) yields radius, period, and pitch:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$r = \frac{m v_\perp}{q B}, \quad T = \frac{2\pi m}{q B}, \quad p = v_\parallel T = \frac{2\pi m v\cos\theta}{q B}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Crucial fact: Time period $T$ and cyclotron frequency $f_c = \frac{qB}{2\pi m}$ are strictly independent of speed $v$ and radius $r$!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (3D Helical Trajectory & Crossed Fields) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: 3D Helical & Velocity Selector Trajectory Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="modeSelectorBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Mode: Helical Motion (Angle θ)
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="lorentzCanvas" width="800" height="400" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="slider1Label">Pitch Angle ($\theta$ with $\vec{B}$)</span>
+            <span id="slider1Val" class="text-cyan-400 font-mono font-bold">60°</span>
+          </div>
+          <input id="slider1" type="range" min="0" max="90" step="5" value="60" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="slider2Label">Magnetic Field ($B$)</span>
+            <span id="slider2Val" class="text-amber-400 font-mono font-bold">1.5 T</span>
+          </div>
+          <input id="slider2" type="range" min="0.5" max="3.0" step="0.1" value="1.5" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="slider3Label">Particle Velocity ($v$)</span>
+            <span id="slider3Val" class="text-emerald-400 font-mono font-bold">4.0 × 10⁶ m/s</span>
+          </div>
+          <input id="slider3" type="range" min="1" max="8" step="0.5" value="4" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Orbit Radius ($r$):</span>
+          <div id="radiusOut" class="text-cyan-400 font-bold text-sm mt-0.5">2.41 cm</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Helical Pitch ($p$):</span>
+          <div id="pitchOut" class="text-amber-400 font-bold text-sm mt-0.5">8.74 cm</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Cyclotron Time ($T$):</span>
+          <div id="periodOut" class="text-emerald-400 font-bold text-sm mt-0.5">4.37 × 10⁻⁸ s</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Kinetic Energy ($\Delta K$):</span>
+          <div class="text-indigo-300 font-bold text-sm mt-0.5">0.00 J (Invariant)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Figures -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint[cite: 13]</span>
+      </div>
+
+      <!-- Derivation 1: Circular Motion with Schematic Figure -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation A</span>
+          <h4 class="text-white font-semibold text-base mt-1">Circular Trajectory & Centripetal Balance ($\theta = 90^\circ$)[cite: 13]</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Circular Motion in Inward B Field -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 260" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-v" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+              </marker>
+              <marker id="arr-f" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+              </marker>
+            </defs>
+
+            <!-- Background Magnetic Inward Field Crosses (B into screen) -->
+            <g fill="none" stroke="#334155" stroke-width="1.5">
+              <path d="M 50 40 L 60 50 M 60 40 L 50 50" /><path d="M 120 40 L 130 50 M 130 40 L 120 50" />
+              <path d="M 190 40 L 200 50 M 200 40 L 190 50" /><path d="M 260 40 L 270 50 M 270 40 L 260 50" />
+              <path d="M 330 40 L 340 50 M 340 40 L 330 50" /><path d="M 400 40 L 410 50 M 410 40 L 400 50" />
+              <path d="M 470 40 L 480 50 M 480 40 L 470 50" /><path d="M 540 40 L 550 50 M 550 40 L 540 50" />
+              
+              <path d="M 50 110 L 60 120 M 60 110 L 50 120" /><path d="M 120 110 L 130 120 M 130 110 L 120 120" />
+              <path d="M 500 110 L 510 120 M 510 110 L 500 120" /><path d="M 570 110 L 580 120 M 580 110 L 570 120" />
+              
+              <path d="M 50 180 L 60 190 M 60 180 L 50 190" /><path d="M 120 180 L 130 190 M 130 180 L 120 190" />
+              <path d="M 190 180 L 200 190 M 200 180 L 190 190" /><path d="M 260 180 L 270 190 M 270 180 L 260 190" />
+              <path d="M 330 180 L 340 190 M 340 180 L 330 190" /><path d="M 400 180 L 410 190 M 410 180 L 400 190" />
+              <path d="M 470 180 L 480 190 M 480 180 L 470 190" /><path d="M 540 180 L 550 190 M 550 180 L 540 190" />
+            </g>
+            <text x="60" y="25" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">Uniform Magnetic Field B (⊗ Into Screen)</text>
+
+            <!-- Circular Orbit Path -->
+            <circle cx="320" cy="130" r="80" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="5,4" />
+            <circle cx="320" cy="130" r="4" fill="#cbd5e1" />
+            <text x="326" y="134" fill="#cbd5e1" font-size="11" font-family="monospace">Center O</text>
+
+            <!-- Radius Line -->
+            <line x1="320" y1="130" x2="320" y2="210" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,3" />
+            <text x="325" y="175" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">r = mv / qB</text>
+
+            <!-- Charge Position 1: Rightmost Point -->
+            <circle cx="400" cy="130" r="7" fill="#ef4444" stroke="#ffffff" stroke-width="1.5" />
+            <text x="412" y="134" fill="#f87171" font-size="11" font-weight="bold" font-family="monospace">+q</text>
+            <!-- Velocity upward (Tangential) -->
+            <line x1="400" y1="130" x2="400" y2="65" stroke="#10b981" stroke-width="2.5" marker-end="url(#arr-v)" />
+            <text x="408" y="70" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">v (tangential)</text>
+            <!-- Force leftward (Centripetal toward center) -->
+            <line x1="400" y1="130" x2="335" y2="130" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arr-f)" />
+            <text x="340" y="122" fill="#f43f5e" font-size="11" font-weight="bold" font-family="monospace">F_B = qvB</text>
+            <!-- Right-angle symbol -->
+            <path d="M 390 130 L 390 120 L 400 120" fill="none" stroke="#f59e0b" stroke-width="1.5" />
+
+            <!-- Charge Position 2: Topmost Point -->
+            <circle cx="320" cy="50" r="7" fill="#ef4444" stroke="#ffffff" stroke-width="1.5" />
+            <!-- Velocity leftward -->
+            <line x1="320" y1="50" x2="255" y2="50" stroke="#10b981" stroke-width="2.5" marker-end="url(#arr-v)" />
+            <text x="260" y="40" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">v</text>
+            <!-- Force downward -->
+            <line x1="320" y1="50" x2="320" y2="105" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arr-f)" />
+            <text x="326" y="95" fill="#f43f5e" font-size="11" font-weight="bold" font-family="monospace">F_B</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 4.3A: Uniform circular motion of a positive charge with centripetal magnetic force $\vec{F}_B \perp \vec{v}$[cite: 13].</p>
+        </div>
+
+        <!-- Derivation Math -->
+        <p>1. A charge $q$ enters a uniform magnetic field $\vec{B}$ perpendicular to its velocity ($\vec{v} \perp \vec{B}, \theta = 90^\circ$)[cite: 13].</p>
+        <p>2. Magnetic force magnitude is $F_B = q v B \sin 90^\circ = q v B$. By right-hand cross product, $\vec{F}_B$ is perpendicular to $\vec{v}$ at every instant, providing the required centripetal acceleration:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\frac{m v^2}{r} = q v B \implies r = \frac{m v}{q B} = \frac{p}{q B} = \frac{\sqrt{2mK}}{q B}$$
+        </div>
+        <p>3. Time period $T$ to complete one revolution:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$T = \frac{2\pi r}{v} = \frac{2\pi}{v} \left( \frac{m v}{q B} \right) = \frac{2\pi m}{q B}$$
+        </div>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$f_c = \frac{1}{T} = \frac{q B}{2\pi m}, \quad \omega_c = \frac{q B}{m}$$
+        </div>
+        <p class="text-slate-400"><em>Core Invariant:</em> Period $T$ and cyclotron frequency $f_c$ are completely independent of speed $v$ and radius $r$!</p>
+      </div>
+
+      <!-- Derivation 2: Helical Motion with Schematic Figure -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation B</span>
+          <h4 class="text-white font-semibold text-base mt-1">Helical Trajectory & Pitch Geometry ($0 < \theta < 90^\circ$)[cite: 13]</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: 3D Helical Resolution & Pitch -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 260" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-helix" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-green2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+              </marker>
+              <marker id="arr-pink" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#ec4899"/>
+              </marker>
+              <marker id="arr-gold2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f59e0b"/>
+              </marker>
+            </defs>
+
+            <!-- Coordinate Axes -->
+            <line x1="50" y1="130" x2="600" y2="130" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-helix)" />
+            <text x="590" y="120" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">x-axis (Field B ➔)</text>
+            <line x1="120" y1="230" x2="120" y2="30" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-helix)" />
+            <text x="126" y="38" fill="#cbd5e1" font-size="11" font-family="monospace">y-axis</text>
+
+            <!-- Velocity Vector Decomposition at Origin (120, 130) -->
+            <!-- Net velocity v at angle theta -->
+            <line x1="120" y1="130" x2="200" y2="70" stroke="#f59e0b" stroke-width="3" marker-end="url(#arr-gold2)" />
+            <text x="195" y="60" fill="#f59e0b" font-size="12" font-weight="bold" font-family="monospace">v (Velocity)</text>
+
+            <!-- Angle arc theta -->
+            <path d="M 160 130 A 40 40 0 0 0 152 106" fill="none" stroke="#f59e0b" stroke-width="1.8" />
+            <text x="165" y="115" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">θ</text>
+
+            <!-- Parallel component v_para along x -->
+            <line x1="120" y1="130" x2="200" y2="130" stroke="#10b981" stroke-width="2.5" marker-end="url(#arr-green2)" />
+            <text x="145" y="148" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">v∥ = v cosθ</text>
+
+            <!-- Perpendicular component v_perp along y -->
+            <line x1="120" y1="130" x2="120" y2="70" stroke="#ec4899" stroke-width="2.5" marker-end="url(#arr-pink)" />
+            <text x="35" y="90" fill="#ec4899" font-size="11" font-weight="bold" font-family="monospace">v⊥ = v sinθ</text>
+
+            <!-- Projections dashed lines -->
+            <line x1="120" y1="70" x2="200" y2="70" stroke="#94a3b8" stroke-dasharray="3,3" />
+            <line x1="200" y1="130" x2="200" y2="70" stroke="#94a3b8" stroke-dasharray="3,3" />
+
+            <!-- Helical Coils (Pseudo-3D Spring Representation) -->
+            <!-- Loop 1 -->
+            <path d="M 230 130 C 230 70, 290 70, 290 130 C 290 190, 350 190, 350 130" fill="none" stroke="#38bdf8" stroke-width="2.5" />
+            <!-- Loop 2 -->
+            <path d="M 350 130 C 350 70, 410 70, 410 130 C 410 190, 470 190, 470 130" fill="none" stroke="#38bdf8" stroke-width="2.5" />
+            <!-- Loop 3 -->
+            <path d="M 470 130 C 470 70, 530 70, 530 130" fill="none" stroke="#38bdf8" stroke-width="2.5" />
+
+            <!-- Pitch Dimension Marker between peak of loop 1 and loop 2 -->
+            <line x1="260" y1="85" x2="380" y2="85" stroke="#fbbf24" stroke-width="1.8" />
+            <line x1="260" y1="78" x2="260" y2="92" stroke="#fbbf24" stroke-width="1.8" />
+            <line x1="380" y1="78" x2="380" y2="92" stroke="#fbbf24" stroke-width="1.8" />
+            <text x="295" y="76" fill="#fbbf24" font-size="11" font-weight="bold" font-family="monospace">Pitch p = v∥ · T</text>
+
+            <!-- Radius Dimension Marker on vertical peak -->
+            <line x1="380" y1="130" x2="380" y2="85" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="3,3" />
+            <text x="386" y="112" fill="#ec4899" font-size="10" font-weight="bold" font-family="monospace">r = mv⊥/qB</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 4.3B: Resolution of velocity into $v_\parallel$ (translation) and $v_\perp$ (circular rotation) forming a corkscrew helix of pitch $p$[cite: 13].</p>
+        </div>
+
+        <!-- Derivation Math -->
+        <p>1. When velocity $\vec{v}$ makes an angle $\theta$ with $\vec{B}$, resolve into two orthogonal components:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$v_\parallel = v\cos\theta \quad (\text{along }\vec{B}), \qquad v_\perp = v\sin\theta \quad (\text{perpendicular to }\vec{B})$$
+        </div>
+        <p>2. Magnetic force on parallel component: $\vec{F}_\parallel = q(\vec{v}_\parallel \times \vec{B}) = 0$ ($\because \sin 0^\circ = 0$). Hence $v_\parallel$ remains constant, producing uniform linear translation along the field lines.</p>
+        <p>3. Magnetic force on normal component: $\vec{F}_\perp = q(\vec{v}_\perp \times \vec{B})$ provides centripetal acceleration, producing circular motion of radius:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$r = \frac{m v_\perp}{q B} = \frac{m v\sin\theta}{q B}$$
+        </div>
+        <p>4. Superposition of uniform translation along the field and circular rotation in the transverse plane forms a helix.</p>
+        <p>5. The Pitch $p$ is the linear distance advanced along the field in one full revolution ($t = T = \frac{2\pi m}{qB}$):</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$p = v_\parallel T = (v\cos\theta)\left(\frac{2\pi m}{q B}\right) = \frac{2\pi m v\cos\theta}{q B}$$
+        </div>
+      </div>
+
+      <!-- Derivation 3: Velocity Selector in Crossed Fields -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Application C</span>
+          <h4 class="text-white font-semibold text-base mt-1">Velocity Selector in Mutually Perpendicular Crossed Fields ($\vec{E} \perp \vec{B}$)[cite: 13]</h4>
+        </div>
+        <p>1. Set up mutually perpendicular electric and magnetic fields ($\vec{E} = E\hat{j}$ along $y$-axis, $\vec{B} = B\hat{k}$ along $z$-axis). A positively charged particle $q$ enters with velocity $\vec{v} = v\hat{i}$ along $x$-axis[cite: 13].</p>
+        <p>2. Electric force acts along $+y$: $\vec{F}_E = q\vec{E} = qE\hat{j}$[cite: 13].</p>
+        <p>3. Magnetic force acts along $-y$: $\vec{F}_B = q(\vec{v}\times\vec{B}) = q(v\hat{i}\times B\hat{k}) = -qvB\hat{j}$[cite: 13].</p>
+        <p>4. For the particle to pass straight through without any angular deflection, the two opposing forces must balance out ($\vec{F}_{\text{net}} = 0$)[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$qE = qvB \implies v = \frac{E}{B} \text{[cite: 13]}$$
+        </div>
+        <p class="text-slate-400"><em>Filter Mechanism:</em> Particles with $v > E/B$ deflect towards magnetic force; particles with $v < E/B$ deflect towards electric force. Only particles with exactly $v = E/B$ emerge undeflected, completely independent of their charge $q$ or mass $m$[cite: 13]!</p>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: The "Work Done by Magnetic Field" Myth</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* A proton enters a magnetic field with velocity $\vec{v}$ and completes a semicircle. What is the work done by the magnetic field?
+            <br>*Trap Answer:* $\frac{1}{2}mv^2$ or non-zero work.
+            <br>*Correct Answer:* <strong class="text-white">ZERO!</strong> Because $\vec{F}_B = q(\vec{v}\times\vec{B})$, force is always strictly perpendicular to instantaneous displacement $d\vec{r}$. Therefore, $dW = \vec{F}_B \cdot d\vec{r} = F_B ds \cos 90^\circ = 0$. Magnetic field changes direction of momentum, but kinetic energy remains strictly constant.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Radius Comparison for Different Particles</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Be extremely alert to what is kept constant when comparing paths of Proton ($p$), Deuteron ($d$), and Alpha particle ($\alpha$):
+            <br>• Same velocity $v$: $r = \frac{mv}{qB} \implies r \propto \frac{m}{q}$ ($r_p : r_d : r_\alpha = 1 : 2 : 2$).
+            <br>• Same kinetic energy $K$: $r = \frac{\sqrt{2mK}}{qB} \implies r \propto \frac{\sqrt{m}}{q}$ ($r_p : r_d : r_\alpha = 1 : \sqrt{2} : 1$).
+            <br>• Same accelerating voltage $V$: $K = qV \implies r = \frac{\sqrt{2mqV}}{qB} = \frac{1}{B}\sqrt{\frac{2mV}{q}} \implies r \propto \sqrt{\frac{m}{q}}$ ($r_p : r_d : r_\alpha = 1 : \sqrt{2} : \sqrt{2}$).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Sign of Charge in Velocity Selector</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Does the velocity selector condition $v = E/B$ depend on whether the particle is positive or negative[cite: 13]?
+            <br><strong class="text-white">NO!</strong> If charge is negative (e.g. electron), $\vec{F}_E$ flips direction downward, but $\vec{F}_B$ also flips direction upward by cross-product. The two forces remain exactly opposite. Both electrons and protons pass straight through if $v = E/B$[cite: 13]!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Helical Motion at $\theta = 0^\circ$ or $180^\circ$</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            If a charged particle moves parallel or antiparallel to $\vec{B}$ ($\theta = 0^\circ$ or $180^\circ$):
+            <br>$\vec{F}_B = q v B \sin(0^\circ) = 0$.
+            <br>The particle experiences zero magnetic deflection and continues moving along a <strong class="text-white">straight line</strong> with unaffected velocity.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: An electron projected with speed $v = 4.0 \times 10^6\text{ m/s}$ enters a uniform magnetic field $B = 0.5\text{ T}$ at an angle of $30^\circ$ to the field lines. Find (i) the radius of the helical path, (ii) the time period of one revolution, and (iii) the pitch of the helix. (Take $m_e = 9.1 \times 10^{-31}\text{ kg}, e = 1.6 \times 10^{-19}\text{ C}$).</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Velocity components:</p>
+          <p class="text-indigo-300 font-mono">$$v_\perp = v\sin 30^\circ = 4.0 \times 10^6 \times 0.5 = 2.0 \times 10^6\text{ m/s}$$</p>
+          <p class="text-indigo-300 font-mono">$$v_\parallel = v\cos 30^\circ = 4.0 \times 10^6 \times \frac{\sqrt{3}}{2} \approx 3.464 \times 10^6\text{ m/s}$$</p>
+          <p>2. Radius of the helix ($r$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$r = \frac{m v_\perp}{e B} = \frac{(9.1 \times 10^{-31}) \times (2.0 \times 10^6)}{(1.6 \times 10^{-19}) \times 0.5} = \frac{1.82 \times 10^{-24}}{8.0 \times 10^{-20}} = 2.275 \times 10^{-5}\text{ m} \approx 0.023\text{ mm}$$
+          </div>
+          <p>3. Time period ($T$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$T = \frac{2\pi m}{e B} = \frac{2\pi \times (9.1 \times 10^{-31})}{(1.6 \times 10^{-19}) \times 0.5} = \frac{5.718 \times 10^{-30}}{8.0 \times 10^{-20}} \approx 7.15 \times 10^{-11}\text{ seconds}$$
+          </div>
+          <p>4. Pitch of the helix ($p$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$p = v_\parallel T = (3.464 \times 10^6\text{ m/s}) \times (7.15 \times 10^{-11}\text{ s}) \approx 2.48 \times 10^{-4}\text{ m} = 0.248\text{ mm}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A proton and an alpha particle having equal kinetic energies enter perpendicularly into a uniform magnetic field. What is the ratio of their orbit radii? If they enter mutually perpendicular crossed fields $\vec{E}$ and $\vec{B}$ with the same initial speeds, will both emerge undeflected simultaneously[cite: 13]?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Radius in terms of kinetic energy $K$: $r = \frac{\sqrt{2mK}}{qB}$.</p>
+          <p>For proton: $m_p = m, q_p = e$. For alpha particle: $m_\alpha = 4m, q_\alpha = 2e$.</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\frac{r_p}{r_\alpha} = \frac{\sqrt{m_p}/q_p}{\sqrt{m_\alpha}/q_\alpha} = \frac{\sqrt{m}/e}{\sqrt{4m}/(2e)} = \frac{\sqrt{m}/e}{(2\sqrt{m})/(2e)} = \frac{1}{1}$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\text{Ratio of radii } r_p : r_\alpha = 1 : 1 \quad (\text{Both trace identical radii circles!})$$
+          </div>
+          <p>2. In crossed fields, undeflected condition is strictly $v = E/B$[cite: 13]. Since both particles have equal speeds $v$, both satisfy $v = E/B$ and emerge undeflected together[cite: 13]!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Lorentz Force</p>
+          <p class="text-xs font-bold text-white mt-1">$\vec{F} = q(\vec{E} + \vec{v}\times\vec{B})$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Orbit Radius</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$r = \frac{m v_\perp}{q B}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Helical Pitch</p>
+          <p class="text-xs font-bold text-white mt-1">$p = \frac{2\pi m v\cos\theta}{q B}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Crossed Fields Filter</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$v = \frac{E}{B}$[cite: 13]</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Lorentz 3D Trajectory Simulation Engine Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('lorentzCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const modeSelectorBtn = document.getElementById('modeSelectorBtn');
+      const slider1 = document.getElementById('slider1');
+      const slider2 = document.getElementById('slider2');
+      const slider3 = document.getElementById('slider3');
+
+      const slider1Label = document.getElementById('slider1Label');
+      const slider2Label = document.getElementById('slider2Label');
+      const slider3Label = document.getElementById('slider3Label');
+      const slider1Val = document.getElementById('slider1Val');
+      const slider2Val = document.getElementById('slider2Val');
+      const slider3Val = document.getElementById('slider3Val');
+
+      const radiusOut = document.getElementById('radiusOut');
+      const pitchOut = document.getElementById('pitchOut');
+      const periodOut = document.getElementById('periodOut');
+
+      let currentMode = 'helix';
+      let simTime = 0;
+
+      modeSelectorBtn.addEventListener('click', () => {
+        currentMode = (currentMode === 'helix') ? 'velocity_selector' : 'helix';
+        if (currentMode === 'helix') {
+          modeSelectorBtn.textContent = 'Mode: Helical Motion (Angle θ)';
+          slider1Label.textContent = 'Pitch Angle (θ with B)';
+          slider2Label.textContent = 'Magnetic Field (B)';
+          slider3Label.textContent = 'Particle Velocity (v)';
+          slider1.min = 0; slider1.max = 90; slider1.step = 5; slider1.value = 60;
+          slider2.min = 0.5; slider2.max = 3.0; slider2.step = 0.1; slider2.value = 1.5;
+          slider3.min = 1; slider3.max = 8; slider3.step = 0.5; slider3.value = 4;
+        } else {
+          modeSelectorBtn.textContent = 'Mode: Crossed Fields Velocity Selector';
+          slider1Label.textContent = 'Electric Field (E in kV/m)';
+          slider2Label.textContent = 'Magnetic Field (B in Tesla)';
+          slider3Label.textContent = 'Injected Velocity (v in 10⁶ m/s)';
+          slider1.min = 20; slider1.max = 120; slider1.step = 5; slider1.value = 60;
+          slider2.min = 0.5; slider2.max = 2.5; slider2.step = 0.1; slider2.value = 1.5;
+          slider3.min = 10; slider3.max = 80; slider3.step = 2; slider3.value = 40;
+        }
+      });
+
+      function renderLoop() {
+        simTime += 0.05;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const val1 = parseFloat(slider1.value);
+        const val2 = parseFloat(slider2.value);
+        const val3 = parseFloat(slider3.value);
+
+        const q_proton = 1.6e-19;
+        const m_proton = 1.67e-27;
+
+        if (currentMode === 'helix') {
+          const thetaDeg = val1;
+          const thetaRad = (thetaDeg * Math.PI) / 180;
+          const B = val2;
+          const v = val3 * 1e6;
+
+          slider1Val.textContent = thetaDeg + '°';
+          slider2Val.textContent = B.toFixed(1) + ' T';
+          slider3Val.textContent = (val3).toFixed(1) + ' × 10⁶ m/s';
+
+          const v_perp = v * Math.sin(thetaRad);
+          const v_para = v * Math.cos(thetaRad);
+
+          const r_m = (m_proton * v_perp) / (q_proton * B);
+          const T_s = (2 * Math.PI * m_proton) / (q_proton * B);
+          const pitch_m = v_para * T_s;
+
+          radiusOut.textContent = (r_m * 100).toFixed(2) + ' cm';
+          pitchOut.textContent = (pitch_m * 100).toFixed(2) + ' cm';
+          periodOut.textContent = (T_s).toExponential(2) + ' s';
+
+          render3DHelicalPath(thetaRad, r_m, pitch_m, B);
+        } else {
+          const E_kVm = val1;
+          const E_Vm = E_kVm * 1000;
+          const B = val2;
+          const v_actual = val3 * 1000;
+
+          slider1Val.textContent = E_kVm + ' kV/m';
+          slider2Val.textContent = B.toFixed(1) + ' T';
+          slider3Val.textContent = (val3).toFixed(0) + ' km/s';
+
+          const v_pass = E_Vm / B;
+          radiusOut.textContent = 'Straight Filter';
+          pitchOut.textContent = `v_filter = ${(v_pass / 1000).toFixed(1)} km/s`;
+          periodOut.textContent = Math.abs(v_actual - v_pass) < 2000 ? 'UNDEFLECTED' : (v_actual > v_pass ? 'Deflects 🠛 (F_B)' : 'Deflects 🠙 (F_E)');
+
+          renderVelocitySelectorView(E_Vm, B, v_actual, v_pass);
+        }
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function render3DHelicalPath(thetaRad, r_m, pitch_m, B) {
+        const originX = 140;
+        const originY = canvas.height / 2;
+
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.2)';
+        ctx.lineWidth = 1.5;
+        for (let y = 60; y < canvas.height - 40; y += 45) {
+          ctx.beginPath();
+          ctx.moveTo(80, y);
+          ctx.lineTo(canvas.width - 60, y);
+          ctx.stroke();
+
+          ctx.fillStyle = '#38bdf8';
+          ctx.beginPath();
+          ctx.moveTo(canvas.width - 60, y);
+          ctx.lineTo(canvas.width - 70, y - 4);
+          ctx.lineTo(canvas.width - 70, y + 4);
+          ctx.fill();
+        }
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`Uniform Magnetic Field B ➔ (${B} T)`, 90, 42);
+
+        const visualR = Math.max(15, Math.min(85, r_m * 2200));
+        const visualPitch = Math.max(0, Math.min(180, pitch_m * 1200));
+
+        ctx.lineWidth = 2.5;
+        const numTurns = 5;
+        const totalSteps = numTurns * 60;
+
+        ctx.beginPath();
+        for (let s = 0; s < totalSteps; s++) {
+          const tAngle = (s / 60) * Math.PI * 2;
+          const hx = originX + (tAngle / (Math.PI * 2)) * visualPitch;
+          if (hx > canvas.width - 90) break;
+
+          const hy = originY + Math.sin(tAngle) * visualR;
+          const depthZ = Math.cos(tAngle);
+
+          if (s === 0) {
+            ctx.moveTo(hx, hy);
+          } else {
+            ctx.strokeStyle = depthZ > 0 ? '#fbbf24' : 'rgba(251, 191, 36, 0.35)';
+            ctx.lineTo(hx, hy);
+          }
+        }
+        ctx.stroke();
+
+        const headAngle = (simTime * 2.5);
+        const headX = originX + (headAngle / (Math.PI * 2)) * visualPitch;
+        const boundedHeadX = originX + (headX - originX) % (canvas.width - 250);
+        const cycleProgress = (boundedHeadX - originX) / (visualPitch || 1);
+        const currentAngle = cycleProgress * Math.PI * 2;
+
+        const headY = originY + Math.sin(currentAngle) * visualR;
+        const currentDepth = Math.cos(currentAngle);
+
+        ctx.beginPath();
+        ctx.arc(boundedHeadX, headY, currentDepth > 0 ? 6.5 : 4.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#ef4444';
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        drawArrow(boundedHeadX, headY, boundedHeadX + 35, headY, '#10b981', 'v∥');
+        const vPerpAngle = currentAngle + Math.PI / 2;
+        drawArrow(boundedHeadX, headY, boundedHeadX + Math.cos(vPerpAngle) * 30, headY + Math.sin(vPerpAngle) * 30, '#ec4899', 'v⊥');
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Helical Trajectory: v∥ = v cosθ maintains forward translation; v⊥ = v sinθ maintains circular orbit`, canvas.width / 2, canvas.height - 12);
+      }
+
+      function renderVelocitySelectorView(E_Vm, B, v_actual, v_pass) {
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        const plateW = 460;
+        const plateH = 140;
+        const startX = cx - plateW / 2;
+
+        ctx.fillStyle = 'rgba(244, 63, 94, 0.2)';
+        ctx.fillRect(startX, cy - plateH / 2, plateW, 12);
+        ctx.fillStyle = 'rgba(56, 189, 248, 0.2)';
+        ctx.fillRect(startX, cy + plateH / 2 - 12, plateW, 12);
+
+        ctx.fillStyle = '#f43f5e';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('+ + + Positive Top Plate (+E) + + +', cx - 120, cy - plateH / 2 - 6);
+        ctx.fillStyle = '#38bdf8';
+        ctx.fillText('- - - Negative Bottom Plate (-E) - - -', cx - 120, cy + plateH / 2 + 18);
+
+        ctx.strokeStyle = 'rgba(244, 63, 94, 0.3)';
+        ctx.lineWidth = 1;
+        for (let x = startX + 30; x < startX + plateW; x += 60) {
+          ctx.beginPath();
+          ctx.moveTo(x, cy - plateH / 2 + 15);
+          ctx.lineTo(x, cy + plateH / 2 - 15);
+          ctx.stroke();
+
+          ctx.fillStyle = '#f43f5e';
+          ctx.beginPath();
+          ctx.moveTo(x, cy + plateH / 2 - 15);
+          ctx.lineTo(x - 3, cy + plateH / 2 - 22);
+          ctx.lineTo(x + 3, cy + plateH / 2 - 22);
+          ctx.fill();
+        }
+
+        ctx.fillStyle = '#38bdf8';
+        for (let x = startX + 30; x < startX + plateW; x += 60) {
+          for (let y = cy - plateH / 2 + 35; y < cy + plateH / 2 - 25; y += 35) {
+            ctx.beginPath();
+            ctx.arc(x, y, 2.5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(x, y, 7, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.3)';
+            ctx.stroke();
+          }
+        }
+        ctx.fillText('Crossed Magnetic Field B (⊙ Out of Screen)', cx - 130, cy - 35);
+
+        const isMatched = Math.abs(v_actual - v_pass) < 2000;
+        const deflectionFactor = (v_actual - v_pass) / v_pass;
+
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        for (let px = startX - 40; px <= startX + plateW + 40; px += 4) {
+          let py = cy;
+          if (px > startX) {
+            const progress = (px - startX);
+            py = cy + (deflectionFactor * 0.0006 * progress * progress);
+          }
+          if (px === startX - 40) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        }
+        ctx.strokeStyle = isMatched ? '#10b981' : '#f59e0b';
+        ctx.stroke();
+
+        const beadProgress = (simTime * 140) % (plateW + 80);
+        const beadX = (startX - 40) + beadProgress;
+        let beadY = cy;
+        if (beadX > startX) {
+          const p = (beadX - startX);
+          beadY = cy + (deflectionFactor * 0.0006 * p * p);
+        }
+
+        ctx.beginPath();
+        ctx.arc(beadX, beadY, 6, 0, Math.PI * 2);
+        ctx.fillStyle = isMatched ? '#10b981' : '#f59e0b';
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Crossed Fields (E ⊥ B): F_E = qE (Downwards) balances F_B = qvB (Upwards) when v = E/B[cite: 13]`, cx, canvas.height - 12);
+      }
+
+      function drawArrow(fromX, fromY, toX, toY, color, labelText) {
+        const angle = Math.atan2(toY - fromY, toX - fromX);
+        const headlen = 7;
+
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+        ctx.moveTo(fromX, fromY);
+        ctx.lineTo(toX, toY);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(toX, toY);
+        ctx.lineTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
+        ctx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
+        ctx.closePath();
+        ctx.fill();
+
+        if (labelText) {
+          ctx.fillStyle = color;
+          ctx.font = 'bold 10px monospace';
+          ctx.fillText(labelText, toX + 6, toY + 2);
+        }
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Electric Current, Drift Velocity & Ohm's Law</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 3.1</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 02: Current Electricity • Chapter 03[cite: 12, 13]</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Electric Current, Drift Velocity & Ohm's Law</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Charge flow rate, microscopic cylinder derivation of $I = neAv_d$, relaxation time, mobility, and Ohm's law deduction[cite: 13].</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek pipe me paani bhara hua hai: jab tak dono ends par pressure barabar hai, molecules randomly takrayenge par pipe ke kisi cross-section se net flow zero hoga. Jaise hi pump ek pressure difference (voltage) create karta hai, paani aage flow karna shuru kar deta hai. Theek waise hi, conductor ke andar <strong class="text-white">Electric Current</strong> kisi surface se per second pass hone wale net charge ki rate hai[cite: 13]. Par dhyaan rahe: electrons bohot tez random speed ($\approx 10^5\text{ m/s}$) par chalte hain, lekin unka actual directional crawl yani <strong class="text-white">Drift Velocity ($v_d \approx 10^{-4}\text{ m/s}$)</strong> bohot hi dheema hota hai[cite: 13]!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Electric Current ($I$)</h3>
+          <p class="text-sm text-slate-400 mb-2">Rate of net charge flow through any cross-sectional area of a conductor[cite: 13]:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$I_{\text{avg}} = \frac{\Delta Q}{\Delta t}, \quad I = \lim_{\Delta t \to 0}\frac{\Delta Q}{\Delta t} = \frac{dQ}{dt}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">SI Unit: $\text{Ampere (A)} = \text{Coulomb/second (C/s)}$. Scalar quantity (follows algebraic addition, not vector law)[cite: 13].</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Current & Drift Velocity Relation</h3>
+          <p class="text-sm text-slate-400 mb-2">Macroscopic current linked to microscopic charge carriers[cite: 13]:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$I = n e A v_d, \quad \vec{J} = \frac{I}{A}\hat{n} = n e \vec{v}_d$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Where $n$ is electron density (number of free electrons per unit volume) and $\vec{J}$ is current density vector[cite: 13].</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Electron-Lattice Drift Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Electron-Lattice Drift Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="resetSimBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Reset Electron Traces
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="driftCanvas" width="800" height="380" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Electric Field ($E$)</span>
+            <span id="eFieldVal" class="text-cyan-400 font-mono font-bold">120 V/m</span>
+          </div>
+          <input id="eFieldSlider" type="range" min="0" max="300" step="10" value="120" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Temperature (Thermal Speed $v_{\text{th}}$)</span>
+            <span id="tempVal" class="text-amber-400 font-mono font-bold">300 K (Normal)</span>
+          </div>
+          <input id="tempSlider" type="range" min="100" max="600" step="25" value="300" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Lattice Density (Collisions)</span>
+            <span id="densityVal" class="text-emerald-400 font-mono font-bold">Standard Copper Lattice</span>
+          </div>
+          <input id="densitySlider" type="range" min="1" max="3" step="1" value="2" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Drift Speed ($v_d \propto E$):</span>
+          <div id="vdOutputVal" class="text-cyan-400 font-bold text-sm mt-0.5">0.42 mm/s</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Relaxation Time ($\tau$):</span>
+          <div id="tauOutputVal" class="text-amber-400 font-bold text-sm mt-0.5">2.50 × 10⁻¹⁴ s</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Net Current Flow ($I$):</span>
+          <div id="iOutputVal" class="text-emerald-400 font-bold text-sm mt-0.5">Left to Right (Conventional)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint[cite: 13]</span>
+      </div>
+
+       <!-- Derivation 1: Drift Velocity -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation A</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Mathematical Expression for Drift Velocity ($v_d = \frac{eE\tau}{m}$)[cite: 13]</h4>
+        </div>
+        <p>1. In the absence of an electric field, free electrons move randomly with high thermal speeds ($\vec{u}_i$). Average thermal velocity is zero[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\vec{u}_{\text{avg}} = \frac{1}{N}\sum_{i=1}^N \vec{u}_i = 0$$
+        </div>
+        <p>2. When an external field $\vec{E}$ is established, each electron of charge $-e$ and mass $m$ experiences acceleration[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\vec{a} = \frac{\vec{F}}{m} = -\frac{e\vec{E}}{m}$$
+        </div>
+        <p>3. Velocity of electron $i$ after elapsed time $t_i$ since its last collision[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\vec{v}_i = \vec{u}_i + \vec{a}t_i = \vec{u}_i - \frac{e\vec{E}}{m}t_i$$
+        </div>
+        <p>4. Average velocity over all electrons defines drift velocity $\vec{v}_d$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\vec{v}_d = \frac{1}{N}\sum_{i=1}^N \vec{v}_i = \underbrace{\frac{1}{N}\sum \vec{u}_i}_{0} - \frac{e\vec{E}}{m}\left(\frac{1}{N}\sum t_i\right)$$
+        </div>
+        <p>5. Denoting average time between collisions as mean relaxation time $\tau$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\vec{v}_d = -\frac{e\vec{E}}{m}\tau \implies v_d = \frac{eE\tau}{m} \text{[cite: 13]}$$
+        </div>
+      </div>
+      
+      <!-- Derivation 2: Current and Drift Velocity -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation B</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Relation between Electric Current and Drift Velocity ($I = n e A v_d$)[cite: 13]</h4>
+        </div>
+        <p>1. Consider a uniform conductor of cross-sectional area $A$ and length $l$ connected across potential difference $V$[cite: 13].</p>
+        <p>2. Let $n$ be the number density of free electrons (number of electrons per unit volume)[cite: 13].</p>
+        <p>3. In time interval $\Delta t$, electrons drifting with average velocity $v_d$ cover an axial distance $\Delta x = v_d \Delta t$[cite: 13].</p>
+        <p>4. All electrons present inside this volume $\Delta V$ will cross the reference cross-section in time $\Delta t$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\text{Volume of cylinder } \Delta V = A \cdot \Delta x = A (v_d \Delta t)$$
+        </div>
+        <p>5. Total number of electrons inside this volume element $N = n \cdot \Delta V = n A v_d \Delta t$[cite: 13].</p>
+        <p>6. Total charge $\Delta Q$ carried by these electrons across the area[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\Delta Q = N e = (n A v_d \Delta t) e$$
+        </div>
+        <p>7. Dividing by time interval $\Delta t$ yields the fundamental relation[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$I = \frac{\Delta Q}{\Delta t} = n e A v_d \text{[cite: 13]}$$
+        </div>
+        <p class="text-slate-400"><em>Vector Current Density:</em> $\vec{J} = \frac{I}{A} = n e \vec{v}_d$. Since electrons carry negative charge ($-e$), their physical drift velocity $\vec{v}_d$ is opposite to current density $\vec{J}$ and electric field $\vec{E}$[cite: 13].</p>
+      </div>
+
+      <!-- Derivation 3: Deduction of Ohm's Law -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation C</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Deduction of Ohm's Law from Microscopic Principles ($V = IR$)[cite: 13]</h4>
+        </div>
+        <p>1. Substitute $v_d = \frac{eE\tau}{m}$ into the current expression $I = neAv_d$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$I = n e A \left(\frac{e E \tau}{m}\right) = \left(\frac{n e^2 \tau A}{m}\right) E$$
+        </div>
+        <p>2. For a conductor of length $l$ with applied potential difference $V$, uniform electric field is $E = \frac{V}{l}$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$I = \left(\frac{n e^2 \tau A}{m}\right) \frac{V}{l} = \left(\frac{n e^2 \tau A}{m l}\right) V$$
+        </div>
+        <p>3. Rearranging for potential difference $V$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$V = \left( \frac{m}{n e^2 \tau} \frac{l}{A} \right) I = \left(\rho \frac{l}{A}\right) I = R I \text{[cite: 13]}$$
+        </div>
+        <p class="text-slate-400"><em>Resistance & Resistivity:</em> $R = \rho \frac{l}{A}$, where intrinsic resistivity $\rho = \frac{m}{n e^2 \tau}$ depends solely on material and temperature[cite: 13].</p>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Is Electric Current a Vector or Scalar?</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Even though electric current has both magnitude and direction along the wire, it is strictly a <strong>SCALAR quantity</strong>[cite: 13]. It does not obey vector addition laws ($\vec{A} + \vec{B}$); currents at a junction add algebraically ($I_{\text{total}} = I_1 + I_2$) regardless of the angle between incoming wires[cite: 13]. In contrast, <strong>Current Density ($\vec{J}$)</strong> is a true vector[cite: 13].
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Variable Wire Cross-Section ($v_d \propto 1/A$)</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            In a non-uniform wire with steady current: Current $I$ is strictly <strong>constant</strong> at all cross-sections[cite: 13]. However, current density $J = I/A$ and drift speed $v_d = \frac{I}{neA}$ are <strong>inversely proportional to area</strong> ($v_d \propto 1/A$)[cite: 13]. Electrons move faster through narrow portions of a wire!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Drift Speed vs Current Signal Speed</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Do not confuse the slow snail-like drift speed of electrons ($v_d \approx 10^{-4}\text{ m/s}$) with the speed of electric current propagation[cite: 13]. The signal travels at the speed of electromagnetic waves in conductors ($\approx 10^8\text{ m/s}$), creating an instantaneous field that pushes all electrons simultaneously.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Mobility ($\mu$) Sign Convention</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            While drift velocity $\vec{v}_d$ is a vector directed antiparallel to $\vec{E}$ for electrons[cite: 13], Mobility $\mu = \frac{|\vec{v}_d|}{E}$ is by definition <strong>always a positive scalar</strong>[cite: 13]. For electrons: $\mu_e = \frac{e\tau_e}{m_e}$; for holes: $\mu_h = \frac{e\tau_h}{m_h}$.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A copper wire of cross-sectional area $1.0 \times 10^{-7}\text{ m}^2$ carries a current of $1.5\text{ A}$. Assuming free electron density $n = 8.5 \times 10^{28}\text{ m}^{-3}$, calculate the drift speed of electrons. If wire length is $3.0\text{ m}$, find the time taken by an electron to drift from one end to the other[cite: 13].</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Formula: $I = n e A v_d \implies v_d = \frac{I}{n e A}$[cite: 13]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$v_d = \frac{1.5}{(8.5 \times 10^{28}) \times (1.6 \times 10^{-19}) \times (1.0 \times 10^{-7})} = \frac{1.5}{1.36 \times 10^3} \approx 1.10 \times 10^{-3}\text{ m/s} = 1.10\text{ mm/s}$$
+          </div>
+          <p>2. Time taken across distance $l = 3.0\text{ m}$:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$t = \frac{l}{v_d} = \frac{3.0\text{ m}}{1.10 \times 10^{-3}\text{ m/s}} \approx 2727\text{ seconds} \approx 45.5\text{ minutes}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: Two wires of the same material have lengths in the ratio $1:2$ and diameters in the ratio $2:3$. If they are connected in series across a battery, find the ratio of (i) drift velocities of electrons in them, (ii) potential differences across them[cite: 13].</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. In series connection, current $I$ is identical in both wires[cite: 13]: $I_1 = I_2 = I$.</p>
+          <p>2. Area ratio: $A \propto d^2 \implies \frac{A_1}{A_2} = \left(\frac{d_1}{d_2}\right)^2 = \left(\frac{2}{3}\right)^2 = \frac{4}{9}$.</p>
+          <p>3. Drift speed ratio: $I = neAv_d \implies v_d = \frac{I}{neA} \implies v_d \propto \frac{1}{A}$ (since material is same, $n$ is same)[cite: 13]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\frac{v_{d1}}{v_{d2}} = \frac{A_2}{A_1} = \frac{9}{4}$$
+          </div>
+          <p>4. Resistance ratio: $R = \rho \frac{l}{A} \implies \frac{R_1}{R_2} = \left(\frac{l_1}{l_2}\right) \times \left(\frac{A_2}{A_1}\right) = \left(\frac{1}{2}\right) \times \left(\frac{9}{4}\right) = \frac{9}{8}$[cite: 13].</p>
+          <p>5. In series, $V = IR \implies V \propto R$[cite: 13]:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\frac{V_1}{V_2} = \frac{R_1}{R_2} = \frac{9}{8}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Current Definition</p>
+          <p class="text-xs font-bold text-white mt-1">$I = \frac{dQ}{dt}$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Current & $v_d$</p>
+          <p class="text-xs font-bold text-white mt-1">$I = n e A v_d$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Drift Velocity</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$v_d = \frac{eE\tau}{m}$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Mobility</p>
+          <p class="text-xs font-bold text-white mt-1">$\mu = \frac{v_d}{E} = \frac{e\tau}{m}$[cite: 13]</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Electron-Lattice Drift Engine Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('driftCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const eFieldSlider = document.getElementById('eFieldSlider');
+      const tempSlider = document.getElementById('tempSlider');
+      const densitySlider = document.getElementById('densitySlider');
+      const resetSimBtn = document.getElementById('resetSimBtn');
+
+      const eFieldVal = document.getElementById('eFieldVal');
+      const tempVal = document.getElementById('tempVal');
+      const densityVal = document.getElementById('densityVal');
+      const vdOutputVal = document.getElementById('vdOutputVal');
+      const tauOutputVal = document.getElementById('tauOutputVal');
+      const iOutputVal = document.getElementById('iOutputVal');
+
+      const latticePoints = [];
+      function buildLattice(densityLevel) {
+        latticePoints.length = 0;
+        const spacing = densityLevel === 1 ? 70 : (densityLevel === 2 ? 50 : 36);
+        for (let x = 60; x < canvas.width - 60; x += spacing) {
+          for (let y = 60; y < canvas.height - 60; y += spacing) {
+            latticePoints.push({ x: x + (Math.sin(x + y) * 4), y: y });
+          }
+        }
+      }
+
+      const NUM_ELECTRONS = 32;
+      const electrons = [];
+      function initElectrons() {
+        electrons.length = 0;
+        for (let i = 0; i < NUM_ELECTRONS; i++) {
+          electrons.push({
+            x: 60 + Math.random() * (canvas.width - 120),
+            y: 50 + Math.random() * (canvas.height - 100),
+            vx: (Math.random() - 0.5) * 4,
+            vy: (Math.random() - 0.5) * 4,
+            trail: []
+          });
+        }
+      }
+
+      buildLattice(2);
+      initElectrons();
+
+      resetSimBtn.addEventListener('click', () => {
+        initElectrons();
+      });
+
+      function renderLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const E = parseFloat(eFieldSlider.value);
+        const Temp = parseFloat(tempSlider.value);
+        const densityLevel = parseInt(densitySlider.value);
+
+        eFieldVal.textContent = E + ' V/m';
+        tempVal.textContent = Temp + ' K';
+        densityVal.textContent = densityLevel === 1 ? 'Sparse Lattice' : (densityLevel === 2 ? 'Standard Copper' : 'Dense Alloy');
+
+        const tauSec = (2.5e-14 * (300 / Temp) * (2 / densityLevel));
+        const vdMmSec = (E * 0.0035 * (300 / Temp)).toFixed(2);
+
+        vdOutputVal.textContent = vdMmSec + ' mm/s';
+        tauOutputVal.textContent = (tauSec).toExponential(2) + ' s';
+        iOutputVal.textContent = E > 0 ? 'Left ➔ Right (Electrons drift Left)' : 'Zero Net Current';
+
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(40, 35, canvas.width - 80, canvas.height - 70);
+
+        if (E > 0) {
+          ctx.strokeStyle = 'rgba(56, 189, 248, 0.2)';
+          ctx.lineWidth = 1.5;
+          for (let y = 65; y < canvas.height - 50; y += 50) {
+            ctx.beginPath();
+            ctx.moveTo(50, y);
+            ctx.lineTo(canvas.width - 50, y);
+            ctx.stroke();
+            ctx.fillStyle = '#38bdf8';
+            ctx.beginPath();
+            ctx.moveTo(canvas.width - 50, y);
+            ctx.lineTo(canvas.width - 60, y - 4);
+            ctx.lineTo(canvas.width - 60, y + 4);
+            ctx.fill();
+          }
+          ctx.fillStyle = '#38bdf8';
+          ctx.font = 'bold 11px monospace';
+          ctx.fillText(`⚡ Electric Field E (${E} V/m) ➔`, 55, 25);
+        }
+
+        latticePoints.forEach(pt => {
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, 7, 0, Math.PI * 2);
+          ctx.fillStyle = '#e11d48';
+          ctx.fill();
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 8px monospace';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('+', pt.x, pt.y);
+        });
+
+        const thermalSpeedScale = Math.sqrt(Temp / 300) * 2.2;
+        const driftAccel = (E / 300) * 0.12;
+
+        electrons.forEach(el => {
+          el.vx -= driftAccel;
+
+          const currentSpeed = Math.hypot(el.vx, el.vy);
+          if (currentSpeed > thermalSpeedScale * 2.5) {
+            el.vx *= 0.95;
+            el.vy *= 0.95;
+          }
+
+          el.x += el.vx;
+          el.y += el.vy;
+
+          if (el.y < 45) { el.y = 45; el.vy = Math.abs(el.vy); }
+          if (el.y > canvas.height - 45) { el.y = canvas.height - 45; el.vy = -Math.abs(el.vy); }
+
+          if (el.x < 45) { el.x = canvas.width - 45; el.trail = []; }
+          if (el.x > canvas.width - 45) { el.x = 45; el.trail = []; }
+
+          latticePoints.forEach(pt => {
+            const dist = Math.hypot(el.x - pt.x, el.y - pt.y);
+            if (dist < 11) {
+              const scatterAngle = Math.random() * Math.PI * 2;
+              el.vx = Math.cos(scatterAngle) * thermalSpeedScale;
+              el.vy = Math.sin(scatterAngle) * thermalSpeedScale;
+            }
+          });
+
+          if (el === electrons[0]) {
+            el.trail.push({ x: el.x, y: el.y });
+            if (el.trail.length > 35) el.trail.shift();
+
+            ctx.strokeStyle = '#fbbf24';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            for (let t = 0; t < el.trail.length; t++) {
+              if (t === 0) ctx.moveTo(el.trail[t].x, el.trail[t].y);
+              else ctx.lineTo(el.trail[t].x, el.trail[t].y);
+            }
+            ctx.stroke();
+          }
+
+          ctx.beginPath();
+          ctx.arc(el.x, el.y, el === electrons[0] ? 4.5 : 3, 0, Math.PI * 2);
+          ctx.fillStyle = el === electrons[0] ? '#fbbf24' : '#38bdf8';
+          ctx.fill();
+        });
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Gold Trace: High-speed thermal zigzag collisions overlaid with subtle net drift leftward (opposite to E)[cite: 13]', cx, canvas.height - 12);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      densitySlider.addEventListener('input', () => {
+        buildLattice(parseInt(densitySlider.value));
+      });
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

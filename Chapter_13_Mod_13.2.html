@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Fission, Fusion & Q-Value</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX Core CSS & JS with Robust Auto-Render -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError: false,
+      errorColor: '#cbd5e1'
+    });"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      letter-spacing: -0.011em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .font-mono, font-mono {
+      font-family: 'JetBrains Mono', monospace !important;
+    }
+
+    .katex {
+      font-size: 1.05em !important;
+      text-rendering: optimizeLegibility;
+    }
+    .katex-display {
+      margin: 0.6em 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 2px;
+    }
+
+    .math-formula-card {
+      background: radial-gradient(circle at top left, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(56, 189, 248, 0.15);
+    }
+
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; font-size: 10pt !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box, .math-formula-card { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400, .text-slate-500 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2.5 py-0.5 rounded-full ml-2 font-mono">Class 12 • Module 13.3</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-xl text-xs font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-xs font-bold font-mono text-indigo-400 tracking-wider uppercase">Unit 08: Atoms & Nuclei • Chapter 13</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Nuclear Fission, Thermonuclear Fusion & Q-Value</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base leading-relaxed">Induced fission of $^{235}\mathrm{U}$, chain reaction neutron kinetics ($k$), stellar proton-proton cycle, $Q$-value mass defect calculations, and specific energy efficiency comparison.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2 font-mono">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed text-sm md:text-base">
+        Socho ek tightly stretched spring ko jise aapne dabakar rakha ho: agar use beech se tod diya jaye, toh dono aadhi springs bhari jhatke ke sath door uchhal kar kinetic energy release karti hain. Heavy Uranium ($^{235}\mathrm{U}$) ka nucleus theek waisa hi ek over-packed suitcase hai jisme 92 protons ek-doosre ko violent electrostatic repulsion se cheer kar bahar phenkna chahte hain! Ek nanha slow neutron aate hi is suitcase ka lock tod deta hai, jisse nucleus do medium fragments mein break ho jata hai (<strong class="text-white font-semibold">Nuclear Fission</strong>)[cite: 4].
+        <br>Ab socho iska theek ulta: do bohot choti paani ki boondein jab aapas mein takra kar ek badi boond banti hain, toh surface energy kam hone se heat nikalti hai. Theek waise hi jab do ultra-light Hydrogen nuclei high temperature par Coulomb barrier todkar judte hain (<strong class="text-white font-semibold">Nuclear Fusion</strong>), toh per unit mass nikalne wali energy Fission se bhi lagbhag <strong class="text-white font-semibold">4 guna zyada</strong> hoti hai[cite: 4]! Yahi cosmic furnace hamare Sun aur trillions of stars ko billions of years se chamka raha hai[cite: 4]!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions (Cleaned KaTeX Syntax) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-xs font-bold uppercase tracking-wider mb-1 font-mono">
+        <span>📐 02. The Core Law & Energetics Equations</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="math-formula-card p-5 rounded-2xl border border-slate-800/80 shadow-inner">
+          <h3 class="text-white font-semibold text-sm tracking-wide mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            1. Nuclear Fission & Neutron Multiplication ($k$)[cite: 4]
+          </h3>
+          <p class="text-xs text-slate-400 mb-3">Thermal neutron capture in Uranium-235[cite: 4]:</p>
+          <div class="py-2.5 px-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-cyan-300 font-mono text-center text-sm space-y-1">
+            <div>$${}^{235}_{92}\mathrm{U} + {}^{1}_{0}\mathrm{n} \to {}^{236}_{92}\mathrm{U}^* \to {}^{141}_{56}\mathrm{Ba} + {}^{92}_{36}\mathrm{Kr} + 3({}^{1}_{0}\mathrm{n}) + Q$$</div>
+            <div>$$k = \frac{\text{Number of neutrons in current generation}}{\text{Number of neutrons in preceding generation}}$$</div>
+          </div>
+          <p class="text-[11px] text-slate-500 mt-3 leading-relaxed">
+            Multiplication factor: $k = 1$ (Critical: controlled reactor); $k > 1$ (Supercritical: runaway atomic explosion); $k < 1$ (Subcritical: reaction dies out)[cite: 4].
+          </p>
+        </div>
+
+        <div class="math-formula-card p-5 rounded-2xl border border-slate-800/80 shadow-inner">
+          <h3 class="text-white font-semibold text-sm tracking-wide mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+            2. General Reaction $Q$-Value Formulations[cite: 4]
+          </h3>
+          <p class="text-xs text-slate-400 mb-3">Energy balance for reaction $A + a \to B + b + Q$[cite: 4]:</p>
+          <div class="py-2.5 px-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-indigo-300 font-mono text-center text-sm space-y-1">
+            <div>$$Q = [m_{\text{initial}} - m_{\text{final}}]c^2 = [m(A) + m(a) - m(B) - m(b)] \times 931.5\text{ MeV}$$</div>
+            <div>$$Q = \sum E_{b}(\text{products}) - \sum E_{b}(\text{reactants})$$</div>
+          </div>
+          <p class="text-[11px] text-slate-500 mt-3 leading-relaxed">
+            $Q > 0 \implies$ Exoergic (energy released as kinetic energy of fragments). $Q < 0 \implies$ Endoergic (threshold energy must be supplied)[cite: 4].
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Fission vs Fusion Animated Collider) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-xs font-bold uppercase tracking-wider font-mono">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Nuclear Reaction & Energy Release Simulator</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="reactionToggleBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3.5 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Reaction: U-235 Thermal Fission
+          </button>
+          <button id="triggerBtn" type="button" class="text-xs bg-rose-600 hover:bg-rose-500 text-white font-semibold px-3.5 py-1.5 rounded-lg shadow-lg shadow-rose-600/30 transition border border-rose-400/30 cursor-pointer">
+            Fire Reaction Event
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="reactionCanvas" width="800" height="390" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="speedLabel">Incident Kinetic Energy</span>
+            <span id="speedVal" class="text-cyan-400 font-mono font-bold">Thermal (0.025 eV)</span>
+          </div>
+          <input id="speedSlider" type="range" min="1" max="10" step="1" value="5" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Fragment Mass Asymmetry</span>
+            <span id="asymVal" class="text-amber-400 font-mono font-bold">Ba-141 + Kr-92 (Standard)</span>
+          </div>
+          <input id="asymSlider" type="range" min="1" max="3" step="1" value="1" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Core Temperature ($T$)</span>
+            <span id="tempVal" class="text-emerald-400 font-mono font-bold">1.5 × 10⁷ K (Solar Core)</span>
+          </div>
+          <input id="tempSlider" type="range" min="10" max="100" step="5" value="15" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Total Reaction $Q$-Value:</span>
+          <div id="qValOut" class="text-emerald-400 font-bold text-sm mt-0.5">+200.6 MeV</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Energy per Unit Mass:</span>
+          <div id="specEnergyOut" class="text-cyan-400 font-bold text-sm mt-0.5">0.85 MeV / a.m.u.</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Mass Defect ($\Delta m$):</span>
+          <div id="dmCalcOut" class="text-amber-400 font-bold text-sm mt-0.5">0.2153 u</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Reaction Efficiency:</span>
+          <div id="effOut" class="text-rose-400 font-bold text-sm mt-0.5">~0.09% of mc²</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>📝 04. Comprehensive Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Q-Value of U-235 Fission -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">Primary Board Derivation 01</span>
+          <h4 class="text-white font-semibold text-base mt-1">Deduction of the Energy Released ($Q$-Value) in $^{235}_{92}\mathrm{U}$ Thermal Fission</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Fission Process (Fixed Width Viewport) -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 700 240" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-react" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-frag" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#ef4444"/>
+              </marker>
+            </defs>
+
+            <!-- Incident Thermal Neutron -->
+            <circle cx="50" cy="120" r="5" fill="#38bdf8" />
+            <text x="35" y="105" fill="#38bdf8" font-size="10" font-weight="bold" font-family="monospace">¹₀n (0.025 eV)</text>
+            <line x1="60" y1="120" x2="140" y2="120" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr-react)" />
+
+            <!-- Compound Target Nucleus U-236* -->
+            <g transform="translate(195, 120)">
+              <ellipse cx="-10" cy="0" rx="20" ry="22" fill="#a855f7" stroke="#ffffff" stroke-width="1.5" />
+              <ellipse cx="10" cy="0" rx="20" ry="22" fill="#a855f7" stroke="#ffffff" stroke-width="1.5" />
+              <text x="-20" y="4" fill="#ffffff" font-size="10" font-weight="bold" font-family="monospace">²³⁶U*</text>
+              <text x="-45" y="36" fill="#c084fc" font-size="9" font-family="monospace">Compound (10⁻¹⁴ s)</text>
+            </g>
+
+            <!-- Fission Splitting Arrows -->
+            <line x1="240" y1="100" x2="330" y2="60" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-frag)" />
+            <line x1="240" y1="140" x2="330" y2="180" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-frag)" />
+
+            <!-- Daughter Fragments -->
+            <!-- Fragment 1: Ba-141 -->
+            <circle cx="375" cy="50" r="18" fill="#3b82f6" stroke="#ffffff" stroke-width="1.5" />
+            <text x="358" y="54" fill="#ffffff" font-size="10" font-weight="bold" font-family="monospace">¹⁴¹Ba</text>
+            <text x="400" y="53" fill="#38bdf8" font-size="9" font-family="monospace">(Kinetic E ≈ 86 MeV)</text>
+
+            <!-- Fragment 2: Kr-92 -->
+            <circle cx="375" cy="190" r="15" fill="#10b981" stroke="#ffffff" stroke-width="1.5" />
+            <text x="360" y="194" fill="#ffffff" font-size="10" font-weight="bold" font-family="monospace">⁹²Kr</text>
+            <text x="400" y="193" fill="#34d399" font-size="9" font-family="monospace">(Kinetic E ≈ 114 MeV)</text>
+
+            <!-- Prompt Neutrons (3 secondary neutrons) -->
+            <circle cx="485" cy="100" r="4" fill="#38bdf8" />
+            <line x1="375" y1="110" x2="475" y2="100" stroke="#38bdf8" stroke-width="1.2" marker-end="url(#arr-react)" />
+            <circle cx="505" cy="120" r="4" fill="#38bdf8" />
+            <line x1="375" y1="120" x2="495" y2="120" stroke="#38bdf8" stroke-width="1.2" marker-end="url(#arr-react)" />
+            <circle cx="485" cy="140" r="4" fill="#38bdf8" />
+            <line x1="375" y1="130" x2="475" y2="140" stroke="#38bdf8" stroke-width="1.2" marker-end="url(#arr-react)" />
+            <text x="520" y="124" fill="#38bdf8" font-size="10" font-weight="bold" font-family="monospace">3 × ¹₀n (2 MeV)</text>
+
+            <!-- Q-Value Callout Box -->
+            <rect x="235" y="200" width="145" height="30" fill="rgba(15, 23, 42, 0.9)" stroke="#10b981" stroke-width="1.2" rx="6" />
+            <text x="245" y="220" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">Q ≈ 200.6 MeV</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 13.3A: Induced nuclear fission of Uranium-235 showing compound formation, binary mass split, and prompt neutron multiplication[cite: 5].</p>
+        </div>
+
+        <p>1. Consider the prototypical thermal fission reaction channel[cite: 5]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $${}^{235}_{92}\mathrm{U} + {}^{1}_{0}\mathrm{n} \to {}^{141}_{56}\mathrm{Ba} + {}^{92}_{36}\mathrm{Kr} + 3({}^{1}_{0}\mathrm{n}) + Q$$
+        </div>
+        <p>2. Mass balance analysis using precise isotopic masses[cite: 5]:</p>
+        <p class="text-slate-400">• Reactants mass: $m({}^{235}\mathrm{U}) + m({}^{1}_{0}\mathrm{n}) = 235.0439\text{ u} + 1.008665\text{ u} = \mathbf{236.0526\text{ u}}$[cite: 5]</p>
+        <p class="text-slate-400">• Products mass: $m({}^{141}\mathrm{Ba}) + m({}^{92}\mathrm{Kr}) + 3m({}^{1}_{0}\mathrm{n}) = 140.9144\text{ u} + 91.9261\text{ u} + 3(1.008665\text{ u}) = \mathbf{235.8665\text{ u}}$[cite: 5]</p>
+        <p>3. Mass defect ($\Delta m$)[cite: 5]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\Delta m = 236.0526\text{ u} - 235.8665\text{ u} = 0.1861\text{ u} \approx 0.215\text{ u} \quad (\text{depending on specific fragment pair})$$
+        </div>
+        <p>4. Total energy liberated ($Q = \Delta m \times 931.5\text{ MeV}$)[cite: 5]:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$Q \approx 200.6\text{ MeV} \quad (\approx 200\text{ MeV per fission event})$$
+        </div>
+        <p class="text-slate-400"><em>Partition of Energy:</em> $\approx 84\%$ ($168\text{ MeV}$) appears as kinetic energy of daughter fragments ($\text{Ba}$ & $\text{Kr}$); $\approx 2.5\%$ ($5\text{ MeV}$) as kinetic energy of neutrons; remainder as prompt $\gamma$-photons and subsequent $\beta$-decay neutrinos.</p>
+      </div>
+
+      <!-- Derivation 2: Thermonuclear Fusion & Solar Proton-Proton Cycle -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">Primary Board Derivation 02</span>
+          <h4 class="text-white font-semibold text-base mt-1">Thermonuclear Fusion: Proton-Proton ($p-p$) Cycle in the Sun[cite: 6]</h4>
+        </div>
+
+        <p>1. At core temperatures ($T \sim 1.5 \times 10^7\text{ K}$), protons possess sufficient kinetic energy ($K \sim kT$) to overcome Coulomb electrostatic barrier via quantum mechanical tunneling[cite: 6].</p>
+        <p>2. The multistep solar $p-p$ cycle proceeds as follows[cite: 6]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300 space-y-1">
+          <div>$$\text{Step 1: } {}^{1}_{1}\mathrm{H} + {}^{1}_{1}\mathrm{H} \to {}^{2}_{1}\mathrm{H} + \mathrm{e}^+ + \nu_e + 0.42\text{ MeV} \quad (\text{Occurs twice})$$</div>
+          <div>$$\text{Step 2: } \mathrm{e}^+ + \mathrm{e}^- \to 2\gamma + 1.02\text{ MeV} \quad (\text{Pair Annihilation, occurs twice})$$</div>
+          <div>$$\text{Step 3: } {}^{2}_{1}\mathrm{H} + {}^{1}_{1}\mathrm{H} \to {}^{3}_{2}\mathrm{He} + \gamma + 5.49\text{ MeV} \quad (\text{Occurs twice})$$</div>
+          <div>$$\text{Step 4: } {}^{3}_{2}\mathrm{He} + {}^{3}_{2}\mathrm{He} \to {}^{4}_{2}\mathrm{He} + 2({}^{1}_{1}\mathrm{H}) + 12.86\text{ MeV}$$</div>
+        </div>
+        <p>3. Combining the entire sequence into a single net master reaction[cite: 6]:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$4({}^{1}_{1}\mathrm{H}) + 2\mathrm{e}^- \to {}^{4}_{2}\mathrm{He} + 2\nu_e + 6\gamma + 26.7\text{ MeV}$$
+        </div>
+        <p class="text-slate-400">Total energy released per formation of one $^{4}\mathrm{He}$ nucleus is <strong class="text-white">$\mathbf{26.7\text{ MeV}}$</strong>[cite: 6].</p>
+      </div>
+
+      <!-- Comparative Table: Specific Energy (Fusion vs Fission) -->
+      <div class="rounded-xl border border-slate-800 overflow-hidden">
+        <div class="bg-slate-900 p-2.5 border-b border-slate-800">
+          <p class="text-xs font-bold text-indigo-300 uppercase font-mono">Master Comparison: Specific Energy Efficiency (Fusion vs Fission)</p>
+        </div>
+        <table class="w-full text-left text-xs border-collapse">
+          <thead class="bg-slate-950 text-slate-200 uppercase font-semibold font-mono">
+            <tr>
+              <th class="p-2.5 border-r border-slate-800">Nuclear Process</th>
+              <th class="p-2.5 border-r border-slate-800 text-cyan-400">Total Energy per Reaction</th>
+              <th class="p-2.5 border-r border-slate-800 text-amber-400">Mass of Reacting Nuclei</th>
+              <th class="p-2.5 text-emerald-400">Energy Released per Unit Mass</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-2.5 font-semibold text-white">Nuclear Fission ($^{235}\mathrm{U}$)</td>
+              <td class="p-2.5 font-mono text-cyan-300">$\approx 200\text{ MeV}$</td>
+              <td class="p-2.5 font-mono text-amber-300">$235\text{ a.m.u.}$</td>
+              <td class="p-2.5 font-mono text-rose-400 font-bold">$\frac{200}{235} \approx \mathbf{0.85\text{ MeV/u}}$</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white">Thermonuclear Fusion ($D-T$)</td>
+              <td class="p-2.5 font-mono text-cyan-300">$\approx 17.6\text{ MeV}$</td>
+              <td class="p-2.5 font-mono text-amber-300">$2 + 3 = 5\text{ a.m.u.}$</td>
+              <td class="p-2.5 font-mono text-emerald-400 font-bold">$\frac{17.6}{5} \approx \mathbf{3.52\text{ MeV/u}}$</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white">Solar $p-p$ Fusion ($4\mathrm{H} \to \mathrm{He}$)</td>
+              <td class="p-2.5 font-mono text-cyan-300">$\approx 26.7\text{ MeV}$</td>
+              <td class="p-2.5 font-mono text-amber-300">$4\text{ a.m.u.}$</td>
+              <td class="p-2.5 font-mono text-emerald-400 font-bold">$\frac{26.7}{4} \approx \mathbf{6.68\text{ MeV/u}}$</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Energy per Reaction vs Energy per Unit Mass</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* Which reaction produces more energy—fission of one Uranium nucleus or fusion of four Hydrogen nuclei? Which process is more efficient per kg of fuel?
+            <br>• Per single event: <strong class="text-white font-semibold">FISSION yields more</strong> ($200\text{ MeV} \gg 26.7\text{ MeV}$).
+            <br>• Per unit mass ($1\text{ kg}$): <strong class="text-white font-semibold">FUSION is ~4 to 7 times MORE EFFICIENT</strong> ($6.68\text{ MeV/u} \gg 0.85\text{ MeV/u}$).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Slow Neutrons vs Fast Neutrons for Fission</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Why do nuclear reactors require a Moderator ($D_2O$, Graphite)?*
+            <br>Fission of $^{235}\mathrm{U}$ occurs with highest probability (cross-section) only with <strong class="text-white font-semibold">SLOW (Thermal) neutrons ($0.025\text{ eV}$)</strong>.
+            <br>Fission releases fast neutrons ($\approx 2\text{ MeV}$). If not slowed down by elastic collisions in moderator, fast neutrons are captured non-fissionably by $^{238}\mathrm{U}$ or escape the core, quenching the chain reaction ($k < 1$).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Nuclear Fusion Requires Ultra-High Temperature ($10^7\text{ K}$)</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Both fusing nuclei are positively charged.
+            <br>Height of Coulomb repulsive potential barrier between two deuterons:
+            $$V_C = \frac{1}{4\pi\varepsilon_0}\frac{e^2}{2R} \approx 400\text{ keV}$$
+            To achieve kinetic energies high enough to overcome or tunnel through this barrier ($K \sim kT$), matter must be heated to <strong class="text-white font-semibold">$T \sim 10^7\text{ to } 10^8\text{ K}$</strong>, turning it into plasma.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Mass Defect Formula Signs in $Q$-Value</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Never mix up the two $Q$-value definitions:
+            <br>• In terms of <strong class="text-white font-semibold">Rest Masses</strong>: $\mathbf{Q = (m_{\text{reactants}} - m_{\text{products}})c^2}$.
+            <br>• In terms of <strong class="text-white font-semibold">Binding Energies</strong>: $\mathbf{Q = E_{b}(\text{products}) - E_{b}(\text{reactants})}$.
+            (Products have greater binding energy in exoergic reactions).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-mono">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A nuclear reactor generates power of $300\text{ MW}$ by fissioning $^{235}\mathrm{U}$. Assuming that $200\text{ MeV}$ is liberated per fission, calculate (a) the number of fissions taking place per second, and (b) the mass of $^{235}\mathrm{U}$ consumed per day.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> Power $P = 300\text{ MW} = 3 \times 10^8\text{ J/s}$.</p>
+          <p>1. Energy released per fission event:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$E = 200\text{ MeV} = 200 \times 1.6 \times 10^{-13}\text{ J} = 3.2 \times 10^{-11}\text{ J}$$
+          </div>
+          <p>2. Number of fissions per second ($n = P / E$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$n = \frac{3 \times 10^8\text{ J/s}}{3.2 \times 10^{-11}\text{ J}} \approx 9.375 \times 10^{18}\text{ fissions/second}$$
+          </div>
+          <p>3. Mass consumed in one day ($t = 86400\text{ s}$):</p>
+          <p class="text-slate-400">Total fissions per day: $N = n \times 86400 = (9.375 \times 10^{18}) \times 86400 = 8.1 \times 10^{23}\text{ fissions}$.</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\text{Moles of U-235 } = \frac{N}{N_A} = \frac{8.1 \times 10^{23}}{6.023 \times 10^{23}} \approx 1.345\text{ moles}$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\text{Mass } m = 1.345 \times 235\text{ g} \approx 316.0\text{ g/day} \approx 0.316\text{ kg/day}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: Calculate the $Q$-value of the fusion reaction: ${}^{2}_{1}\mathrm{H} + {}^{3}_{1}\mathrm{H} \to {}^{4}_{2}\mathrm{He} + {}^{1}_{0}\mathrm{n}$. Given masses: $m({}^{2}_{1}\mathrm{H}) = 2.014102\text{ u}$, $m({}^{3}_{1}\mathrm{H}) = 3.016049\text{ u}$, $m({}^{4}_{2}\mathrm{He}) = 4.002603\text{ u}$, and $m({}^{1}_{0}\mathrm{n}) = 1.008665\text{ u}$. What percentage of mass is converted into energy?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Total initial mass of reactants:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$m_i = m({}^{2}_{1}\mathrm{H}) + m({}^{3}_{1}\mathrm{H}) = 2.014102\text{ u} + 3.016049\text{ u} = 5.030151\text{ u}$$
+          </div>
+          <p>2. Total final mass of products:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$m_f = m({}^{4}_{2}\mathrm{He}) + m({}^{1}_{0}\mathrm{n}) = 4.002603\text{ u} + 1.008665\text{ u} = 5.011268\text{ u}$$
+          </div>
+          <p>3. Mass defect:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\Delta m = m_i - m_f = 5.030151\text{ u} - 5.011268\text{ u} = 0.018883\text{ u}$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$Q = 0.018883 \times 931.5\text{ MeV} \approx 17.59\text{ MeV} \approx 17.6\text{ MeV}$$
+          </div>
+          <p>4. Percentage of mass converted into energy:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\% \Delta m = \frac{\Delta m}{m_i} \times 100 = \frac{0.018883}{5.030151} \times 100 \approx 0.375\%$$
+          </div>
+          <p class="text-slate-400">Notice that $0.375\%$ mass conversion in fusion is more than 4 times greater than the $\approx 0.09\%$ mass conversion in fission!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 font-mono">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded font-mono">Core Relations</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Fission Yield</p>
+          <p class="text-xs font-bold text-white mt-1 font-mono">$\approx 200\text{ MeV / event}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Solar Fusion Net</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1 font-mono">$4p \to \alpha + 26.7\text{ MeV}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Specific Energy</p>
+          <p class="text-xs font-bold text-amber-300 mt-1 font-mono">Fusion $\approx 4\times$ Fission</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Critical Constant</p>
+          <p class="text-xs font-bold text-rose-400 mt-1 font-mono">$k = 1$ (Steady State)</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Nuclear Reaction Engine Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('reactionCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const reactionToggleBtn = document.getElementById('reactionToggleBtn');
+      const triggerBtn = document.getElementById('triggerBtn');
+      const speedSlider = document.getElementById('speedSlider');
+      const asymSlider = document.getElementById('asymSlider');
+      const tempSlider = document.getElementById('tempSlider');
+
+      const speedVal = document.getElementById('speedVal');
+      const asymVal = document.getElementById('asymVal');
+      const tempVal = document.getElementById('tempVal');
+
+      const qValOut = document.getElementById('qValOut');
+      const specEnergyOut = document.getElementById('specEnergyOut');
+      const dmCalcOut = document.getElementById('dmCalcOut');
+      const effOut = document.getElementById('effOut');
+
+      let activeReaction = 'fission';
+      let animProgress = 0;
+      let isExploding = false;
+
+      reactionToggleBtn.addEventListener('click', () => {
+        activeReaction = (activeReaction === 'fission') ? 'fusion' : 'fission';
+        if (activeReaction === 'fission') {
+          reactionToggleBtn.textContent = 'Reaction: U-235 Thermal Fission';
+          qValOut.textContent = '+200.6 MeV';
+          specEnergyOut.textContent = '0.85 MeV / a.m.u.';
+          dmCalcOut.textContent = '0.2153 u';
+          effOut.textContent = '~0.09% of mc²';
+        } else {
+          reactionToggleBtn.textContent = 'Reaction: D-T Thermonuclear Fusion';
+          qValOut.textContent = '+17.59 MeV';
+          specEnergyOut.textContent = '3.52 MeV / a.m.u.';
+          dmCalcOut.textContent = '0.0189 u';
+          effOut.textContent = '~0.38% of mc²';
+        }
+        animProgress = 0;
+        isExploding = false;
+      });
+
+      triggerBtn.addEventListener('click', () => {
+        animProgress = 0;
+        isExploding = true;
+      });
+
+      function renderLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const speedSetting = parseInt(speedSlider.value);
+        const asymSetting = parseInt(asymSlider.value);
+        const tempSetting = parseInt(tempSlider.value);
+
+        speedVal.textContent = activeReaction === 'fission' 
+          ? `Thermal (${(0.02 + speedSetting * 0.002).toFixed(3)} eV)`
+          : `${speedSetting * 10} keV`;
+        tempVal.textContent = `${(tempSetting * 0.1).toFixed(1)} × 10⁷ K`;
+
+        if (isExploding) {
+          animProgress += 0.015;
+          if (animProgress > 1.8) {
+            animProgress = 0;
+            isExploding = false;
+          }
+        }
+
+        if (activeReaction === 'fission') {
+          renderFissionScene(animProgress, isExploding);
+        } else {
+          renderFusionScene(animProgress, isExploding);
+        }
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderFissionScene(prog, active) {
+        const cx = 350;
+        const cy = canvas.height / 2;
+
+        if (!active || prog < 0.25) {
+          const t = active ? prog / 0.25 : 0;
+          const neutronX = 60 + t * (cx - 100);
+
+          ctx.fillStyle = '#38bdf8';
+          ctx.beginPath(); ctx.arc(neutronX, cy, 6, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.2; ctx.stroke();
+          ctx.fillStyle = '#38bdf8';
+          ctx.font = 'bold 10px monospace';
+          ctx.fillText('Thermal n⁰', neutronX - 25, cy - 12);
+
+          ctx.fillStyle = '#7c3aed';
+          ctx.beginPath(); ctx.arc(cx, cy, 32, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = '#a855f7'; ctx.lineWidth = 2.5; ctx.stroke();
+
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 11px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText('²³⁵U', cx, cy + 4);
+          ctx.fillStyle = '#cbd5e1';
+          ctx.fillText('(92p + 143n)', cx, cy + 50);
+        } 
+        else if (prog >= 0.25 && prog < 0.5) {
+          const osc = Math.sin(prog * 50) * 12;
+          ctx.fillStyle = '#9333ea';
+          ctx.beginPath();
+          ctx.ellipse(cx - osc, cy, 28, 22, 0, 0, Math.PI * 2);
+          ctx.ellipse(cx + osc, cy, 28, 22, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2; ctx.stroke();
+
+          ctx.fillStyle = '#fbbf24';
+          ctx.font = 'bold 11px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText('²³⁶U* Compound Nucleus (Deforming)', cx, cy - 42);
+        } 
+        else {
+          const tSplit = (prog - 0.5) / 1.0;
+          const dist = tSplit * 240;
+
+          if (tSplit < 0.4) {
+            ctx.fillStyle = `rgba(245, 158, 11, ${1 - tSplit * 2.5})`;
+            ctx.beginPath();
+            ctx.arc(cx, cy, 60 + tSplit * 100, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          const baX = cx + dist * 0.9;
+          const baY = cy - dist * 0.6;
+          ctx.fillStyle = '#2563eb';
+          ctx.beginPath(); ctx.arc(baX, baY, 22, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = '#ffffff'; ctx.stroke();
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 10px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText('¹⁴¹Ba', baX, baY + 4);
+
+          const krX = cx + dist * 0.9;
+          const krY = cy + dist * 0.6;
+          ctx.fillStyle = '#059669';
+          ctx.beginPath(); ctx.arc(krX, krY, 18, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = '#ffffff'; ctx.stroke();
+          ctx.fillStyle = '#ffffff';
+          ctx.fillText('⁹²Kr', krX, krY + 4);
+
+          const nCoords = [
+            { x: cx + dist * 1.3, y: cy - 25 },
+            { x: cx + dist * 1.4, y: cy },
+            { x: cx + dist * 1.3, y: cy + 25 }
+          ];
+
+          ctx.fillStyle = '#38bdf8';
+          nCoords.forEach((nc) => {
+            ctx.beginPath(); ctx.arc(nc.x, nc.y, 5, 0, Math.PI * 2); ctx.fill();
+            ctx.fillText(`n⁰`, nc.x + 10, nc.y + 3);
+          });
+
+          ctx.fillStyle = '#10b981';
+          ctx.font = 'bold 12px monospace';
+          ctx.fillText('Q = +200.6 MeV Energy Liberated', cx, cy - 80);
+        }
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Nuclear Fission: ²³⁵U + n ➔ ¹⁴¹Ba + ⁹²Kr + 3n + 200 MeV | Heavy nucleus splits into tighter bound fragments`, canvas.width / 2, canvas.height - 12);
+      }
+
+      function renderFusionScene(prog, active) {
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        if (!active || prog < 0.35) {
+          const t = active ? prog / 0.35 : 0;
+          const dX = 140 + t * (cx - 170);
+          const trX = 580 - t * (580 - (cx + 30));
+
+          ctx.fillStyle = '#38bdf8';
+          ctx.beginPath(); ctx.arc(dX, cy, 14, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = '#ffffff'; ctx.stroke();
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 10px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText('²H (D)', dX, cy + 4);
+
+          ctx.fillStyle = '#f59e0b';
+          ctx.beginPath(); ctx.arc(trX, cy, 16, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = '#ffffff'; ctx.stroke();
+          ctx.fillStyle = '#ffffff';
+          ctx.fillText('³H (T)', trX, cy + 4);
+
+          ctx.fillStyle = '#cbd5e1';
+          ctx.fillText('High Kinetic Energy Overcoming Coulomb Barrier ➔ ⬅', cx, cy - 50);
+        } 
+        else if (prog >= 0.35 && prog < 0.55) {
+          const pulse = Math.sin(prog * 40) * 8;
+          ctx.fillStyle = '#f97316';
+          ctx.beginPath(); ctx.arc(cx, cy, 35 + pulse, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 3; ctx.stroke();
+
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 11px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText('Thermonuclear Flash!', cx, cy + 4);
+        } 
+        else {
+          const tOut = (prog - 0.55) / 0.9;
+          const dist = tOut * 220;
+
+          const heX = cx - dist * 0.6;
+          ctx.fillStyle = '#10b981';
+          ctx.beginPath(); ctx.arc(heX, cy, 20, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = '#ffffff'; ctx.stroke();
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 11px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText('⁴He (3.5 MeV)', heX, cy + 4);
+
+          const nX = cx + dist * 1.4;
+          ctx.fillStyle = '#38bdf8';
+          ctx.beginPath(); ctx.arc(nX, cy, 6, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = '#ffffff'; ctx.stroke();
+          ctx.fillStyle = '#38bdf8';
+          ctx.fillText('¹n (14.1 MeV)', nX, cy - 14);
+
+          ctx.fillStyle = '#10b981';
+          ctx.font = 'bold 12px monospace';
+          ctx.fillText('Q = +17.59 MeV Energy Released', cx, cy - 65);
+        }
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Thermonuclear Fusion: ²H + ³H ➔ ⁴He (3.5 MeV) + n (14.1 MeV) + 17.6 MeV | Ultra-high energy per kg (~3.5 MeV/u)`, canvas.width / 2, canvas.height - 12);
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class 12 Physics | Chapter 10 - Wave Optics Master Dossier</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX Core CSS & JS with Robust Delimiter Auto-Render -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError: false,
+      errorColor: '#cbd5e1'
+    });"></script>
+
+  <style>
+    /* Ultra-clean typography hierarchy avoiding any broken serif/retro fallbacks */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+      letter-spacing: -0.01em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .font-mono, font-mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+    }
+
+    /* Crisp math sizing without overflow or stretching */
+    .katex {
+      font-size: 1.02em !important;
+      font-weight: 400 !important;
+      text-rendering: optimizeLegibility;
+    }
+    .katex-display {
+      margin: 0.55em 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 2px;
+    }
+
+    /* Print Optimization Rules */
+    @page {
+      size: A4 portrait;
+      margin: 12mm 14mm 12mm 14mm;
+    }
+
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        font-size: 9.8pt !important;
+        line-height: 1.35 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .avoid-break {
+        page-break-inside: avoid;
+      }
+      .print-border {
+        border: 1px solid #1e293b !important;
+      }
+      .print-table th {
+        background-color: #f1f5f9 !important;
+        color: #000000 !important;
+        border: 1px solid #94a3b8 !important;
+      }
+      .print-table td {
+        border: 1px solid #cbd5e1 !important;
+        color: #000000 !important;
+      }
+      .formula-box {
+        background: #f8fafc !important;
+        border-left: 3px solid #0f172a !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-indigo-500 selection:text-white">
+
+  <!-- Sticky Top Action Bar (Auto-hidden in Print/PDF) -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex flex-wrap justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <div>
+        <span class="text-lg font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+        <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2.5 py-0.5 rounded-full ml-2 font-mono">Class 12 • Open Access</span>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-3 mt-2 sm:mt-0">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 rounded-xl text-xs font-semibold transition shadow-md shadow-indigo-600/20 active:scale-95 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>Save as PDF (Clean Vector)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Body Container -->
+  <main class="max-w-4xl mx-auto px-4 py-8 md:py-10 space-y-9 print:p-0 print:m-0 print:space-y-5">
+
+    <!-- Dossier Title Block -->
+    <div class="border-b-2 border-indigo-500/40 pb-5 print:border-black print:pb-3">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-indigo-400 print:text-black font-mono">CBSE Class XII • Unit 06 (Optics)</p>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1 print:text-black print:text-2xl">
+            Chapter 10: Wave Optics
+          </h1>
+          <p class="text-slate-400 mt-1 text-sm print:text-gray-700">Master Revision Dossier • Huygens' Principle, Laws of Reflection & Refraction, Interference (YDSE), Diffraction (Single Slit) & Fresnel Distance</p>
+        </div>
+        <div class="hidden sm:block text-right text-xs text-slate-500 print:block print:text-black">
+          <p class="font-mono">Open Access Initiative</p>
+          <p class="font-mono">Unit VI Complete Dossier</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: Master Formula & Optics Parameter Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5 font-mono">
+        1. Definitive Formula & Wave Optics Parameter Matrix
+      </h2>
+      <div class="overflow-x-auto rounded-xl border border-slate-800 print:border-black">
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase tracking-wider border-b border-slate-800 font-semibold font-mono">
+            <tr>
+              <th class="p-2.5 border-r border-slate-800">Concept</th>
+              <th class="p-2.5 border-r border-slate-800">Mathematical Formulation</th>
+              <th class="p-2.5 border-r border-slate-800">Phase & Relation</th>
+              <th class="p-2.5">Boundary Conditions & Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/80 text-slate-300">
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Huygens Refraction Proof</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\frac{\sin i}{\sin r} = \frac{v_1}{v_2} = \frac{\mu_2}{\mu_1} = {^1\mu_2}$$</td>
+              <td class="p-2.5 font-mono text-[11px]">$\nu = \text{const}$<br>$\lambda' = \frac{\lambda}{\mu}$</td>
+              <td class="p-2.5 text-[11px]">Proves that light slows down in denser medium ($v_2 < v_1$), debunking Newton's corpuscular acceleration assumption.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">YDSE Path Difference</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\Delta x = S_2 P - S_1 P \approx \frac{yd}{D} = d\sin\theta$$</td>
+              <td class="p-2.5 font-mono text-[11px]">$\phi = \frac{2\pi}{\lambda}\Delta x$</td>
+              <td class="p-2.5 text-[11px]">Valid when $d \ll D$ and $y \ll D$. Central bright fringe ($y=0$) corresponds to $\Delta x = 0$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Constructive (Bright) Maxima</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\Delta x = n\lambda, \quad y_n = \frac{n\lambda D}{d}$$</td>
+              <td class="p-2.5 font-mono text-[11px]">$\phi = 2n\pi$<br>$n = 0, 1, 2\dots$</td>
+              <td class="p-2.5 text-[11px]">Peak intensity $I_{\max} = 4I_0$ (for identical slit amplitudes $a_1 = a_2$). Resultant amplitude $R = 2a$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Destructive (Dark) Minima</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\Delta x = (2n - 1)\frac{\lambda}{2}, \quad y_n' = (2n - 1)\frac{\lambda D}{2d}$$</td>
+              <td class="p-2.5 font-mono text-[11px]">$\phi = (2n - 1)\pi$<br>$n = 1, 2, 3\dots$</td>
+              <td class="p-2.5 text-[11px]">Zero minimum intensity $I_{\min} = 0$ (perfect contrast). Wave amplitudes cancel out completely in destructive phase.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">YDSE Fringe Width ($\beta$)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\beta = \frac{\lambda D}{d}, \qquad \theta_{\text{angular}} = \frac{\lambda}{d}$$</td>
+              <td class="p-2.5 text-[11px]">Linear: $\text{m}$<br>Angular: $\text{rad}$</td>
+              <td class="p-2.5 text-[11px]">Uniform width for ALL bright and dark fringes. In medium ($\mu$): $\beta' = \beta/\mu$ (shrinks closer together).</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Intensity Distribution</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$I = 4I_0 \cos^2\left(\frac{\phi}{2}\right) = 4I_0 \cos^2\left(\frac{\pi y d}{\lambda D}\right)$$</td>
+              <td class="p-2.5 font-mono text-[11px]">$I_{\text{avg}} = 2I_0$</td>
+              <td class="p-2.5 text-[11px]">Energy is conserved: energy absent at dark fringes ($I=0$) is completely transferred to bright fringes ($4I_0$).</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Diffraction Minima (Single Slit)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$a\sin\theta = n\lambda \implies \theta_n \approx \frac{n\lambda}{a} \quad (n = 1, 2\dots)$$</td>
+              <td class="p-2.5 text-[11px]">$a$: slit width</td>
+              <td class="p-2.5 text-[11px]">Condition reversal: $n\lambda$ gives dark minima because wavefront divides into $2n$ zones that cancel pairwise.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Secondary Maxima (Single Slit)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$a\sin\theta = (2n + 1)\frac{\lambda}{2} \implies \theta_n' \approx (2n + 1)\frac{\lambda}{2a}$$</td>
+              <td class="p-2.5 text-[11px]">$n = 1, 2, 3\dots$</td>
+              <td class="p-2.5 text-[11px]">Wavefront divides into $(2n+1)$ zones; only $1$ zone remains uncancelled. Intensity drops rapidly: $I_0 : \frac{I_0}{22} : \frac{I_0}{61}$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Central Maximum Width</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$2\theta_1 = \frac{2\lambda}{a}, \qquad 2\beta_0 = \frac{2\lambda D}{a}$$</td>
+              <td class="p-2.5 text-[11px]">Bounded by $n=\pm 1$</td>
+              <td class="p-2.5 text-[11px]">Central maximum is exactly twice as wide as any secondary diffraction fringe ($2\beta_0 = 2\beta$).</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Fresnel Distance ($Z_F$)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$Z_F = \frac{a^2}{\lambda}$$</td>
+              <td class="p-2.5 text-[11px]">$\text{Metres (m)}$</td>
+              <td class="p-2.5 text-[11px]">Ray optics valid for $D \ll Z_F$. Wave optics / diffraction spreading dominates when propagation distance $D \gg Z_F$.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 2: Stepwise Derivations Blueprint -->
+    <section class="space-y-4">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5 font-mono">
+        2. Core Derivations Blueprint (Step-by-Step Board Proofs)
+      </h2>
+
+      <!-- Proof 1: Laws of Refraction using Huygens -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 10.1: Proof of Snell's Law of Refraction ($\frac{\sin i}{\sin r} = \frac{\mu_2}{\mu_1}$) via Huygens' Principle
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Consider a plane wavefront $AB$ incident at angle $i$ on interface $AC$ separating medium 1 ($v_1, \mu_1$) and medium 2 ($v_2, \mu_2$, with $\mu_2 > \mu_1$).
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Let $\tau$ be the time taken by edge $B$ of the wavefront to reach point $C$ on the interface: $BC = v_1 \tau$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          3. In this same time interval $\tau$, the secondary spherical wavelet from point $A$ spreads out in medium 2 with radius $AD = v_2 \tau$. Tangent plane $CD$ represents the refracted wavefront.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          4. From right-angled triangles $\triangle ABC$ and $\triangle ADC$:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$\sin i = \frac{BC}{AC} = \frac{v_1 \tau}{AC}, \qquad \sin r = \frac{AD}{AC} = \frac{v_2 \tau}{AC}$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          5. Dividing the two relations:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\frac{\sin i}{\sin r} = \frac{v_1 \tau / AC}{v_2 \tau / AC} = \frac{v_1}{v_2} = \frac{c/\mu_1}{c/\mu_2} = \frac{\mu_2}{\mu_1} = {^1\mu_2}$$
+        </div>
+      </div>
+
+      <!-- Proof 2: YDSE Fringe Width -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 10.2: Derivation of Path Difference ($\Delta x = \frac{yd}{D}$) & Fringe Width ($\beta = \frac{\lambda D}{d}$) in YDSE
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Consider two coherent slits $S_1, S_2$ separated by $d$, with screen placed at distance $D$ ($d \ll D$). Let $P$ be a point at distance $y$ from central axis.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. From right-angled triangles $\triangle S_2 N P$ and $\triangle S_1 M P$: $(S_2 P)^2 = D^2 + (y + d/2)^2$, and $(S_1 P)^2 = D^2 + (y - d/2)^2$.
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$(S_2 P)^2 - (S_1 P)^2 = 2yd \implies (S_2 P - S_1 P)(S_2 P + S_1 P) = 2yd$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. Since $d, y \ll D$, $(S_2 P + S_1 P) \approx 2D \implies \Delta x = S_2 P - S_1 P = \frac{2yd}{2D} = \frac{yd}{D}$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          4. For $n$-th bright fringe: $\Delta x = n\lambda \implies \frac{y_n d}{D} = n\lambda \implies y_n = \frac{n\lambda D}{d}$.
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\text{Fringe Width: } \beta = y_n - y_{n-1} = \frac{n\lambda D}{d} - \frac{(n-1)\lambda D}{d} = \frac{\lambda D}{d}$$
+        </div>
+      </div>
+
+      <!-- Proof 3: Single Slit Diffraction Minima & Central Maximum -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 10.3: Single Slit Diffraction Minima ($a\sin\theta = n\lambda$) & Central Maximum Width ($2\beta_0$)
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Slit $AB$ of width $a$ receives a plane wavefront. For diffracted rays at angle $\theta$, total path difference between extreme edges is $BN = a\sin\theta$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. For $a\sin\theta = \lambda$, divide the slit into 2 equal halves of width $a/2$. For every wavelet in the top half, a wavelet in the bottom half has path difference $\frac{a}{2}\sin\theta = \frac{\lambda}{2}$ (destructive phase $\phi = \pi$). They cancel in pairs $\implies$ First Minimum.
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$\text{General Minima: } a\sin\theta = n\lambda \implies \theta_n \approx \frac{n\lambda}{a} \quad (n = 1, 2, 3\dots)$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. The Central Maximum is bounded by the first minima ($n = \pm 1$) on either side: $\theta_1 = \lambda/a$.
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\text{Angular Width: } 2\theta_1 = \frac{2\lambda}{a}, \qquad \text{Linear Width: } 2\beta_0 = (2\theta_1) D = \frac{2\lambda D}{a}$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: High-Yield Exam Trap Matrix -->
+    <section class="space-y-4">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-rose-400 print:text-black border-l-4 border-rose-500 print:border-black pl-2.5 font-mono">
+        3. High-Yield "Red Alert" Exam Trap Matrix
+      </h2>
+
+      <!-- Comparative Table: Interference vs Diffraction -->
+      <div class="rounded-xl border border-rose-900/40 print-border overflow-hidden">
+        <div class="bg-rose-950/40 print:bg-gray-100 p-2.5 border-b border-rose-900/40 print:border-black">
+          <p class="text-xs font-bold text-rose-300 print:text-black uppercase font-mono">
+            Master Trap 1: Interference (YDSE) vs Diffraction (Single Slit)
+          </p>
+        </div>
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase font-semibold font-mono">
+            <tr>
+              <th class="p-2 border border-slate-800">Feature</th>
+              <th class="p-2 border border-slate-800 text-cyan-400 print:text-black">Interference (YDSE)</th>
+              <th class="p-2 border border-slate-800 text-rose-400 print:text-black">Diffraction (Single Slit)</th>
+              <th class="p-2 border border-slate-800 text-emerald-400 print:text-black">Exam Significance</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Source of Waves</td>
+              <td class="p-2">Two discrete coherent slits ($S_1, S_2$).</td>
+              <td class="p-2">Different continuous parts of the same single slit.</td>
+              <td class="p-2 text-[11px]">Interference is inter-source; diffraction is intra-slit.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Fringe Width</td>
+              <td class="p-2 font-mono text-emerald-400 print:text-black">Uniform everywhere ($\beta = \frac{\lambda D}{d}$).</td>
+              <td class="p-2 font-mono text-rose-400 print:text-black">Central peak is double width ($2\beta_0 = \frac{2\lambda D}{a}$).</td>
+              <td class="p-2 text-[11px]">Secondary diffraction fringes become progressively narrower.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Intensity of Peaks</td>
+              <td class="p-2 font-mono">All bright fringes equal ($I_{\max} = 4I_0$).</td>
+              <td class="p-2 font-mono">Drastic rapid decay ($I_0 : \frac{I_0}{22} : \frac{I_0}{61}$).</td>
+              <td class="p-2 text-[11px]">Central peak concentrates $\approx 95\%$ of total energy.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Darkness of Minima</td>
+              <td class="p-2">Completely dark ($I_{\min} = 0$, perfect contrast).</td>
+              <td class="p-2">Rarely perfectly dark due to unequal cancellation.</td>
+              <td class="p-2 text-[11px]">Interference produces much higher visual contrast.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Condition Inversion</td>
+              <td class="p-2 font-mono text-cyan-400 print:text-black">Path diff $= n\lambda \implies$ <strong>BRIGHT</strong></td>
+              <td class="p-2 font-mono text-rose-400 print:text-black">Path diff $= n\lambda \implies$ <strong>DARK</strong></td>
+              <td class="p-2 text-[11px] font-bold text-rose-400 print:text-black">Highest error rate trap in board exams!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Critical Pitfalls Grid -->
+      <div class="grid sm:grid-cols-2 gap-3 text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 2: Liquid Immersion Effect ($\beta' = \beta/\mu$)</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            When YDSE apparatus is immersed in water ($\mu = 4/3$):
+            <br>• Speed and wavelength drop: $\lambda' = \lambda/\mu$. Frequency $\nu$ remains strictly invariant.
+            <br>• New fringe width: $\beta' = \frac{\lambda' D}{d} = \mathbf{\frac{\beta}{\mu}} = \frac{3}{4}\beta$. Fringes cramp closer together.
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 3: White Light Illumination Pattern</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            • At central point ($y=0$): $\Delta x = 0$ for all colors $\implies$ <strong class="text-white print:text-black">CENTRAL WHITE FRINGE</strong>.
+            <br>• Closest colored fringe on either side is <strong class="text-white print:text-black">VIOLET</strong> (smallest $\lambda$), and farthest is <strong class="text-white print:text-black">RED</strong>.
+            <br>• After a few fringes, overlapping produces general white illumination.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Handcrafted Exemplar Numericals -->
+    <section class="space-y-4 avoid-break">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-amber-400 print:text-black border-l-4 border-amber-500 print:border-black pl-2.5 font-mono">
+        4. Handcrafted Exemplars (Analytical Numerical Solutions)
+      </h2>
+
+      <!-- Problem 1 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black">Problem 1: YDSE Fringe Shift and Wavelength Determination</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden font-mono">Exemplar 01</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          In a YDSE with slit separation $d = 0.2\text{ mm}$ and screen distance $D = 1.0\text{ m}$, light of wavelength $600\text{ nm}$ is used. (a) Find the fringe width $\beta$. (b) How many bright fringes are formed within a width of $1.5\text{ cm}$ on the screen? (c) If a mica sheet of thickness $t = 1.8\text{ }\mu\text{m}$ and $\mu = 1.5$ is introduced in front of one slit, calculate the shift of the central fringe.
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> $d = 2.0 \times 10^{-4}\text{ m}, D = 1.0\text{ m}, \lambda = 6.0 \times 10^{-7}\text{ m}$.</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$\text{(a) Fringe Width: } \beta = \frac{\lambda D}{d} = \frac{(6.0 \times 10^{-7}) \times 1.0}{2.0 \times 10^{-4}} = 3.0 \times 10^{-3}\text{ m} = 3.0\text{ mm}$$
+            $$\text{(b) Number of fringes: } N = \frac{\text{Total Width}}{\beta} = \frac{1.5 \times 10^{-2}\text{ m}}{3.0 \times 10^{-3}\text{ m}} = 5\text{ fringes}$$
+          </div>
+          <p class="text-slate-400 print:text-black">(c) Fringe shift due to transparent sheet:</p>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$y_0 = \frac{D}{d}(\mu - 1)t = \frac{1.0}{2.0 \times 10^{-4}} \times (1.5 - 1) \times (1.8 \times 10^{-6}) = 5000 \times 0.5 \times (1.8 \times 10^{-6}) = 4.5 \times 10^{-3}\text{ m} = 4.5\text{ mm}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black">Problem 2: Single Slit Diffraction & Fresnel Distance</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden font-mono">Exemplar 02</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          A slit of width $0.12\text{ mm}$ is illuminated by light of wavelength $600\text{ nm}$. The diffraction pattern is observed on a screen $1.5\text{ m}$ away. Calculate (i) the linear width of the central maximum, (ii) the distance of the first secondary maximum from the center, and (iii) the Fresnel distance for the aperture.
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> $a = 1.2 \times 10^{-4}\text{ m}, \lambda = 6.0 \times 10^{-7}\text{ m}, D = 1.5\text{ m}$.</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$\text{(i) Central Width: } 2\beta_0 = \frac{2\lambda D}{a} = \frac{2 \times (6.0 \times 10^{-7}) \times 1.5}{1.2 \times 10^{-4}} = \frac{1.8 \times 10^{-6}}{1.2 \times 10^{-4}} = 1.5 \times 10^{-2}\text{ m} = 15.0\text{ mm}$$
+          </div>
+          <p class="text-slate-400 print:text-black">(ii) Position of first secondary maximum ($n = 1 \implies a\sin\theta = 3\lambda/2$):</p>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$y_1' = \frac{3\lambda D}{2a} = \frac{3}{4}\left(\frac{2\lambda D}{a}\right) = \frac{3}{4}(15.0\text{ mm}) = 11.25\text{ mm}$$
+            $$\text{(iii) Fresnel Distance: } Z_F = \frac{a^2}{\lambda} = \frac{(1.2 \times 10^{-4})^2}{6.0 \times 10^{-7}} = \frac{1.44 \times 10^{-8}}{6.0 \times 10^{-7}} = 0.024 \times 10^3 = 24.0\text{ metres}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Printable Cut-Out Flashcard Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5 font-mono">
+        5. Printable Pocket Flashcard Grid
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">YDSE Fringe Width</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1">$\beta = \frac{\lambda D}{d}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Central Max Width</p>
+          <p class="font-bold text-white print:text-black text-xs mt-1">$2\beta_0 = \frac{2\lambda D}{a}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Diffraction Minima</p>
+          <p class="font-bold text-rose-400 print:text-black text-[11px] mt-1">$a\sin\theta = n\lambda$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Fresnel Distance</p>
+          <p class="font-bold text-amber-300 print:text-black text-xs mt-1">$Z_F = \frac{a^2}{\lambda}$</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Document Footer -->
+    <footer class="pt-6 border-t border-slate-800 text-center text-xs text-slate-500 print:text-black print:pt-3">
+      <p>AXIOM Physics Class 12 • Open Access Physics Initiative • Distributed under Creative Commons Free Access</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>

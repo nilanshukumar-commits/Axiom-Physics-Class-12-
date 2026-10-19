@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class 12 Physics | Chapter 7 - Alternating Current Master Dossier</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    /* Print Optimization Rules */
+    @page {
+      size: A4 portrait;
+      margin: 12mm 14mm 12mm 14mm;
+    }
+
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        font-size: 10.5pt !important;
+        line-height: 1.35 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .avoid-break {
+        page-break-inside: avoid;
+      }
+      .print-border {
+        border: 1px solid #1e293b !important;
+      }
+      .print-table th {
+        background-color: #f1f5f9 !important;
+        color: #000000 !important;
+        border: 1px solid #94a3b8 !important;
+      }
+      .print-table td {
+        border: 1px solid #cbd5e1 !important;
+        color: #000000 !important;
+      }
+      .formula-box {
+        background: #f8fafc !important;
+        border-left: 3px solid #0f172a !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Sticky Top Action Bar (Auto-hidden in Print/PDF) -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex flex-wrap justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <div>
+        <span class="text-lg font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+        <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Open Access</span>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-3 mt-2 sm:mt-0">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-indigo-600/30 active:scale-95 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>Save as PDF (Clean Vector)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Body Container -->
+  <main class="max-w-4xl mx-auto px-4 py-8 md:py-12 space-y-10 print:p-0 print:m-0 print:space-y-6">
+
+    <!-- Dossier Title Block -->
+    <div class="border-b-2 border-indigo-500/40 pb-5 print:border-black print:pb-3">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-indigo-400 print:text-black">CBSE Class XII • Unit 04 (Alternating Currents)</p>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1 print:text-black print:text-2xl">
+            Chapter 07: Alternating Current
+          </h1>
+          <p class="text-slate-400 mt-1 text-sm print:text-gray-700">Master Revision Dossier • RMS Foundations, Pure R/L/C Phasors, Series LCR Resonance, Power Factor & Transformers</p>
+        </div>
+        <div class="hidden sm:block text-right text-xs text-slate-500 print:block print:text-black">
+          <p class="font-mono">Open Access Initiative</p>
+          <p class="font-mono">Unit IV Combined Weightage</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: Master Formula & AC Parameter Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        1. Definitive Formula & AC Parameter Matrix
+      </h2>
+      <div class="overflow-x-auto rounded-xl border border-slate-800 print:border-black">
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase tracking-wider border-b border-slate-800 font-semibold">
+            <tr>
+              <th class="p-2.5 border-r border-slate-800">Concept</th>
+              <th class="p-2.5 border-r border-slate-800">Mathematical Formulation</th>
+              <th class="p-2.5 border-r border-slate-800">Phase & Units</th>
+              <th class="p-2.5">Boundary Conditions & Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/80 text-slate-300">
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">RMS / Effective Value</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$I_{\text{rms}} = \frac{I_0}{\sqrt{2}} \approx 0.707 I_0, \quad V_{\text{rms}} = \frac{V_0}{\sqrt{2}}$$</td>
+              <td class="p-2.5">$\text{Ampere (A)}$<br>$\text{Volt (V)}$</td>
+              <td class="p-2.5 text-[11px]">DC heating equivalence ($H = I_{\text{rms}}^2 R t$). $220\text{ V}$ domestic mains has peak $V_0 \approx 311\text{ V}$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Half-Cycle Mean Value</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$I_{\text{avg}} = \frac{2}{\pi}I_0 \approx 0.637 I_0$$</td>
+              <td class="p-2.5">$\text{Ampere (A)}$</td>
+              <td class="p-2.5 text-[11px]">Evaluated over $T/2$. Over full cycle, $I_{\text{avg}} = 0$. DC meters read zero in AC circuits.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Pure Inductor ($L$)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$X_L = \omega L = 2\pi f L, \quad i = I_0\sin\left(\omega t - \frac{\pi}{2}\right)$$</td>
+              <td class="p-2.5">$X_L \text{ in }\Omega$<br>$\phi = +90^\circ$</td>
+              <td class="p-2.5 text-[11px]">Voltage leads current by $\pi/2$. DC limit ($f=0$): $X_L = 0$ (short circuit wire). Average power $= 0$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Pure Capacitor ($C$)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$X_C = \frac{1}{\omega C} = \frac{1}{2\pi f C}, \quad i = I_0\sin\left(\omega t + \frac{\pi}{2}\right)$$</td>
+              <td class="p-2.5">$X_C \text{ in }\Omega$<br>$\phi = -90^\circ$</td>
+              <td class="p-2.5 text-[11px]">Current leads voltage by $\pi/2$. DC limit ($f=0$): $X_C \to \infty$ (blocks steady DC). Average power $= 0$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Series LCR Impedance</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$Z = \sqrt{R^2 + (X_L - X_C)^2}$$</td>
+              <td class="p-2.5">$\text{Ohm (}\Omega\text{)}$</td>
+              <td class="p-2.5 text-[11px]">Phasor hypotenuse. $\tan\phi = \frac{X_L - X_C}{R}$. Inductive if $X_L > X_C$; Capacitive if $X_C > X_L$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Series Resonance</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\omega_0 = \frac{1}{\sqrt{LC}} \implies f_0 = \frac{1}{2\pi\sqrt{LC}}$$</td>
+              <td class="p-2.5">$\text{rad/s}$<br>$\text{Hertz (Hz)}$</td>
+              <td class="p-2.5 text-[11px]">$X_L = X_C \implies Z_{\min} = R \implies I_{\max} = V_0/R$. Power factor $\cos\phi = 1$. Cannot occur with DC.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Quality Factor ($Q$)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$Q = \frac{\omega_0 L}{R} = \frac{1}{\omega_0 CR} = \frac{1}{R}\sqrt{\frac{L}{C}} = \frac{\omega_0}{2\Delta\omega}$$</td>
+              <td class="p-2.5">Dimensionless</td>
+              <td class="p-2.5 text-[11px]">Sharpness of tuning. Bandwidth $2\Delta\omega = R/L$. Voltage magnification across $L$ or $C$ is $Q \times V_{\text{source}}$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">AC Real Power</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$P_{\text{avg}} = V_{\text{rms}} I_{\text{rms}} \cos\phi$$</td>
+              <td class="p-2.5">$\text{Watt (W)}$</td>
+              <td class="p-2.5 text-[11px]">$\cos\phi = R/Z$ is the Power Factor. Active consumed power over full cycle in any reactive circuit.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Wattless Current</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$I_{\text{wattless}} = I_{\text{rms}}\sin\phi$$</td>
+              <td class="p-2.5">$\text{Ampere (A)}$</td>
+              <td class="p-2.5 text-[11px]">Quadrature component at $90^\circ$ to voltage. Consumes zero net power: $P = V_{\text{rms}}(I_{\text{rms}}\sin\phi)\cos 90^\circ = 0$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Transformer Ratio</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\frac{V_s}{V_p} = \frac{N_s}{N_p} = \frac{I_p}{I_s} = k$$</td>
+              <td class="p-2.5">Dimensionless</td>
+              <td class="p-2.5 text-[11px]">Step-up: $k > 1$. Step-down: $k < 1$. Frequency remains strictly invariant ($f_s = f_p$). Fails on pure DC.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 2: Stepwise Derivations Blueprint -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        2. Core Derivations Blueprint (Step-by-Step Board Proofs)
+      </h2>
+
+      <!-- Proof 1: RMS Value Derivation -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 7.1: Derivation of RMS Value of Alternating Current ($I_{\text{rms}} = I_0/\sqrt{2}$)
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Let $i = I_0\sin\omega t$. Heat produced in resistor $R$ during small time $dt$: $dH = i^2 R \, dt = (I_0^2\sin^2\omega t) R \, dt$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Total heat produced over full cycle of period $T = 2\pi/\omega$:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$H = \int_0^T I_0^2 R \sin^2\omega t \, dt = I_0^2 R \int_0^T \left(\frac{1 - \cos 2\omega t}{2}\right) dt = \frac{I_0^2 R}{2} \left[ \int_0^T dt - \int_0^T \cos 2\omega t \, dt \right]$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. Since $\int_0^T \cos 2\omega t \, dt = 0$: $H = \frac{I_0^2 R T}{2}$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          4. By definition, equivalent DC current producing identical heat over time $T$ is $H = I_{\text{rms}}^2 R T$:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$I_{\text{rms}}^2 R T = \frac{I_0^2 R T}{2} \implies I_{\text{rms}} = \frac{I_0}{\sqrt{2}} \approx 0.707 I_0, \quad V_{\text{rms}} = \frac{V_0}{\sqrt{2}} \approx 0.707 V_0$$
+        </div>
+      </div>
+
+      <!-- Proof 2: Pure Inductor and Pure Capacitor Phasors -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 7.2: Phase Relations for Pure Inductor ($L$) and Pure Capacitor ($C$)
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. <strong>Pure Inductor:</strong> Applied $v = V_0\sin\omega t$. Loop rule: $v - L\frac{di}{dt} = 0 \implies di = \frac{V_0}{L}\sin\omega t \, dt$.
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$i = \frac{V_0}{L} \int \sin\omega t \, dt = -\frac{V_0}{\omega L}\cos\omega t = I_0\sin\left(\omega t - \frac{\pi}{2}\right) \quad \left(X_L = \omega L, \text{ Voltage leads Current by } \frac{\pi}{2}\right)$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          2. <strong>Pure Capacitor:</strong> Applied $v = V_0\sin\omega t$. Charge $q = C v = C V_0\sin\omega t$. Current $i = \frac{dq}{dt}$:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$i = \frac{d}{dt}(C V_0\sin\omega t) = \omega C V_0\cos\omega t = I_0\sin\left(\omega t + \frac{\pi}{2}\right) \quad \left(X_C = \frac{1}{\omega C}, \text{ Current leads Voltage by } \frac{\pi}{2}\right)$$
+        </div>
+      </div>
+
+      <!-- Proof 3: Series LCR Circuit Phasor Derivation -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 7.3: Series LCR Circuit Impedance & Resonance Formulation
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Current $i = I_0\sin\omega t$ is common. Individual component voltages: $V_R = I_0 R$ (in-phase), $V_L = I_0 X_L$ (leads by $90^\circ$), and $V_C = I_0 X_C$ (lags by $90^\circ$).
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Combining opposite reactive voltages: net reactive vector is $(V_L - V_C)$ perpendicular to $V_R$. Applying Pythagoras theorem on phasor triangle:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$V_0^2 = V_R^2 + (V_L - V_C)^2 = I_0^2 [R^2 + (X_L - X_C)^2] \implies Z = \frac{V_0}{I_0} = \sqrt{R^2 + (X_L - X_C)^2}$$
+          $$\tan\phi = \frac{V_L - V_C}{V_R} = \frac{X_L - X_C}{R}$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. <strong>Resonance Condition:</strong> Current is maximum when $Z$ is minimum, which occurs when $X_L = X_C$:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\omega_0 L = \frac{1}{\omega_0 C} \implies \omega_0 = \frac{1}{\sqrt{LC}} \implies f_0 = \frac{1}{2\pi\sqrt{LC}} \quad (Z_{\min} = R, \cos\phi = 1)$$
+        </div>
+      </div>
+
+      <!-- Proof 4: AC Power & Transformer Relations -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 7.4: Average Power in AC Circuit & Transformer Transformation Ratio
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Instantaneous power $p = v \times i = [V_0\sin\omega t][I_0\sin(\omega t - \phi)] = \frac{V_0 I_0}{2}[(1 - \cos 2\omega t)\cos\phi - \sin 2\omega t\sin\phi]$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Full-cycle average: $\langle \cos 2\omega t \rangle = 0$ and $\langle \sin 2\omega t \rangle = 0$:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$P_{\text{avg}} = \frac{V_0 I_0}{2}\cos\phi = \left(\frac{V_0}{\sqrt{2}}\right)\left(\frac{I_0}{\sqrt{2}}\right)\cos\phi = V_{\text{rms}} I_{\text{rms}}\cos\phi \quad \left(\text{Power Factor } \cos\phi = \frac{R}{Z}\right)$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. <strong>Transformer Equations:</strong> Primary induced EMF $\mathcal{E}_p = -N_p \frac{d\Phi}{dt}$, Secondary induced EMF $\mathcal{E}_s = -N_s \frac{d\Phi}{dt}$.
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\frac{V_s}{V_p} = \frac{N_s}{N_p} = k \quad \text{and for 100% ideal efficiency } (V_p I_p = V_s I_s) \implies \frac{V_s}{V_p} = \frac{N_s}{N_p} = \frac{I_p}{I_s} = k$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: High-Yield Exam Trap Matrix -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-rose-400 print:text-black border-l-4 border-rose-500 print:border-black pl-2.5">
+        3. High-Yield "Red Alert" Exam Trap Matrix
+      </h2>
+
+      <!-- Circuit Element Behavior Matrix Table -->
+      <div class="rounded-xl border border-rose-900/40 print-border overflow-hidden">
+        <div class="bg-rose-950/40 print:bg-gray-100 p-2.5 border-b border-rose-900/40 print:border-black">
+          <p class="text-xs font-bold text-rose-300 print:text-black uppercase">
+            Master Trap 1: Comparative Response across AC Circuit Elements
+          </p>
+        </div>
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase font-semibold">
+            <tr>
+              <th class="p-2 border border-slate-800">Element</th>
+              <th class="p-2 border border-slate-800 text-cyan-400 print:text-black">Opposition Formula</th>
+              <th class="p-2 border border-slate-800 text-amber-400 print:text-black">Phase Angle ($\phi$)</th>
+              <th class="p-2 border border-slate-800 text-emerald-400 print:text-black">Power Factor ($\cos\phi$)</th>
+              <th class="p-2 border border-slate-800">DC Behavior ($f = 0$)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Pure Resistor ($R$)</td>
+              <td class="p-2 font-mono">Opposition $= R$</td>
+              <td class="p-2 font-mono">$\phi = 0^\circ$ (In-phase)</td>
+              <td class="p-2 font-bold text-emerald-400 print:text-black">$\cos 0^\circ = 1$ (Max $P_{\text{avg}}$)</td>
+              <td class="p-2 text-[11px]">Resists identically ($R$).</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Pure Inductor ($L$)</td>
+              <td class="p-2 font-mono">$X_L = \omega L = 2\pi f L$</td>
+              <td class="p-2 font-mono text-rose-400 print:text-black">+$\pi/2$ (V leads I)</td>
+              <td class="p-2 font-bold text-rose-400 print:text-black">$\cos 90^\circ = 0$ ($P_{\text{avg}} = 0$)</td>
+              <td class="p-2 text-[11px] font-bold text-emerald-400 print:text-black">$X_L = 0$ (Acts as short-circuit wire).</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Pure Capacitor ($C$)</td>
+              <td class="p-2 font-mono">$X_C = \frac{1}{\omega C} = \frac{1}{2\pi f C}$</td>
+              <td class="p-2 font-mono text-cyan-400 print:text-black">-$\pi/2$ (I leads V)</td>
+              <td class="p-2 font-bold text-rose-400 print:text-black">$\cos 90^\circ = 0$ ($P_{\text{avg}} = 0$)</td>
+              <td class="p-2 text-[11px] font-bold text-rose-400 print:text-black">$X_C \to \infty$ (Blocks DC completely).</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Series LCR (Resonant)</td>
+              <td class="p-2 font-mono">$Z_{\min} = R$</td>
+              <td class="p-2 font-mono">$\phi = 0^\circ$</td>
+              <td class="p-2 font-bold text-emerald-400 print:text-black">$\cos\phi = 1$ (Purely resistive)</td>
+              <td class="p-2 text-[11px]">Cannot resonate with DC ($X_C \to \infty$).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Critical Pitfalls Grid -->
+      <div class="grid sm:grid-cols-2 gap-3 text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 2: Transformer DC Burnout Mechanism</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            Connecting a DC battery to a transformer primary produces constant flux ($d\Phi/dt = 0$).
+            <br>• Secondary output is strictly <strong class="text-white print:text-black">ZERO</strong>.
+            <br>• Primary inductive back-EMF is zero ($X_L = 0$). Current is limited only by tiny wire resistance: $I_p = V_{\text{DC}}/R_p \to \text{Massive}$! The primary coil catches fire or burns out.
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 3: Choke Coil vs Rheostat</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            To reduce AC current without power loss, use a <strong class="text-white print:text-black">Choke Coil (high $L$, negligible $R$)</strong>.
+            <br>• Rheostat reduces current by ohmic dissipation: $P = I^2 R$ (wasted as heat).
+            <br>• Choke coil reduces current by inductive reactance $X_L$, with $\phi \approx 90^\circ \implies \cos\phi \approx 0 \implies \mathbf{P_{\text{avg}} \approx 0}$.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Handcrafted Exemplar Numericals -->
+    <section class="space-y-4 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-amber-400 print:text-black border-l-4 border-amber-500 print:border-black pl-2.5">
+        4. Handcrafted Exemplars (Analytical Numerical Solutions)
+      </h2>
+
+      <!-- Problem 1 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black">Problem 1: Series LCR Circuit Complete Analysis</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden">Exemplar 01</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          A series LCR circuit with $R = 10\text{ }\Omega$, $L = 100\text{ mH}$, and $C = 25\text{ }\mu\text{F}$ is connected to a $200\text{ V}, 50\text{ Hz}$ AC source. Calculate: (i) Reactances $X_L, X_C$ and total impedance $Z$, (ii) RMS current, and (iii) Power factor and average power dissipated.
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> $\omega = 2\pi(50) = 100\pi \approx 314.16\text{ rad/s}$.</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$X_L = \omega L = 314.16 \times 0.10 = 31.42\text{ }\Omega, \quad X_C = \frac{1}{\omega C} = \frac{1}{314.16 \times (25 \times 10^{-6})} \approx 127.32\text{ }\Omega$$
+            $$Z = \sqrt{R^2 + (X_C - X_L)^2} = \sqrt{10^2 + (127.32 - 31.42)^2} = \sqrt{100 + 9196.8} \approx 96.42\text{ }\Omega$$
+          </div>
+          <p class="text-slate-400 print:text-black">Current and Power parameters:</p>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$I_{\text{rms}} = \frac{V_{\text{rms}}}{Z} = \frac{200\text{ V}}{96.42\text{ }\Omega} \approx 2.07\text{ A}$$
+            $$\text{Power Factor } \cos\phi = \frac{R}{Z} = \frac{10}{96.42} \approx 0.1037 \quad (\text{Capacitive Leading})$$
+            $$P_{\text{avg}} = V_{\text{rms}} I_{\text{rms}} \cos\phi = 200 \times 2.07 \times 0.1037 \approx 42.93\text{ Watts}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black">Problem 2: Transformer Load and Current Transmission</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden">Exemplar 02</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          A step-down transformer operates on a $2.2\text{ kV}$ line and delivers $220\text{ V}$ to a load consuming $11\text{ kW}$. If transformer efficiency is $90\%$, calculate (i) turns ratio $N_p/N_s$, (ii) secondary current $I_s$, and (iii) primary current $I_p$.
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> $V_p = 2200\text{ V}, V_s = 220\text{ V}, P_{\text{out}} = 11{,}000\text{ W}, \eta = 0.90$.</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$\text{Turns ratio } \frac{N_p}{N_s} = \frac{V_p}{V_s} = \frac{2200}{220} = 10 : 1$$
+            $$I_s = \frac{P_{\text{out}}}{V_s} = \frac{11{,}000\text{ W}}{220\text{ V}} = 50.0\text{ Amperes}$$
+          </div>
+          <p class="text-slate-400 print:text-black">From efficiency $\eta = \frac{P_{\text{out}}}{P_{\text{in}}} = \frac{P_{\text{out}}}{V_p I_p}$:</p>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$I_p = \frac{P_{\text{out}}}{\eta V_p} = \frac{11{,}000}{0.90 \times 2200} = \frac{11{,}000}{1980} \approx 5.56\text{ Amperes}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Printable Cut-Out Flashcard Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        5. Printable Pocket Flashcard Grid
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">RMS Formula</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1">$I_{\text{rms}} = \frac{I_0}{\sqrt{2}}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Series Resonance</p>
+          <p class="font-bold text-white print:text-black text-xs mt-1">$\omega_0 = \frac{1}{\sqrt{LC}}$ ($Z=R$)</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Power Factor</p>
+          <p class="font-bold text-white print:text-black text-[11px] mt-1">$\cos\phi = \frac{R}{Z}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Quality Factor</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1">$Q = \frac{1}{R}\sqrt{\frac{L}{C}}$</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Document Footer -->
+    <footer class="pt-6 border-t border-slate-800 text-center text-xs text-slate-500 print:text-black print:pt-3">
+      <p>AXIOM Physics Class 12 • Open Access Physics Initiative • Distributed under Creative Commons Free Access</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class 12 Physics | Chapter 12 - Atoms Master Dossier</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX Core CSS & JS with Robust Auto-Render -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" 
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError: false,
+      errorColor: '#cbd5e1'
+    });"></script>
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+      letter-spacing: -0.01em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .font-mono, font-mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+    }
+
+    .katex {
+      font-size: 1.02em !important;
+      font-weight: 400 !important;
+      text-rendering: optimizeLegibility;
+    }
+    .katex-display {
+      margin: 0.55em 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 2px;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 12mm 14mm 12mm 14mm;
+    }
+
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        font-size: 9.8pt !important;
+        line-height: 1.35 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .avoid-break {
+        page-break-inside: avoid;
+      }
+      .print-border {
+        border: 1px solid #1e293b !important;
+      }
+      .print-table th {
+        background-color: #f1f5f9 !important;
+        color: #000000 !important;
+        border: 1px solid #94a3b8 !important;
+      }
+      .print-table td {
+        border: 1px solid #cbd5e1 !important;
+        color: #000000 !important;
+      }
+      .formula-box {
+        background: #f8fafc !important;
+        border-left: 3px solid #0f172a !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-indigo-500 selection:text-white">
+
+  <!-- Sticky Top Action Bar (Auto-hidden in Print/PDF) -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex flex-wrap justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <div>
+        <span class="text-lg font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+        <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2.5 py-0.5 rounded-full ml-2 font-mono">Class 12 • Open Access</span>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-3 mt-2 sm:mt-0">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 rounded-xl text-xs font-semibold transition shadow-md shadow-indigo-600/20 active:scale-95 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>Save as PDF (Clean Vector)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Body Container -->
+  <main class="max-w-4xl mx-auto px-4 py-8 md:py-10 space-y-9 print:p-0 print:m-0 print:space-y-5">
+
+    <!-- Dossier Title Block -->
+    <div class="border-b-2 border-indigo-500/40 pb-5 print:border-black print:pb-3">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-indigo-400 print:text-black font-mono">CBSE Class XII • Unit 08 (Atoms & Nuclei)</p>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1 print:text-black print:text-2xl">
+            Chapter 12: Atoms
+          </h1>
+          <p class="text-slate-400 mt-1 text-sm print:text-gray-700">Master Revision Dossier • Rutherford Scattering, Distance of Closest Approach, Bohr Postulates, Energy Quantization, Rydberg Formula & Spectral Series</p>
+        </div>
+        <div class="hidden sm:block text-right text-xs text-slate-500 print:block print:text-black">
+          <p class="font-mono">Open Access Initiative</p>
+          <p class="font-mono">Unit VIII Part 1 Dossier</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: Master Formula & Atomic Quantities Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5 font-mono">
+        1. Definitive Formula & Atomic Physics Matrix
+      </h2>
+      <div class="overflow-x-auto rounded-xl border border-slate-800 print:border-black">
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase tracking-wider border-b border-slate-800 font-semibold font-mono">
+            <tr>
+              <th class="p-2.5 border-r border-slate-800">Concept</th>
+              <th class="p-2.5 border-r border-slate-800">Mathematical Formulation</th>
+              <th class="p-2.5 border-r border-slate-800">Proportionality & Values</th>
+              <th class="p-2.5">Boundary Conditions & Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/80 text-slate-300">
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Distance of Closest Approach</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$r_0 = \frac{1}{4\pi\varepsilon_0}\frac{2Ze^2}{K} = \frac{1}{4\pi\varepsilon_0}\frac{4Ze^2}{mv^2}$$</td>
+              <td class="p-2.5 text-[11px] font-mono">$$r_0 \propto \frac{Z}{K} \propto \frac{1}{v^2}$$</td>
+              <td class="p-2.5 text-[11px]">Head-on collision ($b = 0 \implies \theta = 180^\circ$). Entire kinetic energy turns into electrostatic potential energy. Puts upper bound on nuclear size ($R_N < r_0 \approx 10^{-14}\text{ m}$).</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Impact Parameter</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$b = \frac{1}{4\pi\varepsilon_0}\frac{Ze^2 \cot(\theta/2)}{K}$$</td>
+              <td class="p-2.5 text-[11px] font-mono">$$b \propto \cot\left(\frac{\theta}{2}\right)$$</td>
+              <td class="p-2.5 text-[11px]">Perpendicular distance of the initial velocity vector from central nuclear axis. If $b$ is large $\implies \theta \approx 0^\circ$ (undeviated). If $b = 0 \implies \theta = 180^\circ$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Bohr Angular Momentum</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$L = m v_n r_n = \frac{nh}{2\pi} = n\hbar$$</td>
+              <td class="p-2.5 text-[11px] font-mono">$n = 1, 2, 3\dots$<br>$\hbar = h/2\pi$</td>
+              <td class="p-2.5 text-[11px]">Non-radiating stationary circular orbits. Proven by de Broglie through circular standing waves ($2\pi r_n = n\lambda$).</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Bohr Orbital Radius</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$r_n = \frac{n^2 h^2 \varepsilon_0}{\pi m Z e^2} = 0.529 \frac{n^2}{Z}\text{ \AA}$$</td>
+              <td class="p-2.5 text-[11px] font-mono">$$r_n \propto \frac{n^2}{Z}$$</td>
+              <td class="p-2.5 text-[11px]">Bohr radius for Hydrogen ground state ($n=1, Z=1$): $a_0 = r_1 \approx 0.529\text{ \AA} = 5.29 \times 10^{-11}\text{ m}$. Orbit area scales as $n^4$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Orbital Velocity & Period</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$v_n = \frac{Z e^2}{2 \varepsilon_0 n h} = \left(\frac{c}{137}\right)\frac{Z}{n}, \quad T_n = \frac{2\pi r_n}{v_n}$$</td>
+              <td class="p-2.5 text-[11px] font-mono">$$v_n \propto \frac{Z}{n}, \quad T_n \propto n^3$$</td>
+              <td class="p-2.5 text-[11px]">Ground state speed in Hydrogen: $v_1 \approx 2.18 \times 10^6\text{ m/s} \approx c/137$. Orbital frequency scales as $f_n = 1/T_n \propto 1/n^3$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Energy Levels (Hydrogen-like)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$E_n = -\frac{m Z^2 e^4}{8 \varepsilon_0^2 h^2 n^2} = -13.6 \frac{Z^2}{n^2}\text{ eV}$$</td>
+              <td class="p-2.5 text-[11px] font-mono">$$E_n \propto -\frac{Z^2}{n^2}$$</td>
+              <td class="p-2.5 text-[11px]">Energy Partition Triangle: $\mathbf{K = -E_n}$, $\mathbf{U = 2E_n}$, and $\mathbf{E_n = K + U = -K}$. Negative sign indicates bound electrostatic state.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Rydberg Transition Formula</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\frac{1}{\lambda} = \bar{\nu} = R Z^2 \left( \frac{1}{n_1^2} - \frac{1}{n_2^2} \right)$$</td>
+              <td class="p-2.5 text-[11px] font-mono">$$R = 1.097 \times 10^7\text{ m}^{-1}$$</td>
+              <td class="p-2.5 text-[11px]">Useful constant: $\mathbf{1/R \approx 912\text{ \AA}}$. Number of spectral lines emitted during cascade from level $n$: $\mathbf{N = \frac{n(n-1)}{2}}$.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 2: Stepwise Derivations Blueprint -->
+    <section class="space-y-4">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5 font-mono">
+        2. Core Derivations Blueprint (Step-by-Step Board Proofs)
+      </h2>
+
+      <!-- Proof 1: Closest Approach -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black font-mono">
+          Blueprint 12.1: Deduction of the Distance of Closest Approach ($r_0$) in Head-On Alpha Scattering
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Consider an $\alpha$-particle ($q_1 = +2e$, mass $m$) directed straight towards a target nucleus of charge $q_2 = +Ze$ in a head-on collision ($b = 0$).
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Initially at infinity, the $\alpha$-particle has kinetic energy $K = \frac{1}{2}mv^2$ and zero electrostatic potential energy.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          3. As it approaches the positively charged nucleus, repulsive Coulomb force decelerates it until at distance $r_0$, its velocity momentarily drops to zero ($v = 0$).
+        </p>
+        <p class="text-slate-300 print:text-black">
+          4. By the Law of Conservation of Energy, all initial kinetic energy $K$ is transformed into electrostatic potential energy $U$ at $r_0$:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$K = U \implies K = \frac{1}{4\pi\varepsilon_0}\frac{q_1 q_2}{r_0} = \frac{1}{4\pi\varepsilon_0}\frac{(2e)(Ze)}{r_0}$$
+        </div>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$r_0 = \frac{1}{4\pi\varepsilon_0}\frac{2Ze^2}{K} = \frac{1}{4\pi\varepsilon_0}\frac{4Ze^2}{mv^2}$$
+        </div>
+      </div>
+
+      <!-- Proof 2: Bohr Radius, Velocity, and Energy Levels -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black font-mono">
+          Blueprint 12.2: Derivations of Orbital Radius ($r_n$), Orbital Velocity ($v_n$), and Quantized Energy ($E_n$)
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. For an electron of mass $m$, charge $-e$ revolving in orbit of radius $r_n$ with speed $v_n$ around nucleus $+Ze$, centripetal force is provided by Coulomb force:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$\frac{m v_n^2}{r_n} = \frac{1}{4\pi\varepsilon_0}\frac{Z e^2}{r_n^2} \implies m v_n^2 r_n = \frac{Z e^2}{4\pi\varepsilon_0} \quad \text{--- [Eq. 1]}$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          2. From Bohr's angular momentum quantization: $m v_n r_n = \frac{nh}{2\pi} \implies v_n = \frac{nh}{2\pi m r_n}$ [Eq. 2].
+        </p>
+        <p class="text-slate-300 print:text-black">
+          3. Substituting Eq. 2 into Eq. 1: $m \left(\frac{nh}{2\pi m r_n}\right)^2 r_n = \frac{Ze^2}{4\pi\varepsilon_0} \implies \frac{n^2 h^2}{4\pi^2 m r_n} = \frac{Ze^2}{4\pi\varepsilon_0}$:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$r_n = \frac{n^2 h^2 \varepsilon_0}{\pi m Z e^2} \implies r_n \propto \frac{n^2}{Z} \quad \left(r_1 = 0.529\text{ \AA for } H\right)$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          4. Substituting $r_n$ into Eq. 2 gives orbital velocity:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$v_n = \frac{Z e^2}{2 \varepsilon_0 n h} \implies v_n \propto \frac{Z}{n} \quad \left(v_1 = \frac{c}{137} \approx 2.18 \times 10^6\text{ m/s for } H\right)$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          5. Kinetic energy $K = \frac{1}{2}mv_n^2 = \frac{Ze^2}{8\pi\varepsilon_0 r_n}$; Potential energy $U = -\frac{Ze^2}{4\pi\varepsilon_0 r_n}$. Total Energy $E_n = K + U = -\frac{Ze^2}{8\pi\varepsilon_0 r_n}$:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$E_n = -\frac{m Z^2 e^4}{8 \varepsilon_0^2 h^2 n^2} = -13.6 \frac{Z^2}{n^2}\text{ eV}$$
+        </div>
+      </div>
+
+      <!-- Proof 3: de Broglie Standing Waves Quantization -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black font-mono">
+          Blueprint 12.3: de Broglie's Standing Wave Explanation of Bohr's Angular Momentum Quantization
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. According to de Broglie, an electron orbiting in a stationary state behaves as a matter wave running along a closed circular loop of radius $r_n$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. To maintain a stationary, non-radiating orbit without destructive self-cancellation, the circumference of the orbit must fit an integral number of de Broglie wavelengths:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$2\pi r_n = n \lambda \quad (n = 1, 2, 3\dots)$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. Substituting the de Broglie wavelength relation $\lambda = \frac{h}{p} = \frac{h}{m v_n}$:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$2\pi r_n = n \left(\frac{h}{m v_n}\right) \implies m v_n r_n = \frac{nh}{2\pi} = n\hbar$$
+        </div>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$L = m v_n r_n = \frac{nh}{2\pi} \quad (\text{Bohr's 2nd Postulate Proven from Wave Mechanics!})$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: High-Yield Exam Trap Matrix -->
+    <section class="space-y-4">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-rose-400 print:text-black border-l-4 border-rose-500 print:border-black pl-2.5 font-mono">
+        3. High-Yield "Red Alert" Exam Trap Matrix
+      </h2>
+
+      <!-- Comparative Table: The 5 Spectral Series of Hydrogen -->
+      <div class="rounded-xl border border-rose-900/40 print-border overflow-hidden">
+        <div class="bg-rose-950/40 print:bg-gray-100 p-2.5 border-b border-rose-900/40 print:border-black">
+          <p class="text-xs font-bold text-rose-300 print:text-black uppercase font-mono">
+            Master Trap 1: Comprehensive Spectral Series Spectrum & Wavelength Bounds ($Z = 1$)
+          </p>
+        </div>
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase font-semibold font-mono">
+            <tr>
+              <th class="p-2 border border-slate-800">Series Name</th>
+              <th class="p-2 border border-slate-800 text-cyan-400 print:text-black">Ground Level ($n_1$)</th>
+              <th class="p-2 border border-slate-800 text-amber-400 print:text-black">Upper Levels ($n_2$)</th>
+              <th class="p-2 border border-slate-800 text-emerald-400 print:text-black">Spectral Region</th>
+              <th class="p-2 border border-slate-800">Longest Line ($\lambda_{\max}$, $n_2=n_1+1$)</th>
+              <th class="p-2 border border-slate-800 text-rose-400 print:text-black">Series Limit ($\lambda_{\min}$, $n_2=\infty$)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">1. Lyman Series</td>
+              <td class="p-2 font-mono text-cyan-400 print:text-black">$n_1 = 1$</td>
+              <td class="p-2 font-mono">$2, 3, 4\dots$</td>
+              <td class="p-2 font-bold text-indigo-400 print:text-black">Ultraviolet (UV)</td>
+              <td class="p-2 font-mono">$\frac{4}{3R} \approx 1216\text{ \AA}$</td>
+              <td class="p-2 font-mono text-rose-400 print:text-black">$\frac{1}{R} \approx 912\text{ \AA}$</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">2. Balmer Series</td>
+              <td class="p-2 font-mono text-cyan-400 print:text-black">$n_1 = 2$</td>
+              <td class="p-2 font-mono">$3, 4, 5\dots$</td>
+              <td class="p-2 font-bold text-emerald-400 print:text-black">Visible Region</td>
+              <td class="p-2 font-mono">$\frac{36}{5R} \approx 6563\text{ \AA}$ ($H_\alpha$)</td>
+              <td class="p-2 font-mono text-rose-400 print:text-black">$\frac{4}{R} \approx 3646\text{ \AA}$</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">3. Paschen Series</td>
+              <td class="p-2 font-mono text-cyan-400 print:text-black">$n_1 = 3$</td>
+              <td class="p-2 font-mono">$4, 5, 6\dots$</td>
+              <td class="p-2 font-bold text-amber-400 print:text-black">Near-Infrared (IR)</td>
+              <td class="p-2 font-mono">$\frac{144}{7R} \approx 18751\text{ \AA}$</td>
+              <td class="p-2 font-mono text-rose-400 print:text-black">$\frac{9}{R} \approx 8208\text{ \AA}$</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">4. Brackett Series</td>
+              <td class="p-2 font-mono text-cyan-400 print:text-black">$n_1 = 4$</td>
+              <td class="p-2 font-mono">$5, 6, 7\dots$</td>
+              <td class="p-2 font-bold text-amber-400 print:text-black">Mid-Infrared (IR)</td>
+              <td class="p-2 font-mono">$\frac{400}{9R} \approx 40518\text{ \AA}$</td>
+              <td class="p-2 font-mono text-rose-400 print:text-black">$\frac{16}{R} \approx 14585\text{ \AA}$</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">5. Pfund Series</td>
+              <td class="p-2 font-mono text-cyan-400 print:text-black">$n_1 = 5$</td>
+              <td class="p-2 font-mono">$6, 7, 8\dots$</td>
+              <td class="p-2 font-bold text-amber-400 print:text-black">Far-Infrared (IR)</td>
+              <td class="p-2 font-mono">$\frac{900}{11R} \approx 74578\text{ \AA}$</td>
+              <td class="p-2 font-mono text-rose-400 print:text-black">$\frac{25}{R} \approx 22789\text{ \AA}$</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Critical Pitfalls Grid -->
+      <div class="grid sm:grid-cols-2 gap-3 text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 2: Energy Partition Signs & Relations</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            If total energy is $E_n = -3.4\text{ eV}$ (for $n = 2$ in H):
+            <br>• Kinetic Energy is strictly positive: $\mathbf{K = -E_n = +3.4\text{ eV}}$.
+            <br>• Potential Energy is negative and twice total: $\mathbf{U = 2E_n = -6.8\text{ eV}}$.
+            <br>Never reverse these signs in objective or numerical questions!
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 3: Classical Collapse Paradox of Rutherford</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            Accelerating electrons radiate continuous EM waves according to Maxwell's electrodynamics.
+            <br>• In Rutherford's model, the orbit should collapse into the nucleus within $\mathbf{\approx 10^{-8}\text{ s}}$.
+            <br>• The emitted spectrum should be continuous, contradicting the discrete line spectrum observed experimentally.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Handcrafted Exemplar Numericals -->
+    <section class="space-y-4 avoid-break">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-amber-400 print:text-black border-l-4 border-amber-500 print:border-black pl-2.5 font-mono">
+        4. Handcrafted Exemplars (Analytical Numerical Solutions)
+      </h2>
+
+      <!-- Problem 1 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black font-mono">Problem 1: Closest Approach in Head-On Alpha Collision</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden font-mono">Exemplar 01</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          In a Geiger-Marsden experiment, what is the distance of closest approach to the nucleus of a $7.7\text{ MeV}$ $\alpha$-particle before it comes momentarily to rest and reverses its direction? ($Z = 79$ for gold).
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> $K = 7.7\text{ MeV} = 7.7 \times 1.6 \times 10^{-13}\text{ J} \approx 1.232 \times 10^{-12}\text{ J}$, $Z = 79$.</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$r_0 = \frac{1}{4\pi\varepsilon_0}\frac{2Ze^2}{K} = \frac{(9 \times 10^9) \times 2 \times 79 \times (1.6 \times 10^{-19})^2}{1.232 \times 10^{-12}} = \frac{3640.32 \times 10^{-29}}{1.232 \times 10^{-12}}$$
+          </div>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$r_0 \approx 2.95 \times 10^{-14}\text{ m} = 29.5\text{ fm} \approx 30\text{ fm}$$
+          </div>
+          <p class="text-slate-400 print:text-black">Since the $\alpha$-particle turns back before touching nuclear matter, nuclear radius $R_N < 30\text{ fm}$.</p>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black font-mono">Problem 2: Spectral Line Emission Cascade</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden font-mono">Exemplar 02</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          A hydrogen atom initially in the ground state absorbs a photon which excites it to the $n = 4$ state. (a) Calculate the wavelength of the absorbed photon. (b) Find the total number of spectral lines that can be emitted when the atom de-excites to the ground state.
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> Transition from $n_1 = 1$ to $n_2 = 4$:</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$\frac{1}{\lambda_{\text{abs}}} = R \left(\frac{1}{1^2} - \frac{1}{4^2}\right) = R \left(1 - \frac{1}{16}\right) = \frac{15R}{16} \implies \lambda_{\text{abs}} = \frac{16}{15R} = \frac{16}{15 \times 1.097 \times 10^7} \approx 9.72 \times 10^{-8}\text{ m} = 97.2\text{ nm}$$
+          </div>
+          <p class="text-slate-400 print:text-black">Total number of emitted spectral lines in de-excitation cascade from $n = 4$:</p>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$N = \frac{n(n - 1)}{2} = \frac{4 \times (4 - 1)}{2} = \frac{12}{2} = \mathbf{6\text{ spectral lines}}$$
+          </div>
+          <p class="text-slate-400 print:text-black">Breakdown: 3 lines in Lyman ($4\to 1, 3\to 1, 2\to 1$), 2 lines in Balmer ($4\to 2, 3\to 2$), and 1 line in Paschen ($4\to 3$).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Printable Cut-Out Flashcard Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-base md:text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5 font-mono">
+        5. Printable Pocket Flashcard Grid
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black font-mono">Closest Approach</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1 font-mono">$r_0 = \frac{1}{4\pi\varepsilon_0}\frac{2Ze^2}{K}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black font-mono">Bohr Radius</p>
+          <p class="font-bold text-white print:text-black text-xs mt-1 font-mono">$r_n = 0.529\frac{n^2}{Z}\text{ \AA}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black font-mono">Energy Quantization</p>
+          <p class="font-bold text-cyan-300 print:text-black text-[11px] mt-1 font-mono">$E_n = -13.6\frac{Z^2}{n^2}\text{ eV}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black font-mono">Cascade Lines</p>
+          <p class="font-bold text-amber-300 print:text-black text-xs mt-1 font-mono">$N = \frac{n(n-1)}{2}$</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Document Footer -->
+    <footer class="pt-6 border-t border-slate-800 text-center text-xs text-slate-500 print:text-black print:pt-3">
+      <p class="font-mono">AXIOM Physics Class 12 • Open Access Physics Initiative • Distributed under Creative Commons Free Access</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>

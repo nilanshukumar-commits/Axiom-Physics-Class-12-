@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Single Slit Diffraction</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono for Clean Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError: false
+    });"></script>
+
+  <style>
+    /* Global Typography Enhancement */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      letter-spacing: -0.011em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Monospace Numeric and Formula Typography */
+    .font-mono, font-mono {
+      font-family: 'JetBrains Mono', monospace !important;
+    }
+
+    /* KaTeX Polish to eliminate serif fallbacks */
+    .katex {
+      font-size: 1.05em !important;
+      text-rendering: optimizeLegibility;
+    }
+    .katex-display {
+      margin: 0.6em 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 2px;
+    }
+
+    /* Mathematical Formula Card Styling */
+    .math-formula-card {
+      background: radial-gradient(circle at top left, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(56, 189, 248, 0.15);
+    }
+
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; font-size: 10pt !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box, .math-formula-card { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400, .text-slate-500 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2.5 py-0.5 rounded-full ml-2 font-mono">Class 12 • Module 10.3</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-xl text-xs font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-xs font-bold font-mono text-indigo-400 tracking-wider uppercase">Unit 06: Optics • Chapter 10 (Wave Optics)</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Diffraction of Light: Single Slit & Central Maximum</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base leading-relaxed">Bending around obstacles, wave division technique, conditions for minima & secondary maxima, central peak angular width, and ray optics validity (Fresnel distance).</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2 font-mono">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed text-sm md:text-base">
+        Socho ek deewar ke peeche khada vyakti hume dikhayi nahi deta, par uski aawaz saaf sunayi deti hai. Aisa isliye kyunki sound waves ki wavelength ($\sim 1\text{ m}$) darwaze aur deewar ke size ke barabar hoti hai, jisse sound aasaani se corners ke chaaron taraf bend ho jaati hai. 
+        Light waves ke sath aamtaur par aisa nahi hota kyunki light ki wavelength bohot microscopic hoti hai ($\sim 10^{-7}\text{ m}$). Lekin jab light ko ek baal jitni patli slit ($a \approx \lambda$) se guzara jata hai, toh light seedhe chalna chhodkar geometric shadow ke andar mud jaati hai! Yahi bending <strong class="text-white font-semibold">Diffraction</strong> hai. 
+        YDSE mein do alag-alag slits ke wavelets aapas mein lad rahe the; yahan ek hi slit ke andar baithe hazaron secondary wavelets aapas mein interfere karte hain!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions (Refined Typography) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-xs font-bold uppercase tracking-wider mb-1 font-mono">
+        <span>📐 02. The Core Law & Conditions</span>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Card 1 -->
+        <div class="math-formula-card p-5 rounded-2xl border border-slate-800/80 shadow-inner">
+          <h3 class="text-white font-semibold text-sm tracking-wide mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            1. Minima & Secondary Maxima Positions
+          </h3>
+          <p class="text-xs text-slate-400 mb-3">Slit width $a$, diffraction angle $\theta$, and wavelength $\lambda$:</p>
+          <div class="py-2.5 px-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-cyan-300 font-mono text-center text-sm space-y-1">
+            <div>$$\text{Minima (Dark): } a\sin\theta = n\lambda \implies \theta_n \approx \frac{n\lambda}{a} \quad (n = 1, 2, 3\dots)$$</div>
+            <div>$$\text{Secondary Maxima: } a\sin\theta = (2n + 1)\frac{\lambda}{2} \implies \theta_n' \approx (2n + 1)\frac{\lambda}{2a}$$</div>
+          </div>
+          <p class="text-[11px] text-slate-500 mt-3 leading-relaxed">
+            Notice the inversion: $a\sin\theta = n\lambda$ gives dark minima in single-slit diffraction, whereas it gave bright maxima in YDSE!
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="math-formula-card p-5 rounded-2xl border border-slate-800/80 shadow-inner">
+          <h3 class="text-white font-semibold text-sm tracking-wide mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+            2. Central Maximum Width & Fresnel Distance
+          </h3>
+          <p class="text-xs text-slate-400 mb-3">Spread of the intense central peak bounded by first minima on either side:</p>
+          <div class="py-2.5 px-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-indigo-300 font-mono text-center text-sm space-y-1">
+            <div>$$\text{Angular Width: } 2\theta_1 = \frac{2\lambda}{a}, \quad \text{Linear Width: } 2\beta_0 = \frac{2\lambda D}{a}$$</div>
+            <div>$$\text{Fresnel Distance: } Z_F = \frac{a^2}{\lambda}$$</div>
+          </div>
+          <p class="text-[11px] text-slate-500 mt-3 leading-relaxed">
+            Ray optics remains valid for travel distances $D < Z_F$. When $D \gg Z_F$, diffraction spread dominates over rectilinear propagation.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Single Slit Wavelet & Diffraction Pattern) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-xs font-bold uppercase tracking-wider font-mono">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Single Slit Fraunhofer Simulator</span>
+        </div>
+        <div id="laserBadge" class="text-xs font-bold font-mono px-3 py-1 rounded-lg bg-rose-950/70 text-rose-300 border border-rose-800/60 shadow-sm">
+          LASER: 650 nm (RED)
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="diffCanvas" width="800" height="390" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Slit Width ($a$)</span>
+            <span id="aVal" class="text-cyan-400 font-mono font-bold">0.18 mm</span>
+          </div>
+          <input id="aSlider" type="range" min="0.06" max="0.50" step="0.02" value="0.18" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Wavelength ($\lambda$)</span>
+            <span id="lambdaVal" class="text-rose-400 font-mono font-bold">650 nm</span>
+          </div>
+          <input id="lambdaSlider" type="range" min="400" max="750" step="10" value="650" class="w-full accent-rose-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Screen Distance ($D$)</span>
+            <span id="bigDVal" class="text-amber-400 font-mono font-bold">1.20 m</span>
+          </div>
+          <input id="bigDSlider" type="range" min="0.5" max="2.0" step="0.05" value="1.20" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Central Max Width ($2\beta_0$):</span>
+          <div id="widthOut" class="text-emerald-400 font-bold text-sm mt-0.5">8.67 mm</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Angular Spread ($2\theta$):</span>
+          <div id="angSpreadOut" class="text-cyan-400 font-bold text-sm mt-0.5">7.22 mrad</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Fresnel Distance ($Z_F = a^2/\lambda$):</span>
+          <div id="zfOut" class="text-amber-400 font-bold text-sm mt-0.5">49.85 m</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">1st Secondary Peak:</span>
+          <div class="text-rose-400 font-bold text-sm mt-0.5">I₁ ≈ 4.5% of I₀</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>📝 04. Comprehensive Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Minima & Secondary Maxima in Single Slit -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">Primary Board Derivation</span>
+          <h4 class="text-white font-semibold text-base mt-1">Deduction of Minima ($a\sin\theta = n\lambda$), Maxima, and Wavefront Division</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Single Slit Geometry -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 260" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-diff-ray" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+            </defs>
+
+            <!-- Central Symmetry Axis -->
+            <line x1="80" y1="130" x2="560" y2="130" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,4" />
+            <circle cx="560" cy="130" r="3.5" fill="#ffffff" />
+            <text x="568" y="134" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace">O (Central Maximum)</text>
+
+            <!-- Slit Aperture AB -->
+            <line x1="140" y1="20" x2="140" y2="70" stroke="#94a3b8" stroke-width="4" />
+            <line x1="140" y1="190" x2="140" y2="240" stroke="#94a3b8" stroke-width="4" />
+
+            <circle cx="140" cy="70" r="3.5" fill="#f59e0b" />
+            <text x="120" y="74" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">A</text>
+
+            <circle cx="140" cy="130" r="2.5" fill="#10b981" />
+            <text x="120" y="134" fill="#10b981" font-size="10" font-family="monospace">M</text>
+
+            <circle cx="140" cy="190" r="3.5" fill="#f59e0b" />
+            <text x="120" y="194" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">B</text>
+
+            <!-- Slit width a bracket -->
+            <line x1="105" y1="70" x2="105" y2="190" stroke="#f59e0b" stroke-width="1.5" />
+            <line x1="100" y1="70" x2="110" y2="70" stroke="#f59e0b" stroke-width="1.5" />
+            <line x1="100" y1="190" x2="110" y2="190" stroke="#f59e0b" stroke-width="1.5" />
+            <text x="80" y="135" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">a</text>
+
+            <!-- Screen -->
+            <line x1="560" y1="20" x2="560" y2="240" stroke="#cbd5e1" stroke-width="3" />
+            <text x="565" y="35" fill="#cbd5e1" font-size="11" font-weight="bold" font-family="monospace">Screen</text>
+
+            <!-- Point P at angle theta -->
+            <circle cx="560" cy="55" r="4" fill="#ef4444" />
+            <text x="568" y="58" fill="#ef4444" font-size="11" font-weight="bold" font-family="monospace">P (Angle θ)</text>
+
+            <!-- Diffracted rays -->
+            <line x1="140" y1="70" x2="560" y2="55" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arr-diff-ray)" />
+            <line x1="140" y1="130" x2="560" y2="55" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arr-diff-ray)" />
+            <line x1="140" y1="190" x2="560" y2="55" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arr-diff-ray)" />
+
+            <!-- Perpendicular AN -->
+            <line x1="140" y1="70" x2="175" y2="185" stroke="#ec4899" stroke-width="2" stroke-dasharray="3,3" />
+            <circle cx="175" cy="185" r="3" fill="#ec4899" />
+            <text x="180" y="196" fill="#ec4899" font-size="10" font-family="monospace">N</text>
+            <path d="M 169 178 L 176 175 L 180 183" fill="none" stroke="#ec4899" stroke-width="1.2" />
+
+            <text x="125" y="215" fill="#ec4899" font-size="11" font-weight="bold" font-family="monospace">Path Diff BN = a·sinθ</text>
+
+            <!-- Screen Distance D -->
+            <line x1="140" y1="248" x2="560" y2="248" stroke="#94a3b8" stroke-width="1.5" />
+            <text x="330" y="258" fill="#94a3b8" font-size="10" font-family="monospace">Screen Distance D</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 10.3A: Fraunhofer single slit diffraction geometry showing slit aperture $AB = a$ and path difference $BN = a\sin\theta$.</p>
+        </div>
+
+        <p>1. Consider a plane wavefront incident normally on a slit $AB$ of width $a$. In accordance with Huygens' principle, every continuous point inside the slit becomes a source of secondary wavelets.</p>
+        <p>2. At the central point $O$ on the screen, wavelets from symmetrical elements across the entire slit travel identical optical path lengths ($\theta = 0 \implies \Delta x = 0$). All wavelets arrive in-phase, forming an intensely bright <strong class="text-white">Central Maximum</strong>.</p>
+        <p>3. Consider wavelets diffracted at angle $\theta$ converging at point $P$. The total path difference between extreme rays from $A$ and $B$ is:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$BN = a \sin\theta$$
+        </div>
+        <p>4. <strong class="text-white">Condition for Minima (Destructive Interference):</strong></p>
+        <p class="text-slate-400">• Let $a\sin\theta = \lambda$. Divide the slit $AB$ into <strong class="text-white">two equal halves</strong> $AM$ and $MB$, each of width $a/2$.</p>
+        <p class="text-slate-400">• For every point in the upper half $AM$, there exists a corresponding point in the lower half $MB$ separated by distance $a/2$, whose path difference is:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\Delta x = \frac{a}{2}\sin\theta = \frac{\lambda}{2} \implies \text{Phase difference } \phi = \pi$$
+        </div>
+        <p class="text-slate-400">• The wavelets from these pairs cancel each other out pairwise completely, producing zero net resultant intensity! Hence, the general condition for <strong class="text-white">$n$-th minimum</strong> is:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$a \sin\theta = n\lambda \implies \theta_n \approx \frac{n\lambda}{a} \quad (n = 1, 2, 3\dots)$$
+        </div>
+        <p>5. <strong class="text-white">Condition for Secondary Maxima:</strong></p>
+        <p class="text-slate-400">• Let $a\sin\theta = \frac{3\lambda}{2}$. Divide the slit into <strong class="text-white">three equal parts</strong>, each of width $a/3$.</p>
+        <p class="text-slate-400">• Wavelets from the first two parts cancel each other in pairs ($\Delta x = \lambda/2$). However, the wavelets from the remaining third part survive and send light to the screen, forming the <strong>first secondary maximum</strong> (with intensity only $\approx \frac{1}{22}$ of the central peak).</p>
+        <p class="text-slate-400">• General condition for <strong class="text-white">$n$-th secondary maximum</strong>:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$a \sin\theta = (2n + 1)\frac{\lambda}{2} \implies \theta_n' \approx (2n + 1)\frac{\lambda}{2a} \quad (n = 1, 2, 3\dots)$$
+        </div>
+      </div>
+
+      <!-- Derivation 2: Central Maximum Width & Fresnel Distance -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">Analytical Deductions</span>
+          <h4 class="text-white font-semibold text-base mt-1">Width of Central Maximum and Validity of Ray Optics (Fresnel Distance $Z_F$)</h4>
+        </div>
+        <p>1. The Central Maximum extends on either side of the center $O$ up to the first minima ($n = 1$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\sin\theta_1 \approx \theta_1 = \frac{\lambda}{a}$$
+        </div>
+        <p>2. The total <strong class="text-white">Angular Width</strong> of the central maximum is the separation between first minima on both sides:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$2\theta_1 = \frac{2\lambda}{a}$$
+        </div>
+        <p>3. If $D$ is the distance to the screen, the linear half-width is $y_1 = D \theta_1 = \frac{\lambda D}{a}$. Hence, the total <strong class="text-white">Linear Width</strong> of the central maximum:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$2\beta_0 = 2 y_1 = \frac{2\lambda D}{a} \quad (\text{Exactly twice the width of any secondary fringe!})$$
+        </div>
+        <p>4. <strong class="text-white">Fresnel Distance ($Z_F$):</strong> As a beam of width $a$ propagates over distance $z$, diffraction causes it to spread by an amount $y \approx z \theta = \frac{z\lambda}{a}$. The distance at which this diffraction spread equals the size of the aperture itself ($y = a$) is the <strong class="text-white">Fresnel Distance</strong>:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$\frac{Z_F \lambda}{a} = a \implies Z_F = \frac{a^2}{\lambda}$$
+        </div>
+        <p class="text-slate-400"><em>Boundary Meaning:</em> For travel distances $z \ll Z_F$, diffraction spreading is completely negligible and rectilinear ray optics is rigorously valid. For $z \gg Z_F$, wave optics must be applied.</p>
+      </div>
+
+      <!-- Comparative Table: Interference vs Diffraction -->
+      <div class="rounded-xl border border-slate-800 overflow-hidden">
+        <div class="bg-slate-900 p-2.5 border-b border-slate-800">
+          <p class="text-xs font-bold text-indigo-300 uppercase font-mono">Master Comparison: Interference (YDSE) vs Diffraction (Single Slit)</p>
+        </div>
+        <table class="w-full text-left text-xs border-collapse">
+          <thead class="bg-slate-950 text-slate-200 uppercase font-semibold">
+            <tr>
+              <th class="p-2.5 border-r border-slate-800">Feature</th>
+              <th class="p-2.5 border-r border-slate-800 text-cyan-400">Interference (YDSE)</th>
+              <th class="p-2.5 text-rose-400">Diffraction (Single Slit)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-2.5 font-semibold text-white">Origin of Waves</td>
+              <td class="p-2.5">Superposition of two waves originating from two discrete slits ($S_1, S_2$).</td>
+              <td class="p-2.5">Superposition of continuous secondary wavelets from different parts of the same single slit.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white">Fringe Width</td>
+              <td class="p-2.5 text-emerald-400 font-mono font-bold">All fringes are of EQUAL width ($\beta = \frac{\lambda D}{d}$).</td>
+              <td class="p-2.5 text-rose-400 font-mono font-bold">Central peak is TWICE as wide ($2\beta_0 = \frac{2\lambda D}{a}$); higher fringes become narrower.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white">Intensity of Maxima</td>
+              <td class="p-2.5">All bright fringes have equal maximum intensity ($I_{\max} = 4I_0$).</td>
+              <td class="p-2.5">Central maximum is extremely bright; secondary maxima drop drastically ($I_0 : \frac{I_0}{22} : \frac{I_0}{61}$).</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white">Minima Darkness</td>
+              <td class="p-2.5">Minima are perfectly dark ($I_{\min} = 0$, high contrast).</td>
+              <td class="p-2.5">Minima are rarely completely dark due to incomplete wavelet cancellation.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: What Happens When Slit Width $a$ is Made Very Large?</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* If the single slit width $a$ is widened to $1\text{ cm}$, what pattern is observed?
+            <br>• Angular width of central peak is $2\theta = \frac{2\lambda}{a}$.
+            <br>• As $a$ increases, $2\theta \to 0$. The diffraction spread completely vanishes!
+            <br>• <strong class="text-white font-semibold">Diffraction pattern disappears completely</strong>, and light casts a sharp, clear geometric shadow, behaving strictly as a classical ray!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: The $a\sin\theta = n\lambda$ Condition Reversal Trap</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Exam Confusion Alert:*
+            <br>• In <strong>Interference (YDSE)</strong>: $\Delta x = n\lambda$ is the condition for <strong class="text-white font-semibold">BRIGHT MAXIMA</strong>.
+            <br>• In <strong>Diffraction (Single Slit)</strong>: $a\sin\theta = n\lambda$ is the condition for <strong class="text-white font-semibold">DARK MINIMA</strong>!
+            Never mix these up. In diffraction, $n\lambda$ allows dividing the slit into $2n$ equal zones that cancel in pairs.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Central Maximum With White Light Illumination</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            When white light illuminates a single slit:
+            <br>1. The center of the screen ($\theta = 0$) has zero path difference for all colors; hence it forms a <strong class="text-white font-semibold">CENTRAL WHITE MAXIMUM</strong>.
+            <br>2. Because $\beta_0 \propto \lambda$, the red boundary spreads wider than violet.
+            <br>3. The inner edge of the first diffraction fringe is <strong class="text-white font-semibold">VIOLET</strong>, and the outer edge is <strong class="text-white font-semibold">RED</strong>.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Missing Orders in Combined Interference-Diffraction</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            In actual double slit experiments, diffraction envelope modulates interference fringes.
+            If $n$-th interference bright fringe coincides with $m$-th diffraction minimum:
+            $$\frac{n\lambda D}{d} = \frac{m\lambda D}{a} \implies \mathbf{n = m\left(\frac{d}{a}\right)}$$
+            These specific interference fringes will be <strong class="text-white font-semibold">MISSING (absent)</strong> from the pattern!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-mono">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A parallel beam of light of wavelength $500\text{ nm}$ falls normally on a single narrow slit of width $0.20\text{ mm}$. The resulting diffraction pattern is observed on a screen placed $2.0\text{ m}$ away. Calculate (i) the angular width of the central maximum, (ii) the linear width of the central maximum, and (iii) the distance of the second dark band from the center of the screen.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> $\lambda = 500\text{ nm} = 5.0 \times 10^{-7}\text{ m}$, slit width $a = 0.20\text{ mm} = 2.0 \times 10^{-4}\text{ m}$, $D = 2.0\text{ m}$.</p>
+          <p>1. Angular width of central maximum ($2\theta_1$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$2\theta_1 = \frac{2\lambda}{a} = \frac{2 \times (5.0 \times 10^{-7}\text{ m})}{2.0 \times 10^{-4}\text{ m}} = 5.0 \times 10^{-3}\text{ radians} = 5.0\text{ mrad}$$
+          </div>
+          <p>2. Linear width of central maximum ($2\beta_0$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$2\beta_0 = \frac{2\lambda D}{a} = (2\theta_1) \times D = (5.0 \times 10^{-3}\text{ rad}) \times 2.0\text{ m} = 1.0 \times 10^{-2}\text{ m} = 10.0\text{ mm} = 1.0\text{ cm}$$
+          </div>
+          <p>3. Distance of second dark band ($n = 2$ minimum):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$y_2 = \frac{n\lambda D}{a} = \frac{2 \times (5.0 \times 10^{-7}) \times 2.0}{2.0 \times 10^{-4}} = 1.0 \times 10^{-2}\text{ m} = 10.0\text{ mm} = 1.0\text{ cm}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: For what distance is ray optics a good approximation when the aperture is $3\text{ mm}$ wide and the wavelength is $500\text{ nm}$? If the screen is placed at $D = 30\text{ m}$, calculate the spread of the beam due to diffraction and compare it with the size of the aperture.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> Aperture $a = 3.0\text{ mm} = 3.0 \times 10^{-3}\text{ m}$, $\lambda = 500\text{ nm} = 5.0 \times 10^{-7}\text{ m}$.</p>
+          <p>1. Fresnel distance ($Z_F$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$Z_F = \frac{a^2}{\lambda} = \frac{(3.0 \times 10^{-3}\text{ m})^2}{5.0 \times 10^{-7}\text{ m}} = \frac{9.0 \times 10^{-6}}{5.0 \times 10^{-7}} = 18.0\text{ metres}$$
+          </div>
+          <p class="text-slate-400">Ray optics is a good approximation for distances up to <strong class="text-white font-semibold">$18.0\text{ metres}$</strong>.</p>
+          <p>2. At $D = 30\text{ m}$ (which is $> Z_F$), the linear spread due to diffraction is:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\Delta y = \frac{\lambda D}{a} = \frac{(5.0 \times 10^{-7}\text{ m}) \times 30\text{ m}}{3.0 \times 10^{-3}\text{ m}} = 5.0 \times 10^{-3}\text{ m} = 5.0\text{ mm}$$
+          </div>
+          <p class="text-slate-400">Notice that diffraction spread ($\Delta y = 5\text{ mm}$) exceeds the slit size ($a = 3\text{ mm}$). Total spot size $= a + 2\Delta y = 3 + 10 = 13\text{ mm}$.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 font-mono">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded font-mono">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Minima Condition</p>
+          <p class="text-xs font-bold text-rose-400 mt-1 font-mono">$a\sin\theta = n\lambda$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Secondary Maxima</p>
+          <p class="text-xs font-bold text-amber-300 mt-1 font-mono">$a\sin\theta = (2n+1)\frac{\lambda}{2}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Central Width</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1 font-mono">$2\beta_0 = \frac{2\lambda D}{a}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Fresnel Distance</p>
+          <p class="text-xs font-bold text-white mt-1 font-mono">$Z_F = \frac{a^2}{\lambda}$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Single Slit Diffraction Simulation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('diffCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const aSlider = document.getElementById('aSlider');
+      const lambdaSlider = document.getElementById('lambdaSlider');
+      const bigDSlider = document.getElementById('bigDSlider');
+
+      const aVal = document.getElementById('aVal');
+      const lambdaVal = document.getElementById('lambdaVal');
+      const bigDVal = document.getElementById('bigDVal');
+
+      const widthOut = document.getElementById('widthOut');
+      const angSpreadOut = document.getElementById('angSpreadOut');
+      const zfOut = document.getElementById('zfOut');
+      const laserBadge = document.getElementById('laserBadge');
+
+      let waveAnimPhase = 0;
+
+      function getHexColor(wavelength) {
+        if (wavelength >= 620) return '#ef4444';
+        if (wavelength >= 590) return '#f97316';
+        if (wavelength >= 570) return '#eab308';
+        if (wavelength >= 495) return '#22c55e';
+        if (wavelength >= 450) return '#06b6d4';
+        return '#8b5cf6';
+      }
+
+      function renderLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        waveAnimPhase += 0.05;
+
+        const a_mm = parseFloat(aSlider.value);
+        const lambda_nm = parseFloat(lambdaSlider.value);
+        const D_m = parseFloat(bigDSlider.value);
+
+        const a_m = a_mm * 1e-3;
+        const lambda_m = lambda_nm * 1e-9;
+
+        aVal.textContent = `${a_mm.toFixed(2)} mm`;
+        lambdaVal.textContent = `${lambda_nm} nm`;
+        bigDVal.textContent = `${D_m.toFixed(2)} m`;
+
+        // Physics Calculation
+        const twoTheta_rad = (2 * lambda_m) / a_m;
+        const twoBeta0_m = (2 * lambda_m * D_m) / a_m;
+        const twoBeta0_mm = twoBeta0_m * 1e3;
+        const zf_m = (a_m * a_m) / lambda_m;
+
+        widthOut.textContent = `${twoBeta0_mm.toFixed(2)} mm`;
+        angSpreadOut.textContent = `${(twoTheta_rad * 1e3).toFixed(2)} mrad`;
+        zfOut.textContent = `${zf_m.toFixed(2)} m`;
+
+        const activeColor = getHexColor(lambda_nm);
+        laserBadge.textContent = `LASER: ${lambda_nm} nm`;
+        laserBadge.style.borderColor = activeColor;
+
+        renderDiffractionScene(a_mm, lambda_nm, D_m, twoBeta0_mm, activeColor, waveAnimPhase);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderDiffractionScene(a_mm, lambda_nm, D_m, twoBeta0_mm, colorHex, phase) {
+        const slitX = 140;
+        const screenX = 540;
+        const cy = canvas.height / 2;
+
+        const a_px = Math.max(16, Math.min(80, a_mm * 150));
+        const slitTopY = cy - a_px / 2;
+        const slitBotY = cy + a_px / 2;
+
+        // 1. Optical Axis
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(80, cy);
+        ctx.lineTo(screenX, cy);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // 2. Incident Monochromatic Plane Waves
+        ctx.strokeStyle = colorHex;
+        ctx.lineWidth = 2;
+        for (let x = 30; x <= slitX - 10; x += 20) {
+          const moveX = (x + (phase * 15) % 20);
+          if (moveX < slitX) {
+            ctx.beginPath();
+            ctx.moveTo(moveX, cy - 80);
+            ctx.lineTo(moveX, cy + 80);
+            ctx.stroke();
+          }
+        }
+
+        // 3. Single Slit Barrier
+        ctx.fillStyle = '#64748b';
+        ctx.fillRect(slitX - 5, 25, 10, slitTopY - 25);
+        ctx.fillRect(slitX - 5, slitBotY, 10, canvas.height - slitBotY - 25);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 10px monospace';
+        ctx.fillText('A', slitX - 20, slitTopY + 4);
+        ctx.fillText('B', slitX - 20, slitBotY + 4);
+
+        // 4. Wavelets emerging from single slit
+        const numRings = 7;
+        const ringStep = 22;
+        ctx.lineWidth = 1.3;
+        for (let r = 1; r <= numRings; r++) {
+          const radius = (r * ringStep + (phase * 15)) % (numRings * ringStep);
+          ctx.strokeStyle = 'rgba(56, 189, 248, 0.3)';
+          ctx.beginPath();
+          ctx.arc(slitX, cy, radius, -Math.PI / 2.5, Math.PI / 2.5);
+          ctx.stroke();
+        }
+
+        // 5. Screen Plane
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(screenX, 30);
+        ctx.lineTo(screenX, canvas.height - 30);
+        ctx.stroke();
+
+        ctx.fillStyle = '#cbd5e1';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('Screen', screenX - 20, 22);
+
+        // 6. Diffraction Fringes
+        const scalePx = 5.0;
+        const beta0_px = Math.max(15, (twoBeta0_mm / 2) * scalePx);
+        const screenW = 32;
+
+        for (let py = 30; py <= canvas.height - 30; py += 1.5) {
+          const yDist = py - cy;
+          const alpha = (Math.PI * yDist) / beta0_px;
+          let intensity = 1.0;
+          if (Math.abs(alpha) > 1e-4) {
+            intensity = Math.pow(Math.sin(alpha) / alpha, 2);
+          }
+
+          ctx.fillStyle = colorHex;
+          ctx.globalAlpha = Math.min(1.0, intensity);
+          ctx.fillRect(screenX + 3, py, screenW, 1.5);
+        }
+        ctx.globalAlpha = 1.0;
+
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(screenX + 3, 30, screenW, canvas.height - 60);
+
+        // 7. Right Pane: (sin(alpha)/alpha)^2 Intensity Profile
+        const graphOriginX = screenX + screenW + 18;
+        const maxGraphW = 120;
+
+        ctx.fillStyle = '#090d16';
+        ctx.fillRect(graphOriginX, 30, maxGraphW + 40, canvas.height - 60);
+        ctx.strokeStyle = '#1e293b';
+        ctx.lineWidth = 1.2;
+        ctx.strokeRect(graphOriginX, 30, maxGraphW + 40, canvas.height - 60);
+
+        ctx.strokeStyle = '#475569';
+        ctx.beginPath();
+        ctx.moveTo(graphOriginX, 30);
+        ctx.lineTo(graphOriginX, canvas.height - 30);
+        ctx.stroke();
+
+        ctx.strokeStyle = colorHex;
+        ctx.lineWidth = 2.2;
+        ctx.beginPath();
+
+        for (let py = 30; py <= canvas.height - 30; py += 1) {
+          const yDist = py - cy;
+          const alpha = (Math.PI * yDist) / beta0_px;
+          let normI = 1.0;
+          if (Math.abs(alpha) > 1e-4) {
+            normI = Math.pow(Math.sin(alpha) / alpha, 2);
+          }
+          const graphX = graphOriginX + normI * maxGraphW;
+
+          if (py === 30) ctx.moveTo(graphX, py);
+          else ctx.lineTo(graphX, py);
+        }
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 9px monospace';
+        ctx.fillText('I₀ (Central Max)', graphOriginX + maxGraphW - 55, cy - 6);
+        ctx.fillText('1st Minima', graphOriginX + 4, cy - beta0_px + 3);
+        ctx.fillText('1st Minima', graphOriginX + 4, cy + beta0_px + 3);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Single Slit Diffraction: Central Width 2β₀ = 2λD/a = ${twoBeta0_mm.toFixed(2)} mm`, canvas.width / 2, canvas.height - 10);
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

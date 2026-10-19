@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Optical Instruments</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 9.5</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 06: Optics • Chapter 09 (Ray Optics)</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Optical Instruments: Microscope & Telescope</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Visual angle physics, simple magnifier, compound microscope, astronomical refracting telescope, Cassegrain reflector, and resolving criteria.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek chidiya (bird) ko: jab woh aasmaan mein 1 km door udti hai toh ek chote til (dot) jaisi dikhti hai, par wahi chidiya jab aapke haath par aakar baithti hai toh badi aur detailed dikhti hai. Kya chidiya ka physical size badal gaya? Bilkul nahi! Fark sirf <strong class="text-white">Visual Angle ($\theta$)</strong> ka hai jo usne aapki retina par banaya. 
+        Optical instruments linear height nahi, balki retina par banne wale visual angle ko bada karte hain (Angular Magnification $m = \beta/\alpha$). 
+        <br>• <strong class="text-white">Microscope</strong> ek nanhe object ko hamare paas (near point $D = 25\text{ cm}$) laakar use two stages mein mega-magnify karta hai (pehle Objective bada real image banata hai, fir Eyepiece use magnifying glass ki tarah aur bada karta hai).
+        <br>• <strong class="text-white">Telescope</strong> infinity par baithe vishalkay objects (Moon/Stars) se aane wali parallel rays ko collect karke focal plane par ek compact real image banata hai, jise eyepiece aankh ke paas laakar bada visual angle provide karta hai!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Compound Microscope</h3>
+          <p class="text-sm text-slate-400 mb-2">Two converging lenses: Objective ($f_o$ small, aperture small) + Eyepiece ($f_e$ moderate):</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$m = m_o \times m_e = \left(-\frac{v_o}{u_o}\right) m_e$$
+            $$\text{Near Point } (v = D): \quad m = -\frac{L}{f_o}\left(1 + \frac{D}{f_e}\right), \quad L \approx v_o + u_e$$
+            $$\text{Normal Adjustment } (v = \infty): \quad m = -\frac{L}{f_o}\left(\frac{D}{f_e}\right), \quad L = v_o + f_e$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Where $L$ is the optical tube length (distance between second focal point of objective and first focal point of eyepiece).</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Astronomical Telescope (Refracting)</h3>
+          <p class="text-sm text-slate-400 mb-2">Objective ($f_o$ large, aperture large) + Eyepiece ($f_e$ small):</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\text{Normal Adjustment } (v = \infty): \quad m = -\frac{f_o}{f_e}, \quad L = f_o + f_e$$
+            $$\text{Near Point } (v = D): \quad m = -\frac{f_o}{f_e}\left(1 + \frac{f_e}{D}\right), \quad L = f_o + u_e$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Negative sign indicates an inverted final image relative to the distant celestial object. Normal adjustment provides relaxed, strain-free eye viewing.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Microscope vs Telescope Dynamic Ray Tracer) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Dual-Stage Optical Instrument Simulator</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="instrumentToggleBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Instrument: Compound Microscope
+          </button>
+          <button id="adjustmentToggleBtn" type="button" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold px-3 py-1.5 rounded-lg border border-slate-700 cursor-pointer transition">
+            View: Near Point ($D = 25\text{cm}$)
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="opticsCanvas" width="800" height="390" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="param1Label">Objective Focal Length ($f_o$)</span>
+            <span id="param1Val" class="text-cyan-400 font-mono font-bold">2.0 cm</span>
+          </div>
+          <input id="param1Slider" type="range" min="1.0" max="6.0" step="0.2" value="2.0" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="param2Label">Eyepiece Focal Length ($f_e$)</span>
+            <span id="param2Val" class="text-amber-400 font-mono font-bold">5.0 cm</span>
+          </div>
+          <input id="param2Slider" type="range" min="2.5" max="10.0" step="0.5" value="5.0" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="param3Label">Object Distance ($u_o$)</span>
+            <span id="param3Val" class="text-emerald-400 font-mono font-bold">2.4 cm</span>
+          </div>
+          <input id="param3Slider" type="range" min="1.2" max="5.0" step="0.1" value="2.4" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Total Magnification ($m$):</span>
+          <div id="mCalcOut" class="text-cyan-400 font-bold text-sm mt-0.5">-36.0×</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Tube Length ($L$):</span>
+          <div id="lCalcOut" class="text-amber-400 font-bold text-sm mt-0.5">16.2 cm</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Intermediate Image ($v_o$):</span>
+          <div id="voCalcOut" class="text-rose-400 font-bold text-sm mt-0.5">+12.0 cm</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Eye Condition:</span>
+          <div id="eyeConditionOut" class="text-emerald-400 font-bold text-sm mt-0.5">Strained at Near Point (D)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Comprehensive Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Compound Microscope Ray Diagram & Proof -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Primary Board Derivation</span>
+          <h4 class="text-white font-semibold text-base mt-1">Ray Diagram and Magnifying Power of a Compound Microscope</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Compound Microscope -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 260" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-ray-inst" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+            </defs>
+
+            <!-- Principal Axis -->
+            <line x1="20" y1="130" x2="620" y2="130" stroke="#475569" stroke-width="1.8" />
+
+            <!-- Objective Lens (Small aperture, center at x = 160) -->
+            <ellipse cx="160" cy="130" rx="8" ry="60" fill="rgba(56, 189, 248, 0.2)" stroke="#38bdf8" stroke-width="2.5" />
+            <text x="145" y="60" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">Objective (f_o)</text>
+            <circle cx="160" cy="130" r="3" fill="#ffffff" />
+            <text x="155" y="145" fill="#ffffff" font-size="10" font-family="monospace">O</text>
+
+            <!-- Eyepiece Lens (Larger aperture, center at x = 440) -->
+            <ellipse cx="440" cy="130" rx="12" ry="95" fill="rgba(56, 189, 248, 0.2)" stroke="#38bdf8" stroke-width="3" />
+            <text x="425" y="28" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">Eyepiece (f_e)</text>
+            <circle cx="440" cy="130" r="3" fill="#ffffff" />
+            <text x="435" y="145" fill="#ffffff" font-size="10" font-family="monospace">E</text>
+
+            <!-- Tiny Object AB just outside f_o (x = 100) -->
+            <line x1="100" y1="130" x2="100" y2="105" stroke="#10b981" stroke-width="3" marker-end="url(#arr-ray-inst)" />
+            <text x="92" y="100" fill="#10b981" font-size="10" font-weight="bold" font-family="monospace">A</text>
+            <text x="92" y="145" fill="#10b981" font-size="10" font-family="monospace">B</text>
+
+            <!-- Focal points of Objective -->
+            <circle cx="120" cy="130" r="2.5" fill="#fbbf24" /><text x="115" y="145" fill="#fbbf24" font-size="9" font-family="monospace">f_o</text>
+            <circle cx="200" cy="130" r="2.5" fill="#fbbf24" /><text x="195" y="145" fill="#fbbf24" font-size="9" font-family="monospace">f_o'</text>
+
+            <!-- Real Inverted Intermediate Image A'B' (x = 360, between f_o' and E) -->
+            <line x1="360" y1="130" x2="360" y2="175" stroke="#f59e0b" stroke-width="3" marker-end="url(#arr-ray-inst)" />
+            <text x="365" y="125" fill="#f59e0b" font-size="10" font-weight="bold" font-family="monospace">B'</text>
+            <text x="365" y="185" fill="#f59e0b" font-size="10" font-weight="bold" font-family="monospace">A'</text>
+
+            <!-- Rays through Objective to A'B' -->
+            <line x1="100" y1="105" x2="160" y2="105" stroke="#38bdf8" stroke-width="1.4" />
+            <line x1="160" y1="105" x2="360" y2="175" stroke="#38bdf8" stroke-width="1.4" marker-end="url(#arr-ray-inst)" />
+            <line x1="100" y1="105" x2="360" y2="175" stroke="#38bdf8" stroke-width="1.4" marker-end="url(#arr-ray-inst)" />
+
+            <!-- Eyepiece Focal Point f_e (x = 375, just outside A'B') -->
+            <circle cx="375" cy="130" r="2.5" fill="#fbbf24" />
+            <text x="370" y="145" fill="#fbbf24" font-size="9" font-family="monospace">f_e</text>
+
+            <!-- Rays through Eyepiece to Eye (Observer on right) -->
+            <line x1="360" y1="175" x2="440" y2="155" stroke="#f43f5e" stroke-width="1.4" />
+            <line x1="440" y1="155" x2="520" y2="145" stroke="#f43f5e" stroke-width="1.4" marker-end="url(#arr-ray-inst)" />
+            <line x1="360" y1="175" x2="440" y2="175" stroke="#f43f5e" stroke-width="1.4" />
+            <line x1="440" y1="175" x2="520" y2="215" stroke="#f43f5e" stroke-width="1.4" marker-end="url(#arr-ray-inst)" />
+
+            <!-- Final Massive Virtual Image A''B'' (Dotted extensions back to x = 120) -->
+            <line x1="440" y1="155" x2="120" y2="245" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="3,3" />
+            <line x1="440" y1="175" x2="120" y2="245" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="3,3" />
+
+            <!-- Final Inverted Image Arrow A''B'' -->
+            <line x1="120" y1="130" x2="120" y2="245" stroke="#ec4899" stroke-width="4" marker-end="url(#arr-ray-inst)" />
+            <text x="105" y="255" fill="#ec4899" font-size="11" font-weight="bold" font-family="monospace">A'' (Final Image at D)</text>
+
+            <!-- Eye Icon on right -->
+            <path d="M 540 120 Q 565 130 540 140 Q 555 130 540 120" fill="#cbd5e1" stroke="#ffffff" stroke-width="1.5" />
+            <circle cx="548" cy="130" r="3" fill="#38bdf8" />
+            <text x="560" y="135" fill="#cbd5e1" font-size="10" font-family="monospace">Eye</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 9.5A: Compound microscope ray diagram for final image formation at the Near Point ($D = 25\text{ cm}$).</p>
+        </div>
+
+        <p>1. The total magnifying power $m$ of a compound microscope is the product of the linear magnification of the objective ($m_o$) and the angular magnification of the eyepiece ($m_e$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$m = m_o \times m_e$$
+        </div>
+        <p>2. For the objective lens, the linear magnification is $m_o = \frac{h'}{h} = \frac{v_o}{u_o}$. Since the object is placed just beyond $f_o$ ($u_o \approx -f_o$) and the real image is formed very close to the eyepiece ($v_o \approx L$, the optical tube length):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$m_o \approx -\frac{L}{f_o}$$
+        </div>
+        <p>3. The eyepiece functions identically to a simple magnifier. Its angular magnification is:</p>
+        <p class="text-slate-400">• <strong class="text-white">Case (a) When the final image is formed at the Near Point ($v = -D$):</strong></p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$m_e = \left(1 + \frac{D}{f_e}\right) \implies m = -\frac{L}{f_o}\left(1 + \frac{D}{f_e}\right)$$
+        </div>
+        <p class="text-slate-400">• <strong class="text-white">Case (b) When the final image is formed at Infinity (Normal Adjustment):</strong></p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$m_e = \frac{D}{f_e} \implies m = -\frac{L}{f_o}\left(\frac{D}{f_e}\right)$$
+        </div>
+        <p class="text-slate-400"><em>Design Criterion:</em> To achieve massive magnifying power, both $f_o$ and $f_e$ must be exceptionally small ($f_o, f_e \ll D$).</p>
+      </div>
+
+      <!-- Derivation 2: Astronomical Refracting Telescope Ray Diagram & Proof -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Primary Board Derivation</span>
+          <h4 class="text-white font-semibold text-base mt-1">Ray Diagram and Magnifying Power of an Astronomical Telescope (Refracting Type)</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Astronomical Telescope -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 250" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-tele-ray" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+            </defs>
+
+            <!-- Principal Axis -->
+            <line x1="20" y1="130" x2="620" y2="130" stroke="#475569" stroke-width="1.8" />
+
+            <!-- Large Objective Lens (Center at x = 160) -->
+            <ellipse cx="160" cy="130" rx="14" ry="90" fill="rgba(56, 189, 248, 0.2)" stroke="#38bdf8" stroke-width="3" />
+            <text x="120" y="30" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">Objective (Large f_o & Aperture)</text>
+            <circle cx="160" cy="130" r="3" fill="#ffffff" /><text x="150" y="145" fill="#ffffff" font-size="10" font-family="monospace">O</text>
+
+            <!-- Small Eyepiece Lens (Center at x = 480) -->
+            <ellipse cx="480" cy="130" rx="9" ry="55" fill="rgba(56, 189, 248, 0.2)" stroke="#38bdf8" stroke-width="2.5" />
+            <text x="445" y="65" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">Eyepiece (Small f_e)</text>
+            <circle cx="480" cy="130" r="3" fill="#ffffff" /><text x="475" y="145" fill="#ffffff" font-size="10" font-family="monospace">E</text>
+
+            <!-- Parallel Incident Rays from Distant Celestial Object at angle alpha -->
+            <!-- Ray 1 through center O -->
+            <line x1="30" y1="90" x2="160" y2="130" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arr-tele-ray)" />
+            <line x1="160" y1="130" x2="380" y2="198" stroke="#38bdf8" stroke-width="1.8" />
+
+            <!-- Ray 2 through top of objective -->
+            <line x1="30" y1="50" x2="160" y2="90" stroke="#38bdf8" stroke-width="1.6" marker-end="url(#arr-tele-ray)" />
+            <line x1="160" y1="90" x2="380" y2="198" stroke="#38bdf8" stroke-width="1.6" />
+
+            <!-- Real Inverted Intermediate Image A'B' at Focal Plane of Objective (x = 380) -->
+            <line x1="380" y1="130" x2="380" y2="198" stroke="#f59e0b" stroke-width="3" marker-end="url(#arr-tele-ray)" />
+            <text x="385" y="125" fill="#f59e0b" font-size="10" font-weight="bold" font-family="monospace">B' (f_o = f_e)</text>
+            <text x="385" y="210" fill="#f59e0b" font-size="10" font-weight="bold" font-family="monospace">A'</text>
+
+            <!-- Angle alpha at Objective -->
+            <path d="M 125 120 A 35 35 0 0 1 125 130" fill="none" stroke="#fbbf24" stroke-width="1.5" />
+            <text x="105" y="122" fill="#fbbf24" font-size="11" font-weight="bold" font-family="monospace">α</text>
+            <text x="185" y="142" fill="#fbbf24" font-size="11" font-weight="bold" font-family="monospace">α</text>
+
+            <!-- Emerging Parallel Rays from Eyepiece into Eye at angle beta -->
+            <line x1="380" y1="198" x2="480" y2="160" stroke="#f43f5e" stroke-width="1.6" />
+            <line x1="480" y1="160" x2="560" y2="130" stroke="#f43f5e" stroke-width="1.6" marker-end="url(#arr-tele-ray)" />
+
+            <line x1="380" y1="198" x2="480" y2="198" stroke="#f43f5e" stroke-width="1.6" />
+            <line x1="480" y1="198" x2="560" y2="168" stroke="#f43f5e" stroke-width="1.6" marker-end="url(#arr-tele-ray)" />
+
+            <!-- Angle beta at Eyepiece -->
+            <path d="M 455 130 A 25 25 0 0 1 450 148" fill="none" stroke="#fbbf24" stroke-width="1.5" />
+            <text x="430" y="145" fill="#fbbf24" font-size="11" font-weight="bold" font-family="monospace">β</text>
+
+            <!-- Dimensions -->
+            <line x1="160" y1="230" x2="380" y2="230" stroke="#94a3b8" stroke-width="1.2" />
+            <text x="250" y="244" fill="#94a3b8" font-size="10" font-family="monospace">f_o</text>
+
+            <line x1="380" y1="230" x2="480" y2="230" stroke="#94a3b8" stroke-width="1.2" />
+            <text x="420" y="244" fill="#94a3b8" font-size="10" font-family="monospace">f_e</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 9.5B: Astronomical telescope ray diagram in Normal Adjustment ($v = \infty$); tube length $L = f_o + f_e$.</p>
+        </div>
+
+        <p>1. The magnifying power $m$ of a telescope is defined as the ratio of the angle subtended by the final image at the eye ($\beta$) to the angle subtended by the distant object at the unaided eye ($\alpha$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$m = \frac{\beta}{\alpha}$$
+        </div>
+        <p>2. For small paraxial angles $\alpha \approx \tan\alpha$ and $\beta \approx \tan\beta$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\tan\alpha = \frac{A'B'}{OB'} = \frac{A'B'}{f_o}, \qquad \tan\beta = \frac{A'B'}{EB'} = \frac{A'B'}{-u_e}$$
+        </div>
+        <p>3. Therefore, the general magnifying power is:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$m = \frac{\beta}{\alpha} = \frac{A'B'/(-u_e)}{A'B'/f_o} = -\frac{f_o}{u_e}$$
+        </div>
+        <p class="text-slate-400">• <strong class="text-white">Normal Adjustment (Relaxed Eye, Final Image at Infinity):</strong> Here, $u_e = f_e$:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$m = -\frac{f_o}{f_e}, \qquad \text{Tube Length: } L = f_o + f_e$$
+        </div>
+        <p class="text-slate-400">• <strong class="text-white">Near Point Adjustment (Final Image at $D = 25\text{ cm}$):</strong> By lens formula for eyepiece ($\frac{1}{-D} - \frac{1}{-u_e} = \frac{1}{f_e} \implies \frac{1}{u_e} = \frac{1}{f_e}\left(1 + \frac{f_e}{D}\right)$):</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$m = -\frac{f_o}{f_e}\left(1 + \frac{f_e}{D}\right), \qquad \text{Tube Length: } L = f_o + u_e$$
+        </div>
+        <p class="text-slate-400"><em>Design Criterion:</em> For large magnification, objective focal length must be large ($f_o \gg f_e$) and eyepiece focal length must be small.</p>
+      </div>
+
+      <!-- Derivation 3: Reflecting Type Telescope Advantages -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Engineering Superiority</span>
+          <h4 class="text-white font-semibold text-base mt-1">Reflecting Telescope (Cassegrain Type) & Advantages over Refractors</h4>
+        </div>
+        <p>In modern observational astronomy, refracting telescopes suffer from severe fundamental limitations. The Cassegrain reflecting telescope replaces the heavy glass objective with a large parabolic primary concave mirror.</p>
+        <div class="grid md:grid-cols-2 gap-3 text-xs pt-1">
+          <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg">
+            <p class="text-indigo-300 font-bold">1. Zero Chromatic Aberration</p>
+            <p class="text-slate-400 mt-1">Mirrors reflect all wavelengths according to the laws of reflection without dispersion ($r = i$). Hence, reflecting telescopes are completely free from chromatic aberration (color fringing).</p>
+          </div>
+          <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg">
+            <p class="text-indigo-300 font-bold">2. Elimination of Spherical Aberration</p>
+            <p class="text-slate-400 mt-1">By using a <strong>parabolic primary mirror</strong> instead of a spherical surface, all parallel incident rays converge to a sharp mathematical focus, eliminating spherical aberration.</p>
+          </div>
+          <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg">
+            <p class="text-indigo-300 font-bold">3. Structural Mechanical Support</p>
+            <p class="text-slate-400 mt-1">A heavy glass lens can only be supported along its outer rim and sags under its own enormous weight. A primary mirror can be supported across its entire back surface.</p>
+          </div>
+          <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg">
+            <p class="text-indigo-300 font-bold">4. Massive Light Gathering Power</p>
+            <p class="text-slate-400 mt-1">Fabricating large flawless glass lenses beyond 1 metre diameter is practically impossible. Mirrors can be cast in multi-metre diameters, delivering high resolving power.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Microscope vs Telescope Lenses Swap</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* Can an astronomical telescope be used as a compound microscope by reversing its lenses?
+            <br>• <strong class="text-white">NO!</strong>
+            <br>• For a microscope: $f_o$ and $f_e$ are both <strong class="text-white">very small (in mm or few cm)</strong> with $f_o < f_e$.
+            <br>• For a telescope: $f_o$ is <strong class="text-white">very large ($\sim 100\text{ cm}$)</strong> and $f_e$ is small ($\sim 2\text{ cm}$).
+            <br>Swapping them will yield a magnifying power of practically zero or produce extreme aberrations!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Magnification vs Resolving Power of a Telescope</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Exam Trap:* Does increasing the magnification of a telescope increase its ability to distinguish close stars?
+            <br>• <strong class="text-white">NO!</strong> Magnification ($m = f_o/f_e$) only enlarges the angular size.
+            <br>• The ability to resolve two close celestial objects is <strong class="text-white">Resolving Power ($\text{RP} = \frac{D}{1.22\lambda}$)</strong>, which depends strictly on the <strong class="text-white">aperture diameter $D$</strong> of the objective, not on magnification!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Normal Adjustment vs Near Point Adjustment</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            • <strong>Near Point ($v = D$):</strong> Yields <strong class="text-white">MAXIMUM magnifying power</strong>, but the eye muscles are contracted and under accommodation strain.
+            <br>• <strong>Normal Adjustment ($v = \infty$):</strong> Magnifying power is slightly lower, but the ciliary eye muscles are <strong class="text-white">completely relaxed</strong>, allowing prolonged, fatigue-free viewing.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: What Happens if Half of the Telescope Objective is Covered?</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Classic Question:* If the central half of a telescope objective is painted black:
+            <br>1. <strong class="text-white">The complete image is STILL formed</strong>; no part of the image is lost.
+            <br>2. The brightness (intensity) of the image <strong class="text-white">decreases by 50%</strong> because total light collection area is halved.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A compound microscope consists of an objective lens of focal length $2.0\text{ cm}$ and an eyepiece of focal length $6.25\text{ cm}$ separated by a distance of $15\text{ cm}$. How far from the objective should an object be placed in order to obtain the final image at (a) the least distance of distinct vision ($25\text{ cm}$), and (b) at infinity? What is the magnifying power in each case?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> Given: $f_o = 2.0\text{ cm}, f_e = 6.25\text{ cm}$, total tube separation $d = 15\text{ cm}$.</p>
+          <p><strong>Case (a) Final image at Near Point ($v_e = -25\text{ cm}$):</strong></p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\frac{1}{v_e} - \frac{1}{u_e} = \frac{1}{f_e} \implies \frac{1}{-25} - \frac{1}{u_e} = \frac{1}{6.25} \implies \frac{1}{u_e} = -\frac{1}{25} - \frac{1}{6.25} = -\frac{1 + 4}{25} = -\frac{5}{25} = -\frac{1}{5}$$
+            $$u_e = -5.0\text{ cm}$$
+          </div>
+          <p class="text-slate-400">Since $v_o + |u_e| = 15\text{ cm} \implies v_o = 15 - 5.0 = 10.0\text{ cm}$. Now for objective:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\frac{1}{v_o} - \frac{1}{u_o} = \frac{1}{f_o} \implies \frac{1}{10} - \frac{1}{u_o} = \frac{1}{2.0} \implies \frac{1}{u_o} = \frac{1}{10} - \frac{1}{2} = \frac{1 - 5}{10} = -\frac{4}{10} \implies u_o = -2.5\text{ cm}$$
+          </div>
+          <p class="text-slate-400">Magnifying power:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$m = \left(-\frac{v_o}{|u_o|}\right)\left(1 + \frac{D}{f_e}\right) = \left(-\frac{10}{2.5}\right)\left(1 + \frac{25}{6.25}\right) = (-4) \times (1 + 4) = -20$$
+          </div>
+
+          <p class="mt-2"><strong>Case (b) Final image at Infinity (Normal Adjustment):</strong></p>
+          <p class="text-slate-400">Here $u_e = f_e = 6.25\text{ cm} \implies v_o = 15 - 6.25 = 8.75\text{ cm}$.</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\frac{1}{u_o} = \frac{1}{v_o} - \frac{1}{f_o} = \frac{1}{8.75} - \frac{1}{2.0} = \frac{2 - 8.75}{17.5} = -\frac{6.75}{17.5} \implies u_o = -\frac{17.5}{6.75} \approx -2.59\text{ cm}$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$m = \left(-\frac{v_o}{|u_o|}\right)\left(\frac{D}{f_e}\right) = \left(-\frac{8.75}{2.59}\right)\left(\frac{25}{6.25}\right) \approx (-3.38) \times (4) \approx -13.5$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A small telescope has an objective lens of focal length $144\text{ cm}$ and an eyepiece of focal length $6.0\text{ cm}$. (a) What is the magnifying power of the telescope in normal adjustment? (b) What is the separation between the objective and the eyepiece? (c) If this telescope is used to view a $100\text{ m}$ tall tower $3\text{ km}$ away, what is the height of the intermediate image of the tower formed by the objective lens?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> $f_o = 144\text{ cm} = 1.44\text{ m}, f_e = 6.0\text{ cm} = 0.06\text{ m}$.</p>
+          <p>1. Magnifying power in normal adjustment:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$m = -\frac{f_o}{f_e} = -\frac{144\text{ cm}}{6.0\text{ cm}} = -24$$
+          </div>
+          <p>2. Separation (Tube length $L$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$L = f_o + f_e = 144 + 6 = 150\text{ cm} = 1.50\text{ m}$$
+          </div>
+          <p>3. Height of tower $h = 100\text{ m}$, distance $u = 3\text{ km} = 3000\text{ m}$.</p>
+          <p>Angle subtended by tower at objective:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\alpha = \frac{h}{u} = \frac{100\text{ m}}{3000\text{ m}} = \frac{1}{30}\text{ radian}$$
+          </div>
+          <p>Since the intermediate image is formed at the focal plane ($v \approx f_o$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$h' = \alpha \times f_o = \left(\frac{1}{30}\text{ rad}\right) \times 144\text{ cm} = 4.8\text{ cm}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Microscope (Normal)</p>
+          <p class="text-xs font-bold text-white mt-1">$m = -\frac{L}{f_o}\frac{D}{f_e}$ ($L = v_o + f_e$)</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Microscope (Near Pt)</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$m = -\frac{L}{f_o}(1 + \frac{D}{f_e})$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Telescope (Normal)</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$m = -\frac{f_o}{f_e}$, $L = f_o + f_e$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Telescope Resolving</p>
+          <p class="text-xs font-bold text-rose-400 mt-1">$\text{RP} = \frac{D}{1.22\lambda} \propto D$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Optical Instrument Ray Tracer Engine Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('opticsCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const instrumentToggleBtn = document.getElementById('instrumentToggleBtn');
+      const adjustmentToggleBtn = document.getElementById('adjustmentToggleBtn');
+
+      const param1Slider = document.getElementById('param1Slider');
+      const param2Slider = document.getElementById('param2Slider');
+      const param3Slider = document.getElementById('param3Slider');
+
+      const param1Label = document.getElementById('param1Label');
+      const param2Label = document.getElementById('param2Label');
+      const param3Label = document.getElementById('param3Label');
+
+      const param1Val = document.getElementById('param1Val');
+      const param2Val = document.getElementById('param2Val');
+      const param3Val = document.getElementById('param3Val');
+
+      const mCalcOut = document.getElementById('mCalcOut');
+      const lCalcOut = document.getElementById('lCalcOut');
+      const voCalcOut = document.getElementById('voCalcOut');
+      const eyeConditionOut = document.getElementById('eyeConditionOut');
+
+      // Modes: 'microscope' or 'telescope'
+      let activeInstrument = 'microscope';
+      // Adjustments: 'near' (v = D) or 'normal' (v = infinity)
+      let activeAdjustment = 'near';
+
+      instrumentToggleBtn.addEventListener('click', () => {
+        activeInstrument = (activeInstrument === 'microscope') ? 'telescope' : 'microscope';
+        if (activeInstrument === 'microscope') {
+          instrumentToggleBtn.textContent = 'Instrument: Compound Microscope';
+          param1Label.textContent = 'Objective Focal Length (f_o)';
+          param2Label.textContent = 'Eyepiece Focal Length (f_e)';
+          param3Label.textContent = 'Object Distance (u_o)';
+          param1Slider.min = 1.0; param1Slider.max = 4.0; param1Slider.step = 0.2; param1Slider.value = 2.0;
+          param2Slider.min = 3.0; param2Slider.max = 8.0; param2Slider.step = 0.5; param2Slider.value = 5.0;
+          param3Slider.min = 1.2; param3Slider.max = 4.5; param3Slider.step = 0.1; param3Slider.value = 2.4;
+        } else {
+          instrumentToggleBtn.textContent = 'Instrument: Astronomical Telescope';
+          param1Label.textContent = 'Objective Focal Length (f_o in cm)';
+          param2Label.textContent = 'Eyepiece Focal Length (f_e in cm)';
+          param3Label.textContent = 'Aperture Diameter (D in cm)';
+          param1Slider.min = 30; param1Slider.max = 120; param1Slider.step = 5; param1Slider.value = 80;
+          param2Slider.min = 2; param2Slider.max = 10; param2Slider.step = 0.5; param2Slider.value = 5;
+          param3Slider.min = 5; param3Slider.max = 25; param3Slider.step = 1; param3Slider.value = 15;
+        }
+      });
+
+      adjustmentToggleBtn.addEventListener('click', () => {
+        activeAdjustment = (activeAdjustment === 'near') ? 'normal' : 'near';
+        adjustmentToggleBtn.textContent = (activeAdjustment === 'near')
+          ? 'View: Near Point (D = 25cm)'
+          : 'View: Normal Adjustment (Infinity)';
+      });
+
+      function renderLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const val1 = parseFloat(param1Slider.value);
+        const val2 = parseFloat(param2Slider.value);
+        const val3 = parseFloat(param3Slider.value);
+
+        const D_near = 25.0; // cm
+
+        if (activeInstrument === 'microscope') {
+          const fo = val1;
+          const fe = val2;
+          let uo = val3;
+
+          // Object must be outside fo for real intermediate image
+          if (uo <= fo) uo = fo + 0.1;
+
+          param1Val.textContent = `${fo.toFixed(1)} cm`;
+          param2Val.textContent = `${fe.toFixed(1)} cm`;
+          param3Val.textContent = `${uo.toFixed(1)} cm`;
+
+          // 1/vo - 1/(-uo) = 1/fo => 1/vo = 1/fo - 1/uo
+          const vo = (fo * uo) / (uo - fo);
+          const mo = -vo / uo;
+
+          let me = 0;
+          let ue = 0;
+
+          if (activeAdjustment === 'near') {
+            me = 1 + (D_near / fe);
+            ue = (fe * D_near) / (fe + D_near);
+            eyeConditionOut.textContent = 'Strained at Near Point (D = 25cm)';
+            eyeConditionOut.className = 'text-amber-400 font-bold text-sm mt-0.5';
+          } else {
+            me = D_near / fe;
+            ue = fe;
+            eyeConditionOut.textContent = 'Relaxed Eye at Infinity (∞)';
+            eyeConditionOut.className = 'text-emerald-400 font-bold text-sm mt-0.5';
+          }
+
+          const mTotal = mo * me;
+          const tubeL = vo + ue;
+
+          mCalcOut.textContent = `${mTotal.toFixed(1)}×`;
+          lCalcOut.textContent = `${tubeL.toFixed(1)} cm`;
+          voCalcOut.textContent = `+${vo.toFixed(1)} cm`;
+
+          renderMicroscopeCanvas(fo, fe, uo, vo, ue, tubeL, activeAdjustment);
+        } else {
+          // Telescope mode
+          const fo = val1;
+          const fe = val2;
+          const apertureD = val3;
+
+          param1Val.textContent = `${fo.toFixed(0)} cm`;
+          param2Val.textContent = `${fe.toFixed(1)} cm`;
+          param3Val.textContent = `${apertureD.toFixed(0)} cm`;
+
+          let mTotal = 0;
+          let tubeL = 0;
+
+          if (activeAdjustment === 'normal') {
+            mTotal = -fo / fe;
+            tubeL = fo + fe;
+            eyeConditionOut.textContent = 'Relaxed Eye (Normal Adjustment)';
+            eyeConditionOut.className = 'text-emerald-400 font-bold text-sm mt-0.5';
+          } else {
+            mTotal = -(fo / fe) * (1 + fe / D_near);
+            const ue = (fe * D_near) / (fe + D_near);
+            tubeL = fo + ue;
+            eyeConditionOut.textContent = 'Strained Eye at Near Point (D)';
+            eyeConditionOut.className = 'text-amber-400 font-bold text-sm mt-0.5';
+          }
+
+          mCalcOut.textContent = `${mTotal.toFixed(1)}×`;
+          lCalcOut.textContent = `${tubeL.toFixed(1)} cm`;
+          voCalcOut.textContent = `At Focus: ${fo.toFixed(0)} cm`;
+
+          renderTelescopeCanvas(fo, fe, apertureD, activeAdjustment);
+        }
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderMicroscopeCanvas(fo, fe, uo, vo, ue, tubeL, adj) {
+        const cy = canvas.height / 2;
+        const objLensX = 220;
+        const scale = 14; // pixels per cm
+
+        // Eyepiece lens position
+        const eyeLensX = objLensX + Math.min(380, tubeL * scale);
+
+        // 1. Principal Axis
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(30, cy);
+        ctx.lineTo(canvas.width - 30, cy);
+        ctx.stroke();
+
+        // 2. Objective Lens (Small)
+        ctx.fillStyle = 'rgba(56, 189, 248, 0.2)';
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.ellipse(objLensX, cy, 8, 55, 0, 0, Math.PI * 2);
+        ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('Objective', objLensX - 25, cy - 65);
+
+        // 3. Eyepiece Lens (Larger)
+        ctx.beginPath();
+        ctx.ellipse(eyeLensX, cy, 14, 90, 0, 0, Math.PI * 2);
+        ctx.fill(); ctx.stroke();
+        ctx.fillText('Eyepiece', eyeLensX - 25, cy - 100);
+
+        // 4. Object AB
+        const objX = objLensX - (uo * scale);
+        const objH = 20;
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(objX, cy);
+        ctx.lineTo(objX, cy - objH);
+        ctx.stroke();
+        ctx.fillStyle = '#10b981';
+        ctx.fillText('AB', objX - 8, cy - objH - 6);
+
+        // 5. Intermediate Image A'B'
+        const imgX = objLensX + (vo * scale);
+        const imgH = objH * (vo / uo);
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(imgX, cy);
+        ctx.lineTo(imgX, cy + imgH);
+        ctx.stroke();
+        ctx.fillStyle = '#f59e0b';
+        ctx.fillText("A'B'", imgX - 10, cy + imgH + 15);
+
+        // Rays from Object through Objective to Intermediate Image
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 1.4;
+        ctx.beginPath();
+        ctx.moveTo(objX, cy - objH);
+        ctx.lineTo(objLensX, cy - objH);
+        ctx.lineTo(imgX, cy + imgH);
+        ctx.moveTo(objX, cy - objH);
+        ctx.lineTo(objLensX, cy);
+        ctx.lineTo(imgX, cy + imgH);
+        ctx.stroke();
+
+        // Rays from Intermediate Image through Eyepiece
+        ctx.strokeStyle = '#f43f5e';
+        ctx.beginPath();
+        ctx.moveTo(imgX, cy + imgH);
+        ctx.lineTo(eyeLensX, cy + imgH);
+        ctx.lineTo(eyeLensX + 70, cy + imgH - 30);
+        ctx.moveTo(imgX, cy + imgH);
+        ctx.lineTo(eyeLensX, cy);
+        ctx.lineTo(eyeLensX + 70, cy - (imgH * 0.4));
+        ctx.stroke();
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Compound Microscope: Total Power m = m_o · m_e = -${(vo / uo).toFixed(1)} × ${(adj === 'near' ? 1 + 25 / fe : 25 / fe).toFixed(1)} | Dual stage magnification`, canvas.width / 2, canvas.height - 12);
+      }
+
+      function renderTelescopeCanvas(fo, fe, apD, adj) {
+        const cy = canvas.height / 2;
+        const objLensX = 200;
+        const eyeLensX = 540;
+
+        // 1. Principal Axis
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(30, cy);
+        ctx.lineTo(canvas.width - 30, cy);
+        ctx.stroke();
+
+        // 2. Large Objective Lens
+        const objH = Math.min(105, apD * 5);
+        ctx.fillStyle = 'rgba(56, 189, 248, 0.2)';
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 3.5;
+        ctx.beginPath();
+        ctx.ellipse(objLensX, cy, 14, objH, 0, 0, Math.PI * 2);
+        ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`Objective (D = ${apD}cm)`, objLensX - 45, cy - objH - 10);
+
+        // 3. Small Eyepiece Lens
+        ctx.beginPath();
+        ctx.ellipse(eyeLensX, cy, 9, 45, 0, 0, Math.PI * 2);
+        ctx.fill(); ctx.stroke();
+        ctx.fillText('Eyepiece', eyeLensX - 25, cy - 55);
+
+        // 4. Incident Parallel Rays from Distant Star at angle alpha
+        const alpha = 0.12; // rad
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 1.8;
+
+        // Parallel Ray 1 through center O
+        const focusX = eyeLensX - 40;
+        const imgH = (focusX - objLensX) * Math.sin(alpha) * 0.35;
+
+        ctx.beginPath();
+        ctx.moveTo(40, cy - 80 * Math.sin(alpha));
+        ctx.lineTo(objLensX, cy);
+        ctx.lineTo(focusX, cy + imgH);
+        ctx.stroke();
+
+        // Parallel Ray 2 through top of objective
+        ctx.beginPath();
+        ctx.moveTo(40, cy - 40 - 80 * Math.sin(alpha));
+        ctx.lineTo(objLensX, cy - 40);
+        ctx.lineTo(focusX, cy + imgH);
+        ctx.stroke();
+
+        // Intermediate Real Inverted Image A'B' at Focus
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(focusX, cy);
+        ctx.lineTo(focusX, cy + imgH);
+        ctx.stroke();
+        ctx.fillStyle = '#f59e0b';
+        ctx.fillText("A'B'", focusX - 8, cy + imgH + 14);
+
+        // Emergent Rays from Eyepiece into Eye
+        ctx.strokeStyle = '#f43f5e';
+        ctx.lineWidth = 1.6;
+        ctx.beginPath();
+        ctx.moveTo(focusX, cy + imgH);
+        ctx.lineTo(eyeLensX, cy + imgH * 0.5);
+        ctx.lineTo(canvas.width - 50, cy);
+        ctx.moveTo(focusX, cy + imgH);
+        ctx.lineTo(eyeLensX, cy);
+        ctx.lineTo(canvas.width - 50, cy - (imgH * 0.5));
+        ctx.stroke();
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Astronomical Telescope: m = -f_o / f_e = -${(fo / fe).toFixed(1)}× | Large aperture objective collects maximum flux`, canvas.width / 2, canvas.height - 12);
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

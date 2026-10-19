@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Displacement Current & Maxwell's Equations</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 8.1</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 05: Electromagnetic Waves • Chapter 08</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Displacement Current & Maxwell's Equations</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Inconsistency of Ampere's circuital law, time-varying electric flux, missing term derivation, total current continuity, and Maxwell's synthesis of electromagnetism.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek railway track ko jisme beech mein ek chaudi nadi (river) aati hai jahan koi patri nahi bichi. Track par chal rahi train ke passengers ek taraf utarte hain aur boat mein baithkar nadi cross karte hain, fir doosri taraf se nayi train aage nikal jaati hai. Agar koi observer sirf lohe ki patri (physical conduction current $I_c$) ginega, toh use lagega ki nadi ke beech mein connection toot gaya! James Clerk Maxwell ne yahi pehchana: capacitor ke plates ke beech khali space (vacuum) mein koi charge nahi behta, lekin charging ke dauran <strong class="text-white">electric field tezi se badalta hai</strong>. Yeh changing electric field wahi kaam karta hai jo moving charge karta hai—yani magnetic field paida karna! Is virtual bridge ko unhone <strong class="text-white">Displacement Current ($I_d$)</strong> kaha, jisne electromagnetism ke adhoore laws ko jodkar universe ki sabse khoobsurat equations banayi!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Displacement Current ($I_d$)</h3>
+          <p class="text-sm text-slate-400 mb-2">Current arising from time rate of change of electric flux:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$I_d = \varepsilon_0 \frac{d\Phi_E}{dt} = \varepsilon_0 A \frac{dE}{dt}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">SI Unit: $\text{Ampere (A)}$. Outside plates: $I_c = I, I_d = 0$. Inside capacitor gap: $I_c = 0, I_d = I$. Total current is continuous everywhere: $I = I_c + I_d$.</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Ampere-Maxwell Law</h3>
+          <p class="text-sm text-slate-400 mb-2">Generalized line integral of magnetic field:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\oint \vec{B} \cdot d\vec{l} = \mu_0 (I_c + I_d) = \mu_0 I_c + \mu_0 \varepsilon_0 \frac{d\Phi_E}{dt}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Physical Signification: A magnetic field can be produced not only by moving physical charges (conduction current) but also by a time-varying electric field!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Charging Capacitor & Ampere Inconsistency) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Capacitor Charging, Displacement Current & Magnetic Field Bench</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="surfaceToggleBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Amperian Surface: Flat Disk (S₁)
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="maxwellCanvas" width="800" height="390" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Charging Current ($I_c$)</span>
+            <span id="icSliderVal" class="text-cyan-400 font-mono font-bold">2.50 A</span>
+          </div>
+          <input id="icSlider" type="range" min="0.5" max="5.0" step="0.25" value="2.5" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Capacitor Plate Radius ($R$)</span>
+            <span id="rPlateVal" class="text-amber-400 font-mono font-bold">10.0 cm</span>
+          </div>
+          <input id="rPlateSlider" type="range" min="5" max="15" step="1" value="10" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Observation Radius ($r$)</span>
+            <span id="rObsVal" class="text-emerald-400 font-mono font-bold">6.0 cm (Inside Gap)</span>
+          </div>
+          <input id="rObsSlider" type="range" min="2" max="18" step="0.5" value="6" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Total Displacement Current ($I_d$):</span>
+          <div id="idOut" class="text-cyan-400 font-bold text-sm mt-0.5">2.50 A (Exact Match)</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Rate of Flux Change ($d\Phi_E/dt$):</span>
+          <div id="dphiOut" class="text-amber-400 font-bold text-sm mt-0.5">2.82 × 10¹¹ V·m/s</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Induced Field at $r$ ($B$):</span>
+          <div id="bIndOut" class="text-emerald-400 font-bold text-sm mt-0.5">3.00 μT</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Continuity Law Status:</span>
+          <div class="text-indigo-300 font-bold text-sm mt-0.5">I_c + I_d = Invariant</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Comprehensive Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Inconsistency of Ampere's Law & Displacement Current -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Primary Board Derivation</span>
+          <h4 class="text-white font-semibold text-base mt-1">Inconsistency of Ampere's Circuital Law & Deduction of Displacement Current</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Ampere Inconsistency Surfaces (S1 vs S2) -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 240" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-ic-lead" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-efield" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f59e0b"/>
+              </marker>
+            </defs>
+
+            <!-- Charging Lead Wire (Left) -->
+            <line x1="50" y1="120" x2="240" y2="120" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-ic-lead)" />
+            <text x="100" y="105" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">I_c (Conduction Current ➔)</text>
+
+            <!-- Parallel Capacitor Plates (Perspective Slabs) -->
+            <!-- Plate 1 (Left: Positive) -->
+            <rect x="240" y="50" width="12" height="140" fill="#991b1b" stroke="#ef4444" stroke-width="2" rx="2" />
+            <text x="242" y="42" fill="#ef4444" font-size="11" font-weight="bold" font-family="monospace">+Q</text>
+
+            <!-- Plate 2 (Right: Negative) -->
+            <rect x="380" y="50" width="12" height="140" fill="#1e3a8a" stroke="#3b82f6" stroke-width="2" rx="2" />
+            <text x="382" y="42" fill="#3b82f6" font-size="11" font-weight="bold" font-family="monospace">-Q</text>
+
+            <!-- Right Lead Wire -->
+            <line x1="392" y1="120" x2="580" y2="120" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-ic-lead)" />
+            <text x="450" y="105" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">I_c ➔</text>
+
+            <!-- Electric Field Lines between Plates E(t) -->
+            <g stroke="#f59e0b" stroke-width="1.8">
+              <line x1="252" y1="75" x2="375" y2="75" marker-end="url(#arr-efield)" />
+              <line x1="252" y1="105" x2="375" y2="105" marker-end="url(#arr-efield)" />
+              <line x1="252" y1="135" x2="375" y2="135" marker-end="url(#arr-efield)" />
+              <line x1="252" y1="165" x2="375" y2="165" marker-end="url(#arr-efield)" />
+            </g>
+            <text x="285" y="66" fill="#f59e0b" font-size="10" font-weight="bold" font-family="monospace">E(t) Increasing</text>
+
+            <!-- Circular Amperian Loop C around lead wire -->
+            <ellipse cx="170" cy="120" rx="16" ry="42" fill="none" stroke="#10b981" stroke-width="2.5" />
+            <text x="145" y="70" fill="#10b981" font-size="10" font-weight="bold" font-family="monospace">Loop C</text>
+
+            <!-- Surface 1: Flat disk spanning loop C (Green dashed line) -->
+            <line x1="170" y1="78" x2="170" y2="162" stroke="#10b981" stroke-width="2" stroke-dasharray="3,3" />
+            <text x="175" y="155" fill="#10b981" font-size="9" font-family="monospace">Surface S₁ (Flat)</text>
+
+            <!-- Surface 2: Tilted pot / bowl ballooning through the capacitor gap -->
+            <path d="M 170 78 C 210 75, 310 75, 310 120 C 310 165, 210 165, 170 162" fill="rgba(236, 72, 153, 0.12)" stroke="#ec4899" stroke-width="2" stroke-dasharray="4,4" />
+            <text x="315" y="125" fill="#ec4899" font-size="10" font-weight="bold" font-family="monospace">Surface S₂ (Pot shaped)</text>
+            <text x="250" y="215" fill="#ec4899" font-size="9" font-family="monospace">Zero conduction current pierces S₂!</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 8.1A: Ampere's law contradiction; Loop $C$ bounded by flat disk $S_1$ pierces current $I_c$, but pot-shaped surface $S_2$ passing through gap pierces zero conduction current.</p>
+        </div>
+
+        <p>1. Consider a parallel plate capacitor of plate area $A$ being charged by steady conduction current $I_c$.</p>
+        <p>2. Let us calculate the line integral $\oint \vec{B}\cdot d\vec{l}$ around a circular loop $C$ outside the capacitor plate:</p>
+        <p class="text-slate-400">• For a flat circular disk surface $S_1$ spanning loop $C$, the wire pierces it: $\oint \vec{B}\cdot d\vec{l} = \mu_0 I_c$.</p>
+        <p class="text-slate-400">• For a pot-shaped balloon surface $S_2$ having the exact same boundary loop $C$ but passing between the capacitor plates, no wire pierces it: $\oint \vec{B}\cdot d\vec{l} = 0$.</p>
+        <p>3. This gives two completely contradictory answers for the exact same loop $C$! To remove this logical inconsistency, Maxwell postulated that a changing electric field in the vacuum gap must produce a current equivalent to conduction current.</p>
+        <p>4. At any instant during charging, charge on the plates is $q(t)$. Uniform electric field between plates:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$E = \frac{\sigma}{\varepsilon_0} = \frac{q}{\varepsilon_0 A}$$
+        </div>
+        <p>5. Electric flux through surface $S_2$ inside the gap:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\Phi_E = E \cdot A = \left(\frac{q}{\varepsilon_0 A}\right) A = \frac{q}{\varepsilon_0} \implies q = \varepsilon_0 \Phi_E$$
+        </div>
+        <p>6. Differentiating with respect to time $t$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\frac{dq}{dt} = \varepsilon_0 \frac{d\Phi_E}{dt}$$
+        </div>
+        <p>7. Since $\frac{dq}{dt} = I_c$ (rate of charging), this term has the exact dimensions of electric current, defined as the <strong class="text-white">Displacement Current ($I_d$)</strong>:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$I_d = \varepsilon_0 \frac{d\Phi_E}{dt} \quad \text{and} \quad I_d \equiv I_c$$
+        </div>
+        <p class="text-slate-400"><em>Resolution of Inconsistency:</em> While surface $S_1$ carries conduction current $I_c$, surface $S_2$ carries displacement current $I_d = \varepsilon_0 \frac{d\Phi_E}{dt}$. Both surfaces give identical magnetic circulation $\oint \vec{B}\cdot d\vec{l} = \mu_0 I$.</p>
+      </div>
+
+      <!-- Derivation 2: Magnetic Field Inside the Capacitor Gap -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation B</span>
+          <h4 class="text-white font-semibold text-base mt-1">Magnetic Field Induced Inside Circular Capacitor Plates ($r \le R$ and $r \ge R$)</h4>
+        </div>
+        <p>1. Consider circular capacitor plates of radius $R$. Conduction current charging the plates is $I_c$. Total displacement current through the entire gap is $I_d = I_c$.</p>
+        <p>2. Construct a circular Amperian loop of radius $r$ coaxial with the plates inside the gap. By cylindrical symmetry, $\vec{B}$ is tangential to the circle at all points:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\oint \vec{B}\cdot d\vec{l} = B (2\pi r) = \mu_0 I_{d,\text{enc}}$$
+        </div>
+        <p>3. <strong>Case (i) Inside the plates ($r \le R$):</strong> Displacement current is uniformly distributed across plate area $\pi R^2$. The current enclosed by radius $r$ is:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$I_{d,\text{enc}} = I_d \left( \frac{\pi r^2}{\pi R^2} \right) = I_d \frac{r^2}{R^2}$$
+        </div>
+        <p>Substituting into the Ampere-Maxwell law:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$B(2\pi r) = \mu_0 I_d \frac{r^2}{R^2} \implies B = \frac{\mu_0 I_d r}{2\pi R^2} \quad (B \propto r \text{ for } r \le R)$$
+        </div>
+        <p>4. <strong>Case (ii) Outside the plates ($r \ge R$):</strong> The entire displacement current is enclosed ($I_{d,\text{enc}} = I_d = I_c$):</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$B(2\pi r) = \mu_0 I_d \implies B = \frac{\mu_0 I_d}{2\pi r} = \frac{\mu_0 I_c}{2\pi r} \quad \left(B \propto \frac{1}{r} \text{ for } r \ge R\right)$$
+        </div>
+        <p class="text-slate-400"><em>Core Insight:</em> Exactly at the circumference ($r = R$), magnetic field reaches maximum value $B_{\max} = \frac{\mu_0 I_c}{2\pi R}$, completely identical to the field outside a straight wire carrying current $I_c$!</p>
+      </div>
+
+      <!-- Derivation 3: Complete Maxwell's Four Equations in Integral Form -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Foundational Synthesis</span>
+          <h4 class="text-white font-semibold text-base mt-1">Maxwell's Four Master Equations of Electromagnetism</h4>
+        </div>
+        <div class="grid md:grid-cols-2 gap-3 text-xs">
+          <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg">
+            <p class="text-indigo-300 font-bold">1. Gauss's Law for Electricity</p>
+            <div class="text-center py-1 font-mono text-emerald-400">
+              $$\oint \vec{E}\cdot d\vec{A} = \frac{q_{\text{enc}}}{\varepsilon_0}$$
+            </div>
+            <p class="text-slate-400">Electric charges act as sources and sinks of electric field; isolated positive and negative charges exist.</p>
+          </div>
+          <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg">
+            <p class="text-indigo-300 font-bold">2. Gauss's Law for Magnetism</p>
+            <div class="text-center py-1 font-mono text-emerald-400">
+              $$\oint \vec{B}\cdot d\vec{A} = 0$$
+            </div>
+            <p class="text-slate-400">Isolated magnetic monopoles do not exist; magnetic lines are continuous closed unbroken loops.</p>
+          </div>
+          <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg">
+            <p class="text-indigo-300 font-bold">3. Faraday-Lenz Law of Induction</p>
+            <div class="text-center py-1 font-mono text-emerald-400">
+              $$\oint \vec{E}\cdot d\vec{l} = -\frac{d\Phi_B}{dt}$$
+            </div>
+            <p class="text-slate-400">A time-varying magnetic field creates an induced non-electrostatic curling electric field.</p>
+          </div>
+          <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg">
+            <p class="text-indigo-300 font-bold">4. Ampere-Maxwell Law</p>
+            <div class="text-center py-1 font-mono text-emerald-400">
+              $$\oint \vec{B}\cdot d\vec{l} = \mu_0 I_c + \mu_0 \varepsilon_0 \frac{d\Phi_E}{dt}$$
+            </div>
+            <p class="text-slate-400">A magnetic field is created by electric currents as well as by a time-varying electric field.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Displacement Current in a Fully Charged Capacitor</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* A capacitor is fully charged by a DC battery. What is the displacement current between the plates?
+            <br>*Correct Answer:* <strong class="text-white">ZERO ($I_d = 0$)!</strong>
+            Once fully charged, charge $Q$ is constant $\implies$ electric field $E = Q/\varepsilon_0 A$ is constant $\implies d\Phi_E/dt = 0$.
+            Displacement current exists <strong class="text-white">ONLY while the capacitor is charging or discharging</strong>!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Does Displacement Current Dissipate Heat ($I^2R$)?</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Conceptual Trap:* Does displacement current produce Joule heat in the vacuum gap between plates?
+            <br>*Correct Answer:* <strong class="text-white">NO!</strong>
+            Displacement current is not carried by physical charge carriers (electrons or ions); it has no collision mechanism with a lattice ($R = 0$). Hence, <strong class="text-white">no Joule heating occurs ($I_d^2 R = 0$)</strong>. However, it creates identical magnetic fields as conduction current!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Continuity of Current ($I_c$ vs $I_d$)</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            At any cross section along a circuit:
+            <br>• Inside connecting lead wires: $I_c = I, I_d = 0$.
+            <br>• Inside capacitor dielectric gap: $I_c = 0, I_d = I$.
+            <br>• Total current $I_{\text{total}} = I_c + I_d$ is strictly continuous across all cross-sections of the entire circuit.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Symmetry of Nature in Maxwell's Equations</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            • Faraday's law states: Changing magnetic field $\to$ Electric field ($\oint \vec{E}\cdot d\vec{l} = -\frac{d\Phi_B}{dt}$).
+            <br>• Maxwell's fourth law states: Changing electric field $\to$ Magnetic field ($\oint \vec{B}\cdot d\vec{l} = \mu_0\varepsilon_0\frac{d\Phi_E}{dt}$).
+            <br>This mutual time-dependent regeneration of fields is what enables electromagnetic waves to propagate across empty space without any material medium!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A parallel plate capacitor with circular plates of radius $R = 12\text{ cm}$ separated by distance $d = 5.0\text{ mm}$ is being charged by an external current of $0.15\text{ A}$. (a) Calculate the capacitance and the rate of change of potential difference between the plates. (b) Find the displacement current across the plates. (c) Determine the magnetic field induced between the plates at a distance of $r = 6.0\text{ cm}$ from the axis.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Area $A = \pi R^2 = \pi (0.12\text{ m})^2 \approx 4.52 \times 10^{-2}\text{ m}^2$. Capacitance $C$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$C = \frac{\varepsilon_0 A}{d} = \frac{(8.854 \times 10^{-12}) \times (4.52 \times 10^{-2})}{5.0 \times 10^{-3}} \approx 8.01 \times 10^{-11}\text{ F} \approx 80.1\text{ pF}$$
+          </div>
+          <p>Rate of change of voltage: Since $q = C V \implies I = C \frac{dV}{dt}$:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\frac{dV}{dt} = \frac{I}{C} = \frac{0.15\text{ A}}{8.01 \times 10^{-11}\text{ F}} \approx 1.87 \times 10^9\text{ V/s}$$
+          </div>
+          <p>2. Displacement current $I_d$ equals conduction current:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$I_d = I_c = 0.15\text{ Amperes}$$
+          </div>
+          <p>3. Induced magnetic field at $r = 6.0\text{ cm} = 0.06\text{ m}$ (inside $R = 12\text{ cm}$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$B = \frac{\mu_0 I_d r}{2\pi R^2} = \frac{(4\pi \times 10^{-7}) \times 0.15 \times 0.06}{2\pi \times (0.12)^2} = \frac{2 \times 10^{-7} \times 0.009}{0.0144} = \frac{1.8 \times 10^{-9}}{0.0144}$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$B = 1.25 \times 10^{-7}\text{ Tesla} = 0.125\text{ }\mu\text{T}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: The electric field between the plates of a circular parallel plate capacitor of radius $R$ is changing at a uniform rate $\frac{dE}{dt} = K$. Show that the ratio of the magnetic field induced at distance $r_1 = R/2$ to that at distance $r_2 = 2R$ from the central axis is $1:1$.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. At an interior point ($r_1 = R/2 \le R$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$B_1(2\pi r_1) = \mu_0 \varepsilon_0 \left(\frac{dE}{dt}\right)(\pi r_1^2) \implies B_1 = \frac{\mu_0 \varepsilon_0 r_1}{2} K = \frac{\mu_0 \varepsilon_0 (R/2)}{2} K = \frac{\mu_0 \varepsilon_0 R}{4} K$$
+          </div>
+          <p>2. At an exterior point ($r_2 = 2R \ge R$): The entire flux through plate area $\pi R^2$ contributes:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$B_2(2\pi r_2) = \mu_0 \varepsilon_0 \left(\frac{dE}{dt}\right)(\pi R^2) \implies B_2 = \frac{\mu_0 \varepsilon_0 R^2}{2 r_2} K = \frac{\mu_0 \varepsilon_0 R^2}{2 (2R)} K = \frac{\mu_0 \varepsilon_0 R}{4} K$$
+          </div>
+          <p>3. Comparing both fields:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\frac{B_1}{B_2} = \frac{\frac{\mu_0 \varepsilon_0 R}{4} K}{\frac{\mu_0 \varepsilon_0 R}{4} K} = \frac{1}{1}$$
+          </div>
+          <p class="text-slate-400"><em>Symmetry Insight:</em> Inside the plates $B \propto r$, and outside $B \propto 1/r$. Thus, the induced field at half radius ($R/2$) exactly equals the field at double radius ($2R$)!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Displacement Current</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$I_d = \varepsilon_0\frac{d\Phi_E}{dt}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Ampere-Maxwell Law</p>
+          <p class="text-xs font-bold text-white mt-1">$\oint B\cdot dl = \mu_0(I_c + I_d)$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Field inside plates ($r \le R$)</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$B = \frac{\mu_0 I_d r}{2\pi R^2} \propto r$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Field outside ($r \ge R$)</p>
+          <p class="text-xs font-bold text-cyan-300 mt-1">$B = \frac{\mu_0 I_d}{2\pi r} \propto \frac{1}{r}$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Maxwell & Displacement Current Canvas Simulation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('maxwellCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const surfaceToggleBtn = document.getElementById('surfaceToggleBtn');
+      const icSlider = document.getElementById('icSlider');
+      const rPlateSlider = document.getElementById('rPlateSlider');
+      const rObsSlider = document.getElementById('rObsSlider');
+
+      const icSliderVal = document.getElementById('icSliderVal');
+      const rPlateVal = document.getElementById('rPlateVal');
+      const rObsVal = document.getElementById('rObsVal');
+
+      const idOut = document.getElementById('idOut');
+      const dphiOut = document.getElementById('dphiOut');
+      const bIndOut = document.getElementById('bIndOut');
+
+      // 'flat' (S1 outside) or 'pot' (S2 between gap)
+      let currentSurface = 'flat';
+      let simPhase = 0;
+
+      surfaceToggleBtn.addEventListener('click', () => {
+        currentSurface = (currentSurface === 'flat') ? 'pot' : 'flat';
+        surfaceToggleBtn.textContent = (currentSurface === 'flat')
+          ? 'Amperian Surface: Flat Disk (S₁)'
+          : 'Amperian Surface: Bulging Pot (S₂)';
+      });
+
+      function renderLoop() {
+        simPhase += 0.05;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const Ic = parseFloat(icSlider.value);
+        const R_plate_cm = parseFloat(rPlateSlider.value);
+        const r_obs_cm = parseFloat(rObsSlider.value);
+
+        icSliderVal.textContent = `${Ic.toFixed(2)} A`;
+        rPlateVal.textContent = `${R_plate_cm.toFixed(1)} cm`;
+        rObsVal.textContent = `${r_obs_cm.toFixed(1)} cm (${r_obs_cm <= R_plate_cm ? 'Inside' : 'Outside'})`;
+
+        // Physics Calculation
+        const Id = Ic; // Exact equality
+        const eps0 = 8.854e-12;
+        const mu0 = 4 * Math.PI * 1e-7;
+        const R_m = R_plate_cm / 100;
+        const r_m = r_obs_cm / 100;
+
+        const dPhiE_dt = Id / eps0; // V·m/s
+
+        let B_ind = 0;
+        if (r_m <= R_m) {
+          B_ind = (mu0 * Id * r_m) / (2 * Math.PI * R_m * R_m);
+        } else {
+          B_ind = (mu0 * Id) / (2 * Math.PI * r_m);
+        }
+
+        idOut.textContent = `${Id.toFixed(2)} A`;
+        dphiOut.textContent = `${(dPhiE_dt).toExponential(2)} V·m/s`;
+        bIndOut.textContent = `${(B_ind * 1e6).toFixed(2)} μT`;
+
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        renderCapacitorBench(cx, cy, Ic, R_plate_cm, r_obs_cm, currentSurface, B_ind, simPhase);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderCapacitorBench(cx, cy, Ic, R_cm, r_obs_cm, surfMode, B_ind, phase) {
+        const plateH = R_cm * 12;
+        const plateGap = 130;
+        const leftPlateX = cx - plateGap / 2;
+        const rightPlateX = cx + plateGap / 2;
+
+        // 1. Lead Wires
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(60, cy); ctx.lineTo(leftPlateX, cy);
+        ctx.moveTo(rightPlateX, cy); ctx.lineTo(canvas.width - 60, cy);
+        ctx.stroke();
+
+        // Animated current flow beads in wires
+        const beadX1 = 60 + ((phase * 80) % (leftPlateX - 60));
+        ctx.fillStyle = '#fbbf24';
+        ctx.beginPath(); ctx.arc(beadX1, cy, 3.5, 0, Math.PI * 2); ctx.fill();
+
+        const beadX2 = rightPlateX + ((phase * 80) % (canvas.width - 60 - rightPlateX));
+        ctx.beginPath(); ctx.arc(beadX2, cy, 3.5, 0, Math.PI * 2); ctx.fill();
+
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`Conduction Current I_c = ${Ic.toFixed(2)}A ➔`, 70, cy - 14);
+        ctx.fillText(`I_c ➔`, canvas.width - 120, cy - 14);
+
+        // 2. Parallel Plates (Red = Positive left, Blue = Negative right)
+        ctx.fillStyle = '#991b1b';
+        ctx.strokeStyle = '#ef4444';
+        ctx.lineWidth = 2;
+        ctx.fillRect(leftPlateX - 6, cy - plateH / 2, 12, plateH);
+        ctx.strokeRect(leftPlateX - 6, cy - plateH / 2, 12, plateH);
+
+        ctx.fillStyle = '#1e3a8a';
+        ctx.strokeStyle = '#3b82f6';
+        ctx.fillRect(rightPlateX - 6, cy - plateH / 2, 12, plateH);
+        ctx.strokeRect(rightPlateX - 6, cy - plateH / 2, 12, plateH);
+
+        // Plate Polarity Signs
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 12px monospace';
+        ctx.fillText('+', leftPlateX - 18, cy);
+        ctx.fillText('-', rightPlateX + 12, cy);
+
+        // 3. Time-Varying Electric Field E(t) in Gap
+        ctx.strokeStyle = 'rgba(245, 158, 11, 0.4)';
+        ctx.lineWidth = 1.5;
+        const eLines = 5;
+        for (let i = 0; i < eLines; i++) {
+          const ey = cy - plateH / 2 + 15 + i * ((plateH - 30) / (eLines - 1));
+          ctx.beginPath();
+          ctx.moveTo(leftPlateX + 8, ey);
+          ctx.lineTo(rightPlateX - 8, ey);
+          ctx.stroke();
+
+          // Arrowhead
+          ctx.fillStyle = '#f59e0b';
+          ctx.beginPath();
+          ctx.moveTo(rightPlateX - 8, ey);
+          ctx.lineTo(rightPlateX - 16, ey - 4);
+          ctx.lineTo(rightPlateX - 16, ey + 4);
+          ctx.fill();
+        }
+
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = 'bold 10px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`E(t) Field (dΦ_E/dt ➔)`, cx, cy - plateH / 2 - 12);
+
+        // 4. Circular Amperian Loop C (Green)
+        const loopX = (surfMode === 'flat') ? leftPlateX - 65 : leftPlateX - 65;
+        const loopRadius = 45;
+
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.ellipse(loopX, cy, 14, loopRadius, 0, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.fillStyle = '#10b981';
+        ctx.font = 'bold 10px monospace';
+        ctx.fillText('Loop C', loopX - 22, cy - loopRadius - 6);
+
+        // 5. Render Surfaces S1 vs S2
+        if (surfMode === 'flat') {
+          // Flat Disk S1
+          ctx.fillStyle = 'rgba(16, 185, 129, 0.2)';
+          ctx.beginPath();
+          ctx.ellipse(loopX, cy, 14, loopRadius, 0, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = '#10b981';
+          ctx.fillText('Surface S₁ (Flat Disc)', loopX, cy + loopRadius + 18);
+          ctx.fillText('Pierced by I_c: ∮B·dl = μ₀I_c', loopX, cy + loopRadius + 32);
+        } else {
+          // Pot-shaped Surface S2 bulging through gap
+          ctx.fillStyle = 'rgba(236, 72, 153, 0.18)';
+          ctx.strokeStyle = '#ec4899';
+          ctx.lineWidth = 2;
+          ctx.setLineDash([5, 4]);
+
+          ctx.beginPath();
+          ctx.moveTo(loopX, cy - loopRadius);
+          ctx.quadraticCurveTo(cx, cy - loopRadius - 10, cx + 15, cy);
+          ctx.quadraticCurveTo(cx, cy + loopRadius + 10, loopX, cy + loopRadius);
+          ctx.stroke();
+          ctx.setLineDash([]);
+
+          ctx.fillStyle = '#ec4899';
+          ctx.fillText('Surface S₂ (Pot through Gap)', cx + 10, cy + loopRadius + 22);
+          ctx.fillText('No physical wire! ∮B·dl = μ₀I_d', cx + 10, cy + loopRadius + 36);
+        }
+
+        // 6. Concentric Magnetic Field Rings Induced by Displacement Current in Gap
+        const obsScale = r_obs_cm * 6;
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 1.8;
+        ctx.setLineDash([3, 3]);
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, 16, obsScale, 0, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = '#38bdf8';
+        ctx.fillText(`Induced B = ${B_ind.toFixed(2)}μT`, cx, cy + obsScale + 12);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.fillText('Continuity of Current: I_c in wire is identically replaced by I_d = ε₀(dΦ_E/dt) in gap', cx, canvas.height - 12);
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

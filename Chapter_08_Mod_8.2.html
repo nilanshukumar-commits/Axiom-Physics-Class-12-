@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Characteristics & Propagation of EM Waves</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 8.2</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 05: Electromagnetic Waves • Chapter 08</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Characteristics & Propagation of Electromagnetic Waves</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Transverse wave geometry ($\vec{E} \perp \vec{B} \perp \vec{c}$), velocity relations, equal energy sharing, radiation pressure, and momentum transport.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho do acrobats ko jo hawa mein ek dusre ko bari-bari se toss kar rahe hain bina zameen ko chuye: pehla acrobat doosre ko hawa mein uchhalta hai, aur doosra aage badhkar pehle ko aage fenkta hai. <strong class="text-white">Electromagnetic Wave theek yahi self-sustaining leapfrog process hai</strong>! 
+        Ek oscillating electric field ek magnetic field generate karta hai (Ampere-Maxwell Law), aur woh badalta hua magnetic field turant agle point par ek naya electric field paida kar deta hai (Faraday's Law). Dono fields ek dusre ko generate karte hue vacuum ke sannate mein $3 \times 10^8\text{ m/s}$ ki cosmic speed se aage badhte hain—inhe travel karne ke liye kisi physical material medium ya hawa ki zarurat nahi hoti!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Harmonic Wave Equations & Velocity</h3>
+          <p class="text-sm text-slate-400 mb-2">For wave propagating along the $+x$ axis:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$E_y(x,t) = E_0 \sin(kx - \omega t), \quad B_z(x,t) = B_0 \sin(kx - \omega t)$$
+            $$c = \frac{1}{\sqrt{\mu_0 \varepsilon_0}} = \frac{E_0}{B_0} = \frac{\omega}{k} \approx 3.0 \times 10^8\text{ m/s}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">In material medium: $v = \frac{1}{\sqrt{\mu \varepsilon}} = \frac{c}{n}$ where $n = \sqrt{\mu_r \varepsilon_r}$ is refractive index.</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Energy Density, Momentum & Pressure</h3>
+          <p class="text-sm text-slate-400 mb-2">Equal energy partition between electric and magnetic vectors:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$u_{\text{avg}} = \frac{1}{2}\varepsilon_0 E_{\text{rms}}^2 + \frac{B_{\text{rms}}^2}{2\mu_0} = \varepsilon_0 E_{\text{rms}}^2 = \frac{1}{2}\varepsilon_0 E_0^2$$
+            $$I = u_{\text{avg}} c = \frac{1}{2}\varepsilon_0 c E_0^2, \quad p = \frac{U}{c}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Radiation Pressure on surface: $P_{\text{rad}} = \frac{I}{c}$ (Complete absorption); $P_{\text{rad}} = \frac{2I}{c}$ (Complete reflection).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (3D Orthogonal EM Wave Simulator) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: 3D Orthogonal Field Wave Simulator ($\vec{E} \perp \vec{B} \perp \vec{c}$)</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="pauseToggleBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Pause Animation
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="emWaveCanvas" width="800" height="390" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Peak Electric Field ($E_0$)</span>
+            <span id="e0SliderVal" class="text-rose-400 font-mono font-bold">300 V/m</span>
+          </div>
+          <input id="e0Slider" type="range" min="60" max="600" step="20" value="300" class="w-full accent-rose-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Propagation Speed / Frequency</span>
+            <span id="speedSliderVal" class="text-cyan-400 font-mono font-bold">1.0x Wave Velocity</span>
+          </div>
+          <input id="speedSlider" type="range" min="0.2" max="2.5" step="0.1" value="1.0" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Peak Magnetic Field ($B_0 = E_0/c$)</span>
+            <span id="b0DisplayVal" class="text-blue-400 font-mono font-bold">1.00 μT</span>
+          </div>
+          <div class="text-[11px] text-slate-500 mt-2 font-mono">B₀ = E₀ / (3.0 × 10⁸ m/s)</div>
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Poynting Flux Intensity ($I$):</span>
+          <div id="intensityVal" class="text-rose-400 font-bold text-sm mt-0.5">119.4 W/m²</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Total Energy Density ($u_{\text{avg}}$):</span>
+          <div id="uAvgVal" class="text-cyan-400 font-bold text-sm mt-0.5">3.98 × 10⁻⁷ J/m³</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Radiation Pressure (Absorbing):</span>
+          <div id="radPressVal" class="text-amber-400 font-bold text-sm mt-0.5">3.98 × 10⁻⁷ N/m²</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Electric vs Magnetic Ratio:</span>
+          <div class="text-emerald-400 font-bold text-sm mt-0.5">u_E = u_B (50% / 50%)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Comprehensive Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Transverse Wave Geometry and Speed of Light -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Primary Board Derivation</span>
+          <h4 class="text-white font-semibold text-base mt-1">Mathematical Relation Between Amplitudes ($E_0 = c B_0$) & Speed of Light ($c = 1/\sqrt{\mu_0\varepsilon_0}$)</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: 3D Isometric View of EM Wave -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 250" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-axis-x" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+              </marker>
+              <marker id="arr-axis-y" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-axis-z" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#3b82f6"/>
+              </marker>
+            </defs>
+
+            <!-- 3D Coordinate Axes -->
+            <!-- x-axis (Direction of propagation: rightward) -->
+            <line x1="80" y1="130" x2="600" y2="130" stroke="#10b981" stroke-width="2" marker-end="url(#arr-axis-x)" />
+            <text x="590" y="120" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">x (Wave Vector k / c ➔)</text>
+
+            <!-- y-axis (Vertical: Electric field) -->
+            <line x1="120" y1="210" x2="120" y2="30" stroke="#f43f5e" stroke-width="2" marker-end="url(#arr-axis-y)" />
+            <text x="126" y="38" fill="#f43f5e" font-size="11" font-weight="bold" font-family="monospace">y (E-Field Plane)</text>
+
+            <!-- z-axis (Isometric oblique forward: Magnetic field) -->
+            <line x1="120" y1="130" x2="40" y2="200" stroke="#3b82f6" stroke-width="2" marker-end="url(#arr-axis-z)" />
+            <text x="25" y="215" fill="#3b82f6" font-size="11" font-weight="bold" font-family="monospace">z (B-Field Plane)</text>
+
+            <circle cx="120" cy="130" r="3.5" fill="#ffffff" />
+            <text x="108" y="142" fill="#cbd5e1" font-size="10" font-family="monospace">O</text>
+
+            <!-- E-field vertical sine wave (Red curve in xy plane) -->
+            <path d="M 120 130 Q 180 50, 240 130 Q 300 210, 360 130 Q 420 50, 480 130" fill="none" stroke="#f43f5e" stroke-width="2.5" />
+            <text x="180" y="42" fill="#f43f5e" font-size="11" font-weight="bold" font-family="monospace">+E₀</text>
+
+            <!-- Vertical vector arrows for E-field -->
+            <g stroke="#f43f5e" stroke-width="1.2">
+              <line x1="150" y1="130" x2="150" y2="78" /><line x1="180" y1="130" x2="180" y2="52" /><line x1="210" y1="130" x2="210" y2="78" />
+              <line x1="270" y1="130" x2="270" y2="182" /><line x1="300" y1="130" x2="300" y2="208" /><line x1="330" y1="130" x2="330" y2="182" />
+            </g>
+
+            <!-- B-field horizontal/oblique sine wave (Blue curve in xz plane) -->
+            <path d="M 120 130 Q 160 170, 240 130 Q 320 90, 360 130 Q 400 170, 480 130" fill="none" stroke="#3b82f6" stroke-width="2.5" />
+            <text x="185" y="180" fill="#3b82f6" font-size="11" font-weight="bold" font-family="monospace">+B₀</text>
+
+            <!-- Horizontal vector arrows for B-field -->
+            <g stroke="#3b82f6" stroke-width="1.2">
+              <line x1="150" y1="130" x2="165" y2="148" /><line x1="180" y1="130" x2="198" y2="160" /><line x1="210" y1="130" x2="225" y2="148" />
+              <line x1="270" y1="130" x2="255" y2="112" /><line x1="300" y1="130" x2="282" y2="100" /><line x1="330" y1="130" x2="315" y2="112" />
+            </g>
+
+            <!-- Wavelength Lambda Dimension Marker -->
+            <line x1="180" y1="30" x2="420" y2="30" stroke="#fbbf24" stroke-width="1.5" />
+            <line x1="180" y1="24" x2="180" y2="36" stroke="#fbbf24" stroke-width="1.5" />
+            <line x1="420" y1="24" x2="420" y2="36" stroke="#fbbf24" stroke-width="1.5" />
+            <text x="275" y="24" fill="#fbbf24" font-size="11" font-weight="bold" font-family="monospace">Wavelength λ</text>
+
+            <!-- Orthogonality Callout Box -->
+            <rect x="490" y="150" width="145" height="45" fill="rgba(15, 23, 42, 0.85)" stroke="#10b981" stroke-width="1.5" rx="6" />
+            <text x="500" y="168" fill="#10b981" font-size="10" font-weight="bold" font-family="monospace">E ⊥ B ⊥ k</text>
+            <text x="500" y="184" fill="#cbd5e1" font-size="9" font-family="monospace">c = (E × B) direction</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 8.2A: Mutual spatial orthogonality of Electric field $\vec{E}$ ($y$-axis), Magnetic field $\vec{B}$ ($z$-axis), and propagation direction $\vec{c}$ ($x$-axis).</p>
+        </div>
+
+        <p>1. In free space (vacuum), charge density $\rho = 0$ and conduction current $I_c = 0$. Maxwell's third and fourth equations in differential/wave format relate the rate of change of space and time:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\frac{\partial E_y}{\partial x} = -\frac{\partial B_z}{\partial t} \quad \text{--- [Eq. 1 from Faraday's Law]}$$
+          $$-\frac{\partial B_z}{\partial x} = \mu_0 \varepsilon_0 \frac{\partial E_y}{\partial t} \quad \text{--- [Eq. 2 from Ampere-Maxwell Law]}$$
+        </div>
+        <p>2. Differentiating Eq. 1 with respect to $x$ and substituting into Eq. 2 yields the classical three-dimensional wave equation:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\frac{\partial^2 E_y}{\partial x^2} = \mu_0 \varepsilon_0 \frac{\partial^2 E_y}{\partial t^2}$$
+        </div>
+        <p>3. Comparing with the standard mechanical wave equation $\frac{\partial^2 y}{\partial x^2} = \frac{1}{v^2}\frac{\partial^2 y}{\partial t^2}$, the velocity of propagation in vacuum is:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$c = \frac{1}{\sqrt{\mu_0 \varepsilon_0}} = \frac{1}{\sqrt{(4\pi \times 10^{-7}) \times (8.854 \times 10^{-12})}} \approx 2.998 \times 10^8\text{ m/s}$$
+        </div>
+        <p>4. Substituting trial harmonic solutions $E_y = E_0\sin(kx - \omega t)$ and $B_z = B_0\sin(kx - \omega t)$ into Eq. 1:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$k E_0 \cos(kx - \omega t) = \omega B_0 \cos(kx - \omega t) \implies \frac{E_0}{B_0} = \frac{\omega}{k} = c$$
+        </div>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$E_0 = c B_0 \quad \text{or} \quad E_{\text{rms}} = c B_{\text{rms}}$$
+        </div>
+      </div>
+
+      <!-- Derivation 2: Equal Energy Density Sharing -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation B</span>
+          <h4 class="text-white font-semibold text-base mt-1">Proof of Equal Energy Distribution between Electric and Magnetic Fields</h4>
+        </div>
+        <p>1. The instantaneous electrostatic energy density is $u_E = \frac{1}{2}\varepsilon_0 E^2$ and magnetic energy density is $u_B = \frac{B^2}{2\mu_0}$.</p>
+        <p>2. The average electric energy density over a full harmonic cycle is:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\langle u_E \rangle = \frac{1}{2}\varepsilon_0 \langle E_0^2 \sin^2(kx - \omega t) \rangle = \frac{1}{2}\varepsilon_0 E_0^2 \left(\frac{1}{2}\right) = \frac{1}{4}\varepsilon_0 E_0^2$$
+        </div>
+        <p>3. The average magnetic energy density over a full cycle is:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\langle u_B \rangle = \frac{B_0^2}{4\mu_0}$$
+        </div>
+        <p>4. Substitute $B_0 = E_0/c$ and $c^2 = \frac{1}{\mu_0\varepsilon_0}$ into the magnetic energy density expression:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\langle u_B \rangle = \frac{(E_0/c)^2}{4\mu_0} = \frac{E_0^2}{4\mu_0 c^2} = \frac{E_0^2}{4\mu_0 \left(\frac{1}{\mu_0\varepsilon_0}\right)} = \frac{1}{4}\varepsilon_0 E_0^2$$
+        </div>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\langle u_E \rangle \equiv \langle u_B \rangle = \frac{1}{4}\varepsilon_0 E_0^2 = \frac{1}{4}\frac{B_0^2}{\mu_0}$$
+        </div>
+        <p>5. Total average electromagnetic energy density $u_{\text{avg}}$:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$u_{\text{avg}} = \langle u_E \rangle + \langle u_B \rangle = \frac{1}{2}\varepsilon_0 E_0^2 = \varepsilon_0 E_{\text{rms}}^2 = \frac{B_0^2}{2\mu_0} = \frac{B_{\text{rms}}^2}{\mu_0}$$
+        </div>
+        <p class="text-slate-400"><em>Core Fact:</em> Although the numerical value of $E_0$ is huge compared to $B_0$ ($E_0 = 3\times 10^8 B_0$), exactly <strong>50% of total wave energy</strong> is transported by the electric field, and the remaining <strong>50%</strong> by the magnetic field.</p>
+      </div>
+
+      <!-- Derivation 3: Poynting Vector & Radiation Pressure -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation C</span>
+          <h4 class="text-white font-semibold text-base mt-1">Poynting Vector $\vec{S}$, Intensity & Momentum Transfer</h4>
+        </div>
+        <p>1. The energy flowing per unit area per second normal to propagation direction is defined by the <strong class="text-white">Poynting Vector ($\vec{S}$)</strong>:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\vec{S} = \frac{1}{\mu_0} (\vec{E} \times \vec{B}) \quad \left(\text{Unit: }\frac{\text{Watt}}{\text{m}^2}\right)$$
+        </div>
+        <p>2. Time-averaged value of $|\vec{S}|$ represents Wave Intensity ($I$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$I = \langle S \rangle = u_{\text{avg}} c = \left(\frac{1}{2}\varepsilon_0 E_0^2\right) c = \frac{E_0 B_0}{2\mu_0}$$
+        </div>
+        <p>3. If electromagnetic radiation carrying total energy $U$ is incident on a surface, it delivers linear momentum $p$:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$p = \frac{U}{c} \quad (\text{For complete absorption}), \qquad p = \frac{2U}{c} \quad (\text{For complete reflection})$$
+        </div>
+        <p>4. Consequently, electromagnetic waves exert mechanical <strong class="text-white">Radiation Pressure ($P_{\text{rad}}$)</strong> on surfaces:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$P_{\text{rad}} = \frac{I}{c} \quad (\text{Perfect Absorber}), \qquad P_{\text{rad}} = \frac{2I}{c} \quad (\text{Perfect Reflector / Mirror})$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: The Source of Electromagnetic Waves</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            • <strong>Stationary Charge ($v = 0$):</strong> Produces electrostatic field only ($\vec{E}$).
+            <br>• <strong>Uniformly Moving Charge ($v = \text{const}$):</strong> Produces both static $\vec{E}$ and steady $\vec{B}$, but <strong class="text-white">radiates NO electromagnetic waves</strong>!
+            <br>• <strong>Accelerated / Oscillating Charge ($a \ne 0$):</strong> RADIATES electromagnetic waves continuously! An LC circuit produces EM waves because electrons undergo continuous oscillatory acceleration.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: "B-Field is Weak, So Electric Field Carries All Energy" Myth</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Exam Trap Question:* Since $B_0 = E_0/c \approx 10^{-8} E_0$, does the electric field carry $99.99\%$ of wave energy?
+            <br>*Correct Answer:* <strong class="text-white">NO! Both carry exactly 50% energy!</strong>
+            Energy density formula contains $\mu_0$ in denominator ($\mu_0 \approx 10^{-6}$):
+            $$u_E = \frac{1}{4}\varepsilon_0 E_0^2 \equiv u_B = \frac{B_0^2}{4\mu_0}$$
+            Energy sharing is strictly <strong>1:1</strong>!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Cross-Product Direction of Wave Propagation</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            The unit vector along the propagation of an electromagnetic wave is given strictly by:
+            $$\hat{c} = \hat{E} \times \hat{B} \quad (\text{NOT } \hat{B} \times \hat{E}!)$$
+            *If $\vec{E}$ points along $+\hat{j}$ and $\vec{B}$ points along $+\hat{k}$*:
+            $\vec{c}$ travels along $\hat{j}\times\hat{k} = \mathbf{+\hat{i}}$ (along $+x$ axis).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Why Optical Effects are Dominated by Electric Vector</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Lorentz force on an electron in an atom: $F_E = e E$ and $F_B = e v B = e v (E/c) = (v/c) F_E$.
+            Because typical orbital electron speeds in materials are $v \ll c$, magnetic force is negligible compared to electric force ($F_B \approx 10^{-4} F_E$). Therefore, the <strong class="text-white">Electric Vector $\vec{E}$ is called the Light Vector</strong> responsible for all optical vision, photographic, and polarization effects.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: In a plane electromagnetic wave, the electric field oscillates sinusoidally at a frequency of $2.0 \times 10^{10}\text{ Hz}$ and amplitude $48\text{ V/m}$. (a) What is the wavelength of the wave? (b) What is the amplitude of the oscillating magnetic field? (c) Show that the average energy density of the $\vec{E}$ field equals the average energy density of the $\vec{B}$ field.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Frequency $f = 2.0 \times 10^{10}\text{ Hz}$, $c = 3.0 \times 10^8\text{ m/s}$. Wavelength:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\lambda = \frac{c}{f} = \frac{3.0 \times 10^8\text{ m/s}}{2.0 \times 10^{10}\text{ Hz}} = 1.5 \times 10^{-2}\text{ m} = 1.5\text{ cm} \quad (\text{Microwaves})$$
+          </div>
+          <p>2. Magnetic field amplitude ($B_0$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$B_0 = \frac{E_0}{c} = \frac{48\text{ V/m}}{3.0 \times 10^8\text{ m/s}} = 1.6 \times 10^{-7}\text{ Tesla} = 0.16\text{ }\mu\text{T}$$
+          </div>
+          <p>3. Energy densities:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\langle u_E \rangle = \frac{1}{4}\varepsilon_0 E_0^2 = \frac{1}{4} \times (8.854 \times 10^{-12}) \times (48)^2 \approx 5.10 \times 10^{-9}\text{ J/m}^3$$
+            $$\langle u_B \rangle = \frac{B_0^2}{4\mu_0} = \frac{(1.6 \times 10^{-7})^2}{4 \times (4\pi \times 10^{-7})} = \frac{2.56 \times 10^{-14}}{5.026 \times 10^{-6}} \approx 5.10 \times 10^{-9}\text{ J/m}^3$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\langle u_E \rangle \equiv \langle u_B \rangle \approx 5.10 \times 10^{-9}\text{ J/m}^3 \quad (\text{Equal partition proved})$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: Light with an energy flux of $18\text{ W/cm}^2$ falls on a non-reflecting completely absorbing surface at normal incidence. If the surface has an area of $20\text{ cm}^2$, find the total momentum delivered to the surface in $30\text{ minutes}$ and determine the average radiation force exerted on it. What would be the force if the surface were a perfect mirror?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Convert intensity and area into SI units:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$I = 18\text{ W/cm}^2 = 18 \times 10^4\text{ W/m}^2 = 1.8 \times 10^5\text{ W/m}^2$$
+            $$A = 20\text{ cm}^2 = 20 \times 10^{-4}\text{ m}^2 = 2.0 \times 10^{-3}\text{ m}^2$$
+          </div>
+          <p>Total energy incident in $t = 30\text{ min} = 1800\text{ s}$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$U = I \cdot A \cdot t = (1.8 \times 10^5) \times (2.0 \times 10^{-3}) \times 1800 = 360 \times 1800 = 6.48 \times 10^5\text{ Joules}$$
+          </div>
+          <p>2. Momentum delivered to absorbing surface ($p = U/c$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$p = \frac{U}{c} = \frac{6.48 \times 10^5\text{ J}}{3.0 \times 10^8\text{ m/s}} = 2.16 \times 10^{-3}\text{ kg}\cdot\text{m/s}$$
+          </div>
+          <p>3. Average radiation force exerted on absorbing surface:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$F_{\text{abs}} = \frac{p}{t} = \frac{2.16 \times 10^{-3}\text{ N}\cdot\text{s}}{1800\text{ s}} = 1.20 \times 10^{-6}\text{ N} \quad \left(\text{or } F = \frac{I A}{c} = \frac{360}{3\times 10^8} = 1.2\times 10^{-6}\text{ N}\right)$$
+          </div>
+          <p>4. If the surface were a perfectly reflecting mirror, momentum change doubles ($\Delta p = 2U/c$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$F_{\text{ref}} = 2 \times F_{\text{abs}} = 2 \times (1.20 \times 10^{-6}\text{ N}) = 2.40 \times 10^{-6}\text{ N}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Wave Speed</p>
+          <p class="text-xs font-bold text-white mt-1">$c = \frac{1}{\sqrt{\mu_0\varepsilon_0}} = \frac{E_0}{B_0}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Energy Density</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$u = \frac{1}{2}\varepsilon_0 E_0^2$ ($50\% E, 50\% B$)</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Poynting Vector</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$\vec{S} = \frac{1}{\mu_0}(\vec{E}\times\vec{B})$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Radiation Pressure</p>
+          <p class="text-xs font-bold text-rose-400 mt-1">$P = \frac{I}{c}$ (Abs), $\frac{2I}{c}$ (Ref)</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS 3D EM Wave Propagation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('emWaveCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const pauseToggleBtn = document.getElementById('pauseToggleBtn');
+      const e0Slider = document.getElementById('e0Slider');
+      const speedSlider = document.getElementById('speedSlider');
+
+      const e0SliderVal = document.getElementById('e0SliderVal');
+      const speedSliderVal = document.getElementById('speedSliderVal');
+      const b0DisplayVal = document.getElementById('b0DisplayVal');
+
+      const intensityVal = document.getElementById('intensityVal');
+      const uAvgVal = document.getElementById('uAvgVal');
+      const radPressVal = document.getElementById('radPressVal');
+
+      let isPlaying = true;
+      let wavePhase = 0;
+
+      pauseToggleBtn.addEventListener('click', () => {
+        isPlaying = !isPlaying;
+        pauseToggleBtn.textContent = isPlaying ? 'Pause Animation' : 'Resume Animation';
+      });
+
+      function renderLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const E0 = parseFloat(e0Slider.value);
+        const speedMult = parseFloat(speedSlider.value);
+
+        const c_speed = 3.0e8;
+        const eps0 = 8.854e-12;
+        const B0 = E0 / c_speed;
+
+        e0SliderVal.textContent = `${E0.toFixed(0)} V/m`;
+        speedSliderVal.textContent = `${speedMult.toFixed(1)}x Wave Velocity`;
+        b0DisplayVal.textContent = `${(B0 * 1e6).toFixed(2)} μT`;
+
+        // Physics Calculation
+        const u_avg = 0.5 * eps0 * E0 * E0; // J/m³
+        const intensity = u_avg * c_speed; // W/m²
+        const radPress = intensity / c_speed; // N/m²
+
+        intensityVal.textContent = `${intensity.toFixed(1)} W/m²`;
+        uAvgVal.textContent = `${(u_avg).toExponential(2)} J/m³`;
+        radPressVal.textContent = `${(radPress).toExponential(2)} N/m²`;
+
+        if (isPlaying) {
+          wavePhase += (0.045 * speedMult);
+        }
+
+        render3DIsometricWave(E0, wavePhase);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function render3DIsometricWave(E0, phase) {
+        const originX = 110;
+        const originY = 200;
+        const axisLength = 620;
+
+        // 3D Isometric Projections
+        // Propagation axis (+x) runs horizontally rightwards
+        // E-field (vertical y) runs directly up and down
+        // B-field (horizontal z) runs diagonally forward-left / backward-right
+
+        // 1. Central Propagation Axis (x-axis)
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(originX - 30, originY);
+        ctx.lineTo(originX + axisLength, originY);
+        ctx.stroke();
+
+        ctx.fillStyle = '#10b981';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('Direction of Wave Propagation ➔ (+x axis)', originX + axisLength - 260, originY + 28);
+
+        // 2. Draw Transverse Waves: E-field (Red) and B-field (Blue)
+        const waveLengthPx = 220;
+        const k = (2 * Math.PI) / waveLengthPx;
+        const eScale = Math.min(85, (E0 / 600) * 85);
+        const bScale = eScale * 0.75; // isometric oblique depth foreshortening
+
+        const numSteps = axisLength;
+        const stepPx = 3;
+
+        // Draw B-Field Plane Grid Silhouette first (underneath)
+        ctx.strokeStyle = 'rgba(59, 130, 246, 0.15)';
+        ctx.lineWidth = 1;
+        for (let x = 0; x <= axisLength; x += 35) {
+          const bVal = Math.sin(k * x - phase);
+          const bx = originX + x - bVal * bScale * 0.55;
+          const by = originY + bVal * bScale * 0.45;
+          ctx.beginPath();
+          ctx.moveTo(originX + x, originY);
+          ctx.lineTo(bx, by);
+          ctx.stroke();
+        }
+
+        // Draw Continuous B-Field Wave Curve (Blue in oblique xz plane)
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        for (let x = 0; x <= axisLength; x += stepPx) {
+          const bVal = Math.sin(k * x - phase);
+          const bx = originX + x - bVal * bScale * 0.55;
+          const by = originY + bVal * bScale * 0.45;
+          if (x === 0) ctx.moveTo(bx, by);
+          else ctx.lineTo(bx, by);
+        }
+        ctx.stroke();
+
+        // Draw Continuous E-Field Wave Curve (Red in vertical xy plane)
+        ctx.strokeStyle = '#f43f5e';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        for (let x = 0; x <= axisLength; x += stepPx) {
+          const eVal = Math.sin(k * x - phase);
+          const ey = originY - eVal * eScale;
+          if (x === 0) ctx.moveTo(originX + x, ey);
+          else ctx.lineTo(originX + x, ey);
+        }
+        ctx.stroke();
+
+        // Draw Vertical E-field needle vectors
+        ctx.lineWidth = 1.2;
+        for (let x = 0; x <= axisLength; x += 22) {
+          const eVal = Math.sin(k * x - phase);
+          const ey = originY - eVal * eScale;
+
+          ctx.strokeStyle = eVal >= 0 ? '#f43f5e' : 'rgba(244, 63, 94, 0.7)';
+          ctx.beginPath();
+          ctx.moveTo(originX + x, originY);
+          ctx.lineTo(originX + x, ey);
+          ctx.stroke();
+
+          // Arrowhead on E-vectors
+          if (Math.abs(eVal) > 0.25) {
+            ctx.fillStyle = '#f43f5e';
+            ctx.beginPath();
+            ctx.arc(originX + x, ey, 2, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        // Animated Leading Pointer Vector at x = 180
+        const sampleX = 180;
+        const eInstant = Math.sin(k * sampleX - phase);
+        const sampleEy = originY - eInstant * eScale;
+        const sampleBx = originX + sampleX - eInstant * bScale * 0.55;
+        const sampleBy = originY + eInstant * bScale * 0.45;
+
+        // Vector labels
+        ctx.fillStyle = '#f43f5e';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('Electric Field E (y-axis)', originX + 25, 60);
+
+        ctx.fillStyle = '#38bdf8';
+        ctx.fillText('Magnetic Field B (z-axis)', originX + 25, originY + 115);
+
+        // Origin Triad Indicator
+        renderOriginTriad(originX, originY);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Transverse Geometry: E-field and B-field oscillate in phase, mutually perpendicular to each other and to wave vector k', canvas.width / 2, canvas.height - 12);
+      }
+
+      function renderOriginTriad(ox, oy) {
+        ctx.save();
+        // y-axis
+        ctx.strokeStyle = '#f43f5e';
+        ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(ox, oy - 45); ctx.stroke();
+        ctx.fillStyle = '#f43f5e';
+        ctx.font = 'bold 10px monospace';
+        ctx.fillText('E', ox - 14, oy - 40);
+
+        // z-axis
+        ctx.strokeStyle = '#38bdf8';
+        ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(ox - 30, oy + 26); ctx.stroke();
+        ctx.fillStyle = '#38bdf8';
+        ctx.fillText('B', ox - 40, oy + 32);
+
+        // x-axis
+        ctx.strokeStyle = '#10b981';
+        ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(ox + 45, oy); ctx.stroke();
+        ctx.fillStyle = '#10b981';
+        ctx.fillText('c', ox + 50, oy + 3);
+
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

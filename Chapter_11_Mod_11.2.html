@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Einstein's Photoelectric Equation & Photon Picture</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError: false,
+      errorColor: '#cbd5e1'
+    });"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      letter-spacing: -0.011em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .font-mono, font-mono {
+      font-family: 'JetBrains Mono', monospace !important;
+    }
+
+    .katex {
+      font-size: 1.05em !important;
+      text-rendering: optimizeLegibility;
+    }
+    .katex-display {
+      margin: 0.6em 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 2px;
+    }
+
+    .math-formula-card {
+      background: radial-gradient(circle at top left, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(56, 189, 248, 0.15);
+    }
+
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; font-size: 10pt !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box, .math-formula-card { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400, .text-slate-500 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2.5 py-0.5 rounded-full ml-2 font-mono">Class 12 • Module 11.2</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-xl text-xs font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-xs font-bold font-mono text-indigo-400 tracking-wider uppercase">Unit 07: Modern Physics • Chapter 11</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Einstein's Equation, Planck's Constant & Photon Picture</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base leading-relaxed">Quantum hypothesis of light, energy conservation in photoelectric emission, Millikan's $V_0 \text{ vs } \nu$ slope determination of $h/e$, threshold frequency derivation, and fundamental photon properties.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2 font-mono">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed text-sm md:text-base">
+        Socho ek toll plaza ko: agar toll tax ₹50 hai, aur aapki gaadi mein ₹100 ka fuel cash packet hai, toh toll plaza par ₹50 tax katne ke baad aapki gaadi ke paas aage daudne ke liye kitne bachenge? Exact ₹50 bachenge! 
+        <br>Albert Einstein ne 1905 mein yahi simple thermodynamic logic use kiya: Light continuous stream nahi hai, balki energy ke chhote-chhote packets (quanta) yaani <strong class="text-white font-semibold">Photons</strong> ki bauchhar hai. Jab ek photon kisi surface electron se takrata hai, toh woh apni poori energy ($E = h\nu$) us ek electron ko dekar khud gayab ho jata hai (1-to-1 collision). Us energy ka ek hissa electron ko metal ki jail se azaad karane mein kharch hota hai (<strong class="text-white font-semibold">Work Function $\Phi_0$</strong>), aur bachi hui saari energy electron ki daudne ki raftar ban jaati hai (<strong class="text-white font-semibold">Maximum Kinetic Energy $K_{\max}$</strong>)!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-xs font-bold uppercase tracking-wider mb-1 font-mono">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="math-formula-card p-5 rounded-2xl border border-slate-800/80 shadow-inner">
+          <h3 class="text-white font-semibold text-sm tracking-wide mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            1. Einstein's Photoelectric Equation
+          </h3>
+          <p class="text-xs text-slate-400 mb-3">Conservation of energy for single photon-electron interaction:</p>
+          <div class="py-2.5 px-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-cyan-300 font-mono text-center text-sm space-y-1">
+            <div>$$K_{\max} = h\nu - \Phi_0 = h(\nu - \nu_0) = hc\left(\frac{1}{\lambda} - \frac{1}{\lambda_0}\right)$$</div>
+            <div>$$e V_0 = h\nu - \Phi_0 \implies V_0 = \left(\frac{h}{e}\right)\nu - \frac{\Phi_0}{e}$$</div>
+          </div>
+          <p class="text-[11px] text-slate-500 mt-3 leading-relaxed">
+            Equation of a straight line ($y = mx + c$) with slope $m = h/e$ (Universal Constant) and intercept $c = -\Phi_0/e$ on the potential axis.
+          </p>
+        </div>
+
+        <div class="math-formula-card p-5 rounded-2xl border border-slate-800/80 shadow-inner">
+          <h3 class="text-white font-semibold text-sm tracking-wide mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+            2. The 5 Cardinal Photon Characteristics
+          </h3>
+          <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+            <li><strong class="text-white">Energy:</strong> $E = h\nu = \frac{hc}{\lambda}$ (Depends purely on frequency).</li>
+            <li><strong class="text-white">Momentum:</strong> $p = \frac{E}{c} = \frac{h\nu}{c} = \frac{h}{\lambda}$.</li>
+            <li><strong class="text-white">Rest Mass:</strong> Rest mass of a photon is strictly <strong class="text-white">ZERO ($m_0 = 0$)</strong>.</li>
+            <li><strong class="text-white">Electrical Neutrality:</strong> Photons are unaffected by electric and magnetic fields.</li>
+            <li><strong class="text-white">Collision Invariant:</strong> In photon-particle collisions, total energy and momentum are conserved, but number of photons may not be conserved (photons can be absorbed or created).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (V0 vs nu Dynamic Slope & Planck Constant Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-xs font-bold uppercase tracking-wider font-mono">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Millikan's Linear $V_0 \text{ vs } \nu$ Slope Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="multiMetalBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3.5 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Mode: Multi-Metal Parallel Line Comparison
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="slopeCanvas" width="800" height="390" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Incident Frequency ($\nu$)</span>
+            <span id="freqVal" class="text-cyan-400 font-mono font-bold">8.50 × 10¹⁴ Hz</span>
+          </div>
+          <input id="freqSlider" type="range" min="4.0" max="14.0" step="0.2" value="8.5" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Target Metal Work Function ($\Phi_0$)</span>
+            <span id="phiVal" class="text-amber-400 font-mono font-bold">2.14 eV (Cesium)</span>
+          </div>
+          <input id="phiSlider" type="range" min="1.8" max="5.2" step="0.1" value="2.14" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Preset Target Elements</span>
+            <span id="presetLabel" class="text-rose-400 font-mono font-bold">Preset Selector</span>
+          </div>
+          <div class="grid grid-cols-4 gap-1 text-[10px] font-mono">
+            <button onclick="setMetal(2.14, 'Cesium')" class="bg-slate-800 hover:bg-slate-700 p-1.5 rounded text-slate-200">Cs</button>
+            <button onclick="setMetal(2.30, 'Potassium')" class="bg-slate-800 hover:bg-slate-700 p-1.5 rounded text-slate-200">K</button>
+            <button onclick="setMetal(2.75, 'Sodium')" class="bg-slate-800 hover:bg-slate-700 p-1.5 rounded text-slate-200">Na</button>
+            <button onclick="setMetal(4.28, 'Zinc')" class="bg-slate-800 hover:bg-slate-700 p-1.5 rounded text-slate-200">Zn</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Slope of $V_0-\nu$ graph ($h/e$):</span>
+          <div class="text-emerald-400 font-bold text-sm mt-0.5">4.136 × 10⁻¹⁵ V·s</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Threshold Frequency ($\nu_0$):</span>
+          <div id="nu0Out" class="text-amber-400 font-bold text-sm mt-0.5">5.17 × 10¹⁴ Hz</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Stopping Potential ($V_0$):</span>
+          <div id="v0ActiveOut" class="text-cyan-400 font-bold text-sm mt-0.5">+1.38 V</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Planck's Constant ($h$):</span>
+          <div class="text-indigo-300 font-bold text-sm mt-0.5">6.626 × 10⁻³⁴ J·s</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>📝 04. Comprehensive Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Einstein's Equation and Slope of V0-nu Graph -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">Primary Board Derivation</span>
+          <h4 class="text-white font-semibold text-base mt-1">Deduction of Einstein's Equation & Determination of Planck's Constant ($h$)</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: V0 vs nu Graph -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 250" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-axis-graph" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#94a3b8"/>
+              </marker>
+            </defs>
+
+            <!-- Coordinate Axes -->
+            <!-- Horizontal Frequency Axis -->
+            <line x1="80" y1="160" x2="590" y2="160" stroke="#94a3b8" stroke-width="1.8" marker-end="url(#arr-axis-graph)" />
+            <text x="500" y="150" fill="#94a3b8" font-size="11" font-weight="bold" font-family="monospace">Frequency (ν) ➔</text>
+
+            <!-- Vertical Potential Axis (Positive up, Negative down) -->
+            <line x1="160" y1="220" x2="160" y2="30" stroke="#94a3b8" stroke-width="1.8" marker-end="url(#arr-axis-graph)" />
+            <text x="170" y="40" fill="#94a3b8" font-size="11" font-weight="bold" font-family="monospace">Stopping Potential (V₀) ➔</text>
+            <text x="145" y="175" fill="#cbd5e1" font-size="10" font-family="monospace">O</text>
+
+            <!-- Line 1: Metal A (Lower Work Function, e.g. Cesium) -->
+            <!-- Intercept at (260, 160) which represents nu_0A -->
+            <circle cx="260" cy="160" r="3.5" fill="#10b981" />
+            <text x="250" y="178" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">ν₀ₐ</text>
+            <!-- Backward extrapolation to negative y-axis -->
+            <line x1="260" y1="160" x2="160" y2="210" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3,3" />
+            <circle cx="160" cy="210" r="3" fill="#10b981" />
+            <text x="75" y="214" fill="#10b981" font-size="10" font-family="monospace">-Φ₀ₐ / e</text>
+            <!-- Solid rising line -->
+            <line x1="260" y1="160" x2="480" y2="50" stroke="#10b981" stroke-width="2.8" />
+            <text x="488" y="55" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">Metal A (Cs)</text>
+
+            <!-- Line 2: Metal B (Higher Work Function, e.g. Zinc) - Exactly PARALLEL -->
+            <!-- Intercept at (370, 160) which represents nu_0B -->
+            <circle cx="370" cy="160" r="3.5" fill="#f59e0b" />
+            <text x="360" y="178" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">ν₀_b</text>
+            <!-- Backward extrapolation to negative y-axis -->
+            <line x1="370" y1="160" x2="160" y2="265" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,3" />
+            <!-- Solid rising line -->
+            <line x1="370" y1="160" x2="560" y2="65" stroke="#f59e0b" stroke-width="2.8" />
+            <text x="568" y="70" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">Metal B (Zn)</text>
+
+            <!-- Slope Triangle on Metal A line -->
+            <line x1="320" y1="130" x2="420" y2="130" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="2,2" />
+            <line x1="420" y1="130" x2="420" y2="80" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="2,2" />
+            <text x="360" y="142" fill="#38bdf8" font-size="9" font-family="monospace">Δν</text>
+            <text x="428" y="110" fill="#38bdf8" font-size="9" font-family="monospace">ΔV₀</text>
+
+            <!-- Parallel Indicator Annotation -->
+            <rect x="230" y="35" width="220" height="42" fill="rgba(15, 23, 42, 0.85)" stroke="#38bdf8" stroke-width="1.2" rx="6" />
+            <text x="240" y="52" fill="#38bdf8" font-size="10" font-weight="bold" font-family="monospace">Slope = ΔV₀/Δν = h/e</text>
+            <text x="240" y="68" fill="#cbd5e1" font-size="9" font-family="monospace">Lines are STRICTLY PARALLEL</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 11.2A: Millikan's experimental verification of Einstein's photoelectric equation; all metals exhibit identical universal slope $h/e$.</p>
+        </div>
+
+        <p>1. According to Einstein's quantum postulate, radiation of frequency $\nu$ consists of discrete quanta (photons), each possessing energy $E = h\nu$.</p>
+        <p>2. When a photon collides with an electron on the metal surface, it transfers its entire energy $h\nu$ instantaneously. A minimum energy $\Phi_0$ (Work Function) is consumed to overcome the surface nuclear barrier. The remaining energy appears as the maximum kinetic energy $K_{\max}$ of the emitted photoelectron:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$E = \Phi_0 + K_{\max} \implies K_{\max} = h\nu - \Phi_0$$
+        </div>
+        <p>3. If the incident frequency equals the threshold frequency $\nu_0$, electrons are emitted with zero kinetic energy ($K_{\max} = 0 \implies \Phi_0 = h\nu_0$):</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$K_{\max} = h\nu - h\nu_0 = h(\nu - \nu_0)$$
+        </div>
+        <p>4. Since the stopping potential $V_0$ stops the fastest electrons ($K_{\max} = e V_0$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$e V_0 = h\nu - \Phi_0 \implies V_0 = \left(\frac{h}{e}\right)\nu - \frac{\Phi_0}{e}$$
+        </div>
+        <p>5. Comparing with standard straight-line equation $y = mx + c$:</p>
+        <p class="text-slate-400">• <strong class="text-white">Slope of the line ($m$):</strong> $\text{Slope} = \frac{h}{e}$. Since both $h$ and $e$ are fundamental physical constants, the slope is a <strong class="text-white">universal constant</strong> identical for all metals!</p>
+        <p class="text-slate-400">• <strong class="text-white">Determination of Planck's Constant:</strong> By experimentally measuring the slope of the $V_0 \text{ vs } \nu$ plot and multiplying it by electronic charge $e$ ($1.6 \times 10^{-19}\text{ C}$), Robert Millikan precisely determined Planck's constant:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$h = e \times \text{Slope} = e \times \left(\frac{\Delta V_0}{\Delta \nu}\right) \approx 6.626 \times 10^{-34}\text{ J}\cdot\text{s}$$
+        </div>
+        <p class="text-slate-400">• <strong class="text-white">Intercept on Frequency Axis ($V_0 = 0$):</strong> $\nu = \nu_0 = \frac{\Phi_0}{h}$ (Threshold frequency).</p>
+        <p class="text-slate-400">• <strong class="text-white">Intercept on Potential Axis ($\nu = 0$):</strong> $c = -\frac{\Phi_0}{e}$ (Direct measurement of work function in Volts).</p>
+      </div>
+
+      <!-- Derivation 2: Radiation Pressure and Momentum of Light -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">Quantum Momentum</span>
+          <h4 class="text-white font-semibold text-base mt-1">Photon Momentum, Force & Radiation Pressure Formulations</h4>
+        </div>
+        <p>1. By Einstein's mass-energy equivalence ($E = mc^2$) and de Broglie relation:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$E = pc \implies p = \frac{E}{c} = \frac{h\nu}{c} = \frac{h}{\lambda}$$
+        </div>
+        <p>2. Let a light beam of power $P$ and intensity $I = P/A$ be incident on a surface of area $A$. Number of photons incident per second ($n$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$n = \frac{P}{E} = \frac{I A}{h\nu}$$
+        </div>
+        <p>3. <strong class="text-white">Case (a) Completely Absorbing Surface:</strong> Every photon delivers initial momentum $p = \frac{h\nu}{c}$ and is absorbed ($p_f = 0 \implies \Delta p = p$):</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$\text{Force } F = n \cdot \Delta p = \left(\frac{I A}{h\nu}\right)\left(\frac{h\nu}{c}\right) = \frac{I A}{c}, \qquad \text{Pressure } P_{\text{rad}} = \frac{F}{A} = \frac{I}{c}$$
+        </div>
+        <p>4. <strong class="text-white">Case (b) Completely Reflecting Surface (Perfect Mirror):</strong> Photons bounce back with inverted momentum ($p_f = -p \implies \Delta p = 2p$):</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$\text{Force } F = \frac{2 I A}{c}, \qquad \text{Pressure } P_{\text{rad}} = \frac{2I}{c}$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: The "Slope Depends on Target Metal" Myth</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Trap Question:* If we plot $V_0 \text{ vs } \nu$ for Sodium ($\Phi_0 = 2.46\text{ eV}$) and Platinum ($\Phi_0 = 5.65\text{ eV}$), which line will have a steeper slope?
+            <br>*Correct Answer:* <strong class="text-white font-semibold">BOTH HAVE THE EXACT SAME SLOPE!</strong>
+            Slope is strictly equal to $h/e$, which depends neither on the nature of the metal nor on the intensity of light. The lines are strictly <strong class="text-white font-semibold">PARALLEL</strong> to each other!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: $K_{\max} \text{ vs } \nu$ Slope vs $V_0 \text{ vs } \nu$ Slope</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Read the vertical axis label with eagle eyes:
+            <br>• If y-axis is <strong class="text-white font-semibold">Stopping Potential ($V_0$)</strong>: $\text{Slope} = \mathbf{h/e}$.
+            <br>• If y-axis is <strong class="text-white font-semibold">Maximum Kinetic Energy ($K_{\max}$)</strong>: $\text{Slope} = \mathbf{h}$ (Planck's constant directly!).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Doubling Intensity vs Doubling Frequency</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            • If intensity is doubled (at fixed $\nu$): Photoelectric current <strong class="text-white font-semibold">doubles</strong>; $K_{\max}$ and $V_0$ remain completely unchanged.
+            <br>• If frequency $\nu$ is doubled: $K_{\max} = h(2\nu) - \Phi_0 = 2(h\nu - \Phi_0) + \Phi_0 = 2K_{\max} + \Phi_0$.
+            Therefore, doubling the frequency makes $K_{\max}$ <strong class="text-white font-semibold">MORE THAN DOUBLE</strong>!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Are All Emitted Electrons Possessing $K_{\max}$?</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Conceptual Trap:* Do all photoelectrons leave the metal surface with identical kinetic energy $K_{\max}$?
+            <br>*Correct Answer:* <strong class="text-white font-semibold">NO!</strong>
+            $K_{\max}$ is possessed only by electrons knocked off from the outermost surface layer. Electrons knocked out from deeper atomic layers lose energy via internal collisions before reaching the surface. The kinetic energies of emitted electrons form a continuous range:
+            $$\mathbf{0 \le K \le K_{\max}}$$
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-mono">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: The stopping potential for photoelectrons emitted from a surface illuminated by light of wavelength $491\text{ nm}$ is $0.710\text{ V}$. When the incident wavelength is changed to $388\text{ nm}$, the new stopping potential is found to be $1.43\text{ V}$. Calculate the experimental value of Planck’s constant and the work function of the target metal.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> From Einstein's equation: $e V_0 = \frac{hc}{\lambda} - \Phi_0$. Writing for both wavelengths:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$e V_{01} = \frac{hc}{\lambda_1} - \Phi_0 \quad \text{--- [Eq. 1]}$$
+            $$e V_{02} = \frac{hc}{\lambda_2} - \Phi_0 \quad \text{--- [Eq. 2]}$$
+          </div>
+          <p>Subtracting Eq. 1 from Eq. 2:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$e (V_{02} - V_{01}) = hc \left(\frac{1}{\lambda_2} - \frac{1}{\lambda_1}\right) = hc \left(\frac{\lambda_1 - \lambda_2}{\lambda_1 \lambda_2}\right)$$
+          </div>
+          <p>Substitute values: $\Delta V_0 = 1.43 - 0.710 = 0.720\text{ V}$, $\lambda_1 = 491 \times 10^{-9}\text{ m}, \lambda_2 = 388 \times 10^{-9}\text{ m}$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$(1.6 \times 10^{-19}) \times 0.720 = h \times (3 \times 10^8) \times \left[ \frac{(491 - 388) \times 10^{-9}}{(491 \times 10^{-9}) \times (388 \times 10^{-9})} \right]$$
+            $$1.152 \times 10^{-19} = h \times (3 \times 10^8) \times \left[ \frac{103}{1.905 \times 10^{-13}} \right] = h \times 1.622 \times 10^{23}$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$h = \frac{1.152 \times 10^{-19}}{1.73 \times 10^{14}} \approx 6.65 \times 10^{-34}\text{ J}\cdot\text{s}$$
+          </div>
+          <p class="text-slate-400">Finding Work Function from Eq. 1:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\Phi_0 = \frac{hc}{\lambda_1} - e V_{01} = \frac{(6.65 \times 10^{-34}) \times (3 \times 10^8)}{491 \times 10^{-9} \times 1.6 \times 10^{-19}}\text{ eV} - 0.710\text{ eV} = 2.54\text{ eV} - 0.71\text{ eV} = 1.83\text{ eV}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A monochromatic point source of light of power $20\text{ W}$ emits light of frequency $6 \times 10^{14}\text{ Hz}$. Find (a) the energy of each photon in eV, (b) the momentum of each photon, and (c) the number of photons emitted per second by the source.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> Power $P = 20\text{ W} = 20\text{ J/s}$, $\nu = 6.0 \times 10^{14}\text{ Hz}$.</p>
+          <p>1. Energy of each photon:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$E = h\nu = (6.63 \times 10^{-34}\text{ J}\cdot\text{s}) \times (6.0 \times 10^{14}\text{ s}^{-1}) = 3.978 \times 10^{-19}\text{ Joules}$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$E = \frac{3.978 \times 10^{-19}\text{ J}}{1.6 \times 10^{-19}\text{ J/eV}} \approx 2.49\text{ eV}$$
+          </div>
+          <p>2. Momentum of each photon ($p = E/c$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$p = \frac{3.978 \times 10^{-19}\text{ J}}{3.0 \times 10^8\text{ m/s}} = 1.326 \times 10^{-27}\text{ kg}\cdot\text{m/s}$$
+          </div>
+          <p>3. Number of photons emitted per second ($N = P/E$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$N = \frac{20\text{ J/s}}{3.978 \times 10^{-19}\text{ J}} \approx 5.03 \times 10^{19}\text{ photons/second}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 font-mono">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded font-mono">Core Equations</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Einstein's Equation</p>
+          <p class="text-xs font-bold text-white mt-1 font-mono">$K_{\max} = h\nu - \Phi_0 = eV_0$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Universal Slope</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1 font-mono">$\frac{\Delta V_0}{\Delta\nu} = \frac{h}{e}$ (Same for all)</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Photon Momentum</p>
+          <p class="text-xs font-bold text-cyan-300 mt-1 font-mono">$p = \frac{h\nu}{c} = \frac{h}{\lambda}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Photon Rest Mass</p>
+          <p class="text-xs font-bold text-rose-400 mt-1 font-mono">$m_0 = 0$ (Invariant)</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Millikan V0 vs nu Slope Engine Script -->
+  <script>
+    let currentMetalName = 'Cesium';
+
+    function setMetal(phi, name) {
+      document.getElementById('phiSlider').value = phi;
+      currentMetalName = name;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('slopeCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const freqSlider = document.getElementById('freqSlider');
+      const phiSlider = document.getElementById('phiSlider');
+      const multiMetalBtn = document.getElementById('multiMetalBtn');
+
+      const freqVal = document.getElementById('freqVal');
+      const phiVal = document.getElementById('phiVal');
+      const presetLabel = document.getElementById('presetLabel');
+
+      const nu0Out = document.getElementById('nu0Out');
+      const v0ActiveOut = document.getElementById('v0ActiveOut');
+
+      let isMultiMetal = false;
+
+      multiMetalBtn.addEventListener('click', () => {
+        isMultiMetal = !isMultiMetal;
+        multiMetalBtn.textContent = isMultiMetal ? 'Mode: Single Active Element Focus' : 'Mode: Multi-Metal Parallel Line Comparison';
+        multiMetalBtn.className = isMultiMetal
+          ? 'text-xs bg-rose-700 hover:bg-rose-600 text-white font-semibold px-3.5 py-1.5 rounded-lg shadow-lg shadow-rose-700/30 transition border border-rose-400/30 cursor-pointer'
+          : 'text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3.5 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer';
+      });
+
+      function renderLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const nu_x14 = parseFloat(freqSlider.value); // in 10^14 Hz
+        const phi_eV = parseFloat(phiSlider.value);
+
+        freqVal.textContent = `${nu_x14.toFixed(2)} × 10¹⁴ Hz`;
+        phiVal.textContent = `${phi_eV.toFixed(2)} eV (${currentMetalName})`;
+        presetLabel.textContent = `${currentMetalName}`;
+
+        // Physics: h = 4.1357e-15 eV·s
+        const h_eVs = 4.1357e-15;
+        const nu_0 = (phi_eV / h_eVs); // Hz
+        const nu_0_x14 = nu_0 / 1e14;
+
+        nu0Out.textContent = `${nu_0_x14.toFixed(2)} × 10¹⁴ Hz`;
+
+        // Active V0
+        const E_photon_eV = h_eVs * (nu_x14 * 1e14);
+        let V_0 = E_photon_eV - phi_eV;
+        if (V_0 < 0) {
+          v0ActiveOut.textContent = '0.00 V (Below Threshold)';
+          v0ActiveOut.className = 'text-slate-500 font-bold text-sm mt-0.5';
+        } else {
+          v0ActiveOut.textContent = `+${V_0.toFixed(2)} V`;
+          v0ActiveOut.className = 'text-cyan-400 font-bold text-sm mt-0.5';
+        }
+
+        renderSlopeGraph(nu_x14, phi_eV, nu_0_x14, V_0, isMultiMetal);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderSlopeGraph(curNu, curPhi, curNu0, curV0, showMulti) {
+        const originX = 160;
+        const originY = 250;
+        const graphW = 560;
+        const graphH = 220;
+
+        // Coordinate Axes
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        // Horizontal Frequency Axis
+        ctx.moveTo(80, originY);
+        ctx.lineTo(originX + graphW, originY);
+        // Vertical Stopping Potential Axis
+        ctx.moveTo(originX, 30);
+        ctx.lineTo(originX, canvas.height - 30);
+        ctx.stroke();
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('Frequency ν (×10¹⁴ Hz) ➔', originX + graphW - 190, originY + 22);
+        ctx.fillText('Stopping Potential V₀ (V) ➔', originX - 140, 45);
+        ctx.fillText('0', originX - 14, originY + 16);
+
+        // Grid markings for frequency (4 to 14)
+        ctx.font = '10px monospace';
+        ctx.fillStyle = '#64748b';
+        const nuMin = 3.0, nuMax = 15.0;
+        const vMin = -4.0, vMax = 4.0;
+
+        for (let nu = 4; nu <= 14; nu += 2) {
+          const gx = originX + ((nu - nuMin) / (nuMax - nuMin)) * graphW;
+          ctx.beginPath();
+          ctx.moveTo(gx, originY - 4); ctx.lineTo(gx, originY + 4); ctx.stroke();
+          ctx.fillText(`${nu}`, gx - 6, originY + 18);
+        }
+
+        // Multi-Metal Database
+        const metals = [
+          { name: 'Cesium', phi: 2.14, color: '#10b981' },
+          { name: 'Potassium', phi: 2.30, color: '#06b6d4' },
+          { name: 'Sodium', phi: 2.75, color: '#f59e0b' },
+          { name: 'Zinc', phi: 4.28, color: '#ef4444' }
+        ];
+
+        if (showMulti) {
+          metals.forEach(m => {
+            drawLinearResponse(m.phi, m.color, m.name, false, curNu);
+          });
+        } else {
+          drawLinearResponse(curPhi, '#38bdf8', currentMetalName, true, curNu);
+        }
+
+        function drawLinearResponse(phi, color, label, isHighlight, activeNu) {
+          const h_eVs = 4.1357e-15;
+          const nu0 = phi / h_eVs / 1e14; // in 10^14 Hz
+
+          // Coordinate transform helpers
+          const getX = (nu) => originX + ((nu - nuMin) / (nuMax - nuMin)) * graphW;
+          const getY = (v) => originY - (v / vMax) * (graphH / 2);
+
+          const nu0_x = getX(nu0);
+          const interceptY = getY(-phi); // V0 = -phi/e when nu = 0
+
+          // 1. Negative Intercept Extrapolation (Dashed)
+          ctx.strokeStyle = color;
+          ctx.lineWidth = 1.4;
+          ctx.setLineDash([4, 4]);
+          ctx.beginPath();
+          ctx.moveTo(getX(0), interceptY);
+          ctx.lineTo(nu0_x, originY);
+          ctx.stroke();
+          ctx.setLineDash([]);
+
+          // 2. Realized Experimental Positive Linear Graph
+          const maxNuPlot = 14.5;
+          const maxVPlot = h_eVs * (maxNuPlot * 1e14) - phi;
+
+          ctx.strokeStyle = color;
+          ctx.lineWidth = isHighlight ? 3.2 : 2.0;
+          ctx.beginPath();
+          ctx.moveTo(nu0_x, originY);
+          ctx.lineTo(getX(maxNuPlot), getY(maxVPlot));
+          ctx.stroke();
+
+          // Threshold Dot
+          ctx.fillStyle = color;
+          ctx.beginPath(); ctx.arc(nu0_x, originY, isHighlight ? 4.5 : 3, 0, Math.PI * 2); ctx.fill();
+
+          // Label
+          ctx.font = 'bold 10px monospace';
+          ctx.fillText(`${label} (ν₀=${nu0.toFixed(1)})`, getX(maxNuPlot) - 100, getY(maxVPlot) - 8);
+
+          // If highlighted, render active operating point
+          if (isHighlight && activeNu >= nu0) {
+            const activeV = h_eVs * (activeNu * 1e14) - phi;
+            const ptX = getX(activeNu);
+            const ptY = getY(activeV);
+
+            ctx.fillStyle = '#f59e0b';
+            ctx.beginPath(); ctx.arc(ptX, ptY, 5.5, 0, Math.PI * 2); ctx.fill();
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            // Projection dashed lines to axes
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.4)';
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath();
+            ctx.moveTo(ptX, ptY); ctx.lineTo(ptX, originY);
+            ctx.moveTo(ptX, ptY); ctx.lineTo(originX, ptY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = '#f59e0b';
+            ctx.fillText(`(ν=${activeNu.toFixed(1)}, V₀=${activeV.toFixed(2)}V)`, ptX + 8, ptY - 8);
+          }
+        }
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Millikan's Relation: V₀ = (h/e)ν - (Φ₀/e) | Universal Slope h/e = 4.14 × 10⁻¹⁵ V·s (Independent of Metal)`, canvas.width / 2, canvas.height - 10);
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

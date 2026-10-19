@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Motional EMF & Energy Considerations</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 6.2</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 04: Electromagnetic Induction • Chapter 06</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Motional EMF, Rotating Rod & Energy Considerations</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Lorentz force on conduction electrons, sliding rail mechanics, rotational induction, and rigorous proof of energy conservation.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek bus mein baithe hazaron passengers (free electrons) ko: jab tak bus ruki hai, sab log aaram se baithe hain. Jaise hi bus achanak ek sharp turn leti hai (magnetic field $\vec{B}$ ke andar chalna), centrifugal force har passenger ko ek side wall ki taraf dhakel deta hai. Theek waise hi, jab ek metal rod magnetic field ke andar aage slide karti hai, toh uske andar ke free electrons par <strong class="text-white">Magnetic Lorentz Force ($\vec{F}_B = -e(\vec{v}\times\vec{B})$)</strong> lagta hai, jo unhe rod ke ek end par jama kar deta hai. Isse rod ke dono ends ke beech ek potential difference ban jata hai jise <strong class="text-white">Motional EMF ($\mathcal{E} = Bvl$)</strong> kehte hain! Aur jaise hi rod ek circuit complete karti hai, current flow hota hai jo rod par ek magnetic brake (retarding drag force) lagata hai—isko constant speed par chalane ke liye aapko jitna mechanical power dena padta hai, woh 100% resistor mein heat bankar nikalta hai!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Translating Rod Motional EMF</h3>
+          <p class="text-sm text-slate-400 mb-2">Straight conductor of length $l$ moving with velocity $\vec{v}$ in field $\vec{B}$:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\mathcal{E} = (\vec{v} \times \vec{B}) \cdot \vec{l} \implies \mathcal{E} = B v l \quad (\text{when } \vec{v} \perp \vec{B} \perp \vec{l})$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Polarity determined by Fleming's Right-Hand Rule: Stretch Thumb ($\vec{v}$), Forefinger ($\vec{B}$), Middle finger gives positive potential end.</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Rotating Rod & Energy Equivalence</h3>
+          <p class="text-sm text-slate-400 mb-2">Rod rotating with angular frequency $\omega$ about one end:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\mathcal{E}_{\text{rot}} = \frac{1}{2} B \omega l^2 = B f (\pi l^2) = B f A$$
+            $$P_{\text{mech}} = F_{\text{ext}} v = \left(\frac{B^2 l^2 v}{R}\right) v = \frac{B^2 l^2 v^2}{R} = P_{\text{Joule}}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Where $f = \omega / 2\pi$ is rotation frequency and $A = \pi l^2$ is the circular area swept per revolution.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Sliding Rod Rails & Retarding Force Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Sliding Conductor & Energy Dissipation Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="viewToggleBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Switch: Rotating Conducting Rod
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="motionalCanvas" width="800" height="380" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="slider1Label">Magnetic Field ($B$)</span>
+            <span id="slider1Val" class="text-cyan-400 font-mono font-bold">1.50 T</span>
+          </div>
+          <input id="slider1" type="range" min="0.2" max="3.0" step="0.1" value="1.5" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="slider2Label">Rod Velocity ($v$)</span>
+            <span id="slider2Val" class="text-amber-400 font-mono font-bold">4.0 m/s</span>
+          </div>
+          <input id="slider2" type="range" min="0.5" max="10.0" step="0.5" value="4.0" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="slider3Label">Circuit Resistance ($R$)</span>
+            <span id="slider3Val" class="text-emerald-400 font-mono font-bold">2.0 Ω</span>
+          </div>
+          <input id="slider3" type="range" min="0.5" max="10.0" step="0.5" value="2.0" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Induced EMF ($\mathcal{E} = Bvl$):</span>
+          <div id="emfOut" class="text-cyan-400 font-bold text-sm mt-0.5">3.00 V</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Induced Current ($I = \mathcal{E}/R$):</span>
+          <div id="currentOut" class="text-amber-400 font-bold text-sm mt-0.5">1.50 A</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Retarding Force ($F = IlB$):</span>
+          <div id="forceOut" class="text-rose-400 font-bold text-sm mt-0.5">1.13 N</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Power Balance ($P_{\text{mech}} = I^2R$):</span>
+          <div id="powerOut" class="text-emerald-400 font-bold text-sm mt-0.5">4.50 W (Exact)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Motional EMF on Sliding Conductor with Schematic -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation A</span>
+          <h4 class="text-white font-semibold text-base mt-1">Motional EMF across a Straight Conductor Sliding on U-Shaped Rails</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: U-Rails and Moving Rod -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 250" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-vel" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+              <marker id="arr-retard" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#ef4444"/>
+              </marker>
+              <marker id="arr-icurr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+              </marker>
+            </defs>
+
+            <!-- Magnetic Inward Field Grid (⊗) -->
+            <g fill="none" stroke="#334155" stroke-width="1.5">
+              <path d="M 60 40 L 70 50 M 70 40 L 60 50" /><path d="M 140 40 L 150 50 M 150 40 L 140 50" />
+              <path d="M 220 40 L 230 50 M 230 40 L 220 50" /><path d="M 300 40 L 310 50 M 310 40 L 300 50" />
+              <path d="M 380 40 L 390 50 M 390 40 L 380 50" /><path d="M 460 40 L 470 50 M 470 40 L 460 50" />
+              <path d="M 540 40 L 550 50 M 550 40 L 540 50" />
+              
+              <path d="M 60 115 L 70 125 M 70 115 L 60 125" /><path d="M 140 115 L 150 125 M 150 115 L 140 125" />
+              <path d="M 220 115 L 230 125 M 230 115 L 220 125" /><path d="M 460 115 L 470 125 M 470 115 L 460 125" />
+              <path d="M 540 115 L 550 125 M 550 115 L 540 125" />
+              
+              <path d="M 60 190 L 70 200 M 70 190 L 60 200" /><path d="M 140 190 L 150 200 M 150 190 L 140 200" />
+              <path d="M 220 190 L 230 200 M 230 190 L 220 200" /><path d="M 300 190 L 310 200 M 310 190 L 300 200" />
+              <path d="M 380 190 L 390 200 M 390 190 L 380 200" /><path d="M 460 190 L 470 200 M 470 190 L 460 200" />
+              <path d="M 540 190 L 550 200 M 550 190 L 540 200" />
+            </g>
+            <text x="60" y="25" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">Uniform Magnetic Field B (⊗ Inward)</text>
+
+            <!-- Fixed Conducting Rails (Horizontal parallel lines) -->
+            <line x1="120" y1="65" x2="560" y2="65" stroke="#38bdf8" stroke-width="4" />
+            <line x1="120" y1="185" x2="560" y2="185" stroke="#38bdf8" stroke-width="4" />
+
+            <!-- Fixed Resistor R on Left Edge -->
+            <line x1="120" y1="65" x2="120" y2="105" stroke="#38bdf8" stroke-width="3" />
+            <line x1="120" y1="145" x2="120" y2="185" stroke="#38bdf8" stroke-width="3" />
+            <!-- Resistor Zigzag -->
+            <path d="M 120 105 L 126 110 L 114 118 L 126 126 L 114 134 L 126 140 L 120 145" fill="none" stroke="#f59e0b" stroke-width="2.5" />
+            <text x="75" y="130" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">Resistor R</text>
+
+            <!-- Movable Conducting Rod PQ of Length l -->
+            <rect x="340" y="55" width="16" height="140" fill="#cbd5e1" stroke="#ffffff" stroke-width="1.5" />
+            <text x="338" y="48" fill="#10b981" font-size="12" font-weight="bold" font-family="monospace">P (+)</text>
+            <text x="338" y="210" fill="#38bdf8" font-size="12" font-weight="bold" font-family="monospace">Q (-)</text>
+
+            <!-- Length dimension l -->
+            <line x1="375" y1="65" x2="375" y2="185" stroke="#94a3b8" stroke-width="1.5" />
+            <line x1="370" y1="65" x2="380" y2="65" stroke="#94a3b8" stroke-width="1.5" />
+            <line x1="370" y1="185" x2="380" y2="185" stroke="#94a3b8" stroke-width="1.5" />
+            <text x="382" y="130" fill="#cbd5e1" font-size="11" font-family="monospace">Length l</text>
+
+            <!-- Position dimension x -->
+            <line x1="120" y1="215" x2="348" y2="215" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3" />
+            <text x="220" y="230" fill="#cbd5e1" font-size="10" font-family="monospace">Displacement x</text>
+
+            <!-- Velocity Vector v (Rightward) -->
+            <line x1="356" y1="125" x2="430" y2="125" stroke="#fbbf24" stroke-width="3" marker-end="url(#arr-vel)" />
+            <text x="405" y="115" fill="#fbbf24" font-size="12" font-weight="bold" font-family="monospace">v (Velocity)</text>
+
+            <!-- Opposing Magnetic Lorentz Drag Force (Leftward) -->
+            <line x1="340" y1="125" x2="270" y2="125" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arr-retard)" />
+            <text x="235" y="115" fill="#ef4444" font-size="11" font-weight="bold" font-family="monospace">F_mag = IlB</text>
+
+            <!-- Induced Current Arrow (Anticlockwise: Upward through rod from Q to P) -->
+            <line x1="348" y1="155" x2="348" y2="95" stroke="#10b981" stroke-width="2.5" marker-end="url(#arr-icurr)" />
+            <text x="315" y="150" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">I_ind</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 6.2A: Conductor $PQ$ of length $l$ sliding rightwards with velocity $v$ in uniform inward field $\vec{B}$, enclosing area $A = lx$.</p>
+        </div>
+
+        <!-- Derivation Math -->
+        <p>1. Consider a straight conductor $PQ$ of length $l$ free to slide smoothly on two parallel conducting rails connected through resistance $R$ in uniform magnetic field $\vec{B}$ perpendicular to the rail plane.</p>
+        <p>2. Let the position of rod at time $t$ be $x$. Area enclosed by loop is $A = l x$. Instantaneous magnetic flux linked with loop:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\Phi_B = B A = B l x$$
+        </div>
+        <p>3. As the conductor moves with velocity $v = \frac{dx}{dt}$, the rate of change of flux induces an EMF (by Faraday-Lenz law):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\mathcal{E} = -\frac{d\Phi_B}{dt} = -\frac{d}{dt}(B l x) = -B l \frac{dx}{dt}$$
+        </div>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\mathcal{E} = B v l$$
+        </div>
+        <p>4. <em>Microscopic Origin via Lorentz Force:</em> Each free electron inside the rod experiences downward magnetic Lorentz force $\vec{f}_m = -e(\vec{v}\times\vec{B})$. Work done in moving electron through length $l$ from $P$ to $Q$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$W = f_m \cdot l = (e v B) l \implies \mathcal{E} = \frac{W}{e} = B v l$$
+        </div>
+      </div>
+
+      <!-- Derivation 2: Rotating Rod in Magnetic Field -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation B</span>
+          <h4 class="text-white font-semibold text-base mt-1">Motional EMF Induced in a Conducting Rod Rotating in a Magnetic Field</h4>
+        </div>
+        <p>1. Consider a conducting rod of length $l$ pivoted at one end $O$ and rotated with uniform angular velocity $\omega$ in a plane perpendicular to uniform magnetic field $\vec{B}$.</p>
+        <p>2. Consider an infinitesimal radial element of the rod of length $dr$ located at distance $r$ from the pivot $O$.</p>
+        <p>3. The linear velocity of this element is $v = \omega r$. Motional EMF induced across this small element $dr$ is:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$d\mathcal{E} = B v \, dr = B (\omega r) dr = B \omega r \, dr$$
+        </div>
+        <p>4. Total induced EMF between the center pivot $O$ and outer tip of the rod is obtained by integrating from $r = 0$ to $r = l$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\mathcal{E} = \int_0^l B \omega r \, dr = B \omega \left[ \frac{r^2}{2} \right]_0^l$$
+        </div>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\mathcal{E} = \frac{1}{2} B \omega l^2 = B f (\pi l^2) = B f A$$
+        </div>
+        <p class="text-slate-400"><em>Geometric Meaning:</em> $A = \pi l^2$ is the circular area swept by the rod per revolution, and $f = \omega / 2\pi$ is rotation frequency. Thus $\mathcal{E} = \frac{\Delta \Phi}{\Delta t} = \frac{B A}{T} = B A f$.</p>
+      </div>
+
+      <!-- Derivation 3: Complete Energy Conservation Equivalence -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Energy Proof</span>
+          <h4 class="text-white font-semibold text-base mt-1">Rigorous Equivalence of Mechanical Work and Electrical Dissipation</h4>
+        </div>
+        <p>1. The induced EMF $\mathcal{E} = Bvl$ drives current $I$ through loop resistance $R$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$I = \frac{\mathcal{E}}{R} = \frac{B v l}{R}$$
+        </div>
+        <p>2. Conductor carrying this current in field $\vec{B}$ experiences a retarding magnetic force opposing motion (Lenz's Law):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$F_m = I l B = \left(\frac{B v l}{R}\right) l B = \frac{B^2 l^2 v}{R}$$
+        </div>
+        <p>3. To pull the rod at constant velocity $v$, an external agent must exert equal and opposite forward mechanical force $F_{\text{ext}} = F_m$. Mechanical power delivered:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$P_{\text{mech}} = F_{\text{ext}} \cdot v = \left( \frac{B^2 l^2 v}{R} \right) v = \frac{B^2 l^2 v^2}{R}$$
+        </div>
+        <p>4. Rate of electrical Joule heat dissipated in resistor $R$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$P_{\text{Joule}} = I^2 R = \left( \frac{B v l}{R} \right)^2 R = \frac{B^2 v^2 l^2}{R^2} R = \frac{B^2 l^2 v^2}{R}$$
+        </div>
+        <div class="text-center font-mono text-emerald-400 font-bold text-sm">
+          $$P_{\text{mech}} \equiv P_{\text{Joule}} = \frac{B^2 l^2 v^2}{R}$$
+        </div>
+        <p class="text-slate-400"><em>Thermodynamic Identity:</em> Mechanical work performed in pulling the rod against magnetic drag is identically converted into electrical Joule heat, establishing complete conservation of energy.</p>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Motional EMF Across an Airplane's Wings</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Classic Question:* An airplane flies horizontally with wingspan $l$ and speed $v$. Which component of Earth's magnetic field induces an EMF across wing tips?
+            <br>• The wings move horizontally: velocity vector $\vec{v}$ is horizontal.
+            <br>• The horizontal component of Earth's field $B_H$ is parallel to flight $\implies \vec{v} \parallel \vec{B}_H \implies \vec{v}\times\vec{B}_H = 0$.
+            <br>• Only the <strong class="text-white">Vertical Component ($B_V$)</strong> is perpendicular to both wings and velocity!
+            <br>$$\mathcal{E} = B_V v l = (B_E \sin\delta) v l$$
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Metal Disc Rotating in Magnetic Field (Bicycle Wheel Spokes)</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Exam Trap:* A bicycle wheel has $N = 100$ metallic spokes of length $l$ rotating in field $B$. What is the net EMF between the axle and rim?
+            <br>*Trap Answer:* $100 \times \left(\frac{1}{2}B\omega l^2\right)$.
+            <br>*Correct Answer:* <strong class="text-white">$\mathcal{E} = \frac{1}{2}B\omega l^2$ (Unchanged by number of spokes!)</strong>
+            All $100$ spokes are connected in <strong>PARALLEL</strong> between the common central axle and the outer metallic rim. In parallel, equivalent voltage equals the voltage across a single spoke!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Train Axle Induction</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            When a train travels along horizontal rails, its metallic axle of length $l$ cuts the vertical component of Earth's magnetic field ($B_V$). Induced EMF is $\mathcal{E} = B_V v l$. Whether the train runs North, South, East, or West, it always cuts $B_V$.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Terminal Velocity of Sliding Rod under Gravity</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            If a rod of mass $m$ falls under gravity along vertical rails in a horizontal field $B$, upward magnetic retarding force $F_m = \frac{B^2 l^2 v}{R}$ increases as speed rises, until $F_m = mg$. The rod then reaches a steady <strong class="text-white">terminal velocity</strong>:
+            $$v_t = \frac{mg R}{B^2 l^2}$$
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A metallic rod of length $1.0\text{ m}$ is rotated with a frequency of $50\text{ rev/s}$, with one end hinged at the center and the other end at the circumference of a circular metallic ring of radius $1.0\text{ m}$, about an axis passing through the center and perpendicular to the plane of the ring. A constant uniform magnetic field of $1.0\text{ T}$ parallel to the axis is present everywhere. What is the EMF induced between the center and the metallic ring?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Given: Length $l = 1.0\text{ m}$, rotation frequency $f = 50\text{ s}^{-1}$, magnetic field $B = 1.0\text{ T}$.</p>
+          <p>2. Angular velocity $\omega = 2\pi f = 2\pi \times 50 = 100\pi\text{ rad/s}$.</p>
+          <p>3. Formula for motional EMF of a rotating rod:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\mathcal{E} = \frac{1}{2} B \omega l^2 = B f (\pi l^2)$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\mathcal{E} = \frac{1}{2} \times 1.0 \times (100\pi) \times (1.0)^2 = 50\pi\text{ Volts} \approx 157.08\text{ Volts}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A jet plane is traveling towards west at a speed of $1800\text{ km/h}$. What is the voltage difference developed between the ends of the wing having a span of $25\text{ m}$, if the Earth’s magnetic field at the location has a magnitude of $5.0 \times 10^{-4}\text{ T}$ and the dip angle is $30^\circ$?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Convert speed into SI units:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$v = 1800 \times \frac{5}{18} = 500\text{ m/s}$$
+          </div>
+          <p>2. Wingspan $l = 25\text{ m}$. Vertical component of Earth's magnetic field:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$B_V = B \sin\delta = (5.0 \times 10^{-4}\text{ T}) \times \sin 30^\circ = (5.0 \times 10^{-4}) \times 0.5 = 2.5 \times 10^{-4}\text{ T}$$
+          </div>
+          <p>3. Induced EMF across wingtips:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\mathcal{E} = B_V v l = (2.5 \times 10^{-4}\text{ T}) \times (500\text{ m/s}) \times (25\text{ m}) = 3.125\text{ Volts}$$
+          </div>
+          <p class="text-slate-400"><em>Polarity Insight:</em> By Fleming's right-hand rule (motion West, $B_V$ downwards), positive charge is pushed towards the North-facing wingtip. Thus, the North wingtip is at a higher potential.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Translational EMF</p>
+          <p class="text-xs font-bold text-white mt-1">$\mathcal{E} = Bvl$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Rotational EMF</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$\mathcal{E} = \frac{1}{2}B\omega l^2$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Retarding Force</p>
+          <p class="text-xs font-bold text-rose-400 mt-1">$F = \frac{B^2 l^2 v}{R}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Power Dissipation</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$P = \frac{B^2 l^2 v^2}{R}$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Motional & Rotational Canvas Simulation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('motionalCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const viewToggleBtn = document.getElementById('viewToggleBtn');
+      const slider1 = document.getElementById('slider1');
+      const slider2 = document.getElementById('slider2');
+      const slider3 = document.getElementById('slider3');
+
+      const slider1Label = document.getElementById('slider1Label');
+      const slider2Label = document.getElementById('slider2Label');
+      const slider3Label = document.getElementById('slider3Label');
+      const slider1Val = document.getElementById('slider1Val');
+      const slider2Val = document.getElementById('slider2Val');
+      const slider3Val = document.getElementById('slider3Val');
+
+      const emfOut = document.getElementById('emfOut');
+      const currentOut = document.getElementById('currentOut');
+      const forceOut = document.getElementById('forceOut');
+      const powerOut = document.getElementById('powerOut');
+
+      // Modes: 'slider' (translating rod on rails) or 'rotating'
+      let currentMode = 'slider';
+      let simPhase = 0;
+      let rodXPx = 240;
+
+      viewToggleBtn.addEventListener('click', () => {
+        currentMode = (currentMode === 'slider') ? 'rotating' : 'slider';
+        if (currentMode === 'slider') {
+          viewToggleBtn.textContent = 'Switch: Rotating Conducting Rod';
+          slider1Label.textContent = 'Magnetic Field (B)';
+          slider2Label.textContent = 'Rod Velocity (v in m/s)';
+          slider3Label.textContent = 'Circuit Resistance (R in Ω)';
+          slider1.min = 0.2; slider1.max = 3.0; slider1.step = 0.1; slider1.value = 1.5;
+          slider2.min = 0.5; slider2.max = 10.0; slider2.step = 0.5; slider2.value = 4.0;
+          slider3.min = 0.5; slider3.max = 10.0; slider3.step = 0.5; slider3.value = 2.0;
+        } else {
+          viewToggleBtn.textContent = 'Switch: Return to Sliding Rail Gun';
+          slider1Label.textContent = 'Magnetic Field (B in Tesla)';
+          slider2Label.textContent = 'Angular Velocity (ω in rad/s)';
+          slider3Label.textContent = 'Rod Length (l in metres)';
+          slider1.min = 0.5; slider1.max = 3.0; slider1.step = 0.1; slider1.value = 1.0;
+          slider2.min = 5; slider2.max = 60; slider2.step = 5; slider2.value = 25;
+          slider3.min = 0.5; slider3.max = 2.0; slider3.step = 0.1; slider3.value = 1.0;
+        }
+      });
+
+      function renderLoop() {
+        simPhase += 0.04;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const val1 = parseFloat(slider1.value);
+        const val2 = parseFloat(slider2.value);
+        const val3 = parseFloat(slider3.value);
+
+        if (currentMode === 'slider') {
+          const B = val1;
+          const v = val2;
+          const R = val3;
+          const l = 0.5; // 0.5 m length of rod
+
+          slider1Val.textContent = B.toFixed(1) + ' T';
+          slider2Val.textContent = v.toFixed(1) + ' m/s';
+          slider3Val.textContent = R.toFixed(1) + ' Ω';
+
+          const emf = B * v * l;
+          const current = emf / R;
+          const force = current * l * B;
+          const power = force * v;
+
+          emfOut.textContent = emf.toFixed(2) + ' V';
+          currentOut.textContent = current.toFixed(2) + ' A';
+          forceOut.textContent = force.toFixed(2) + ' N';
+          powerOut.textContent = power.toFixed(2) + ' W';
+
+          // Sliding animation update
+          rodXPx += (v * 0.4);
+          if (rodXPx > canvas.width - 120) rodXPx = 220;
+
+          renderRailGunMode(B, v, R, emf, current, force, rodXPx);
+        } else {
+          const B = val1;
+          const omega = val2;
+          const l = val3;
+
+          slider1Val.textContent = B.toFixed(1) + ' T';
+          slider2Val.textContent = omega.toFixed(0) + ' rad/s';
+          slider3Val.textContent = l.toFixed(1) + ' m';
+
+          const rotEMF = 0.5 * B * omega * l * l;
+          const freq = omega / (2 * Math.PI);
+
+          emfOut.textContent = rotEMF.toFixed(2) + ' V';
+          currentOut.textContent = (freq).toFixed(1) + ' Hz (Freq)';
+          forceOut.textContent = (Math.PI * l * l).toFixed(2) + ' m² (Area)';
+          powerOut.textContent = `A·f = ${(Math.PI * l * l * freq).toFixed(2)}`;
+
+          renderRotatingRodMode(B, omega, l, rotEMF);
+        }
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderRailGunMode(B, v, R, emf, current, force, rx) {
+        const leftX = 140, rightX = 700;
+        const topY = 90, botY = 270;
+        const rodH = botY - topY;
+
+        // 1. Uniform Magnetic Field (⊗ Inwards)
+        ctx.fillStyle = '#334155';
+        for (let x = leftX - 20; x <= rightX + 20; x += 55) {
+          for (let y = topY - 20; y <= botY + 20; y += 45) {
+            ctx.beginPath();
+            ctx.arc(x, y, 2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.2)';
+            ctx.strokeRect(x - 4, y - 4, 8, 8);
+          }
+        }
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`Uniform B Field (${B} T ⊗ Inward)`, leftX - 10, topY - 35);
+
+        // 2. Parallel Conducting Rails
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(leftX, topY); ctx.lineTo(rightX, topY);
+        ctx.moveTo(leftX, botY); ctx.lineTo(rightX, botY);
+        ctx.stroke();
+
+        // 3. Resistor R on Left Edge
+        ctx.beginPath();
+        ctx.moveTo(leftX, topY); ctx.lineTo(leftX, topY + 60);
+        ctx.moveTo(leftX, botY); ctx.lineTo(leftX, botY - 60);
+        ctx.stroke();
+        renderZigZag(leftX, topY + 60, 60, `R = ${R}Ω`, '#f59e0b');
+
+        // 4. Moving Conductor Rod
+        ctx.fillStyle = '#cbd5e1';
+        ctx.fillRect(rx - 8, topY - 10, 16, rodH + 20);
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(rx - 8, topY - 10, 16, rodH + 20);
+
+        // Polarity markers on rod
+        ctx.fillStyle = '#10b981';
+        ctx.font = 'bold 12px monospace';
+        ctx.fillText('+', rx - 4, topY - 18);
+        ctx.fillStyle = '#38bdf8';
+        ctx.fillText('-', rx - 4, botY + 28);
+
+        // Velocity Arrow
+        drawArrow(rx + 8, topY + rodH / 2, rx + 65, topY + rodH / 2, '#fbbf24', `v = ${v}m/s`);
+
+        // Retarding Force Arrow (Lenz Drag)
+        drawArrow(rx - 8, topY + rodH / 2, rx - 65, topY + rodH / 2, '#ef4444', `F_m = ${force.toFixed(1)}N`);
+
+        // Circulating Electron Flow Beads (Anticlockwise current: UP in rod)
+        const beadOffset = (simPhase * current * 40) % 200;
+        ctx.fillStyle = '#10b981';
+        ctx.beginPath();
+        ctx.arc(rx, botY - (beadOffset % rodH), 3.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Motional EMF Ɛ = Bvl = ${emf.toFixed(2)} V | Power P = Fv = I²R = ${((force * v)).toFixed(2)} W (Conservation of Energy)`, canvas.width / 2, canvas.height - 14);
+      }
+
+      function renderRotatingRodMode(B, omega, l, rotEMF) {
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2 + 10;
+        const pxRadius = l * 110;
+
+        // Circular Metallic Rim
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(cx, cy, pxRadius, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Magnetic Field Inward dots
+        ctx.fillStyle = 'rgba(56, 189, 248, 0.25)';
+        for (let r = 25; r < pxRadius; r += 35) {
+          for (let a = 0; a < Math.PI * 2; a += Math.PI / 4) {
+            ctx.beginPath();
+            ctx.arc(cx + Math.cos(a) * r, cy + Math.sin(a) * r, 2, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        // Center Axle Pivot O
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(cx, cy, 6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#10b981';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('Center O (+)', cx - 35, cy - 10);
+
+        // Rotating Rod Arm
+        const currentAngle = simPhase * (omega / 10);
+        const tipX = cx + Math.cos(currentAngle) * pxRadius;
+        const tipY = cy + Math.sin(currentAngle) * pxRadius;
+
+        ctx.strokeStyle = '#fbbf24';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(tipX, tipY);
+        ctx.stroke();
+
+        // Tip marker (-)
+        ctx.fillStyle = '#ef4444';
+        ctx.beginPath();
+        ctx.arc(tipX, tipY, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillText('Rim (-)', tipX + 10, tipY + 4);
+
+        // Rotation curved arrow
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 45, currentAngle, currentAngle + 0.6);
+        ctx.stroke();
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Rotating Rod: Ɛ = 1/2 Bωl² = B·f·(πl²) = ${rotEMF.toFixed(2)} Volts between Center Axle and Rim`, cx, canvas.height - 14);
+      }
+
+      function renderZigZag(x, y, h, label, color) {
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        const steps = 6;
+        const dy = h / steps;
+        for (let i = 1; i < steps; i++) {
+          const dx = (i % 2 === 0) ? -8 : 8;
+          ctx.lineTo(x + dx, y + i * dy);
+        }
+        ctx.lineTo(x, y + h);
+        ctx.stroke();
+
+        ctx.fillStyle = color;
+        ctx.font = 'bold 10px monospace';
+        ctx.textAlign = 'right';
+        ctx.fillText(label, x - 14, y + h / 2 + 3);
+        ctx.restore();
+      }
+
+      function drawArrow(fromX, fromY, toX, toY, color, labelText) {
+        const angle = Math.atan2(toY - fromY, toX - fromX);
+        const headlen = 7;
+
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+        ctx.moveTo(fromX, fromY);
+        ctx.lineTo(toX, toY);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(toX, toY);
+        ctx.lineTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
+        ctx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
+        ctx.closePath();
+        ctx.fill();
+
+        if (labelText) {
+          ctx.fillStyle = color;
+          ctx.font = 'bold 10px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText(labelText, (fromX + toX) / 2, fromY - 10);
+        }
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

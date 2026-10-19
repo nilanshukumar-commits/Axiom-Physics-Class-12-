@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Dielectrics & Capacitance</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 2.3</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 01: Electrostatics • Chapter 02</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Dielectrics, Polarization & Parallel Plate Capacitor</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Microscopic dipole alignment, bound surface charge density, dielectric constant $K$, and parallel plate capacitance with slabs.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek spring-loaded door damper ko: jab aap door ko force se push karte hain, toh damper ek opposing resistance create karta hai, jisse net motion ease ho jati hai. <strong class="text-white">Dielectric material</strong> bilkul wahi kaam capacitor plates ke beech karta hai. Iske atoms ke electron clouds external electric field ke opposite stretch ho jaate hain (polarization). Yeh polarized surface charges ek opposing internal field $\vec{E}_p$ create karte hain, jisse plates ke beech ka net electric field drop ho jata hai[cite: 13]. Aur jab potential difference $V$ ghat jata hai, toh same voltage par aur zyada charge hold karne ki ability yani <strong class="text-white">Capacitance ($C = Q/V$)</strong> direct multiply ho jati hai[cite: 13]!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">Polarization & Reduced Field</h3>
+          <p class="text-sm text-slate-400 mb-2">Net electric field inside a dielectric medium of dielectric constant $K$[cite: 13]:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\vec{E}_{\text{net}} = \vec{E}_0 - \vec{E}_p = \frac{\vec{E}_0}{K}, \quad \vec{P} = \chi_e \varepsilon_0 \vec{E}_{\text{net}}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Here $\vec{P}$ is the polarization vector (dipole moment per unit volume) and $\chi_e$ is electric susceptibility ($K = 1 + \chi_e$).</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">Parallel Plate Capacitance Formulae</h3>
+          <p class="text-sm text-slate-400 mb-2">Vacuum vs Partial Dielectric Slab insertion of thickness $t < d$[cite: 13]:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$C_0 = \frac{\varepsilon_0 A}{d}, \quad C = \frac{\varepsilon_0 A}{d - t + \frac{t}{K}}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">When completely filled ($t = d$): $C = K C_0$[cite: 13]. For a conducting slab of thickness $t$: $K = \infty \implies C = \frac{\varepsilon_0 A}{d - t}$.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Slab Sliding & Dipole Alignment Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Dielectric Insertion & Dipole Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="toggleDipolesBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Toggle: Microscopic Molecular View
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="capCanvas" width="800" height="380" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Slab Thickness ($t$)</span>
+            <span id="tVal" class="text-cyan-400 font-mono font-bold">5.0 mm</span>
+          </div>
+          <input id="tSlider" type="range" min="0" max="10" step="0.5" value="5" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Dielectric Constant ($K$)</span>
+            <span id="kVal" class="text-amber-400 font-mono font-bold">4.0</span>
+          </div>
+          <input id="kSlider" type="range" min="1" max="10" step="0.5" value="4" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Plate Separation ($d$)</span>
+            <span id="dVal" class="text-emerald-400 font-mono font-bold">10.0 mm</span>
+          </div>
+          <input id="dSlider" type="range" min="8" max="15" step="0.5" value="10" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Metrics Badges -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Capacitance Multiplier ($C / C_0$):</span>
+          <div id="cRatioVal" class="text-cyan-400 font-bold text-sm mt-0.5">1.60x</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Net Field in Slab ($E_{\text{net}} = E_0/K$):</span>
+          <div id="eNetVal" class="text-amber-400 font-bold text-sm mt-0.5">25.0% of E₀</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Induced Surface Charge ($q_p$):</span>
+          <div id="qpVal" class="text-emerald-400 font-bold text-sm mt-0.5">0.75 q₀</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint[cite: 13]</span>
+      </div>
+
+      <!-- Derivation 1: Parallel Plate in Vacuum -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation A</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Capacitance of a Parallel Plate Capacitor in Vacuum ($C_0 = \frac{\varepsilon_0 A}{d}$)[cite: 13]</h4>
+        </div>
+        <p>1. Consider two large parallel conducting plates of area $A$ separated by distance $d$, carrying charges $+Q$ and $-Q$[cite: 13]. Surface charge density $\sigma = \frac{Q}{A}$[cite: 13].</p>
+        <p>2. In the outer regions (above plate 1 and below plate 2), electric fields cancel out: $E_{\text{outer}} = \frac{\sigma}{2\varepsilon_0} - \frac{\sigma}{2\varepsilon_0} = 0$[cite: 13].</p>
+        <p>3. In the inner gap, both fields point from positive to negative plate and add up constructively[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$E_0 = \frac{\sigma}{2\varepsilon_0} + \frac{\sigma}{2\varepsilon_0} = \frac{\sigma}{\varepsilon_0} = \frac{Q}{\varepsilon_0 A}$$
+        </div>
+        <p>4. Potential difference $V_0$ between the plates ($V_0 = E_0 d$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$V_0 = \left( \frac{Q}{\varepsilon_0 A} \right) d$$
+        </div>
+        <p>5. By definition of capacitance $C_0 = \frac{Q}{V_0}$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$C_0 = \frac{Q}{\frac{Q d}{\varepsilon_0 A}} = \frac{\varepsilon_0 A}{d}$$
+        </div>
+      </div>
+
+      <!-- Derivation 2: Partial Dielectric Slab Insertion -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation B</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Capacitance with a Dielectric Slab of Thickness $t < d$[cite: 13]</h4>
+        </div>
+        <p>1. Introduce a dielectric slab of thickness $t$ and constant $K$ between the plates ($t < d$)[cite: 13].</p>
+        <p>2. The remaining vacuum gap of thickness $(d - t)$ maintains field $E_0$. Inside the slab, the field is reduced to $E = \frac{E_0}{K}$[cite: 13].</p>
+        <p>3. Total potential difference $V$ across the plates is the sum of potentials across both regions[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$V = E_0 (d - t) + E t = E_0 (d - t) + \frac{E_0}{K} t = E_0 \left[ (d - t) + \frac{t}{K} \right]$$
+        </div>
+        <p>4. Substitute $E_0 = \frac{Q}{\varepsilon_0 A}$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$V = \frac{Q}{\varepsilon_0 A} \left[ d - t + \frac{t}{K} \right]$$
+        </div>
+        <p>5. Effective capacitance $C = \frac{Q}{V}$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$C = \frac{\varepsilon_0 A}{d - t + \frac{t}{K}} = \frac{\varepsilon_0 A}{d - t\left(1 - \frac{1}{K}\right)}$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Induced Surface Charge $q_p$ is NEVER equal to $q$</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Students often set $q_p = q$. For a dielectric, induced bound charge is always strictly less: $q_p = q\left(1 - \frac{1}{K}\right)$[cite: 13]. It equals $q$ only if the inserted slab is a perfect metallic conductor ($K = \infty$).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Metallic Slab vs Dielectric Slab Distinction</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            If a copper/aluminium sheet of thickness $t$ is inserted inside a capacitor, electric field inside it becomes exactly zero ($\vec{E} = 0$)[cite: 13]. Do not write $K$; plug $K = \infty$ directly into the formula to get $C = \frac{\varepsilon_0 A}{d - t}$.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: "Capacitance depends on Q or V" Fallacy</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Just like resistance $R$ does not depend on current $I$, Capacitance $C = Q/V$ does NOT depend on charge $Q$ or potential difference $V$[cite: 13]. It is purely a geometric constant determined by plate shape ($A$), gap ($d$), and medium ($K$)[cite: 13].
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Dielectric Breakdown Voltage</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Every dielectric has a maximum dielectric strength (for air $\approx 3 \times 10^6\text{ V/m}$). Increasing $Q$ excessively will ionize the medium, causing a spark discharge between plates and destroying capacitor action.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A parallel plate capacitor has plate area $A = 100\text{ cm}^2$ and plate separation $d = 1\text{ mm}$. A dielectric slab of thickness $t = 0.6\text{ mm}$ and dielectric constant $K = 5$ is introduced between the plates. Calculate its capacitance before and after inserting the slab[cite: 13].</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Area $A = 100 \times 10^{-4}\text{ m}^2 = 10^{-2}\text{ m}^2$, $d = 10^{-3}\text{ m}$.</p>
+          <p>2. Initial capacitance in vacuum ($C_0$)[cite: 13]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$C_0 = \frac{\varepsilon_0 A}{d} = \frac{(8.854 \times 10^{-12}) \times 10^{-2}}{10^{-3}} = 88.54 \times 10^{-12}\text{ F} = 88.54\text{ pF}$$
+          </div>
+          <p>3. Capacitance with partial slab ($t = 0.6\text{ mm} = 0.6 \times 10^{-3}\text{ m}$)[cite: 13]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$d - t + \frac{t}{K} = (1.0 - 0.6 + \frac{0.6}{5})\text{ mm} = (0.4 + 0.12)\text{ mm} = 0.52\text{ mm} = 0.52 \times 10^{-3}\text{ m}$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$C = \frac{\varepsilon_0 A}{0.52 \times 10^{-3}} = \frac{C_0}{0.52} = \frac{88.54}{0.52} \approx 170.27\text{ pF}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A dielectric slab of constant $K$ fills half the space of a parallel plate capacitor. What is the equivalent capacitance if (i) slab divides the plate area $A$ into two halves ($A/2$), (ii) slab divides the plate separation $d$ into two halves ($d/2$)?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p><strong class="text-indigo-300">Case (i) Area division (Parallel combination):</strong> Two capacitors in parallel, each of area $A/2$ and gap $d$[cite: 13]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$C_{\text{eff}} = C_1 + C_2 = \frac{\varepsilon_0 (A/2)}{d} + \frac{K\varepsilon_0 (A/2)}{d} = \frac{\varepsilon_0 A}{2d}(1 + K) = \frac{C_0}{2}(1 + K)$$
+          </div>
+          <p><strong class="text-indigo-300">Case (ii) Thickness division (Series combination):</strong> Two capacitors in series, each of area $A$ and gap $d/2$[cite: 13]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\frac{1}{C_{\text{eff}}} = \frac{1}{C_1} + \frac{1}{C_2} = \frac{d/2}{\varepsilon_0 A} + \frac{d/2}{K\varepsilon_0 A} = \frac{d}{2\varepsilon_0 A}\left(1 + \frac{1}{K}\right) = \frac{1}{2C_0}\left(\frac{K + 1}{K}\right)$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$C_{\text{eff}} = \left(\frac{2K}{K + 1}\right)C_0$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Capacitance in Vac</p>
+          <p class="text-xs font-bold text-white mt-1">$C_0 = \frac{\varepsilon_0 A}{d}$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Filled Dielectric</p>
+          <p class="text-xs font-bold text-white mt-1">$C = K C_0$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Partial Slab ($t < d$)</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$C = \frac{\varepsilon_0 A}{d - t + \frac{t}{K}}$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Bound Charge</p>
+          <p class="text-xs font-bold text-white mt-1">$q_p = q(1 - 1/K)$[cite: 13]</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Capacitor & Dielectric Simulation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('capCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const tSlider = document.getElementById('tSlider');
+      const kSlider = document.getElementById('kSlider');
+      const dSlider = document.getElementById('dSlider');
+      const toggleDipolesBtn = document.getElementById('toggleDipolesBtn');
+
+      const tVal = document.getElementById('tVal');
+      const kVal = document.getElementById('kVal');
+      const dVal = document.getElementById('dVal');
+      const cRatioVal = document.getElementById('cRatioVal');
+      const eNetVal = document.getElementById('eNetVal');
+      const qpVal = document.getElementById('qpVal');
+
+      let showMicroscopic = false;
+      let pulseTime = 0;
+
+      toggleDipolesBtn.addEventListener('click', () => {
+        showMicroscopic = !showMicroscopic;
+        toggleDipolesBtn.textContent = showMicroscopic 
+          ? 'Switch: Macroscopic Field View' 
+          : 'Toggle: Microscopic Molecular View';
+      });
+
+      function renderLoop() {
+        pulseTime += 0.03;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const d_mm = parseFloat(dSlider.value);
+        let t_mm = parseFloat(tSlider.value);
+        if (t_mm > d_mm) {
+          t_mm = d_mm;
+          tSlider.value = d_mm;
+        }
+        const K = parseFloat(kSlider.value);
+
+        tVal.textContent = t_mm.toFixed(1) + ' mm';
+        dVal.textContent = d_mm.toFixed(1) + ' mm';
+        kVal.textContent = K.toFixed(1);
+
+        // Physics calculations
+        // C / C0 = d / (d - t + t/K)
+        const denominator = (d_mm - t_mm + (t_mm / K));
+        const cRatio = denominator > 0 ? (d_mm / denominator) : 1;
+        cRatioVal.textContent = cRatio.toFixed(2) + 'x';
+
+        // E in slab = E0 / K
+        const ePercent = (100 / K).toFixed(1);
+        eNetVal.textContent = t_mm > 0 ? ePercent + '% of E₀' : '100% of E₀';
+
+        // Induced charge qp = q(1 - 1/K)
+        const qpRatio = t_mm > 0 ? (1 - 1 / K).toFixed(2) : '0.00';
+        qpVal.textContent = qpRatio + ' q₀';
+
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        // Visual Layout Mapping
+        // Let plate height = 220px. Let 1 mm = 18 px.
+        const pxPerMm = 18;
+        const plateGapPx = d_mm * pxPerMm;
+        const slabThicknessPx = t_mm * pxPerMm;
+        const plateHeightPx = 220;
+
+        const leftPlateX = cx - (plateGapPx / 2);
+        const rightPlateX = cx + (plateGapPx / 2);
+
+        // 1. Render Capacitor Metal Plates
+        renderMetalPlate(leftPlateX - 14, cy - plateHeightPx / 2, 14, plateHeightPx, '+', '#f43f5e');
+        renderMetalPlate(rightPlateX, cy - plateHeightPx / 2, 14, plateHeightPx, '-', '#38bdf8');
+
+        // 2. Render External Electric Field E0 (In vacuum gap)
+        ctx.strokeStyle = 'rgba(244, 63, 94, 0.25)';
+        ctx.lineWidth = 1.5;
+        const numFieldLines = 6;
+        for (let i = 1; i <= numFieldLines; i++) {
+          const lineY = cy - plateHeightPx / 2 + (plateHeightPx / (numFieldLines + 1)) * i;
+          ctx.beginPath();
+          ctx.moveTo(leftPlateX, lineY);
+          ctx.lineTo(rightPlateX, lineY);
+          ctx.stroke();
+
+          // Flowing vacuum energy particles
+          const beadX = leftPlateX + ((pulseTime * 60 + i * 40) % plateGapPx);
+          ctx.fillStyle = '#f43f5e';
+          ctx.beginPath();
+          ctx.arc(beadX, lineY, 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        // 3. Render Dielectric Slab (Centred inside the gap)
+        if (slabThicknessPx > 0) {
+          const slabX = cx - (slabThicknessPx / 2);
+          const slabY = cy - (plateHeightPx / 2) + 10;
+          const slabH = plateHeightPx - 20;
+
+          // Slab Glassy Fill
+          const slabGrad = ctx.createLinearGradient(slabX, 0, slabX + slabThicknessPx, 0);
+          slabGrad.addColorStop(0, 'rgba(56, 189, 248, 0.25)');
+          slabGrad.addColorStop(1, 'rgba(168, 85, 247, 0.25)');
+          ctx.fillStyle = slabGrad;
+          ctx.fillRect(slabX, slabY, slabThicknessPx, slabH);
+
+          ctx.strokeStyle = '#38bdf8';
+          ctx.lineWidth = 2;
+          ctx.strokeRect(slabX, slabY, slabThicknessPx, slabH);
+
+          // Slab Label
+          ctx.fillStyle = '#38bdf8';
+          ctx.font = 'bold 11px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText(`Dielectric (K = ${K})`, cx, slabY - 8);
+
+          // Bound charges on slab surfaces
+          ctx.font = 'bold 12px monospace';
+          ctx.fillStyle = '#38bdf8'; // Negative bound charges on left face
+          for (let y = slabY + 20; y < slabY + slabH; y += 30) {
+            ctx.fillText('-', slabX + 8, y);
+          }
+          ctx.fillStyle = '#f43f5e'; // Positive bound charges on right face
+          for (let y = slabY + 20; y < slabY + slabH; y += 30) {
+            ctx.fillText('+', slabX + slabThicknessPx - 8, y);
+          }
+
+          // Microscopic Molecular Dipole view inside slab
+          if (showMicroscopic && slabThicknessPx > 30) {
+            renderAlignedDipoles(slabX + 16, slabY + 15, slabThicknessPx - 32, slabH - 30);
+          }
+        }
+
+        // 4. Dimension Markers
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 1;
+        // Plate gap d
+        const dimY = cy + plateHeightPx / 2 + 25;
+        ctx.beginPath();
+        ctx.moveTo(leftPlateX, dimY);
+        ctx.lineTo(rightPlateX, dimY);
+        ctx.stroke();
+        ctx.fillStyle = '#cbd5e1';
+        ctx.font = '11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Plate Gap d = ${d_mm} mm`, cx, dimY + 14);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.fillText('Capacitor Slab Physics: C = ε₀A / [d - t(1 - 1/K)] | Induced charge reduces internal field[cite: 13]', cx, canvas.height - 14);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderMetalPlate(x, y, w, h, sign, color) {
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, w, h);
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(x, y, w, h);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 12px monospace';
+        ctx.textAlign = 'center';
+        for (let py = y + 25; py < y + h; py += 35) {
+          ctx.fillText(sign, x + w / 2, py);
+        }
+      }
+
+      function renderAlignedDipoles(startX, startY, w, h) {
+        const rows = 4;
+        const cols = Math.max(1, Math.floor(w / 35));
+        const stepX = w / cols;
+        const stepY = h / rows;
+
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const dx = startX + c * stepX + stepX / 2;
+            const dy = startY + r * stepY + stepY / 2;
+
+            // Micro dipole pill: (-) on left, (+) on right
+            ctx.fillStyle = '#0f172a';
+            ctx.strokeStyle = '#94a3b8';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.roundRect(dx - 12, dy - 6, 24, 12, 6);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.font = '9px monospace';
+            ctx.fillStyle = '#38bdf8';
+            ctx.fillText('-', dx - 6, dy + 3);
+            ctx.fillStyle = '#f43f5e';
+            ctx.fillText('+', dx + 6, dy + 3);
+          }
+        }
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

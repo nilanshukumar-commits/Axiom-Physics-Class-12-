@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Torque on Loop & Moving Coil Galvanometer</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 4.5</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 03: Magnetic Effects of Current • Chapter 04</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Torque on Current Loop & Moving Coil Galvanometer</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Magnetic dipole torque, radial magnetic field mechanics, current sensitivity, and conversion to ammeter & voltmeter.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek revolving door ko: agar aap uske dono opposite ends par equal aur opposite push lagate hain, toh door kahin aage-peeche move nahi hota, balki apni axis par tezi se ghoomne lagta hai (Pure Torque). Jab ek current loop ko magnetic field me rakhte hain, toh uske opposite arms par equal aur opposite forces lagte hain jo ek couple form karte hain. <strong class="text-white">Moving Coil Galvanometer (MCG)</strong> isi mechanical torque ko use karta hai. Par agar magnetic field flat hoti, toh coil ke ghoomte hi torque badal jata ($\tau \propto \sin\theta$). Isliye physics engineers ne <strong class="text-white">Cylindrical Soft Iron Core aur Concave Magnet Poles</strong> invent kiye, jo ek <strong class="text-white">Radial Magnetic Field</strong> banate hain jahan har orientation me plane of coil field ke parallel rehta hai ($\theta = 90^\circ$), aur deflection hamesha current ke directly proportional rehta hai!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Torque on Current Loop</h3>
+          <p class="text-sm text-slate-400 mb-2">Deflecting torque experienced by a coil of $N$ turns and area $A$[cite: 14]:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\vec{\tau} = \vec{M} \times \vec{B} = N I (\vec{A} \times \vec{B}) \implies \tau = N I A B \sin\theta$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Where $\theta$ is the angle between magnetic moment $\vec{M}$ (normal to area) and $\vec{B}$[cite: 14]. In a radial field, $\theta = 90^\circ$ always, so $\tau_{\max} = N I A B$[cite: 14].</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Galvanometer Equilibrium</h3>
+          <p class="text-sm text-slate-400 mb-2">Deflecting torque balances spring restoring torque ($k\phi$)[cite: 14]:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$N I A B = k \phi \implies \phi = \left(\frac{N A B}{k}\right) I$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Where $k$ is torsional restoring couple per unit twist of the phosphor-bronze suspension spring[cite: 14]. Scale is strictly linear ($\phi \propto I$)[cite: 14].</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (MCG Radial Field & Conversion Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Moving Coil Galvanometer & Conversion Bench</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="circuitModeBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Mode: Raw Galvanometer (Radial Field)
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="mcgCanvas" width="800" height="400" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="slider1Label">Input Current ($I$)</span>
+            <span id="slider1Val" class="text-cyan-400 font-mono font-bold">15.0 mA</span>
+          </div>
+          <input id="slider1" type="range" min="0" max="30" step="1" value="15" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="slider2Label">Galvanometer Resistance ($G$)</span>
+            <span id="slider2Val" class="text-amber-400 font-mono font-bold">50 Ω</span>
+          </div>
+          <input id="slider2" type="range" min="10" max="100" step="5" value="50" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="slider3Label">Full-Scale Deflection Current ($I_g$)</span>
+            <span id="slider3Val" class="text-emerald-400 font-mono font-bold">25.0 mA</span>
+          </div>
+          <input id="slider3" type="range" min="10" max="50" step="5" value="25" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Needle Deflection ($\phi$):</span>
+          <div id="deflectionOut" class="text-cyan-400 font-bold text-sm mt-0.5">36.0°</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Required Shunt for Ammeter ($S$):</span>
+          <div id="shuntOut" class="text-amber-400 font-bold text-sm mt-0.5">0.251 Ω</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Series Resistor for Voltmeter ($R$):</span>
+          <div id="seriesOut" class="text-emerald-400 font-bold text-sm mt-0.5">350.0 Ω</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Radial Field Check:</span>
+          <div class="text-indigo-300 font-bold text-sm mt-0.5">θ = 90° (Always Max τ)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations & Instrument Conversions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint & Instrument Conversions</span>
+      </div>
+
+      <!-- Derivation 1: Moving Coil Galvanometer Working -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Core Principle</span>
+          <h4 class="text-white font-semibold text-base mt-1">Working Principle & Radial Field Mechanics of Moving Coil Galvanometer[cite: 14]</h4>
+        </div>
+        <p>1. A rectangular coil of $N$ turns, length $l$, and breadth $b$ (area $A = l \times b$) is suspended in a radial magnetic field between concave permanent magnetic poles with a soft iron cylinder core[cite: 14].</p>
+        <p>2. Due to the cylindrical soft iron core and concave pole pieces, magnetic field lines are directed along radii of the cylinder[cite: 14]. Consequently, the plane of the coil remains parallel to magnetic field lines in all angular positions[cite: 14].</p>
+        <p>3. Angle between magnetic moment $\vec{M}$ and $\vec{B}$ is strictly $\theta = 90^\circ$ ($\sin 90^\circ = 1$)[cite: 14]. Deflecting torque on the coil is always maximum[cite: 14]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\tau_{\text{def}} = N I A B \sin 90^\circ = N I A B$$
+        </div>
+        <p>4. As the coil rotates through angle $\phi$, the suspension spring is twisted, developing an opposing restoring torque[cite: 14]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\tau_{\text{rest}} = k \phi$$
+        </div>
+        <p>5. In steady deflection equilibrium, $\tau_{\text{def}} = \tau_{\text{rest}}$[cite: 14]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$N I A B = k \phi \implies \phi = \left(\frac{N A B}{k}\right) I = \left(\frac{1}{G_c}\right) I \implies \phi \propto I \text{[cite: 14]}$$
+        </div>
+        <p class="text-slate-400"><em>Figure of Merit ($G_c$):</em> Current required to produce unit deflection: $G_c = \frac{I}{\phi} = \frac{k}{N A B}$[cite: 17].</p>
+      </div>
+
+      <!-- Sensitivities & Conversions -->
+      <div class="grid md:grid-cols-2 gap-4">
+        <!-- Ammeter Conversion -->
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Conversion 01</span>
+          <h4 class="text-white font-semibold text-sm">Conversion of Galvanometer into Ammeter[cite: 14]</h4>
+          <p>A galvanometer is converted into an ammeter of range $0$ to $I$ ($I > I_g$) by connecting a <strong>small resistance (Shunt $S$) in parallel</strong> with it[cite: 14].</p>
+          <p>Since $G$ and $S$ are in parallel, potential drop across both is equal[cite: 14]:</p>
+          <div class="text-center py-1 font-mono text-indigo-300">
+            $$V_G = V_S \implies I_g G = (I - I_g) S$$
+          </div>
+          <div class="text-center py-1 font-mono text-emerald-400 font-bold">
+            $$S = \frac{I_g G}{I - I_g} \text{[cite: 14]}$$
+          </div>
+          <p class="text-slate-400">Equivalent resistance of ammeter: $R_A = \frac{G S}{G + S} \approx S \approx 0$ (Ideal ammeter has zero resistance)[cite: 14].</p>
+        </div>
+
+        <!-- Voltmeter Conversion -->
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Conversion 02</span>
+          <h4 class="text-white font-semibold text-sm">Conversion of Galvanometer into Voltmeter[cite: 14]</h4>
+          <p>A galvanometer is converted into a voltmeter of range $0$ to $V$ by connecting a <strong>very high resistance $R$ in series</strong> with it[cite: 14].</p>
+          <p>Total voltage $V$ is distributed across series combination[cite: 14]:</p>
+          <div class="text-center py-1 font-mono text-indigo-300">
+            $$V = I_g (G + R) \implies G + R = \frac{V}{I_g}$$
+          </div>
+          <div class="text-center py-1 font-mono text-emerald-400 font-bold">
+            $$R = \frac{V}{I_g} - G \text{[cite: 14]}$$
+          </div>
+          <p class="text-slate-400">Equivalent resistance of voltmeter: $R_V = G + R \to \infty$ (Ideal voltmeter has infinite resistance)[cite: 14].</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: "Increasing Current Sensitivity Increases Voltage Sensitivity" Myth</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* If the number of turns $N$ of a galvanometer coil is doubled, does voltage sensitivity double?
+            <br>*Correct Answer:* <strong class="text-white">NO!</strong>
+            <br>Current sensitivity: $I_s = \frac{\phi}{I} = \frac{NAB}{k} \propto N$[cite: 14]. (Doubles)
+            <br>Voltage sensitivity: $V_s = \frac{\phi}{V} = \frac{NAB}{k R} \propto \frac{N}{R}$.
+            <br>When turns $N$ double, length of wire doubles, so resistance $R$ also doubles ($R \propto N$). Therefore, <strong class="text-white">Voltage Sensitivity remains completely UNCHANGED!</strong>
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: The Two Functions of Cylindrical Soft Iron Core</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* Why is a soft iron core placed inside a galvanometer coil?
+            <br>1. High relative magnetic permeability ($\mu_r \gg 1$) draws magnetic lines into itself, drastically <strong class="text-white">increasing magnetic field strength $B$</strong> and sensitivity.
+            <br>2. Symmetrical cylindrical geometry makes magnetic field lines strictly <strong class="text-white">RADIAL</strong>, keeping deflecting torque maximum ($\tau = NIAB$) and independent of coil orientation.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Why Galvanometer Cannot Be Used Directly as Ammeter</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            1. An unmodified galvanometer is extremely sensitive; full scale deflection occurs at micro-amperes ($\mu\text{A}$), so large currents burn the coil.
+            <br>2. Galvanometer coil has non-negligible resistance $G$. Inserting it in series in a circuit changes the total resistance and reduces the current being measured[cite: 14]. Shunt $S$ bypasses 99% of current and reduces equivalent resistance to near zero[cite: 14].
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Phosphor-Bronze Suspension Wire</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Phosphor-bronze alloy is chosen exclusively because it has an extremely <strong class="text-white">small torsional couple per unit twist ($k$)</strong>, high tensile strength, and negligible elastic after-effects, producing large deflection for small current ($\phi \propto 1/k$).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A galvanometer coil has a resistance of $12\text{ }\Omega$ and the meter shows full scale deflection for a current of $3\text{ mA}$. How will you convert the meter into a voltmeter of range $0$ to $18\text{ V}$[cite: 14]?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Given: Galvanometer resistance $G = 12\text{ }\Omega$, full scale current $I_g = 3\text{ mA} = 3 \times 10^{-3}\text{ A}$, target range $V = 18\text{ V}$[cite: 14].</p>
+          <p>2. To convert into a voltmeter, a high resistance $R$ must be connected in series[cite: 14]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$R = \frac{V}{I_g} - G = \frac{18}{3 \times 10^{-3}} - 12$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$R = 6000 - 12 = 5988\text{ }\Omega$$
+          </div>
+          <p class="text-slate-400"><em>Verdict:</em> Connect a resistance of $5988\text{ }\Omega$ in series with the galvanometer coil[cite: 14]. Total voltmeter resistance becomes $6000\text{ }\Omega$.</p>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A galvanometer has a resistance of $50\text{ }\Omega$ and gives full-scale deflection with $0.5\text{ mA}$ current. A shunt of $0.05\text{ }\Omega$ is connected to convert it into an ammeter. If the meter now reads $0.4\text{ A}$, find the actual current passing through the galvanometer coil and through the shunt.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Given: $G = 50\text{ }\Omega$, $S = 0.05\text{ }\Omega$, total entering circuit current $I = 0.4\text{ A}$.</p>
+          <p>2. Shunt and galvanometer are in parallel, sharing total current $I$ inversely to resistance:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$I_{\text{galv}} = I \times \left(\frac{S}{G + S}\right) = 0.4 \times \left(\frac{0.05}{50 + 0.05}\right) = 0.4 \times \frac{0.05}{50.05} \approx 3.996 \times 10^{-4}\text{ A} \approx 0.40\text{ mA}$$
+          </div>
+          <p>3. Current through the shunt:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$I_{\text{shunt}} = I - I_{\text{galv}} = 0.4 - 0.0004 = 0.3996\text{ A} = 399.6\text{ mA}$$
+          </div>
+          <p class="text-slate-400"><em>Observation:</em> Out of $400\text{ mA}$ entering current, $399.6\text{ mA}$ (99.9%) flows safely through the shunt, protecting the delicate coil!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">MCG Linear Law</p>
+          <p class="text-xs font-bold text-white mt-1">$\phi = \left(\frac{NAB}{k}\right) I$[cite: 14]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Ammeter Shunt</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$S = \frac{I_g G}{I - I_g}$[cite: 14]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Voltmeter Series R</p>
+          <p class="text-xs font-bold text-white mt-1">$R = \frac{V}{I_g} - G$[cite: 14]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Radial Field</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$\sin\theta = 1$ always[cite: 14]</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Moving Coil Galvanometer Simulation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('mcgCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const circuitModeBtn = document.getElementById('circuitModeBtn');
+      const slider1 = document.getElementById('slider1');
+      const slider2 = document.getElementById('slider2');
+      const slider3 = document.getElementById('slider3');
+
+      const slider1Label = document.getElementById('slider1Label');
+      const slider2Label = document.getElementById('slider2Label');
+      const slider3Label = document.getElementById('slider3Label');
+      const slider1Val = document.getElementById('slider1Val');
+      const slider2Val = document.getElementById('slider2Val');
+      const slider3Val = document.getElementById('slider3Val');
+
+      const deflectionOut = document.getElementById('deflectionOut');
+      const shuntOut = document.getElementById('shuntOut');
+      const seriesOut = document.getElementById('seriesOut');
+
+      // Modes: 'mcg' (radial physical view), 'ammeter', 'voltmeter'
+      const modes = ['mcg', 'ammeter', 'voltmeter'];
+      let currentModeIndex = 0;
+      let phaseTime = 0;
+
+      circuitModeBtn.addEventListener('click', () => {
+        currentModeIndex = (currentModeIndex + 1) % modes.length;
+        const mode = modes[currentModeIndex];
+        if (mode === 'mcg') {
+          circuitModeBtn.textContent = 'Mode: Raw Galvanometer (Radial Field)';
+          slider1Label.textContent = 'Input Current (I in mA)';
+          slider2Label.textContent = 'Galvanometer Coil Res (G)';
+          slider3Label.textContent = 'Full Scale Deflection Current (Ig)';
+          slider1.min = 0; slider1.max = 30; slider1.step = 1; slider1.value = 15;
+          slider2.min = 10; slider2.max = 100; slider2.step = 5; slider2.value = 50;
+          slider3.min = 10; slider3.max = 50; slider3.step = 5; slider3.value = 25;
+        } else if (mode === 'ammeter') {
+          circuitModeBtn.textContent = 'Mode: Converted Ammeter Circuit';
+          slider1Label.textContent = 'Target Range (I in Amperes)';
+          slider2Label.textContent = 'Galvanometer Res (G in Ω)';
+          slider3Label.textContent = 'Coil Rating (Ig in mA)';
+          slider1.min = 1; slider1.max = 10; slider1.step = 0.5; slider1.value = 5;
+          slider2.min = 10; slider2.max = 100; slider2.step = 5; slider2.value = 50;
+          slider3.min = 5; slider3.max = 50; slider3.step = 5; slider3.value = 25;
+        } else {
+          circuitModeBtn.textContent = 'Mode: Converted Voltmeter Circuit';
+          slider1Label.textContent = 'Target Range (V in Volts)';
+          slider2Label.textContent = 'Galvanometer Res (G in Ω)';
+          slider3Label.textContent = 'Coil Rating (Ig in mA)';
+          slider1.min = 5; slider1.max = 50; slider1.step = 5; slider1.value = 15;
+          slider2.min = 10; slider2.max = 100; slider2.step = 5; slider2.value = 50;
+          slider3.min = 5; slider3.max = 50; slider3.step = 5; slider3.value = 25;
+        }
+      });
+
+      function renderLoop() {
+        phaseTime += 0.04;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const v1 = parseFloat(slider1.value);
+        const G = parseFloat(slider2.value);
+        const Ig_mA = parseFloat(slider3.value);
+        const Ig = Ig_mA / 1000;
+
+        const currentMode = modes[currentModeIndex];
+
+        let S_calc = 0;
+        let R_calc = 0;
+        let deflDeg = 0;
+
+        if (currentMode === 'mcg') {
+          const I_mA = v1;
+          slider1Val.textContent = I_mA.toFixed(1) + ' mA';
+          slider2Val.textContent = G.toFixed(1) + ' Ω';
+          slider3Val.textContent = Ig_mA.toFixed(1) + ' mA';
+
+          const maxScaleDeg = 60; // +/- 60 degrees full scale
+          const fraction = Math.min(1.0, I_mA / Ig_mA);
+          deflDeg = fraction * maxScaleDeg;
+
+          // Compute theoretical S and R for reference
+          const targetI_amp = 5.0; // 5A ammeter
+          S_calc = (Ig * G) / (targetI_amp - Ig);
+          const targetV_volt = 10.0; // 10V voltmeter
+          R_calc = (targetV_volt / Ig) - G;
+
+          deflectionOut.textContent = deflDeg.toFixed(1) + '°';
+          shuntOut.textContent = S_calc.toFixed(3) + ' Ω';
+          seriesOut.textContent = R_calc.toFixed(1) + ' Ω';
+
+          renderRadialFieldGalvanometer(deflDeg, I_mA, Ig_mA);
+        } else if (currentMode === 'ammeter') {
+          const targetI = v1; // A
+          slider1Val.textContent = targetI.toFixed(1) + ' A';
+          slider2Val.textContent = G.toFixed(1) + ' Ω';
+          slider3Val.textContent = Ig_mA.toFixed(1) + ' mA';
+
+          S_calc = (Ig * G) / (targetI - Ig);
+          shuntOut.textContent = S_calc.toFixed(4) + ' Ω';
+          seriesOut.textContent = 'N/A';
+          deflectionOut.textContent = 'Full Deflection';
+
+          renderAmmeterCircuitSchematic(targetI, G, S_calc, Ig);
+        } else {
+          const targetV = v1; // V
+          slider1Val.textContent = targetV.toFixed(1) + ' V';
+          slider2Val.textContent = G.toFixed(1) + ' Ω';
+          slider3Val.textContent = Ig_mA.toFixed(1) + ' mA';
+
+          R_calc = (targetV / Ig) - G;
+          seriesOut.textContent = R_calc.toFixed(1) + ' Ω';
+          shuntOut.textContent = 'N/A';
+          deflectionOut.textContent = 'Full Deflection';
+
+          renderVoltmeterCircuitSchematic(targetV, G, R_calc, Ig);
+        }
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      // RENDER MODE 1: Top-Down Radial Magnetic Field MCG View
+      function renderRadialFieldGalvanometer(deflDeg, I_mA, Ig_mA) {
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2 + 10;
+
+        // 1. Concave Magnet Poles (North on Left, South on Right)
+        ctx.fillStyle = '#1e293b';
+        ctx.strokeStyle = '#ef4444';
+        ctx.lineWidth = 3;
+
+        // North Concave Pole (Left)
+        ctx.beginPath();
+        ctx.arc(cx - 240, cy, 140, -Math.PI / 3.8, Math.PI / 3.8);
+        ctx.lineTo(cx - 280, cy + 90);
+        ctx.lineTo(cx - 280, cy - 90);
+        ctx.closePath();
+        ctx.fillStyle = '#b91c1c';
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 20px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('N', cx - 210, cy + 7);
+
+        // South Concave Pole (Right)
+        ctx.beginPath();
+        ctx.arc(cx + 240, cy, 140, Math.PI - Math.PI / 3.8, Math.PI + Math.PI / 3.8);
+        ctx.lineTo(cx + 280, cy - 90);
+        ctx.lineTo(cx + 280, cy + 90);
+        ctx.closePath();
+        ctx.fillStyle = '#1d4ed8';
+        ctx.fill();
+        ctx.strokeStyle = '#3b82f6';
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText('S', cx + 210, cy + 7);
+
+        // 2. Soft Iron Cylinder Core (Center)
+        const coreRadius = 45;
+        ctx.beginPath();
+        ctx.arc(cx, cy, coreRadius, 0, Math.PI * 2);
+        ctx.fillStyle = '#334155';
+        ctx.fill();
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.fillStyle = '#cbd5e1';
+        ctx.font = 'bold 9px monospace';
+        ctx.fillText('SOFT IRON', cx, cy - 6);
+        ctx.fillText('CORE', cx, cy + 8);
+
+        // 3. Radial Magnetic Field Lines (Directed along radii of cylinder)
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.45)';
+        ctx.lineWidth = 1.5;
+        const radialAngles = [-35, -20, 0, 20, 35];
+        radialAngles.forEach(deg => {
+          const rad = (deg * Math.PI) / 180;
+          // From North concave face entering normal to core
+          const x1 = (cx - 240) + Math.cos(rad) * 140;
+          const y1 = cy + Math.sin(rad) * 140;
+          const x2 = cx - Math.cos(rad) * coreRadius;
+          const y2 = cy + Math.sin(rad) * coreRadius;
+
+          ctx.beginPath();
+          ctx.moveTo(x1, y1);
+          ctx.lineTo(x2, y2);
+          ctx.stroke();
+
+          // Across Core to South concave face
+          const x3 = cx + Math.cos(rad) * coreRadius;
+          const y3 = cy + Math.sin(rad) * coreRadius;
+          const x4 = (cx + 240) - Math.cos(rad) * 140;
+          const y4 = cy + Math.sin(rad) * 140;
+
+          ctx.beginPath();
+          ctx.moveTo(x3, y3);
+          ctx.lineTo(x4, y4);
+          ctx.stroke();
+        });
+
+        // 4. Rectangular Coil Frame Rotating Around Core
+        const deflRad = (deflDeg * Math.PI) / 180;
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(deflRad);
+
+        // Rectangular coil cross section
+        ctx.strokeStyle = '#fbbf24';
+        ctx.lineWidth = 4;
+        ctx.strokeRect(-55, -22, 110, 44);
+
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(-55, -22, 110, 44);
+
+        // Long Indicator Pointer Needle
+        ctx.strokeStyle = '#ef4444';
+        ctx.fillStyle = '#ef4444';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(0, -145);
+        ctx.stroke();
+        // Needle tip arrow
+        ctx.beginPath();
+        ctx.moveTo(0, -148);
+        ctx.lineTo(-4, -138);
+        ctx.lineTo(4, -138);
+        ctx.fill();
+
+        ctx.restore();
+
+        // 5. Circular Curved Graduated Scale at Top
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 145, -Math.PI / 2 - Math.PI / 5, -Math.PI / 2 + Math.PI / 5);
+        ctx.stroke();
+
+        // Scale Markings
+        ctx.fillStyle = '#cbd5e1';
+        ctx.font = 'bold 9px monospace';
+        for (let a = -40; a <= 40; a += 10) {
+          const aRad = (-90 + a) * Math.PI / 180;
+          const sx1 = cx + Math.cos(aRad) * 145;
+          const sy1 = cy + Math.sin(aRad) * 145;
+          const sx2 = cx + Math.cos(aRad) * 135;
+          const sy2 = cy + Math.sin(aRad) * 135;
+          ctx.beginPath();
+          ctx.moveTo(sx1, sy1);
+          ctx.lineTo(sx2, sy2);
+          ctx.stroke();
+
+          if (a % 20 === 0) {
+            const lx = cx + Math.cos(aRad) * 122;
+            const ly = cy + Math.sin(aRad) * 122;
+            ctx.fillText(Math.abs(a) / 2, lx, ly);
+          }
+        }
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Radial Magnetic Field: θ = 90° in all positions | Deflection φ = (NAB/k)I = ${deflDeg.toFixed(1)}° (Linear)[cite: 14]`, cx, canvas.height - 12);
+      }
+
+      // RENDER MODE 2: Ammeter Shunt Circuit Schematic
+      function renderAmmeterCircuitSchematic(targetI, G, S, Ig) {
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        const leftX = 140, rightX = 660;
+
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.5;
+
+        // Main input line
+        ctx.beginPath();
+        ctx.moveTo(leftX - 40, cy);
+        ctx.lineTo(leftX, cy);
+        // Top branch (Galvanometer)
+        ctx.lineTo(leftX, cy - 70);
+        ctx.lineTo(cx - 50, cy - 70);
+        ctx.moveTo(cx + 50, cy - 70);
+        ctx.lineTo(rightX, cy - 70);
+        ctx.lineTo(rightX, cy);
+        // Bottom branch (Shunt S)
+        ctx.moveTo(leftX, cy);
+        ctx.lineTo(leftX, cy + 70);
+        ctx.lineTo(cx - 45, cy + 70);
+        ctx.moveTo(cx + 45, cy + 70);
+        ctx.lineTo(rightX, cy + 70);
+        ctx.lineTo(rightX, cy);
+        // Main output line
+        ctx.lineTo(rightX + 40, cy);
+        ctx.stroke();
+
+        // Galvanometer circle (Top)
+        ctx.fillStyle = '#0f172a';
+        ctx.strokeStyle = '#fbbf24';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.arc(cx, cy - 70, 26, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#fbbf24';
+        ctx.font = 'bold 13px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('G', cx, cy - 65);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`Coil G = ${G}Ω (Ig = ${(Ig * 1000).toFixed(1)}mA)`, cx, cy - 105);
+
+        // Shunt Resistor (Bottom)
+        renderZigZagResistor(cx - 45, cy + 70, 90, `Shunt S = ${S.toFixed(4)} Ω (Small R)`, '#10b981');
+
+        // Current flow tags
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`Total Current I = ${targetI} A ➔`, leftX - 10, cy - 10);
+        ctx.fillStyle = '#fbbf24';
+        ctx.fillText(`Ig ➔`, leftX + 40, cy - 80);
+        ctx.fillStyle = '#10b981';
+        ctx.fillText(`(I - Ig) ➔`, leftX + 40, cy + 60);
+
+        // Ammeter Outer Bounding Box
+        ctx.save();
+        ctx.strokeStyle = '#10b981';
+        ctx.setLineDash([5, 4]);
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(leftX - 15, cy - 125, (rightX - leftX) + 30, 240);
+        ctx.restore();
+
+        ctx.fillStyle = '#10b981';
+        ctx.font = 'bold 12px monospace';
+        ctx.fillText(`CONVERTED AMMETER (0 to ${targetI} A) | R_eff = GS/(G+S) ≈ ${S.toFixed(4)} Ω[cite: 14]`, cx, cy + 135);
+      }
+
+      // RENDER MODE 3: Voltmeter Series Resistor Circuit Schematic
+      function renderVoltmeterCircuitSchematic(targetV, G, R, Ig) {
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        const leftX = 140, rightX = 660;
+
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.5;
+
+        // Straight series line
+        ctx.beginPath();
+        ctx.moveTo(leftX - 40, cy);
+        ctx.lineTo(cx - 130, cy);
+        ctx.moveTo(cx - 70, cy);
+        ctx.lineTo(cx + 40, cy);
+        ctx.moveTo(cx + 140, cy);
+        ctx.lineTo(rightX + 40, cy);
+        ctx.stroke();
+
+        // Galvanometer circle
+        ctx.fillStyle = '#0f172a';
+        ctx.strokeStyle = '#fbbf24';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.arc(cx - 100, cy, 26, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#fbbf24';
+        ctx.font = 'bold 13px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('G', cx - 100, cy + 5);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`Coil G = ${G}Ω`, cx - 100, cy - 35);
+
+        // High Series Resistor R
+        renderZigZagResistor(cx + 45, cy, 90, `Series High R = ${R.toFixed(1)} Ω`, '#10b981');
+
+        // Voltmeter Outer Bounding Box
+        ctx.save();
+        ctx.strokeStyle = '#ec4899';
+        ctx.setLineDash([5, 4]);
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(leftX - 15, cy - 75, (rightX - leftX) + 30, 150);
+        ctx.restore();
+
+        ctx.fillStyle = '#ec4899';
+        ctx.font = 'bold 12px monospace';
+        ctx.fillText(`CONVERTED VOLTMETER (0 to ${targetV} V) | Total R_V = G + R = ${(G + R).toFixed(1)} Ω[cite: 14]`, cx, cy + 105);
+      }
+
+      function renderZigZagResistor(x, y, w, label, color) {
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        const zigzags = 6;
+        const step = w / zigzags;
+        for (let i = 1; i < zigzags; i++) {
+          const dy = (i % 2 === 0) ? 8 : -8;
+          ctx.lineTo(x + i * step, y + dy);
+        }
+        ctx.lineTo(x + w, y);
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 10px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(label, x + w / 2, y - 14);
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Chapter 14: Semiconductor Electronics</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError: false,
+      errorColor: '#cbd5e1'
+    });"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      letter-spacing: -0.011em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .font-mono, font-mono {
+      font-family: 'JetBrains Mono', monospace !important;
+    }
+
+    .katex {
+      font-size: 1.05em !important;
+      text-rendering: optimizeLegibility;
+    }
+    .katex-display {
+      margin: 0.6em 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 2px;
+    }
+
+    .math-formula-card {
+      background: radial-gradient(circle at top left, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(56, 189, 248, 0.15);
+    }
+
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; font-size: 10pt !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box, .math-formula-card { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400, .text-slate-500 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2.5 py-0.5 rounded-full ml-2 font-mono">Class 12 • Modules 14.1 & 14.2</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-xl text-xs font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-xs font-bold font-mono text-indigo-400 tracking-wider uppercase">Unit 09: Electronic Devices • Chapter 14</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Semiconductors: Energy Bands & p-n Junction Diode</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base leading-relaxed">Energy gap classification, intrinsic vs extrinsic doping mechanisms, mass action law, space-charge depletion dynamics, barrier potential, and forward/reverse bias I-V characteristics.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2 font-mono">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed text-sm md:text-base">
+        Socho ek do-manzila imarat (two-floor building) ko: neeche ki floor (<strong class="text-white font-semibold">Valence Band</strong>) poori tarah bheed se bhari hai aur log move nahi kar sakte. Upar ki floor (<strong class="text-white font-semibold">Conduction Band</strong>) bilkul khali hai. Metals mein dono floors ke beech koi gap hi nahi hota (overlap karte hain), isliye electrons aasaani se daudte hain. Insulators mein dono floors ke beech $3\text{ to } 6\text{ metres}$ ka uncrossable gap hota hai ($E_g > 3\text{ eV}$). 
+        Lekin Semiconductor ek aisi imarat hai jahan beech ka gap sirf $1\text{ eV}$ hai (Silicon ke liye $1.1\text{ eV}$, Germanium ke liye $0.7\text{ eV}$)—room temperature par thodi si heat milte hi kuch electrons upar kood jaate hain! 
+        Jab electron upar jata hai, toh neeche ek khali jagah chhod deta hai jise hum <strong class="text-white font-semibold">Hole ($h^+$)</strong> kehte hain. Aur jab hum ek taraf p-type (holes ki bheed) aur doosri taraf n-type (electrons ki bheed) ko jodte hain, toh junction par ek one-way turnstile gate ban jata hai: ek disha mein current aasaani se bahega, par ulti disha mein rasta 100% block ho jayega! Yahi modern electronics ka dil—<strong class="text-white font-semibold">p-n Junction Diode</strong> hai!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-xs font-bold uppercase tracking-wider mb-1 font-mono">
+        <span>📐 02. The Core Law & Carrier Relations</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="math-formula-card p-5 rounded-2xl border border-slate-800/80 shadow-inner">
+          <h3 class="text-white font-semibold text-sm tracking-wide mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            1. Semiconductor Classification & Mass Action Law
+          </h3>
+          <p class="text-xs text-slate-400 mb-3">Intrinsic and Extrinsic carrier concentration equilibriums:</p>
+          <div class="py-2.5 px-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-cyan-300 font-mono text-center text-sm space-y-1">
+            <div>$$\text{Intrinsic: } n_e = n_h = n_i \quad (\text{Pure Si or Ge})$$</div>
+            <div>$$\text{Mass Action Law: } n_e \cdot n_h = n_i^2 \quad (\text{At thermal equilibrium})$$</div>
+            <div>$$\text{Total Current: } I = I_e + I_h = e A (n_e v_e + n_h v_h)$$</div>
+          </div>
+          <p class="text-[11px] text-slate-500 mt-3 leading-relaxed">
+            N-type: $n_e \approx N_d \gg n_h$ (Pentavalent dopants: As, P, Sb). P-type: $n_h \approx N_a \gg n_e$ (Trivalent dopants: In, B, Al). Despite doping, both n-type and p-type bulk crystals remain strictly <strong class="text-slate-300">electrically neutral</strong>!
+          </p>
+        </div>
+
+        <div class="math-formula-card p-5 rounded-2xl border border-slate-800/80 shadow-inner">
+          <h3 class="text-white font-semibold text-sm tracking-wide mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+            2. Diode Biasing & Dynamic Resistance
+          </h3>
+          <p class="text-xs text-slate-400 mb-3">Barrier reduction, threshold, and dynamic resistance:</p>
+          <div class="py-2.5 px-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-indigo-300 font-mono text-center text-sm space-y-1">
+            <div>$$\text{Forward Effective Barrier: } V_{\text{eff}} = V_0 - V$$</div>
+            <div>$$\text{Reverse Effective Barrier: } V_{\text{eff}} = V_0 + V$$</div>
+            <div>$$r_d = \frac{\Delta V}{\Delta I} \quad (\text{Dynamic / AC Resistance})$$</div>
+          </div>
+          <p class="text-[11px] text-slate-500 mt-3 leading-relaxed">
+            Silicon barrier voltage $V_0 \approx 0.7\text{ V}$, Germanium $V_0 \approx 0.3\text{ V}$. Forward current in milliamperes ($\text{mA}$); reverse saturation current in microamperes ($\mu\text{A}$) due to minority carriers.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (p-n Junction & I-V Curve Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-xs font-bold uppercase tracking-wider font-mono">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Junction Depletion Layer & Real-Time I-V Curve Bench</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="biasToggleBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3.5 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Mode: Forward Bias (+V applied to p-side)
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="diodeCanvas" width="800" height="390" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="biasLabel">Applied Voltage ($V$)</span>
+            <span id="biasVal" class="text-cyan-400 font-mono font-bold">+0.60 V (Forward)</span>
+          </div>
+          <input id="biasSlider" type="range" min="0" max="1.2" step="0.02" value="0.60" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Semiconductor Material</span>
+            <span id="matLabel" class="text-amber-400 font-mono font-bold">Silicon (V₀ = 0.7 V)</span>
+          </div>
+          <select id="matSelect" class="w-full bg-slate-900 border border-slate-700 text-xs text-white rounded p-1.5 font-mono cursor-pointer">
+            <option value="0.7">Silicon (Si, V₀ = 0.7 V, Eg = 1.1 eV)</option>
+            <option value="0.3">Germanium (Ge, V₀ = 0.3 V, Eg = 0.7 eV)</option>
+          </select>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Doping Density Factor</span>
+            <span id="dopingVal" class="text-emerald-400 font-mono font-bold">Moderate Doping</span>
+          </div>
+          <input id="dopingSlider" type="range" min="1" max="3" step="1" value="2" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Effective Barrier ($V_{\text{eff}}$):</span>
+          <div id="vEffOut" class="text-emerald-400 font-bold text-sm mt-0.5">0.10 V</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Diode Current ($I$):</span>
+          <div id="currOut" class="text-cyan-400 font-bold text-sm mt-0.5">18.4 mA (Forward)</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Depletion Layer Width:</span>
+          <div id="depWidthOut" class="text-amber-400 font-bold text-sm mt-0.5">0.18 μm (Narrowed)</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Dynamic Resistance ($r_d$):</span>
+          <div id="rdOut" class="text-rose-400 font-bold text-sm mt-0.5">~14.5 Ω (Low)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>📝 04. Comprehensive Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Formation of Depletion Layer and Barrier Potential -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">Physical Mechanism 01</span>
+          <h4 class="text-white font-semibold text-base mt-1">Mechanism of Depletion Layer Formation and Equilibrium Barrier Potential ($V_0$)</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: p-n Junction under Equilibrium -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 250" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-diff" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-drift" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#ef4444"/>
+              </marker>
+            </defs>
+
+            <!-- Diode Block Container -->
+            <rect x="75" y="35" width="500" height="150" fill="#0f172a" stroke="#475569" stroke-width="2" rx="8" />
+
+            <!-- P-Region (Left) -->
+            <rect x="75" y="35" width="200" height="150" fill="rgba(56, 189, 248, 0.08)" rx="8" />
+            <text x="95" y="60" fill="#38bdf8" font-size="12" font-weight="bold" font-family="monospace">P - Region</text>
+            <text x="95" y="78" fill="#94a3b8" font-size="9" font-family="monospace">Majority: Holes (○)</text>
+            <text x="95" y="92" fill="#94a3b8" font-size="9" font-family="monospace">Immobile: Acceptors (⊖)</text>
+
+            <!-- Holes & Acceptor Ions Representation in P -->
+            <g transform="translate(110, 115)">
+              <circle cx="0" cy="0" r="10" fill="none" stroke="#64748b" stroke-width="1.5" />
+              <text x="-4" y="4" fill="#ef4444" font-size="10" font-weight="bold">-</text>
+              <circle cx="18" cy="-6" r="3.5" fill="#38bdf8" />
+
+              <circle cx="60" cy="0" r="10" fill="none" stroke="#64748b" stroke-width="1.5" />
+              <text x="56" y="4" fill="#ef4444" font-size="10" font-weight="bold">-</text>
+              <circle cx="78" cy="-6" r="3.5" fill="#38bdf8" />
+
+              <circle cx="30" cy="35" r="10" fill="none" stroke="#64748b" stroke-width="1.5" />
+              <text x="26" y="39" fill="#ef4444" font-size="10" font-weight="bold">-</text>
+              <circle cx="48" cy="29" r="3.5" fill="#38bdf8" />
+            </g>
+
+            <!-- N-Region (Right) -->
+            <rect x="375" y="35" width="200" height="150" fill="rgba(16, 185, 129, 0.08)" rx="8" />
+            <text x="475" y="60" fill="#10b981" font-size="12" font-weight="bold" font-family="monospace">N - Region</text>
+            <text x="475" y="78" fill="#94a3b8" font-size="9" font-family="monospace">Majority: Electrons (●)</text>
+            <text x="475" y="92" fill="#94a3b8" font-size="9" font-family="monospace">Immobile: Donors (⊕)</text>
+
+            <!-- Electrons & Donor Ions Representation in N -->
+            <g transform="translate(415, 115)">
+              <circle cx="0" cy="0" r="10" fill="none" stroke="#64748b" stroke-width="1.5" />
+              <text x="-4" y="4" fill="#10b981" font-size="10" font-weight="bold">+</text>
+              <circle cx="18" cy="-6" r="3.5" fill="#10b981" />
+
+              <circle cx="60" cy="0" r="10" fill="none" stroke="#64748b" stroke-width="1.5" />
+              <text x="56" y="4" fill="#10b981" font-size="10" font-weight="bold">+</text>
+              <circle cx="78" cy="-6" r="3.5" fill="#10b981" />
+
+              <circle cx="30" cy="35" r="10" fill="none" stroke="#64748b" stroke-width="1.5" />
+              <text x="26" y="39" fill="#10b981" font-size="10" font-weight="bold">+</text>
+              <circle cx="48" cy="29" r="3.5" fill="#10b981" />
+            </g>
+
+            <!-- Depletion Layer (Center: x = 275 to 375) -->
+            <rect x="275" y="35" width="100" height="150" fill="rgba(245, 158, 11, 0.12)" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,3" />
+
+            <!-- Uncompensated Immobile Negative Ions on P-side of junction -->
+            <g transform="translate(295, 75)">
+              <circle cx="0" cy="0" r="9" fill="#1e293b" stroke="#f87171" stroke-width="1.5" />
+              <text x="-4" y="4" fill="#f87171" font-size="11" font-weight="bold">-</text>
+              <circle cx="0" cy="35" r="9" fill="#1e293b" stroke="#f87171" stroke-width="1.5" />
+              <text x="-4" y="39" fill="#f87171" font-size="11" font-weight="bold">-</text>
+              <circle cx="0" cy="70" r="9" fill="#1e293b" stroke="#f87171" stroke-width="1.5" />
+              <text x="-4" y="74" fill="#f87171" font-size="11" font-weight="bold">-</text>
+            </g>
+
+            <!-- Uncompensated Immobile Positive Ions on N-side of junction -->
+            <g transform="translate(355, 75)">
+              <circle cx="0" cy="0" r="9" fill="#1e293b" stroke="#34d399" stroke-width="1.5" />
+              <text x="-4" y="4" fill="#34d399" font-size="11" font-weight="bold">+</text>
+              <circle cx="0" cy="35" r="9" fill="#1e293b" stroke="#34d399" stroke-width="1.5" />
+              <text x="-4" y="39" fill="#34d399" font-size="11" font-weight="bold">+</text>
+              <circle cx="0" cy="70" r="9" fill="#1e293b" stroke="#34d399" stroke-width="1.5" />
+              <text x="-4" y="74" fill="#34d399" font-size="11" font-weight="bold">+</text>
+            </g>
+
+            <!-- Physical Junction Line -->
+            <line x1="325" y1="35" x2="325" y2="185" stroke="#94a3b8" stroke-width="2" />
+
+            <!-- Built-in Electric Field E_in vector arrow (From + to -: Right to Left) -->
+            <line x1="365" y1="210" x2="285" y2="210" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arr-drift)" />
+            <text x="270" y="226" fill="#f59e0b" font-size="10" font-weight="bold" font-family="monospace">Internal Field E₀ (N to P)</text>
+
+            <!-- Depletion Width Dimension -->
+            <line x1="275" y1="25" x2="375" y2="25" stroke="#fbbf24" stroke-width="1.5" />
+            <line x1="275" y1="20" x2="275" y2="30" stroke="#fbbf24" stroke-width="1.5" />
+            <line x1="375" y1="20" x2="375" y2="30" stroke="#fbbf24" stroke-width="1.5" />
+            <text x="290" y="18" fill="#fbbf24" font-size="10" font-weight="bold" font-family="monospace">Depletion Layer</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 14.1A: The p-n junction under open-circuit equilibrium showing space-charge depletion region and built-in electric field $E_0$.</p>
+        </div>
+
+        <p>1. <strong class="text-white">Diffusion Current:</strong> Due to sharp concentration gradients, holes diffuse from p-side to n-side, and electrons diffuse from n-side to p-side across the metallurgical junction.</p>
+        <p>2. <strong class="text-white">Space-Charge Layer:</strong> When an electron diffuses into the p-side, it leaves behind an uncompensated, immobile positive donor ion ($N_d^+$) in the n-region. Similarly, the diffusing hole leaves behind an immobile negative acceptor ion ($N_a^-$) in the p-region.</p>
+        <p>3. This narrow space-charge zone is devoid of all mobile charge carriers and is termed the <strong class="text-white">Depletion Layer</strong> (thickness $\approx 0.1\text{ to } 1\text{ }\mu\text{m} = 10^{-6}\text{ m}$).</p>
+        <p>4. <strong class="text-white">Drift Current & Dynamic Equilibrium:</strong> The immobile ions set up an internal electric field $\vec{E}_0$ directed from n-side to p-side. This field opposes further majority carrier diffusion, while accelerating thermally generated minority carriers (electrons in p-side towards n, and holes in n-side towards p), producing a <strong class="text-white">Drift Current</strong>.</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$\text{At Equilibrium: } I_{\text{diffusion}} = I_{\text{drift}} \implies I_{\text{net}} = 0$$
+        </div>
+        <p class="text-slate-400">The potential difference created across the depletion region at equilibrium is the <strong class="text-white">Barrier Potential ($V_0$)</strong>. Built-in electric field intensity: $E_0 = \frac{V_0}{d} \approx \frac{0.7\text{ V}}{10^{-6}\text{ m}} = \mathbf{7 \times 10^5\text{ V/m}}$ (immensely strong over atomic scales!).</p>
+      </div>
+
+      <!-- Derivation 2: Forward and Reverse Biasing Comparison -->
+      <div class="rounded-xl border border-slate-800 overflow-hidden">
+        <div class="bg-slate-900 p-2.5 border-b border-slate-800">
+          <p class="text-xs font-bold text-indigo-300 uppercase font-mono">Master Comparison: Forward Bias vs Reverse Bias</p>
+        </div>
+        <table class="w-full text-left text-xs border-collapse">
+          <thead class="bg-slate-950 text-slate-200 uppercase font-semibold font-mono">
+            <tr>
+              <th class="p-2.5 border-r border-slate-800">Characteristic</th>
+              <th class="p-2.5 border-r border-slate-800 text-cyan-400">Forward Biasing</th>
+              <th class="p-2.5 text-rose-400">Reverse Biasing</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-2.5 font-semibold text-white">External Battery Connection</td>
+              <td class="p-2.5">Positive terminal $\to$ p-side; Negative terminal $\to$ n-side.</td>
+              <td class="p-2.5">Positive terminal $\to$ n-side; Negative terminal $\to$ p-side.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white">Depletion Layer Width</td>
+              <td class="p-2.5 text-emerald-400 font-bold">Decreases (narrows down significantly).</td>
+              <td class="p-2.5 text-rose-400 font-bold">Increases (widens significantly).</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white">Effective Barrier Potential</td>
+              <td class="p-2.5 font-mono text-cyan-300">$$V_{\text{eff}} = V_0 - V$$ (Reduces)</td>
+              <td class="p-2.5 font-mono text-rose-300">$$V_{\text{eff}} = V_0 + V$$ (Enlarges)</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white">Carrier Motion</td>
+              <td class="p-2.5">Majority carriers cross junction easily once $V > V_0$.</td>
+              <td class="p-2.5">Majority carriers are pulled away from junction; completely blocked.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white">Current Magnitude & Nature</td>
+              <td class="p-2.5 text-emerald-400 font-mono font-bold">Milliamperes ($\text{mA}$) — Exponential rise.</td>
+              <td class="p-2.5 text-amber-300 font-mono">Microamperes ($\mu\text{A}$) — Minority saturation current.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white">Junction Resistance ($r_d$)</td>
+              <td class="p-2.5 text-emerald-400 font-mono font-bold">Very Low ($\approx 10\text{ to } 100\text{ }\Omega$).</td>
+              <td class="p-2.5 text-rose-400 font-mono font-bold">Extremely High ($\approx 10^6\text{ }\Omega = 1\text{ M}\Omega$).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Is an n-type or p-type Semiconductor Charged?</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Classic Viva & Board Trap:* Is an n-type semiconductor negatively charged because it has excess free electrons?
+            <br>*Correct Answer:* <strong class="text-white font-semibold">STRICTLY NO! It is 100% NEUTRAL!</strong>
+            Every free electron donated by a neutral pentavalent phosphorus atom leaves behind a positive core nucleus ($N_d^+$). Total positive nuclear charge equals total negative electron charge. Bulk crystals of both n-type and p-type are perfectly electrically neutral.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Carbon vs Silicon vs Germanium Band Gaps</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            All elements in Group 14 have 4 valence electrons ($C, Si, Ge, Sn$). Why is Diamond an insulator while Silicon and Germanium are semiconductors?
+            <br>• Carbon valence electrons reside in $n=2$ shell (close to nucleus, bound tightly): $E_g \approx \mathbf{5.4\text{ eV} > 3\text{ eV}}$ (Insulator).
+            <br>• Silicon valence electrons in $n=3$ shell: $E_g \approx \mathbf{1.1\text{ eV}}$ (Semiconductor).
+            <br>• Germanium in $n=4$ shell: $E_g \approx \mathbf{0.7\text{ eV}}$ (Semiconductor).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Reverse Saturation Current Temperature Dependence</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* Why is reverse saturation current ($I_0$) independent of applied reverse voltage, but highly sensitive to temperature?
+            <br>• Applied reverse voltage simply sweeps whatever minority carriers drift to the junction; it cannot create new ones.
+            <br>• Minority carriers are generated strictly by thermal breaking of covalent bonds.
+            <br>• <strong class="text-white font-semibold">$I_0$ doubles for approximately every $10^\circ\text{C}$ rise in temperature!</strong>
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Static vs Dynamic Resistance</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Because a p-n diode is a <strong class="text-white font-semibold">Non-Ohmic device</strong>, Ohm's law ($R = V/I$) does not hold as a constant:
+            <br>• Static (DC) Resistance: $R_{\text{dc}} = \frac{V}{I}$ (Ratio of coordinates at an operating point).
+            <br>• Dynamic (AC) Resistance: $r_{\text{ac}} = \mathbf{\frac{\Delta V}{\Delta I}}$ (Reciprocal of the slope of the forward I-V characteristic curve).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-mono">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A pure semiconductor crystal of Silicon has intrinsic carrier concentration $n_i = 1.5 \times 10^{16}\text{ m}^{-3}$ at $300\text{ K}$. It is doped with pentavalent Arsenic atoms at a density of $N_d = 5 \times 10^{22}\text{ m}^{-3}$. Calculate the equilibrium electron and hole concentrations in the doped crystal. Identify the type of semiconductor.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> Since donor dopant atoms are fully ionized at room temperature:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$n_e \approx N_d = 5.0 \times 10^{22}\text{ m}^{-3}$$
+          </div>
+          <p>From the Mass Action Law ($n_e \cdot n_h = n_i^2$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$n_h = \frac{n_i^2}{n_e} = \frac{(1.5 \times 10^{16}\text{ m}^{-3})^2}{5.0 \times 10^{22}\text{ m}^{-3}} = \frac{2.25 \times 10^{32}}{5.0 \times 10^{22}}$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$n_h = 4.5 \times 10^9\text{ m}^{-3}$$
+          </div>
+          <p class="text-slate-400">Because $n_e \gg n_h$ ($5 \times 10^{22} \gg 4.5 \times 10^9$), it is an <strong class="text-white font-semibold">n-type semiconductor</strong>.</p>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: The V-I characteristic of a silicon diode is measured. In the forward bias condition, the current changes from $10\text{ mA}$ to $30\text{ mA}$ when the forward voltage changes from $0.70\text{ V}$ to $0.75\text{ V}$. In the reverse bias condition, the reverse current remains constant at $1.0\text{ }\mu\text{A}$ when the reverse voltage is varied from $2.0\text{ V}$ to $10.0\text{ V}$. Find the dynamic resistance of the diode in (a) forward bias, and (b) reverse bias.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Forward Dynamic Resistance ($r_{\text{forward}} = \frac{\Delta V_f}{\Delta I_f}$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\Delta V_f = 0.75\text{ V} - 0.70\text{ V} = 0.05\text{ V}$$
+            $$\Delta I_f = 30\text{ mA} - 10\text{ mA} = 20\text{ mA} = 20 \times 10^{-3}\text{ A}$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$r_{\text{forward}} = \frac{0.05\text{ V}}{20 \times 10^{-3}\text{ A}} = \frac{50}{20} = \mathbf{2.5\text{ }\Omega}$$
+          </div>
+          <p>2. Reverse Dynamic Resistance ($r_{\text{reverse}} = \frac{\Delta V_r}{\Delta I_r}$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\Delta V_r = 10.0\text{ V} - 2.0\text{ V} = 8.0\text{ V}$$
+            $$\Delta I_r = 1.0\text{ }\mu\text{A} - 1.0\text{ }\mu\text{A} = 0\text{ A} \quad (\text{Ideal Saturation})$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$r_{\text{reverse}} = \frac{8.0\text{ V}}{\to 0} \to \mathbf{\infty} \quad (\text{Practically several Mega-ohms } \sim 10^7\text{ }\Omega)$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 font-mono">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded font-mono">Core Relations</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Mass Action Law</p>
+          <p class="text-xs font-bold text-white mt-1 font-mono">$n_e \cdot n_h = n_i^2$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Barrier Potential</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1 font-mono">Si: $0.7\text{V}$, Ge: $0.3\text{V}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Forward Depletion</p>
+          <p class="text-xs font-bold text-cyan-300 mt-1 font-mono">$V_{\text{eff}} = V_0 - V$ (Shrinks)</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Dynamic Resistance</p>
+          <p class="text-xs font-bold text-amber-300 mt-1 font-mono">$r_d = \frac{\Delta V}{\Delta I}$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Diode Simulation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('diodeCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const biasToggleBtn = document.getElementById('biasToggleBtn');
+      const biasSlider = document.getElementById('biasSlider');
+      const matSelect = document.getElementById('matSelect');
+      const dopingSlider = document.getElementById('dopingSlider');
+
+      const biasLabel = document.getElementById('biasLabel');
+      const biasVal = document.getElementById('biasVal');
+      const matLabel = document.getElementById('matLabel');
+      const dopingVal = document.getElementById('dopingVal');
+
+      const vEffOut = document.getElementById('vEffOut');
+      const currOut = document.getElementById('currOut');
+      const depWidthOut = document.getElementById('depWidthOut');
+      const rdOut = document.getElementById('rdOut');
+
+      // Modes: 'forward' or 'reverse'
+      let isForward = true;
+
+      biasToggleBtn.addEventListener('click', () => {
+        isForward = !isForward;
+        if (isForward) {
+          biasToggleBtn.textContent = 'Mode: Forward Bias (+V applied to p-side)';
+          biasToggleBtn.className = 'text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3.5 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer';
+          biasSlider.min = 0; biasSlider.max = 1.0; biasSlider.step = 0.02; biasSlider.value = 0.60;
+          biasLabel.textContent = 'Forward Voltage (V_f)';
+        } else {
+          biasToggleBtn.textContent = 'Mode: Reverse Bias (-V applied to p-side)';
+          biasToggleBtn.className = 'text-xs bg-rose-600 hover:bg-rose-500 text-white font-semibold px-3.5 py-1.5 rounded-lg shadow-lg shadow-rose-600/30 transition border border-rose-400/30 cursor-pointer';
+          biasSlider.min = 0; biasSlider.max = 12.0; biasSlider.step = 0.5; biasSlider.value = 4.0;
+          biasLabel.textContent = 'Reverse Voltage (V_r)';
+        }
+      });
+
+      function renderLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const appliedV = parseFloat(biasSlider.value);
+        const V0 = parseFloat(matSelect.value);
+        const dopingLvl = parseInt(dopingSlider.value);
+
+        matLabel.textContent = V0 === 0.7 ? 'Silicon (V₀ = 0.7 V)' : 'Germanium (V₀ = 0.3 V)';
+        dopingVal.textContent = dopingLvl === 1 ? 'Light Doping' : (dopingLvl === 2 ? 'Moderate Doping' : 'Heavy Doping');
+
+        // Physics Calculations
+        let effectiveBarrier = 0;
+        let current_mA = 0;
+        let depWidth_um = 0;
+        let rd_ohms = 0;
+
+        const baseWidth = (0.35 / dopingLvl); // Base depletion width in um
+
+        if (isForward) {
+          biasVal.textContent = `+${appliedV.toFixed(2)} V (Forward)`;
+          effectiveBarrier = Math.max(0, V0 - appliedV);
+          depWidth_um = baseWidth * Math.sqrt(Math.max(0.05, effectiveBarrier / V0));
+
+          // Shockley ideal diode equation model
+          if (appliedV < V0) {
+            current_mA = 0.05 * Math.exp((appliedV / V0) * 4.5);
+            rd_ohms = 26 / Math.max(0.01, current_mA);
+          } else {
+            current_mA = 0.05 * Math.exp(4.5) + (appliedV - V0) * 120;
+            rd_ohms = 1000 / 120; // ~8.3 ohms
+          }
+
+          vEffOut.textContent = `${effectiveBarrier.toFixed(2)} V`;
+          currOut.textContent = `${current_mA.toFixed(1)} mA`;
+          currOut.className = 'text-cyan-400 font-bold text-sm mt-0.5';
+          depWidthOut.textContent = `${depWidth_um.toFixed(2)} μm (Narrowed)`;
+          rdOut.textContent = `~${rd_ohms.toFixed(1)} Ω`;
+        } else {
+          biasVal.textContent = `-${appliedV.toFixed(1)} V (Reverse)`;
+          effectiveBarrier = V0 + appliedV;
+          depWidth_um = baseWidth * Math.sqrt(effectiveBarrier / V0);
+          const revSat_uA = 0.8; // microamperes
+
+          vEffOut.textContent = `${effectiveBarrier.toFixed(2)} V`;
+          currOut.textContent = `${revSat_uA.toFixed(1)} μA (Constant)`;
+          currOut.className = 'text-amber-400 font-bold text-sm mt-0.5';
+          depWidthOut.textContent = `${depWidth_um.toFixed(2)} μm (Widened)`;
+          rdOut.textContent = `~10⁶ Ω (Mega-ohms)`;
+        }
+
+        renderDiodeScene(isForward, appliedV, V0, depWidth_um, current_mA);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderDiodeScene(fwd, V_app, V0, depW, curr) {
+        // Left Half: Junction Cross-Section (x: 50 to 420)
+        // Right Half: Live I-V Curve (x: 470 to 760)
+
+        // 1. Draw Semiconductor Diode Bar
+        const boxX = 60;
+        const boxY = 80;
+        const boxW = 360;
+        const boxH = 180;
+        const midX = boxX + boxW / 2;
+
+        // Visual depletion width scaled
+        const depHalfPx = Math.min(65, Math.max(8, depW * 140));
+
+        // P-Side Fill
+        ctx.fillStyle = '#0369a1';
+        ctx.fillRect(boxX, boxY, boxW / 2 - depHalfPx, boxH);
+
+        // N-Side Fill
+        ctx.fillStyle = '#047857';
+        ctx.fillRect(midX + depHalfPx, boxY, boxW / 2 - depHalfPx, boxH);
+
+        // Depletion Zone Fill
+        ctx.fillStyle = '#1e293b';
+        ctx.fillRect(midX - depHalfPx, boxY, depHalfPx * 2, boxH);
+
+        // Border
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(boxX, boxY, boxW, boxH);
+
+        // Boundary dashed lines of depletion region
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([3, 3]);
+        ctx.beginPath();
+        ctx.moveTo(midX - depHalfPx, boxY); ctx.lineTo(midX - depHalfPx, boxY + boxH);
+        ctx.moveTo(midX + depHalfPx, boxY); ctx.lineTo(midX + depHalfPx, boxY + boxH);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Metallurgical junction line
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(midX, boxY); ctx.lineTo(midX, boxY + boxH);
+        ctx.stroke();
+
+        // Labels inside regions
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 12px monospace';
+        ctx.fillText('P (Holes)', boxX + 25, boxY + 30);
+        ctx.fillText('N (Electrons)', midX + depHalfPx + 20, boxY + 30);
+
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = 'bold 10px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Depletion Layer (${depW.toFixed(2)} μm)`, midX, boxY - 12);
+
+        // External Battery Wire & Polarity Indicators
+        ctx.strokeStyle = fwd ? '#38bdf8' : '#ef4444';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(boxX, boxY + boxH / 2);
+        ctx.lineTo(boxX - 25, boxY + boxH / 2);
+        ctx.lineTo(boxX - 25, boxY + boxH + 45);
+        ctx.lineTo(boxX + boxW + 25, boxY + boxH + 45);
+        ctx.lineTo(boxX + boxW + 25, boxY + boxH / 2);
+        ctx.lineTo(boxX + boxW, boxY + boxH / 2);
+        ctx.stroke();
+
+        ctx.fillStyle = fwd ? '#38bdf8' : '#ef4444';
+        ctx.font = 'bold 13px monospace';
+        ctx.fillText(fwd ? '(+)' : '(-)', boxX - 15, boxY + boxH / 2 - 8);
+        ctx.fillText(fwd ? '(-)' : '(+)', boxX + boxW + 15, boxY + boxH / 2 - 8);
+
+        // 2. Right Half: Live Characteristic I-V Curve
+        const graphOriginX = 580;
+        const graphOriginY = 220;
+        const graphW = 160;
+        const graphH = 140;
+
+        // Coordinate Axes (Forward: +V to right, +I upwards; Reverse: -V to left, -I downwards)
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        // Horizontal Voltage Axis
+        ctx.moveTo(graphOriginX - 90, graphOriginY);
+        ctx.lineTo(graphOriginX + graphW, graphOriginY);
+        // Vertical Current Axis
+        ctx.moveTo(graphOriginX, graphOriginY + 70);
+        ctx.lineTo(graphOriginX, graphOriginY - graphH);
+        ctx.stroke();
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '10px monospace';
+        ctx.textAlign = 'left';
+        ctx.fillText('+V (V)', graphOriginX + graphW - 25, graphOriginY + 14);
+        ctx.fillText('-V', graphOriginX - 85, graphOriginY + 14);
+        ctx.fillText('+I (mA)', graphOriginX + 6, graphOriginY - graphH + 10);
+        ctx.fillText('-I (μA)', graphOriginX + 6, graphOriginY + 65);
+
+        // Static Curve Trace (Knee Voltage at V0)
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.2;
+        ctx.beginPath();
+        // Forward curve
+        ctx.moveTo(graphOriginX, graphOriginY);
+        const kneePx = V0 * 80;
+        ctx.lineTo(graphOriginX + kneePx, graphOriginY);
+        ctx.quadraticCurveTo(graphOriginX + kneePx + 15, graphOriginY - 10, graphOriginX + kneePx + 30, graphOriginY - 120);
+        ctx.stroke();
+
+        // Reverse curve
+        ctx.strokeStyle = '#ef4444';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(graphOriginX, graphOriginY);
+        ctx.lineTo(graphOriginX - 70, graphOriginY + 4);
+        ctx.stroke();
+
+        // Current Operating Point Marker on Graph
+        let opX = graphOriginX;
+        let opY = graphOriginY;
+
+        if (fwd) {
+          opX = graphOriginX + V_app * 80;
+          if (V_app < V0) {
+            opY = graphOriginY - (V_app / V0) * 8;
+          } else {
+            opY = Math.max(graphOriginY - 130, graphOriginY - 8 - (V_app - V0) * 220);
+          }
+          ctx.fillStyle = '#10b981';
+        } else {
+          opX = Math.max(graphOriginX - 70, graphOriginX - V_app * 6);
+          opY = graphOriginY + 4;
+          ctx.fillStyle = '#f59e0b';
+        }
+
+        ctx.beginPath();
+        ctx.arc(opX, opY, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Diode Law: Forward bias reduces barrier (V_eff = V₀ - V) allowing exponential mA current | Reverse bias blocks majority carriers`, canvas.width / 2, canvas.height - 12);
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

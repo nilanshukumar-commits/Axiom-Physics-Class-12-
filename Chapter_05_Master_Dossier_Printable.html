@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class 12 Physics | Chapter 5 - Magnetism & Matter Master Dossier</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    /* Print Optimization Rules */
+    @page {
+      size: A4 portrait;
+      margin: 12mm 14mm 12mm 14mm;
+    }
+
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        font-size: 10.5pt !important;
+        line-height: 1.35 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .avoid-break {
+        page-break-inside: avoid;
+      }
+      .print-border {
+        border: 1px solid #1e293b !important;
+      }
+      .print-table th {
+        background-color: #f1f5f9 !important;
+        color: #000000 !important;
+        border: 1px solid #94a3b8 !important;
+      }
+      .print-table td {
+        border: 1px solid #cbd5e1 !important;
+        color: #000000 !important;
+      }
+      .formula-box {
+        background: #f8fafc !important;
+        border-left: 3px solid #0f172a !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Sticky Top Action Bar (Auto-hidden in Print/PDF) -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex flex-wrap justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <div>
+        <span class="text-lg font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+        <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Open Access</span>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-3 mt-2 sm:mt-0">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-indigo-600/30 active:scale-95 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>Save as PDF (Clean Vector)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Body Container -->
+  <main class="max-w-4xl mx-auto px-4 py-8 md:py-12 space-y-10 print:p-0 print:m-0 print:space-y-6">
+
+    <!-- Dossier Title Block -->
+    <div class="border-b-2 border-indigo-500/40 pb-5 print:border-black print:pb-3">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-indigo-400 print:text-black">CBSE Class XII • Unit 03 (Magnetism and Matter)</p>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1 print:text-black print:text-2xl">
+            Chapter 05: Magnetism and Matter
+          </h1>
+          <p class="text-slate-400 mt-1 text-sm print:text-gray-700">Master Revision Dossier • Bar Magnet, Solenoid Analogy, Gauss's Law, Dipole Oscillations & Material Classifications</p>
+        </div>
+        <div class="hidden sm:block text-right text-xs text-slate-500 print:block print:text-black">
+          <p class="font-mono">Open Access Initiative</p>
+          <p class="font-mono">Unit III Bracket: 17 Marks</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: Master Formula & Physical Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        1. Definitive Formula & Magnetic Properties Matrix
+      </h2>
+      <div class="overflow-x-auto rounded-xl border border-slate-800 print:border-black">
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase tracking-wider border-b border-slate-800 font-semibold">
+            <tr>
+              <th class="p-2.5 border-r border-slate-800">Concept</th>
+              <th class="p-2.5 border-r border-slate-800">Mathematical Formulation</th>
+              <th class="p-2.5 border-r border-slate-800">SI Unit / Dim</th>
+              <th class="p-2.5">Boundary Conditions & Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/80 text-slate-300">
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Axial Field of Dipole</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$B_{\text{axial}} = \frac{\mu_0}{4\pi}\frac{2M}{r^3}$$</td>
+              <td class="p-2.5">$\text{Tesla (T)}$<br>$[\text{M}^1\text{T}^{-2}\text{A}^{-1}]$</td>
+              <td class="p-2.5 text-[11px]">Valid for short magnet ($r \gg l$). Vector direction is parallel to $\vec{M}$ (from South to North).</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Equatorial Field of Dipole</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\vec{B}_{\text{eq}} = -\frac{\mu_0}{4\pi}\frac{\vec{M}}{r^3}$$</td>
+              <td class="p-2.5">$\text{Tesla (T)}$</td>
+              <td class="p-2.5 text-[11px]">$B_{\text{axial}} = 2 \times B_{\text{eq}}$ at equal distance $r$. Vector direction is antiparallel to $\vec{M}$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Dipole Torque in $\vec{B}$</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\vec{\tau} = \vec{M} \times \vec{B} = MB\sin\theta\hat{n}$$</td>
+              <td class="p-2.5">$\text{N}\cdot\text{m}$</td>
+              <td class="p-2.5 text-[11px]">Maximum at $\theta = 90^\circ$ ($\tau_{\max} = MB$). Zero at $\theta = 0^\circ$ and $\theta = 180^\circ$. Net force $\vec{F} = 0$ in uniform field.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Potential Energy in $\vec{B}$</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$U = -\vec{M}\cdot\vec{B} = -MB\cos\theta$$</td>
+              <td class="p-2.5">$\text{Joule (J)}$</td>
+              <td class="p-2.5 text-[11px]">Stable Eq: $\theta = 0^\circ$ ($U = -MB$). Unstable Eq: $\theta = 180^\circ$ ($U = +MB$). Work $W_{0 \to 180^\circ} = 2MB$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Needle Oscillation Period</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$T = 2\pi\sqrt{\frac{\mathcal{I}}{MB}} \implies B = \frac{4\pi^2\mathcal{I}}{MT^2}$$</td>
+              <td class="p-2.5">$\text{Seconds (s)}$</td>
+              <td class="p-2.5 text-[11px]">Valid for small angular displacement ($\sin\theta \approx \theta$). $\mathcal{I}$ is moment of inertia about pivot.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Gauss's Law for Magnetism</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\Phi_B = \oint \vec{B}\cdot d\vec{A} = 0$$</td>
+              <td class="p-2.5">$\text{Weber (Wb)}$</td>
+              <td class="p-2.5 text-[11px]">Universal law. Confirms non-existence of isolated magnetic monopoles; field lines are closed continuous loops.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Magnetization ($\vec{M}$)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\vec{M} = \frac{\vec{m}_{\text{net}}}{V}$$</td>
+              <td class="p-2.5">$\text{A/m}$<br>$[\text{L}^{-1}\text{A}]$</td>
+              <td class="p-2.5 text-[11px]">Net magnetic dipole moment per unit volume induced inside the magnetic material.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Magnetic Intensity ($\vec{H}$)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\vec{H} = \frac{\vec{B}}{\mu_0} - \vec{M}$$</td>
+              <td class="p-2.5">$\text{A/m}$</td>
+              <td class="p-2.5 text-[11px]">Represents the external magnetizing field created by free conduction currents (e.g. $H = nI$ in solenoid).</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Susceptibility & Permeability</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\chi = \frac{M}{H}, \quad \mu_r = 1 + \chi, \quad \vec{B} = \mu_r \mu_0 \vec{H}$$</td>
+              <td class="p-2.5">Dimensionless</td>
+              <td class="p-2.5 text-[11px]">Total field inside medium: $\vec{B} = \vec{B}_0 + \mu_0\vec{M}$. Independent parameter linking material response.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Curie's Law (Paramagnet)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\chi_{\text{para}} = \frac{C}{T} \quad (M = C\frac{B_0}{T})$$</td>
+              <td class="p-2.5">$\text{Kelvin (K)}$</td>
+              <td class="p-2.5 text-[11px]">$C$ is Curie's constant. Breaks down near absolute zero or very high fields when saturation is reached.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Curie-Weiss Law (Ferro)</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\chi_{\text{ferro}} = \frac{C'}{T - T_c} \quad (T > T_c)$$</td>
+              <td class="p-2.5">$\text{Kelvin (K)}$</td>
+              <td class="p-2.5 text-[11px]">$T_c$ is Curie Temperature (Iron: $T_c = 1043\text{ K} = 770^\circ\text{C}$). Above $T_c$, ferromagnet converts to paramagnet.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 2: Stepwise Derivations Blueprint -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        2. Core Derivations Blueprint (Step-by-Step Board Proofs)
+      </h2>
+
+      <!-- Proof 1: Bar Magnet as Equivalent Solenoid -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 5.1: Axial Magnetic Field of a Finite Solenoid as an Equivalent Bar Magnet
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Consider a finite solenoid of length $2l$, radius $a$, carrying current $I$ with $n$ turns per unit length ($N = 2nl$).
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Consider a circular slice of thickness $dx$ at distance $x$ from the center $O$. Number of turns in the slice $= n\,dx$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          3. Distance of an axial observation point $P$ from this slice is $(r - x)$. Using the axial field formula of a circular ring:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$dB = \frac{\mu_0 (n\,dx) I a^2}{2 [(r - x)^2 + a^2]^{3/2}}$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          4. For a distant point on the axis ($r \gg a$ and $r \gg x$), approximate $(r - x) \approx r$ and neglect $a^2$:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$dB = \frac{\mu_0 n I a^2}{2 r^3} dx$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          5. Integrate over the entire length of the solenoid from $x = -l$ to $x = +l$:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$B = \frac{\mu_0 n I a^2}{2 r^3} \int_{-l}^{+l} dx = \frac{\mu_0 n I a^2 (2l)}{2 r^3} = \frac{\mu_0 I [n(2l)] (\pi a^2)}{2\pi r^3} = \frac{\mu_0 I N A}{2\pi r^3}$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          6. Substitute total magnetic moment $M = N I A = N I (\pi a^2)$:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$B_{\text{axial}} = \frac{\mu_0}{4\pi} \frac{2M}{r^3} \quad (\text{Identical to electrostatic dipole field } E = \frac{1}{4\pi\varepsilon_0}\frac{2p}{r^3})$$
+        </div>
+      </div>
+
+      <!-- Proof 2: Oscillation of Magnetic Needle in B Field -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 5.2: Oscillation Time Period of a Magnetic Needle in a Uniform Magnetic Field
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. A magnetic needle of moment $\vec{M}$ and moment of inertia $\mathcal{I}$ is placed in uniform magnetic field $\vec{B}$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. When deflected by a small angle $\theta$ from equilibrium, the restoring torque tending to align $\vec{M}$ along $\vec{B}$ is:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$\tau = -M B \sin\theta \approx -M B \theta \quad (\because \sin\theta \approx \theta \text{ for small } \theta)$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. By rotational dynamics, $\tau = \mathcal{I} \frac{d^2\theta}{dt^2}$:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$\mathcal{I}\frac{d^2\theta}{dt^2} = -MB\theta \implies \frac{d^2\theta}{dt^2} = -\left(\frac{MB}{\mathcal{I}}\right)\theta$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          4. Comparing with the standard angular SHM equation $\frac{d^2\theta}{dt^2} = -\omega^2\theta$:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$\omega = \sqrt{\frac{MB}{\mathcal{I}}} \implies T = \frac{2\pi}{\omega} = 2\pi\sqrt{\frac{\mathcal{I}}{MB}} \quad \text{and} \quad B = \frac{4\pi^2\mathcal{I}}{MT^2}$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: High-Yield Exam Trap Matrix -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-rose-400 print:text-black border-l-4 border-rose-500 print:border-black pl-2.5">
+        3. High-Yield "Red Alert" Exam Trap Matrix
+      </h2>
+
+      <!-- Material Comparison Master Matrix Table -->
+      <div class="rounded-xl border border-rose-900/40 print-border overflow-hidden">
+        <div class="bg-rose-950/40 print:bg-gray-100 p-2.5 border-b border-rose-900/40 print:border-black">
+          <p class="text-xs font-bold text-rose-300 print:text-black uppercase">
+            Master Trap 1: Comparative Classification of Magnetic Materials
+          </p>
+        </div>
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase font-semibold">
+            <tr>
+              <th class="p-2 border border-slate-800">Characteristic</th>
+              <th class="p-2 border border-slate-800 text-cyan-400 print:text-black">Diamagnetic</th>
+              <th class="p-2 border border-slate-800 text-amber-400 print:text-black">Paramagnetic</th>
+              <th class="p-2 border border-slate-800 text-emerald-400 print:text-black">Ferromagnetic</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Behavior in External Field</td>
+              <td class="p-2">Feebly repelled; moves from strong to weak field.</td>
+              <td class="p-2">Feebly attracted; moves from weak to strong field.</td>
+              <td class="p-2">Strongly attracted; pulled rapidly into strong field.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Atomic Magnetic Dipole</td>
+              <td class="p-2">Zero intrinsic dipole (paired electrons, canceling spins).</td>
+              <td class="p-2">Permanent atomic dipoles exist; randomized by heat.</td>
+              <td class="p-2">Permanent dipoles pre-aligned into Weiss Domains.</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Susceptibility ($\chi$)</td>
+              <td class="p-2 text-rose-400 print:text-black font-bold">Negative & Small ($-1 \le \chi < 0$)</td>
+              <td class="p-2 text-amber-400 print:text-black font-bold">Positive & Small ($0 < \chi < \varepsilon$)</td>
+              <td class="p-2 text-emerald-400 print:text-black font-bold">Positive & Huge ($\chi \gg 1000$)</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Permeability ($\mu_r = 1+\chi$)</td>
+              <td class="p-2 font-mono">Slightly less than 1 ($0 \le \mu_r < 1$)</td>
+              <td class="p-2 font-mono">Slightly greater than 1 ($\mu_r \gtrsim 1$)</td>
+              <td class="p-2 font-mono">Extremely large ($\mu_r \gg 1000$)</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Field Line Density</td>
+              <td class="p-2">Lines are expelled ($B_{\text{in}} < B_0$).</td>
+              <td class="p-2">Lines slightly crowd inside ($B_{\text{in}} \gtrsim B_0$).</td>
+              <td class="p-2">Lines heavily concentrated inside ($B_{\text{in}} \ggg B_0$).</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Temperature Dependence</td>
+              <td class="p-2 font-bold text-cyan-400 print:text-black">INDEPENDENT of $T$</td>
+              <td class="p-2 font-bold text-amber-400 print:text-black">$\chi \propto 1/T$ (Curie's Law)</td>
+              <td class="p-2 font-bold text-emerald-400 print:text-black">$\chi = \frac{C'}{T - T_c}$ for $T > T_c$ (Curie-Weiss)</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Classic Examples</td>
+              <td class="p-2">Bi, Cu, H₂O, Pb, Superconductors ($\chi = -1$).</td>
+              <td class="p-2">Al, Na, Pt, Liquid Oxygen, Mn.</td>
+              <td class="p-2">Fe, Co, Ni, Gadolinium ($T_c = 16^\circ\text{C}$), Alnico.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Critical Pitfalls Grid -->
+      <div class="grid sm:grid-cols-2 gap-3 text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 2: Cutting a Bar Magnet Rules</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            Initial moment $M = m \times 2l$.
+            <br>• <strong>Transverse cut (across length):</strong> Length halves ($l$), pole strength unchanged $\implies M' = m \times l = \mathbf{M/2}$.
+            <br>• <strong>Longitudinal cut (along length):</strong> Length unchanged ($2l$), pole strength halves ($m/2$) $\implies M' = (m/2) \times 2l = \mathbf{M/2}$.
+            <br>Each cut piece becomes a complete, functional dipole with both N and S poles.
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap 3: Uniform vs Non-Uniform Field Forces</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            • <strong>Uniform $\vec{B}$:</strong> Equal and opposite forces act on poles ($\vec{F}_N = +m\vec{B}, \vec{F}_S = -m\vec{B}$). Net translational force is strictly <strong class="text-white print:text-black">ZERO</strong> ($\vec{F}_{\text{net}} = 0, \tau \ne 0$).
+            <br>• <strong>Non-Uniform $\vec{B}$:</strong> Field strengths at poles differ ($B_N \ne B_S$). Dipole experiences <strong class="text-white print:text-black">BOTH a net force and a torque</strong> ($\vec{F}_{\text{net}} \ne 0, \tau \ne 0$).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Handcrafted Exemplar Numericals -->
+    <section class="space-y-4 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-amber-400 print:text-black border-l-4 border-amber-500 print:border-black pl-2.5">
+        4. Handcrafted Exemplars (Analytical Numerical Solutions)
+      </h2>
+
+      <!-- Problem 1 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black">Problem 1: Oscillation Magnetometer Determination of Magnetic Moment</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden">Exemplar 01</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          A magnetic needle completes 30 oscillations in 1 minute in a horizontal field of $B_H = 0.36\text{ G}$. If its moment of inertia is $\mathcal{I} = 7.2 \times 10^{-6}\text{ kg}\cdot\text{m}^2$, calculate its magnetic dipole moment $M$.
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> Time period $T = \frac{60\text{ s}}{30} = 2.0\text{ s}$. Field $B = 0.36 \times 10^{-4}\text{ T} = 3.6 \times 10^{-5}\text{ T}$.</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$T = 2\pi\sqrt{\frac{\mathcal{I}}{MB}} \implies M = \frac{4\pi^2\mathcal{I}}{B T^2} = \frac{4 \times (9.87) \times (7.2 \times 10^{-6})}{(3.6 \times 10^{-5}) \times (2.0)^2}$$
+          </div>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$M = \frac{2.842 \times 10^{-4}}{1.44 \times 10^{-4}} \approx 1.97\text{ A}\cdot\text{m}^2 \quad (\text{or J/T})$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black">Problem 2: Solenoid with Ferromagnetic Core Parameters</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden">Exemplar 02</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          A solenoid of $1000\text{ turns/m}$ carries current $2.0\text{ A}$ and contains an iron core of relative permeability $\mu_r = 400$. Find (i) Magnetic Intensity $H$, (ii) Magnetic Field $B$, and (iii) Magnetization $M$ inside the core.
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong></p>
+          <p class="text-slate-400 print:text-black">1. $H = nI = 1000 \times 2.0 = 2.0 \times 10^3\text{ A/m}$.</p>
+          <p class="text-slate-400 print:text-black">2. $B = \mu_r \mu_0 H = 400 \times (4\pi \times 10^{-7}) \times (2.0 \times 10^3) = 3200\pi \times 10^{-4} \approx 1.005\text{ Tesla}$.</p>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$M = (\mu_r - 1)H = (400 - 1) \times (2.0 \times 10^3) = 399 \times 2000 = 7.98 \times 10^5\text{ A/m}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Printable Cut-Out Flashcard Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        5. Printable Pocket Flashcard Grid
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Axial Field</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1">$B = \frac{\mu_0 2M}{4\pi r^3}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Needle Period</p>
+          <p class="font-bold text-white print:text-black text-xs mt-1">$T = 2\pi\sqrt{\frac{\mathcal{I}}{MB}}$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Gauss Law</p>
+          <p class="font-bold text-white print:text-black text-[11px] mt-1">$\oint \vec{B}\cdot d\vec{A} = 0$</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Curie's Law</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1">$\chi \propto \frac{1}{T}$</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Document Footer -->
+    <footer class="pt-6 border-t border-slate-800 text-center text-xs text-slate-500 print:text-black print:pt-3">
+      <p>AXIOM Physics Class 12 • Open Access Physics Initiative • Distributed under Creative Commons Free Access</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>

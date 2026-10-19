@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - EMF, Internal Resistance & Cells</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 3.3</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 02: Current Electricity • Chapter 03[cite: 12, 13]</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">EMF, Internal Resistance & Combination of Cells</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Terminal voltage, non-ideal sources, series and parallel grouping of non-identical cells, and maximum power condition.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek water pump hai jo 100 litre/min paani phekne ki theoretical capacity rakhta hai (<strong class="text-white">EMF $\mathcal{E}$</strong>). Lekin pump ke andar ki pipe aur impeller me friction hota hai (<strong class="text-white">Internal Resistance $r$</strong>). Jab pump se paani bahar deliver hona shuru hota hai, toh is internal friction ke chalte kuch pressure andar hi drop ho jata hai ($Ir$). Isliye bahar jo usable output milta hai (<strong class="text-white">Terminal Voltage $V$</strong>), woh theoretical capacity se hamesha kam hota hai: $V = \mathcal{E} - Ir$[cite: 13]! Lekin agar aap kisi bahari source se battery ko force recharge kar rahe hon, toh battery ko internal resistance ke against push karna padta hai, aur tab $V = \mathcal{E} + Ir$ ho jata hai!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. EMF & Terminal Voltage ($V$)</h3>
+          <p class="text-sm text-slate-400 mb-2">Relation during discharging (driving current through external load $R$)[cite: 13]:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$I = \frac{\mathcal{E}}{R + r}, \quad V = \mathcal{E} - I r = I R$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Internal resistance formula: $r = \left(\frac{\mathcal{E} - V}{V}\right)R = \left(\frac{\mathcal{E}}{V} - 1\right)R$[cite: 13].</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Grouping of Non-Identical Cells</h3>
+          <p class="text-sm text-slate-400 mb-2">Equivalent EMF and internal resistance in series and parallel[cite: 13]:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\text{Series: } \mathcal{E}_{\text{eq}} = \mathcal{E}_1 + \mathcal{E}_2, \quad r_{\text{eq}} = r_1 + r_2$$
+            $$\text{Parallel: } \mathcal{E}_{\text{eq}} = \frac{\frac{\mathcal{E}_1}{r_1} + \frac{\mathcal{E}_2}{r_2}}{\frac{1}{r_1} + \frac{1}{r_2}}, \quad \frac{1}{r_{\text{eq}}} = \frac{1}{r_1} + \frac{1}{r_2}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Maximum power delivered to load occurs when load matches source: $R = r$ ($P_{\max} = \frac{\mathcal{E}^2}{4r}$).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Battery Circuit Bench & V-I Load Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Real Battery Circuit Bench</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="modeToggleBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Mode: Single Real Cell
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="cellCanvas" width="800" height="380" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>External Load ($R$)</span>
+            <span id="rLoadVal" class="text-cyan-400 font-mono font-bold">4.0 Ω</span>
+          </div>
+          <input id="rLoadSlider" type="range" min="0.5" max="15" step="0.5" value="4" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Cell EMF ($\mathcal{E}$)</span>
+            <span id="emfVal" class="text-amber-400 font-mono font-bold">10.0 V</span>
+          </div>
+          <input id="emfSlider" type="range" min="4" max="20" step="1" value="10" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Internal Resistance ($r$)</span>
+            <span id="rIntVal" class="text-emerald-400 font-mono font-bold">1.0 Ω</span>
+          </div>
+          <input id="rIntSlider" type="range" min="0.2" max="5" step="0.2" value="1" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Terminal Voltage ($V = \mathcal{E} - Ir$):</span>
+          <div id="vTerminalVal" class="text-cyan-400 font-bold text-sm mt-0.5">8.00 V</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Circuit Current ($I$):</span>
+          <div id="iCircuitVal" class="text-amber-400 font-bold text-sm mt-0.5">2.00 A</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Power Delivered to Load ($P = I^2 R$):</span>
+          <div id="pLoadVal" class="text-emerald-400 font-bold text-sm mt-0.5">16.00 W</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint[cite: 13]</span>
+      </div>
+
+      <!-- Derivation 1: Cells in Series -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation A</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Equivalent EMF & Internal Resistance of Two Cells in Series[cite: 13]</h4>
+        </div>
+        <p>1. Consider two cells of EMFs $\mathcal{E}_1, \mathcal{E}_2$ and internal resistances $r_1, r_2$ connected in series between terminals $A$ and $C$, with common node $B$[cite: 13].</p>
+        <p>2. Potential differences across each cell[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$V_{AB} = V_A - V_B = \mathcal{E}_1 - I r_1$$
+          $$V_{BC} = V_B - V_C = \mathcal{E}_2 - I r_2$$
+        </div>
+        <p>3. Net terminal potential difference across the combination $V_{AC} = V_A - V_C$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$V_{AC} = (V_A - V_B) + (V_B - V_C) = (\mathcal{E}_1 - I r_1) + (\mathcal{E}_2 - I r_2)$$
+          $$V_{AC} = (\mathcal{E}_1 + \mathcal{E}_2) - I (r_1 + r_2)$$
+        </div>
+        <p>4. Comparing with equivalent cell equation $V_{AC} = \mathcal{E}_{\text{eq}} - I r_{\text{eq}}$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\mathcal{E}_{\text{eq}} = \mathcal{E}_1 + \mathcal{E}_2, \quad r_{\text{eq}} = r_1 + r_2 \text{[cite: 13]}$$
+        </div>
+        <p class="text-slate-400"><em>Opposition Polarity:</em> If cell 2 is reversed (positive to positive), $\mathcal{E}_{\text{eq}} = \mathcal{E}_1 - \mathcal{E}_2$ (assuming $\mathcal{E}_1 > \mathcal{E}_2$), but internal resistances still add: $r_{\text{eq}} = r_1 + r_2$.</p>
+      </div>
+
+      <!-- Derivation 2: Cells in Parallel -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation B</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Equivalent EMF & Internal Resistance of Two Cells in Parallel[cite: 13]</h4>
+        </div>
+        <p>1. Consider two cells with parameters $(\mathcal{E}_1, r_1)$ and $(\mathcal{E}_2, r_2)$ connected in parallel between nodes $B_1$ and $B_2$[cite: 13].</p>
+        <p>2. Let main current be $I = I_1 + I_2$[cite: 13]. Both branches share the identical terminal potential difference $V = V_{B1} - V_{B2}$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$V = \mathcal{E}_1 - I_1 r_1 \implies I_1 = \frac{\mathcal{E}_1 - V}{r_1}$$
+          $$V = \mathcal{E}_2 - I_2 r_2 \implies I_2 = \frac{\mathcal{E}_2 - V}{r_2}$$
+        </div>
+        <p>3. Total current $I$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$I = I_1 + I_2 = \left(\frac{\mathcal{E}_1 - V}{r_1}\right) + \left(\frac{\mathcal{E}_2 - V}{r_2}\right) = \left(\frac{\mathcal{E}_1}{r_1} + \frac{\mathcal{E}_2}{r_2}\right) - V\left(\frac{1}{r_1} + \frac{1}{r_2}\right)$$
+        </div>
+        <p>4. Rearranging for terminal potential $V$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$V\left(\frac{r_1 + r_2}{r_1 r_2}\right) = \left(\frac{\mathcal{E}_1 r_2 + \mathcal{E}_2 r_1}{r_1 r_2}\right) - I$$
+          $$V = \left(\frac{\mathcal{E}_1 r_2 + \mathcal{E}_2 r_1}{r_1 + r_2}\right) - I \left(\frac{r_1 r_2}{r_1 + r_2}\right)$$
+        </div>
+        <p>5. Comparing with $V = \mathcal{E}_{\text{eq}} - I r_{\text{eq}}$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\mathcal{E}_{\text{eq}} = \frac{\mathcal{E}_1 r_2 + \mathcal{E}_2 r_1}{r_1 + r_2} = \frac{\sum \mathcal{E}_i / r_i}{\sum 1 / r_i}, \quad \frac{1}{r_{\text{eq}}} = \frac{1}{r_1} + \frac{1}{r_2} \text{[cite: 13]}$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Can Terminal Voltage $V$ exceed EMF $\mathcal{E}$?</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            YES! Students blindly memorize $V < \mathcal{E}$[cite: 13].
+            <br>• Discharging (Normal use): Current leaves positive terminal $\implies \mathbf{V = \mathcal{E} - Ir < \mathcal{E}}$[cite: 13].
+            <br>• Open Circuit ($I = 0$): $\mathbf{V = \mathcal{E}}$[cite: 13].
+            <br>• <strong>Charging (Battery Charger active):</strong> Current enters positive terminal $\implies \mathbf{V = \mathcal{E} + Ir > \mathcal{E}}$!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: The Reversed Cell Trap in Series</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            If out of $n$ identical cells, $m$ cells are connected in reverse polarity:
+            <br>Net assisting cells $= n - m$, opposing cells $= m$.
+            <br>Net EMF: $\mathcal{E}_{\text{net}} = (n - m)\mathcal{E} - m\mathcal{E} = \mathbf{(n - 2m)\mathcal{E}}$.
+            <br>Total internal resistance: **Remains $n r$** (internal resistances add regardless of polarity!).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Maximum Power Transfer vs Efficiency</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Power delivered to load is maximum when $R = r$ ($P_{\max} = \frac{\mathcal{E}^2}{4r}$). But at this point, terminal voltage is $V = \mathcal{E}/2$ and electrical efficiency $\eta = \frac{V}{\mathcal{E}} = \mathbf{50\%}$ only. Maximum power condition is NOT maximum efficiency condition!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Short Circuit Current ($R = 0$)</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            When terminals of a battery are directly shorted with zero load resistance ($R = 0$), $I_{\text{sc}} = \frac{\mathcal{E}}{r}$ and terminal voltage drops to exactly $V = 0$[cite: 13]. All power is dissipated internally as destructive heat ($P_{\text{loss}} = \mathcal{E}^2 / r$).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A battery of EMF $10\text{ V}$ and internal resistance $3\text{ }\Omega$ is connected to a resistor. If the current in the circuit is $0.5\text{ A}$, find (i) the resistance of the resistor, (ii) terminal voltage of the battery when the circuit is closed[cite: 13].</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Circuit equation: $I = \frac{\mathcal{E}}{R + r} \implies 0.5 = \frac{10}{R + 3}$[cite: 13]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$R + 3 = \frac{10}{0.5} = 20 \implies R = 17\text{ }\Omega$$
+          </div>
+          <p>2. Terminal voltage $V$ during discharge[cite: 13]:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$V = \mathcal{E} - I r = 10 - (0.5 \times 3) = 10 - 1.5 = 8.5\text{ Volts}$$
+          </div>
+          <p class="text-slate-400"><em>Cross Check:</em> $V = IR = 0.5 \times 17 = 8.5\text{ V}$.</p>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: Two cells of EMFs $2\text{ V}$ and $1\text{ V}$ with internal resistances $1\text{ }\Omega$ and $2\text{ }\Omega$ respectively are connected in parallel with like terminals together. The combination is connected to an external resistor of $10\text{ }\Omega$. Find the current through each cell and the terminal potential difference[cite: 13].</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Equivalent EMF and internal resistance[cite: 13]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$r_{\text{eq}} = \frac{r_1 r_2}{r_1 + r_2} = \frac{1 \times 2}{1 + 2} = \frac{2}{3}\text{ }\Omega$$
+            $$\mathcal{E}_{\text{eq}} = \frac{\frac{\mathcal{E}_1}{r_1} + \frac{\mathcal{E}_2}{r_2}}{\frac{1}{r_1} + \frac{1}{r_2}} = \frac{\frac{2}{1} + \frac{1}{2}}{\frac{1}{1} + \frac{1}{2}} = \frac{2.5}{1.5} = \frac{5}{3}\text{ Volts}$$
+          </div>
+          <p>2. Total current through external load $R = 10\text{ }\Omega$[cite: 13]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$I = \frac{\mathcal{E}_{\text{eq}}}{R + r_{\text{eq}}} = \frac{5/3}{10 + 2/3} = \frac{5/3}{32/3} = \frac{5}{32}\text{ A} \approx 0.156\text{ A}$$
+          </div>
+          <p>3. Terminal voltage across the load[cite: 13]:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$V = I R = \frac{5}{32} \times 10 = \frac{50}{32} = \frac{25}{16}\text{ V} \approx 1.5625\text{ Volts}$$
+          </div>
+          <p>4. Individual currents: $I_1 = \frac{\mathcal{E}_1 - V}{r_1} = \frac{2 - 1.5625}{1} = 0.4375\text{ A}$, $I_2 = \frac{\mathcal{E}_2 - V}{r_2} = \frac{1 - 1.5625}{2} = -0.281\text{ A}$.</p>
+          <p class="text-slate-400"><em>Trap Alert:</em> Notice $I_2$ is negative! Because cell 1 EMF ($2\text{ V}$) is significantly higher than cell 2 EMF ($1\text{ V}$), cell 1 is actually discharging while back-charging cell 2[cite: 13]!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Discharging Cell</p>
+          <p class="text-xs font-bold text-white mt-1">$V = \mathcal{E} - Ir$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Charging Cell</p>
+          <p class="text-xs font-bold text-rose-400 mt-1">$V = \mathcal{E} + Ir$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Parallel Equivalent</p>
+          <p class="text-xs font-bold text-white mt-1">$\mathcal{E}_{\text{eq}} = \frac{\mathcal{E}_1 r_2 + \mathcal{E}_2 r_1}{r_1 + r_2}$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Max Power Condition</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$R = r \implies P_{\max} = \frac{\mathcal{E}^2}{4r}$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Battery Circuit Simulation Engine Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('cellCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const rLoadSlider = document.getElementById('rLoadSlider');
+      const emfSlider = document.getElementById('emfSlider');
+      const rIntSlider = document.getElementById('rIntSlider');
+      const modeToggleBtn = document.getElementById('modeToggleBtn');
+
+      const rLoadVal = document.getElementById('rLoadVal');
+      const emfVal = document.getElementById('emfVal');
+      const rIntVal = document.getElementById('rIntVal');
+      const vTerminalVal = document.getElementById('vTerminalVal');
+      const iCircuitVal = document.getElementById('iCircuitVal');
+      const pLoadVal = document.getElementById('pLoadVal');
+
+      // Modes: 'single', 'parallel'
+      let currentMode = 'single';
+      let electronPhase = 0;
+
+      modeToggleBtn.addEventListener('click', () => {
+        currentMode = (currentMode === 'single') ? 'parallel' : 'single';
+        modeToggleBtn.textContent = (currentMode === 'single')
+          ? 'Mode: Single Real Cell'
+          : 'Mode: Two Cells in Parallel';
+      });
+
+      function renderLoop() {
+        electronPhase += 0.04;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const R = parseFloat(rLoadSlider.value);
+        const E = parseFloat(emfSlider.value);
+        const r = parseFloat(rIntSlider.value);
+
+        rLoadVal.textContent = R.toFixed(1) + ' Ω';
+        emfVal.textContent = E.toFixed(1) + ' V';
+        rIntVal.textContent = r.toFixed(1) + ' Ω';
+
+        let I = 0;
+        let V = 0;
+        let P = 0;
+
+        if (currentMode === 'single') {
+          I = E / (R + r);
+          V = E - (I * r);
+          P = I * I * R;
+        } else {
+          // Parallel cells: Cell 1 (E, r), Cell 2 (E * 0.8, r * 1.5)
+          const E2 = E * 0.8;
+          const r2 = r * 1.5;
+          const rEq = (r * r2) / (r + r2);
+          const eEq = (E * r2 + E2 * r) / (r + r2);
+          I = eEq / (R + rEq);
+          V = I * R;
+          P = I * I * R;
+        }
+
+        vTerminalVal.textContent = V.toFixed(2) + ' V';
+        iCircuitVal.textContent = I.toFixed(2) + ' A';
+        pLoadVal.textContent = P.toFixed(2) + ' W';
+
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        if (currentMode === 'single') {
+          renderSingleCellCircuit(cx, cy, E, r, R, I, V);
+        } else {
+          renderParallelCellsCircuit(cx, cy, E, r, R, I, V);
+        }
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderSingleCellCircuit(cx, cy, E, r, R, I, V) {
+        const leftX = 160, rightX = 640, topY = 90, botY = 280;
+
+        // 1. Circuit Wires
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        // Top load branch
+        ctx.moveTo(leftX, topY);
+        ctx.lineTo(cx - 50, topY);
+        ctx.moveTo(cx + 50, topY);
+        ctx.lineTo(rightX, topY);
+        // Right side
+        ctx.lineTo(rightX, botY);
+        // Bottom battery branch
+        ctx.lineTo(cx + 120, botY);
+        ctx.moveTo(cx - 120, botY);
+        ctx.lineTo(leftX, botY);
+        // Left side
+        ctx.lineTo(leftX, topY);
+        ctx.stroke();
+
+        // 2. Load Resistor R at top
+        renderResistor(cx - 45, topY, 90, `Load R = ${R.toFixed(1)} Ω`, '#38bdf8');
+
+        // 3. Real Battery Enclosure (Dotted Box) at bottom
+        const boxX = cx - 110, boxY = botY - 45, boxW = 220, boxH = 90;
+        ctx.save();
+        ctx.strokeStyle = '#f59e0b';
+        ctx.setLineDash([5, 4]);
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(boxX, boxY, boxW, boxH);
+        ctx.restore();
+
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = 'bold 10px monospace';
+        ctx.fillText(`REAL BATTERY ENVELOPE (Terminal V = ${V.toFixed(2)} V)`, boxX + 8, boxY - 8);
+
+        // Internal EMF source
+        renderDCSource(cx - 50, botY, `ℰ = ${E.toFixed(1)}V`);
+        // Internal Resistor r
+        ctx.beginPath();
+        ctx.moveTo(cx - 30, botY);
+        ctx.lineTo(cx + 10, botY);
+        ctx.stroke();
+        renderResistor(cx + 15, botY, 60, `r = ${r.toFixed(1)} Ω`, '#f43f5e');
+
+        // 4. Moving Electron Flow Beads
+        const currentSpeedScale = Math.min(6, I * 1.5);
+        const beadOffset = (electronPhase * currentSpeedScale * 25) % 300;
+        ctx.fillStyle = '#fbbf24';
+        ctx.beginPath();
+        ctx.arc(leftX, botY - (beadOffset % (botY - topY)), 3, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Internal Drop = Ir = ${(I * r).toFixed(2)} V | Terminal Voltage V = ℰ - Ir = ${V.toFixed(2)} V[cite: 13]`, cx, canvas.height - 14);
+      }
+
+      function renderParallelCellsCircuit(cx, cy, E, r, R, I, V) {
+        const leftX = 160, rightX = 640, topY = 70;
+        const b1Y = 210, b2Y = 290;
+
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.5;
+
+        // Top load
+        ctx.beginPath();
+        ctx.moveTo(leftX, topY);
+        ctx.lineTo(cx - 50, topY);
+        ctx.moveTo(cx + 50, topY);
+        ctx.lineTo(rightX, topY);
+        // Vertical bus rails
+        ctx.moveTo(leftX, topY);
+        ctx.lineTo(leftX, b2Y);
+        ctx.moveTo(rightX, topY);
+        ctx.lineTo(rightX, b2Y);
+        // Branch 1
+        ctx.moveTo(leftX, b1Y);
+        ctx.lineTo(cx - 60, b1Y);
+        ctx.moveTo(cx + 70, b1Y);
+        ctx.lineTo(rightX, b1Y);
+        // Branch 2
+        ctx.moveTo(leftX, b2Y);
+        ctx.lineTo(cx - 60, b2Y);
+        ctx.moveTo(cx + 70, b2Y);
+        ctx.lineTo(rightX, b2Y);
+        ctx.stroke();
+
+        renderResistor(cx - 45, topY, 90, `Load R = ${R.toFixed(1)} Ω`, '#38bdf8');
+
+        // Branch 1 Cell
+        renderDCSource(cx - 40, b1Y, `ℰ₁ = ${E}V`);
+        renderResistor(cx + 10, b1Y, 50, `r₁=${r}Ω`, '#f43f5e');
+
+        // Branch 2 Cell
+        const E2 = (E * 0.8).toFixed(1);
+        const r2 = (r * 1.5).toFixed(1);
+        renderDCSource(cx - 40, b2Y, `ℰ₂ = ${E2}V`);
+        renderResistor(cx + 10, b2Y, 50, `r₂=${r2}Ω`, '#f43f5e');
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Parallel Cells: ℰ_eq = (ℰ₁/r₁ + ℰ₂/r₂) / (1/r₁ + 1/r₂) | Terminal Voltage = ${V.toFixed(2)} V[cite: 13]`, cx, canvas.height - 14);
+      }
+
+      function renderResistor(x, y, w, label, color) {
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        const zigzags = 6;
+        const step = w / zigzags;
+        for (let i = 1; i < zigzags; i++) {
+          const dy = (i % 2 === 0) ? 8 : -8;
+          ctx.lineTo(x + i * step, y + dy);
+        }
+        ctx.lineTo(x + w, y);
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 10px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(label, x + w / 2, y - 14);
+        ctx.restore();
+      }
+
+      function renderDCSource(x, y, label) {
+        ctx.save();
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 3;
+        // Long positive plate
+        ctx.beginPath();
+        ctx.moveTo(x - 6, y - 18);
+        ctx.lineTo(x - 6, y + 18);
+        ctx.stroke();
+        // Short negative plate
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        ctx.moveTo(x + 6, y - 10);
+        ctx.lineTo(x + 6, y + 10);
+        ctx.stroke();
+
+        ctx.fillStyle = '#10b981';
+        ctx.font = 'bold 10px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(label, x, y + 30);
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

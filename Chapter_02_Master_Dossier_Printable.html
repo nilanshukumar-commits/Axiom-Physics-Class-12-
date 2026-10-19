@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class 12 Physics | Chapter 2 - Master Dossier</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    /* Print Optimization Rules */
+    @page {
+      size: A4 portrait;
+      margin: 12mm 14mm 12mm 14mm;
+    }
+
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        font-size: 11pt !important;
+        line-height: 1.4 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .avoid-break {
+        page-break-inside: avoid;
+      }
+      .print-border {
+        border: 1px solid #1e293b !important;
+      }
+      .print-table th {
+        background-color: #f1f5f9 !important;
+        color: #000000 !important;
+        border: 1px solid #94a3b8 !important;
+      }
+      .print-table td {
+        border: 1px solid #cbd5e1 !important;
+        color: #000000 !important;
+      }
+      .formula-box {
+        background: #f8fafc !important;
+        border-left: 3px solid #0f172a !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Sticky Top Action Bar (Auto-hidden in Print/PDF) -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex flex-wrap justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <div>
+        <span class="text-lg font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+        <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Open Access</span>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-3 mt-2 sm:mt-0">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-indigo-600/30 active:scale-95 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>Save as PDF (Clean Vector)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Body Container -->
+  <main class="max-w-4xl mx-auto px-4 py-8 md:py-12 space-y-10 print:p-0 print:m-0 print:space-y-6">
+
+    <!-- Dossier Title Block -->
+    <div class="border-b-2 border-indigo-500/40 pb-5 print:border-black print:pb-3">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-indigo-400 print:text-black">CBSE Class XII • Unit 01 (Electrostatics)</p>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1 print:text-black print:text-2xl">
+            Chapter 02: Electrostatic Potential and Capacitance
+          </h1>
+          <p class="text-slate-400 mt-1 text-sm print:text-gray-700">Comprehensive Revision Dossier • High-Yield Formulas, Derivation Blueprints & Exam Trap Sheet</p>
+        </div>
+        <div class="hidden sm:block text-right text-xs text-slate-500 print:block print:text-black">
+          <p class="font-mono">Open Access Standard</p>
+          <p class="font-mono">Theory Weightage: Unit I & II (16 M)[cite: 12]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: Master Formula & Physical Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        1. Definitive Formula & Dimensions Matrix
+      </h2>
+      <div class="overflow-x-auto rounded-xl border border-slate-800 print:border-black">
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase tracking-wider border-b border-slate-800 font-semibold">
+            <tr>
+              <th class="p-2.5 border-r border-slate-800">Concept</th>
+              <th class="p-2.5 border-r border-slate-800">Mathematical Formula</th>
+              <th class="p-2.5 border-r border-slate-800">SI Unit / Dim</th>
+              <th class="p-2.5">Boundary Conditions & Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/80 text-slate-300">
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Electric Potential ($V$)[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$V = -\int_\infty^r \vec{E}\cdot d\vec{r} = \frac{W^{\text{ext}}}{q_0}\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\text{Volt (V)} = \text{J/C}$<br>$[\text{ML}^2\text{T}^{-3}\text{A}^{-1}]$</td>
+              <td class="p-2.5 text-[11px]">Strict scalar quantity[cite: 13]; charges substituted with algebraic signs[cite: 13]. Reference $V(\infty) = 0$[cite: 13].</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Point Charge Field[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$V = \frac{1}{4\pi\varepsilon_0}\frac{q}{r}\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\text{V}$</td>
+              <td class="p-2.5 text-[11px]">Potential decreases as $1/r$[cite: 13]; concentric equipotential spheres[cite: 13].</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Short Dipole ($r \gg a$)[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$V = \frac{1}{4\pi\varepsilon_0}\frac{p\cos\theta}{r^2}\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\text{V}$</td>
+              <td class="p-2.5 text-[11px]">Axial: $\pm\frac{kp}{r^2}$[cite: 13]; Equatorial ($\theta=90^\circ$): $V_{\text{eq}} = 0$ at all distances[cite: 13].</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Potential Gradient[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\vec{E} = -\vec{\nabla}V \implies E = -\frac{dV}{dr}\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\text{V/m} = \text{N/C}$</td>
+              <td class="p-2.5 text-[11px]">Electric field points in the direction where potential drops steepest[cite: 13].</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">System PE (2 Charges)[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$U = \frac{1}{4\pi\varepsilon_0}\frac{q_1 q_2}{r_{12}}\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\text{Joule (J)}$</td>
+              <td class="p-2.5 text-[11px]">For $N$ charges, sum over all $\frac{N(N-1)}{2}$ unique pairs[cite: 13]. Like charges $\implies U > 0$[cite: 13].</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Parallel Plate ($C_0$)[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$C_0 = \frac{\varepsilon_0 A}{d}\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\text{Farad (F)} = \text{C/V}$</td>
+              <td class="p-2.5 text-[11px]">Pure geometric quantity; completely independent of applied $V$ or $Q$[cite: 13].</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Partial Dielectric Slab[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$C = \frac{\varepsilon_0 A}{d - t + \frac{t}{K}}\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\text{F}$</td>
+              <td class="p-2.5 text-[11px]">Full insertion ($t=d$): $C = KC_0$[cite: 13]. Metal slab ($K \to \infty$): $C = \frac{\varepsilon_0 A}{d-t}$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Series Network[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\frac{1}{C_s} = \sum_{i=1}^n \frac{1}{C_i}\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\text{F}$</td>
+              <td class="p-2.5 text-[11px]">Charge $Q$ is identical across each capacitor[cite: 13]; equivalent $C_s < C_{\min}$[cite: 13].</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Parallel Network[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$C_p = \sum_{i=1}^n C_i\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\text{F}$</td>
+              <td class="p-2.5 text-[11px]">Voltage $V$ is identical across all branches[cite: 13]; equivalent $C_p > C_{\max}$[cite: 13].</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Stored Energy ($U$)[cite: 13]</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$U = \frac{1}{2}CV^2 = \frac{Q^2}{2C}\text{[cite: 13]}$$</td>
+              <td class="p-2.5">$\text{J}$</td>
+              <td class="p-2.5 text-[11px]">Stored in the electrostatic field volume[cite: 13]. Energy density $u_E = \frac{1}{2}\varepsilon_0 E^2$.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white print:text-black">Charge Sharing Loss</td>
+              <td class="p-2.5 font-mono text-indigo-300 print:text-black">$$\Delta U = \frac{C_1 C_2 (V_1 - V_2)^2}{2(C_1 + C_2)}$$</td>
+              <td class="p-2.5">$\text{J}$</td>
+              <td class="p-2.5 text-[11px]">Always $\ge 0$; dissipated as Joule heat in connecting wires and EM radiation.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 2: Stepwise Derivations Blueprint -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        2. Core Derivations Blueprint (Step-by-Step Board Proofs)[cite: 13]
+      </h2>
+
+      <!-- Proof 1: E = -dV/dr -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 2.1: Relation between Electric Field & Potential Gradient ($E = -\frac{dV}{dr}$)[cite: 13]
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Consider two closely spaced equipotential surfaces $A$ and $B$ separated by perpendicular distance $dr$, having potentials $V$ and $V - dV$[cite: 13].
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. Move a unit positive charge ($q_0 = +1\text{ C}$) from surface $B$ to surface $A$ against the electric field $\vec{E}$[cite: 13]. External force required: $\vec{F}_{\text{ext}} = -\vec{E}$.
+        </p>
+        <p class="text-slate-300 print:text-black">
+          3. Work done by external agent across displacement $dr$[cite: 13]:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$dW_{\text{ext}} = \vec{F}_{\text{ext}}\cdot d\vec{r} = -E\,dr$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          4. By fundamental definition, work done per unit charge equals potential difference $V_A - V_B$[cite: 13]:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$V_A - V_B = V - (V - dV) = dV$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          5. Equating work done to potential difference:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$-E\,dr = dV \implies E = -\frac{dV}{dr}\text{[cite: 13]}$$
+        </div>
+      </div>
+
+      <!-- Proof 2: Dipole Potential -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 2.2: Electric Potential due to a Dipole at Arbitrary Coordinates $(r, \theta)$[cite: 13]
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Consider a dipole consisting of $-q$ and $+q$ separated by $2a$[cite: 13]. Point $P$ is at distance $r$ from midpoint $O$, making an angle $\theta$ with $\vec{p}$[cite: 13].
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. For a short dipole ($r \gg a$), path distances from individual charges are:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$r_1 \approx r - a\cos\theta \quad (\text{from }+q), \qquad r_2 \approx r + a\cos\theta \quad (\text{from }-q)$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          3. Total scalar potential is the algebraic sum $V = V_+ + V_-$[cite: 13]:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$V = \frac{q}{4\pi\varepsilon_0}\left[\frac{1}{r_1} - \frac{1}{r_2}\right] = \frac{q}{4\pi\varepsilon_0}\left[\frac{(r + a\cos\theta) - (r - a\cos\theta)}{r^2 - a^2\cos^2\theta}\right] \approx \frac{q(2a\cos\theta)}{4\pi\varepsilon_0 r^2}$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          4. Substitute dipole moment $p = q(2a)$[cite: 13]:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$V(r, \theta) = \frac{1}{4\pi\varepsilon_0}\frac{p\cos\theta}{r^2} = \frac{1}{4\pi\varepsilon_0}\frac{\vec{p}\cdot\hat{r}}{r^2} \quad \left(V_{\text{axial}} = \pm\frac{kp}{r^2}, \quad V_{\text{eq}} = 0\right)\text{[cite: 13]}$$
+        </div>
+      </div>
+
+      <!-- Proof 3: Dielectric Slab in Capacitor -->
+      <div class="formula-box bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <h3 class="font-bold text-white text-sm print:text-black">
+          Blueprint 2.3: Parallel Plate Capacitor with Partial Dielectric Slab of Thickness $t < d$[cite: 13]
+        </h3>
+        <p class="text-slate-300 print:text-black">
+          1. Parallel plates have area $A$, separation $d$, and free surface charge density $\sigma = \frac{Q}{A}$[cite: 13]. Vacuum field is $E_0 = \frac{\sigma}{\varepsilon_0} = \frac{Q}{\varepsilon_0 A}$[cite: 13].
+        </p>
+        <p class="text-slate-300 print:text-black">
+          2. When a dielectric slab of thickness $t$ and constant $K$ is inserted, the field in the slab drops to $E = \frac{E_0}{K}$[cite: 13], while the remaining vacuum gap of thickness $(d - t)$ maintains field $E_0$[cite: 13].
+        </p>
+        <p class="text-slate-300 print:text-black">
+          3. Total potential difference across the plates is the sum of potentials in both zones[cite: 13]:
+        </p>
+        <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+          $$V = E_0(d - t) + E t = E_0(d - t) + \frac{E_0}{K}t = E_0\left[(d - t) + \frac{t}{K}\right]$$
+        </div>
+        <p class="text-slate-300 print:text-black">
+          4. Substitute $E_0 = \frac{Q}{\varepsilon_0 A}$ into $C = \frac{Q}{V}$[cite: 13]:
+        </p>
+        <div class="text-center font-mono font-bold text-emerald-400 print:text-black text-sm py-0.5">
+          $$C = \frac{Q}{\frac{Q}{\varepsilon_0 A}\left[d - t + \frac{t}{K}\right]} \implies C = \frac{\varepsilon_0 A}{d - t\left(1 - \frac{1}{K}\right)}\text{[cite: 13]}$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Page Break for Clean Printing -->
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: High-Yield Exam Trap Matrix -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-rose-400 print:text-black border-l-4 border-rose-500 print:border-black pl-2.5">
+        3. High-Yield "Red Alert" Exam Trap Matrix
+      </h2>
+
+      <!-- Battery Connected vs Disconnected Table -->
+      <div class="rounded-xl border border-rose-900/40 print-border overflow-hidden">
+        <div class="bg-rose-950/40 print:bg-gray-100 p-2.5 border-b border-rose-900/40 print:border-black">
+          <p class="text-xs font-bold text-rose-300 print:text-black uppercase">
+            Master Trap: Insertion of Dielectric Slab ($K$) under Different Boundary States[cite: 13]
+          </p>
+        </div>
+        <table class="w-full text-left text-xs print-table border-collapse">
+          <thead class="bg-slate-900 text-slate-200 uppercase font-semibold">
+            <tr>
+              <th class="p-2 border border-slate-800">Physical Parameter</th>
+              <th class="p-2 border border-slate-800 text-emerald-400 print:text-black">Case A: Battery Remains Connected</th>
+              <th class="p-2 border border-slate-800 text-cyan-400 print:text-black">Case B: Battery Disconnected</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Capacitance ($C$)</td>
+              <td class="p-2 text-emerald-300 print:text-black">Increases to $K C_0$[cite: 13]</td>
+              <td class="p-2 text-cyan-300 print:text-black">Increases to $K C_0$[cite: 13]</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Potential Difference ($V$)</td>
+              <td class="p-2 font-bold text-emerald-400 print:text-black">CONSTANT ($V = V_0$)</td>
+              <td class="p-2 text-cyan-300 print:text-black">Decreases to $V_0 / K$[cite: 13]</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Charge on Plates ($Q$)</td>
+              <td class="p-2 text-emerald-300 print:text-black">Increases to $K Q_0$</td>
+              <td class="p-2 font-bold text-cyan-400 print:text-black">CONSTANT ($Q = Q_0$)</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Electric Field ($E$)</td>
+              <td class="p-2 font-bold text-emerald-400 print:text-black">CONSTANT ($E = V_0/d$)</td>
+              <td class="p-2 text-cyan-300 print:text-black">Decreases to $E_0 / K$[cite: 13]</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold text-white print:text-black">Stored Energy ($U$)</td>
+              <td class="p-2 text-emerald-300 print:text-black">Increases to $K U_0$</td>
+              <td class="p-2 text-cyan-300 print:text-black">Decreases to $U_0 / K$[cite: 13]</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Conceptual Pitfalls Grid -->
+      <div class="grid sm:grid-cols-2 gap-3 text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap: Work Done Semantics</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            $$W_{\text{ext}} = q\Delta V = +q(V_B - V_A)$$
+            $$W_{\text{field}} = -\Delta U = -q(V_B - V_A)$$
+            Notice the opposing negative sign! Work done *by the field* reduces potential energy, whereas work done *by an external agent* increases it.
+          </p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3 rounded-xl print-border">
+          <p class="font-bold text-white print:text-black mb-1">⚠️ Trap: Equipotential Field Orthogonality</p>
+          <p class="text-slate-300 print:text-black leading-relaxed">
+            Because $W = q(V_B - V_A) = 0$ along any path on an equipotential surface[cite: 13]:
+            $$\int \vec{E}\cdot d\vec{r} = 0 \implies \vec{E} \perp \text{Surface everywhere}\text{[cite: 13]}$$
+            If $\vec{E}$ had any parallel tangential component, moving a charge would require non-zero work.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Handcrafted Exemplar Numericals -->
+    <section class="space-y-4 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-amber-400 print:text-black border-l-4 border-amber-500 print:border-black pl-2.5">
+        4. Handcrafted Exemplars (Analytical Numerical Solutions)
+      </h2>
+
+      <!-- Problem 1 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black">Problem 1: Multi-Charge Square Lattice Binding Energy</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden">Exemplar 01</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          Four charges $+q, -q, +q, -q$ are placed at vertices $A, B, C, D$ of a square of side $d$ taken in order. Find the potential energy of the configuration, and determine the work required to disassemble it to infinity.
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong> Total pairs for $N=4$ is $\frac{4(3)}{2} = 6$ unique pairs.</p>
+          <p class="text-slate-400 print:text-black">• 4 adjacent side pairs (separation $d$): $(+q)(-q) = -q^2$ each.</p>
+          <p class="text-slate-400 print:text-black">• 2 diagonal pairs (separation $d\sqrt{2}$): $(+q)(+q) = +q^2$ and $(-q)(-q) = +q^2$.</p>
+          <div class="text-center font-mono text-indigo-300 print:text-black py-0.5">
+            $$U = \frac{1}{4\pi\varepsilon_0}\left[ 4\left(\frac{-q^2}{d}\right) + 2\left(\frac{q^2}{d\sqrt{2}}\right) \right] = -\frac{q^2}{4\pi\varepsilon_0 d}\left(4 - \sqrt{2}\right)$$
+          </div>
+          <p class="text-slate-400 print:text-black">To disassemble to infinity ($U_f = 0$):</p>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$W_{\text{ext}} = U_f - U_i = +\frac{q^2}{4\pi\varepsilon_0 d}\left(4 - \sqrt{2}\right)\text{ Joules}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2 print-border">
+        <div class="flex justify-between items-center">
+          <span class="font-bold text-white print:text-black">Problem 2: Capacitor Charge Sharing & Energy Dissipation</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded print:hidden">Exemplar 02</span>
+        </div>
+        <p class="text-slate-300 print:text-black">
+          A $600\text{ pF}$ capacitor charged to $200\text{ V}$ is disconnected from its supply and connected in parallel to an uncharged $600\text{ pF}$ capacitor[cite: 13]. Calculate the total energy lost in the process[cite: 13].
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 print:border-black space-y-1">
+          <p class="text-slate-400 print:text-black"><strong>Solution:</strong></p>
+          <p class="text-slate-400 print:text-black">1. Initial stored energy $U_i = \frac{1}{2} C_1 V_1^2 = \frac{1}{2}(600 \times 10^{-12})(200)^2 = 1.2 \times 10^{-5}\text{ J}$[cite: 13].</p>
+          <p class="text-slate-400 print:text-black">2. When connected in parallel, common potential $V_c = \frac{C_1 V_1 + 0}{C_1 + C_2} = \frac{600 \times 200}{1200} = 100\text{ V}$[cite: 13].</p>
+          <p class="text-slate-400 print:text-black">3. Final total energy $U_f = \frac{1}{2}(C_1 + C_2)V_c^2 = \frac{1}{2}(1200 \times 10^{-12})(100)^2 = 0.6 \times 10^{-5}\text{ J}$[cite: 13].</p>
+          <div class="text-center font-mono font-bold text-emerald-400 print:text-black py-0.5">
+            $$\Delta U = U_i - U_f = 0.6 \times 10^{-5}\text{ J} = 6\text{ }\mu\text{J}\quad (\text{50% energy lost as heat and sparks})$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Printable Cut-Out Flashcard Matrix -->
+    <section class="space-y-3 avoid-break">
+      <h2 class="text-lg font-bold uppercase tracking-wider text-indigo-400 print:text-black border-l-4 border-indigo-500 print:border-black pl-2.5">
+        5. Printable Pocket Flashcard Grid
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Equipotential Work</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1">$W = q\Delta V = 0$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Gradient Law</p>
+          <p class="font-bold text-white print:text-black text-xs mt-1">$E = -\frac{dV}{dr}$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Partial Slab</p>
+          <p class="font-bold text-white print:text-black text-[11px] mt-1">$C = \frac{\varepsilon_0 A}{d - t(1 - 1/K)}$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg print-border">
+          <p class="text-[10px] text-slate-400 print:text-black">Energy Density</p>
+          <p class="font-bold text-emerald-400 print:text-black text-xs mt-1">$u_E = \frac{1}{2}\varepsilon_0 E^2$</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Document Footer -->
+    <footer class="pt-6 border-t border-slate-800 text-center text-xs text-slate-500 print:text-black print:pt-3">
+      <p>AXIOM Physics Class 12 • Open Access Physics Initiative • Distributed under Creative Commons Free Access</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>

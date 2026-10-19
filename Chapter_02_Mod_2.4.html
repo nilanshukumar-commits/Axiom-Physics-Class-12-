@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Capacitor Networks & Energy</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 2.4</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 01: Electrostatics • Chapter 02</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Capacitor Networks, Energy & Dielectric Insertion</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Series & parallel circuit reduction, stored electrostatic energy density, battery connected vs disconnected cases, and charge redistribution[cite: 13].</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho overhead water tanks ko: agar aap 2 tanks ko side-by-side (parallel) connect karte hain, toh unka total cross-section badh jata hai aur woh double paani store kar sakte hain[cite: 13]. Lekin agar unhe vertical pipe se series mein connect karte hain, toh pressure divide ho jata hai aur overall flow restrict hota hai[cite: 13]. Theek waise hi, <strong class="text-white">Parallel Capacitors</strong> directly add hote hain ($C_{\text{eq}} = C_1 + C_2$), jabki <strong class="text-white">Series Capacitors</strong> reciprocal add hote hain ($1/C_{\text{eq}} = 1/C_1 + 1/C_2$)[cite: 13]. Aur jab battery disconnected rehti hai, toh charge lock ho jata hai; jab battery connected rehti hai, toh voltage lock rehti hai!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">Series & Parallel Grouping</h3>
+          <p class="text-sm text-slate-400 mb-2">Series (same charge $Q$) vs Parallel (same voltage $V$)[cite: 13]:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\text{Series: } \frac{1}{C_s} = \sum_{i=1}^n \frac{1}{C_i}, \quad \text{Parallel: } C_p = \sum_{i=1}^n C_i$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Notice: $C_s < C_{\min}$ always, while $C_p > C_{\max}$ always[cite: 13].</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">Stored Energy & Energy Density</h3>
+          <p class="text-sm text-slate-400 mb-2">Electrostatic energy stored in the electric field between plates[cite: 13]:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$U = \frac{1}{2}CV^2 = \frac{Q^2}{2C} = \frac{1}{2}QV, \quad u_E = \frac{1}{2}\varepsilon_0 E^2$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">SI unit of energy density $u_E$: $\text{J/m}^3$. Stored in the volume $Ad$ of space.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Dynamic Circuit Bench & Case Analyzer) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Circuit Bench & Battery State Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="circuitToggleBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Switch: Series / Parallel Network
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="circuitCanvas" width="800" height="380" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Capacitor $C_1$</span>
+            <span id="c1Val" class="text-cyan-400 font-mono font-bold">4.0 μF</span>
+          </div>
+          <input id="c1Slider" type="range" min="1" max="12" step="0.5" value="4" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Capacitor $C_2$</span>
+            <span id="c2Val" class="text-amber-400 font-mono font-bold">6.0 μF</span>
+          </div>
+          <input id="c2Slider" type="range" min="1" max="12" step="0.5" value="6" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Supply Voltage ($V_0$)</span>
+            <span id="v0Val" class="text-emerald-400 font-mono font-bold">12 V</span>
+          </div>
+          <input id="v0Slider" type="range" min="4" max="24" step="1" value="12" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Equivalent Capacitance ($C_{\text{eq}}$):</span>
+          <div id="ceqOutputVal" class="text-cyan-400 font-bold text-sm mt-0.5">2.40 μF</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Total Circuit Charge ($Q_{\text{total}}$):</span>
+          <div id="qTotalVal" class="text-amber-400 font-bold text-sm mt-0.5">28.8 μC</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Total Stored Energy ($U = \frac{1}{2}C_{\text{eq}}V^2$):</span>
+          <div id="uTotalVal" class="text-emerald-400 font-bold text-sm mt-0.5">172.8 μJ</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint[cite: 13]</span>
+      </div>
+
+      <!-- Derivation 1: Series Combination -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation A</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Capacitors in Series Combination[cite: 13]</h4>
+        </div>
+        <p>1. Connect $C_1, C_2, \dots, C_n$ end-to-end across voltage $V$. By charge conservation, every capacitor acquires the <strong class="text-white">same charge $Q$</strong>[cite: 13].</p>
+        <p>2. Total voltage drop $V$ equals the sum of potential drops across individual capacitors[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$V = V_1 + V_2 + \dots + V_n$$
+        </div>
+        <p>3. Substitute $V_i = \frac{Q}{C_i}$ and $V = \frac{Q}{C_s}$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\frac{Q}{C_s} = \frac{Q}{C_1} + \frac{Q}{C_2} + \dots + \frac{Q}{C_n}$$
+        </div>
+        <p>4. Canceling $Q$ yields the reciprocal addition law[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\frac{1}{C_s} = \frac{1}{C_1} + \frac{1}{C_2} + \dots + \frac{1}{C_n}$$
+        </div>
+      </div>
+
+      <!-- Derivation 2: Parallel Combination -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation B</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Capacitors in Parallel Combination[cite: 13]</h4>
+        </div>
+        <p>1. Connect $C_1, C_2, \dots, C_n$ across common terminal nodes. Each capacitor experiences the <strong class="text-white">same potential difference $V$</strong>[cite: 13].</p>
+        <p>2. Total charge supplied by source $Q = Q_1 + Q_2 + \dots + Q_n$[cite: 13].</p>
+        <p>3. Substitute $Q_i = C_i V$ and $Q = C_p V$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$C_p V = C_1 V + C_2 V + \dots + C_n V$$
+        </div>
+        <p>4. Canceling common potential $V$ yields direct sum[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$C_p = C_1 + C_2 + \dots + C_n$$
+        </div>
+      </div>
+
+      <!-- Derivation 3: Energy Loss during charge sharing -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation C</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Common Potential & Energy Loss in Parallel Sharing</h4>
+        </div>
+        <p>1. When two capacitors $C_1$ (charged to $V_1$) and $C_2$ (charged to $V_2$) are connected in parallel, charge flows until common potential $V_c$ is reached:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$V_c = \frac{Q_1 + Q_2}{C_1 + C_2} = \frac{C_1 V_1 + C_2 V_2}{C_1 + C_2}$$
+        </div>
+        <p>2. Electrostatic energy loss ($\Delta U = U_i - U_f$) dissipated strictly as heat and spark radiation:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\Delta U = \frac{1}{2}\frac{C_1 C_2}{C_1 + C_2}(V_1 - V_2)^2 \ge 0$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps (Dielectric Insertion Master Matrix) -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap: The "Battery State" Matrix</span>
+      </div>
+      <p class="text-xs text-slate-300">
+        Board aur JEE dono ka sabse favorite trap: Dielectric slab insert karte waqt battery connected hai ya remove kar di gayi hai?
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border border-rose-900/40 mt-2">
+          <thead class="bg-rose-950/60 text-white">
+            <tr>
+              <th class="p-2 border border-rose-900/40">Physical Quantity</th>
+              <th class="p-2 border border-rose-900/40 text-emerald-400">Case I: Battery Remains Connected</th>
+              <th class="p-2 border border-rose-900/40 text-cyan-400">Case II: Battery Disconnected</th>
+            </tr>
+          </thead>
+          <tbody class="text-rose-100/90 divide-y divide-rose-900/30">
+            <tr>
+              <td class="p-2 font-semibold">Capacitance ($C$)</td>
+              <td class="p-2 text-emerald-300">Increases ($K C_0$)[cite: 13]</td>
+              <td class="p-2 text-cyan-300">Increases ($K C_0$)[cite: 13]</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold">Potential Difference ($V$)</td>
+              <td class="p-2 text-emerald-300 font-bold">CONSTANT ($V_0$)</td>
+              <td class="p-2 text-cyan-300">Decreases ($V_0 / K$)[cite: 13]</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold">Charge on Plates ($Q$)</td>
+              <td class="p-2 text-emerald-300">Increases ($K Q_0$)</td>
+              <td class="p-2 text-cyan-300 font-bold">CONSTANT ($Q_0$)</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold">Electric Field ($E$)</td>
+              <td class="p-2 text-emerald-300 font-bold">CONSTANT ($E_0 = V_0/d$)</td>
+              <td class="p-2 text-cyan-300">Decreases ($E_0 / K$)[cite: 13]</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold">Stored Energy ($U$)</td>
+              <td class="p-2 text-emerald-300">Increases ($K U_0$) [Battery does work]</td>
+              <td class="p-2 text-cyan-300">Decreases ($U_0 / K$) [Field pulls slab in]</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A $900\text{ pF}$ capacitor is charged by a $100\text{ V}$ battery. (a) How much electrostatic energy is stored by the capacitor? (b) The capacitor is disconnected from the battery and connected to another uncharged $900\text{ pF}$ capacitor. How much electrostatic energy is stored in the system now[cite: 13]?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Initial energy stored ($U_i$)[cite: 13]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$U_i = \frac{1}{2} C V^2 = \frac{1}{2} \times (900 \times 10^{-12}\text{ F}) \times (100\text{ V})^2 = 4.5 \times 10^{-6}\text{ Joules}$$
+          </div>
+          <p>2. Disconnected and connected in parallel with identical uncharged $C_2 = 900\text{ pF}$[cite: 13]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$V_c = \frac{C_1 V_1 + 0}{C_1 + C_2} = \frac{900 \times 100}{900 + 900} = 50\text{ Volts}$$
+          </div>
+          <p>3. Total final energy ($U_f$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$U_f = \frac{1}{2}(C_1 + C_2) V_c^2 = \frac{1}{2} \times (1800 \times 10^{-12}) \times (50)^2 = 2.25 \times 10^{-6}\text{ Joules}$$
+          </div>
+          <p class="text-center font-mono text-emerald-400 font-bold">$$\text{Energy Loss } \Delta U = U_i - U_f = 2.25 \times 10^{-6}\text{ J (50% energy lost as heat/radiation)}$$</p>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A capacitor $C$ is charged to voltage $V_0$. The charging battery is removed, and a dielectric slab of constant $K = 4$ is slipped between the plates. What is the work done by the electrostatic field in pulling the dielectric slab inside?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Battery is removed $\implies$ Charge $Q = C V_0$ remains strictly constant.</p>
+          <p>2. Initial energy: $U_i = \frac{Q^2}{2C}$[cite: 13].</p>
+          <p>3. Final capacitance becomes $K C = 4C$[cite: 13]. Final energy: $U_f = \frac{Q^2}{2(4C)} = \frac{U_i}{4}$[cite: 13].</p>
+          <p>4. By work-energy theorem ($W_{\text{field}} = -\Delta U = U_i - U_f$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$W_{\text{field}} = U_i - \frac{U_i}{4} = \frac{3}{4} U_i = \frac{3}{8} C V_0^2$$
+          </div>
+          <p class="text-slate-400"><em>Exam Trap Note:</em> Because field does positive work, the dielectric experiences an attractive suction force pulling it into the capacitor plates[cite: 13].</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Series Formula</p>
+          <p class="text-xs font-bold text-white mt-1">$\frac{1}{C_s} = \frac{1}{C_1} + \frac{1}{C_2}$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Parallel Formula</p>
+          <p class="text-xs font-bold text-white mt-1">$C_p = C_1 + C_2$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Energy Density</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$u_E = \frac{1}{2}\varepsilon_0 E^2$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Energy Loss Formula</p>
+          <p class="text-xs font-bold text-white mt-1">$\Delta U = \frac{C_1C_2(V_1-V_2)^2}{2(C_1+C_2)}$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Circuit Bench Simulator Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('circuitCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const c1Slider = document.getElementById('c1Slider');
+      const c2Slider = document.getElementById('c2Slider');
+      const v0Slider = document.getElementById('v0Slider');
+      const circuitToggleBtn = document.getElementById('circuitToggleBtn');
+
+      const c1Val = document.getElementById('c1Val');
+      const c2Val = document.getElementById('c2Val');
+      const v0Val = document.getElementById('v0Val');
+      const ceqOutputVal = document.getElementById('ceqOutputVal');
+      const qTotalVal = document.getElementById('qTotalVal');
+      const uTotalVal = document.getElementById('uTotalVal');
+
+      // 'series' or 'parallel'
+      let circuitMode = 'series';
+      let electronPhase = 0;
+
+      circuitToggleBtn.addEventListener('click', () => {
+        circuitMode = circuitMode === 'series' ? 'parallel' : 'series';
+        circuitToggleBtn.textContent = circuitMode === 'series'
+          ? 'Switch: Parallel Network'
+          : 'Switch: Series Network';
+      });
+
+      function renderLoop() {
+        electronPhase += 0.04;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const c1 = parseFloat(c1Slider.value);
+        const c2 = parseFloat(c2Slider.value);
+        const V0 = parseFloat(v0Slider.value);
+
+        c1Val.textContent = c1.toFixed(1) + ' μF';
+        c2Val.textContent = c2.toFixed(1) + ' μF';
+        v0Val.textContent = V0 + ' V';
+
+        let Ceq = 0;
+        let Qtotal = 0; // micro-Coulombs
+        let Utotal = 0; // micro-Joules
+
+        if (circuitMode === 'series') {
+          Ceq = (c1 * c2) / (c1 + c2);
+          Qtotal = Ceq * V0;
+          Utotal = 0.5 * Ceq * V0 * V0;
+        } else {
+          Ceq = c1 + c2;
+          Qtotal = Ceq * V0;
+          Utotal = 0.5 * Ceq * V0 * V0;
+        }
+
+        ceqOutputVal.textContent = Ceq.toFixed(2) + ' μF';
+        qTotalVal.textContent = Qtotal.toFixed(1) + ' μC';
+        uTotalVal.textContent = Utotal.toFixed(1) + ' μJ';
+
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        // Render Circuit Schematics
+        if (circuitMode === 'series') {
+          renderSeriesCircuit(cx, cy, c1, c2, V0, Qtotal);
+        } else {
+          renderParallelCircuit(cx, cy, c1, c2, V0);
+        }
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderSeriesCircuit(cx, cy, c1, c2, V0, Qtotal) {
+        // Wire Coordinates
+        const leftX = 140, rightX = 660, topY = 120, botY = 280;
+        const cap1X = cx - 100;
+        const cap2X = cx + 100;
+
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.5;
+
+        // Top loop with gaps for 2 capacitors
+        ctx.beginPath();
+        ctx.moveTo(leftX, botY);
+        ctx.lineTo(leftX, topY);
+        ctx.lineTo(cap1X - 25, topY);
+        ctx.moveTo(cap1X + 25, topY);
+        ctx.lineTo(cap2X - 25, topY);
+        ctx.moveTo(cap2X + 25, topY);
+        ctx.lineTo(rightX, topY);
+        ctx.lineTo(rightX, botY);
+        ctx.lineTo(cx + 35, botY);
+        ctx.moveTo(cx - 35, botY);
+        ctx.lineTo(leftX, botY);
+        ctx.stroke();
+
+        // Battery at bottom
+        renderBatteryNode(cx, botY, V0);
+
+        // Capacitors
+        renderCapacitorSymbol(cap1X, topY, `C₁ = ${c1} μF`, '#f43f5e');
+        renderCapacitorSymbol(cap2X, topY, `C₂ = ${c2} μF`, '#a855f7');
+
+        // Voltage divisions
+        const V1 = Qtotal / c1;
+        const V2 = Qtotal / c2;
+        ctx.font = '10px monospace';
+        ctx.fillStyle = '#f43f5e';
+        ctx.fillText(`V₁ = ${V1.toFixed(1)} V`, cap1X, topY - 36);
+        ctx.fillStyle = '#a855f7';
+        ctx.fillText(`V₂ = ${V2.toFixed(1)} V`, cap2X, topY - 36);
+
+        // Charge beads
+        renderMovingBeads(leftX, topY, rightX, botY);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Series Circuit: Q is identical across both capacitors | V divides inversely with capacitance[cite: 13]', cx, canvas.height - 18);
+      }
+
+      function renderParallelCircuit(cx, cy, c1, c2, V0) {
+        const leftX = 180, rightX = 620, botY = 300;
+        const branch1Y = 100;
+        const branch2Y = 200;
+
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.5;
+
+        // Outer busbars
+        ctx.beginPath();
+        // Left rail
+        ctx.moveTo(leftX, botY);
+        ctx.lineTo(leftX, branch1Y);
+        // Right rail
+        ctx.moveTo(rightX, botY);
+        ctx.lineTo(rightX, branch1Y);
+        // Battery bottom line
+        ctx.moveTo(leftX, botY);
+        ctx.lineTo(cx - 35, botY);
+        ctx.moveTo(cx + 35, botY);
+        ctx.lineTo(rightX, botY);
+
+        // Branch 1 (Top)
+        ctx.moveTo(leftX, branch1Y);
+        ctx.lineTo(cx - 25, branch1Y);
+        ctx.moveTo(cx + 25, branch1Y);
+        ctx.lineTo(rightX, branch1Y);
+
+        // Branch 2 (Middle)
+        ctx.moveTo(leftX, branch2Y);
+        ctx.lineTo(cx - 25, branch2Y);
+        ctx.moveTo(cx + 25, branch2Y);
+        ctx.lineTo(rightX, branch2Y);
+        ctx.stroke();
+
+        // Battery at bottom
+        renderBatteryNode(cx, botY, V0);
+
+        // Capacitors
+        renderCapacitorSymbol(cx, branch1Y, `C₁ = ${c1} μF (Q₁ = ${(c1*V0).toFixed(1)} μC)`, '#f43f5e');
+        renderCapacitorSymbol(cx, branch2Y, `C₂ = ${c2} μF (Q₂ = ${(c2*V0).toFixed(1)} μC)`, '#a855f7');
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Parallel Circuit: Full supply voltage V₀ across both branches | Charge divides proportionally[cite: 13]', cx, canvas.height - 18);
+      }
+
+      function renderCapacitorSymbol(x, y, label, color) {
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(x - 8, y - 24);
+        ctx.lineTo(x - 8, y + 24);
+        ctx.moveTo(x + 8, y - 24);
+        ctx.lineTo(x + 8, y + 24);
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(label, x, y - 30);
+      }
+
+      function renderBatteryNode(x, y, V0) {
+        // Battery long line (+), short line (-)
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(x - 10, y - 18);
+        ctx.lineTo(x - 10, y + 18);
+        ctx.stroke();
+
+        ctx.lineWidth = 7;
+        ctx.beginPath();
+        ctx.moveTo(x + 10, y - 10);
+        ctx.lineTo(x + 10, y + 10);
+        ctx.stroke();
+
+        ctx.fillStyle = '#10b981';
+        ctx.font = 'bold 12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`+ Battery: ${V0} V -`, x, y + 32);
+      }
+
+      function renderMovingBeads(leftX, topY, rightX, botY) {
+        const beadOffset = (electronPhase * 80) % 200;
+        ctx.fillStyle = '#f59e0b';
+        ctx.beginPath();
+        ctx.arc(leftX, botY - beadOffset, 3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Chapter 13: Nuclei</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError: false,
+      errorColor: '#cbd5e1'
+    });"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      letter-spacing: -0.011em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .font-mono, font-mono {
+      font-family: 'JetBrains Mono', monospace !important;
+    }
+
+    .katex {
+      font-size: 1.05em !important;
+      text-rendering: optimizeLegibility;
+    }
+    .katex-display {
+      margin: 0.6em 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 2px;
+    }
+
+    .math-formula-card {
+      background: radial-gradient(circle at top left, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(56, 189, 248, 0.15);
+    }
+
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; font-size: 10pt !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box, .math-formula-card { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400, .text-slate-500 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2.5 py-0.5 rounded-full ml-2 font-mono">Class 12 • Modules 13.1 & 13.2</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-xl text-xs font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-xs font-bold font-mono text-indigo-400 tracking-wider uppercase">Unit 08: Atoms & Nuclei • Chapter 13</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Nuclear Physics: Mass Defect, Binding Energy & Strong Force</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base leading-relaxed">Mass-independent nuclear density, mass defect ($\Delta m$), binding energy per nucleon curve ($E_{bn} \text{ vs } A$), strong nuclear potential well, and fusion/fission energy energetics.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2 font-mono">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed text-sm md:text-base">
+        Socho aapke paas 1-1 kg ke 4 alag-alag bricks hain. Agar aap unhe alag-alag tolein toh total mass exact $4\text{ kg}$ aayega. Lekin jab aap un bricks ko ek sath jodkar ek chota makan (nucleus) banate hain aur us poore makan ko weighing balance par rakhte hain, toh achanak uska mass $3.97\text{ kg}$ nikalta hai! Yeh $0.03\text{ kg}$ mass kahan gayab ho gaya?
+        <br>Yahi <strong class="text-white font-semibold">Mass Defect ($\Delta m$)</strong> hai! Jab nucleons (protons aur neutrons) aapas mein bind hokar ek stable nucleus banate hain, toh unka kuch mass Einstein ke $E = \Delta m c^2$ ke mutabik blindingly huge energy mein convert hokar bahar nikal jata hai. Yahi energy unhe ek sath baandhe rakhti hai (<strong class="text-white font-semibold">Nuclear Binding Energy</strong>). Aur socho ek matchbox jitna nucleus: pure universe ka chahe koi bhi atom ho—Hydrogen ho ya Uranium—sabke nucleus ki <strong class="text-white font-semibold">density ek jaisi ($2.3 \times 10^{17}\text{ kg/m}^3$)</strong> hoti hai! Ek chammach nuclear matter ka mass poori dharti ke hazaron pahadon se bhi zyada hota hai!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-xs font-bold uppercase tracking-wider mb-1 font-mono">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="math-formula-card p-5 rounded-2xl border border-slate-800/80 shadow-inner">
+          <h3 class="text-white font-semibold text-sm tracking-wide mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            1. Nuclear Size & Constant Density
+          </h3>
+          <p class="text-xs text-slate-400 mb-3">Radius relation for mass number $A$ and universal density:</p>
+          <div class="py-2.5 px-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-cyan-300 font-mono text-center text-sm space-y-1">
+            <div>$$R = R_0 A^{1/3} \quad (R_0 \approx 1.2\text{ fm} = 1.2 \times 10^{-15}\text{ m})$$</div>
+            <div>$$\rho = \frac{m A}{\frac{4}{3}\pi R^3} = \frac{m A}{\frac{4}{3}\pi R_0^3 A} = \frac{3m}{4\pi R_0^3} \approx 2.3 \times 10^{17}\text{ kg/m}^3$$</div>
+          </div>
+          <p class="text-[11px] text-slate-500 mt-3 leading-relaxed">
+            Since mass number $A$ cancels out completely in numerator and denominator, nuclear density is strictly independent of mass number $A$!
+          </p>
+        </div>
+
+        <div class="math-formula-card p-5 rounded-2xl border border-slate-800/80 shadow-inner">
+          <h3 class="text-white font-semibold text-sm tracking-wide mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+            2. Mass Defect & Binding Energy
+          </h3>
+          <p class="text-xs text-slate-400 mb-3">For a nucleus $_Z^A X$ having $Z$ protons and $(A-Z)$ neutrons:</p>
+          <div class="py-2.5 px-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-indigo-300 font-mono text-center text-sm space-y-1">
+            <div>$$\Delta m = [Z m_p + (A - Z) m_n] - M_{\text{nucleus}}$$</div>
+            <div>$$E_b = \Delta m \times c^2 = (\Delta m \text{ in u}) \times 931.5\text{ MeV}$$</div>
+            <div>$$E_{bn} = \frac{E_b}{A} \quad (\text{Binding Energy per Nucleon})$$</div>
+          </div>
+          <p class="text-[11px] text-slate-500 mt-3 leading-relaxed">
+            Nuclear stability is determined strictly by $E_{bn}$ (binding energy per nucleon), NOT by total binding energy $E_b$! Peak stability: $^{56}\text{Fe}$ ($8.75\text{ MeV/nucleon}$).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Binding Energy Curve & Nuclear Potential Simulator) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-xs font-bold uppercase tracking-wider font-mono">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Binding Energy Curve & Nuclear Potential Well Bench</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="viewToggleBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3.5 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            View: Binding Energy per Nucleon Curve
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="nucleiCanvas" width="800" height="390" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span id="slider1Label">Mass Number ($A$) / Distance ($r$)</span>
+            <span id="slider1Val" class="text-cyan-400 font-mono font-bold">A = 56 (Iron)</span>
+          </div>
+          <input id="slider1" type="range" min="1" max="240" step="1" value="56" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Quick Element Jumps</span>
+            <span id="quickLabel" class="text-amber-400 font-mono font-bold">Iron-56</span>
+          </div>
+          <div class="grid grid-cols-4 gap-1 text-[10px] font-mono">
+            <button onclick="setNucleus(2, 'Deuterium')" class="bg-slate-800 hover:bg-slate-700 p-1.5 rounded text-slate-200">²H</button>
+            <button onclick="setNucleus(4, 'Helium-4')" class="bg-slate-800 hover:bg-slate-700 p-1.5 rounded text-slate-200">⁴He</button>
+            <button onclick="setNucleus(56, 'Iron-56')" class="bg-slate-800 hover:bg-slate-700 p-1.5 rounded text-slate-200">⁵⁶Fe</button>
+            <button onclick="setNucleus(238, 'Uranium-238')" class="bg-slate-800 hover:bg-slate-700 p-1.5 rounded text-slate-200">²³⁸U</button>
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Nuclear Process Implication</span>
+            <span id="processLabel" class="text-emerald-400 font-mono font-bold">Peak Stability Anchor</span>
+          </div>
+          <div id="processNote" class="text-[11px] font-mono text-slate-300 bg-slate-900 border border-slate-800 p-2 rounded">
+            Neither fission nor fusion is exoergic here.
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Binding Energy / Nucleon ($E_{bn}$):</span>
+          <div id="ebnOut" class="text-emerald-400 font-bold text-sm mt-0.5">8.75 MeV/nucleon</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Nuclear Radius ($R = R_0 A^{1/3}$):</span>
+          <div id="radiusOut" class="text-cyan-400 font-bold text-sm mt-0.5">4.59 fm</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Total Binding Energy ($E_b$):</span>
+          <div id="ebTotalOut" class="text-amber-400 font-bold text-sm mt-0.5">490.0 MeV</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Universal Nuclear Density ($\rho$):</span>
+          <div class="text-indigo-300 font-bold text-sm mt-0.5">2.3 × 10¹⁷ kg/m³</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>📝 04. Comprehensive Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Proof of Constant Nuclear Density -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">Fundamental Derivation 01</span>
+          <h4 class="text-white font-semibold text-base mt-1">Proof that Nuclear Density is Independent of Mass Number ($A$)</h4>
+        </div>
+
+        <p>1. Experimental electron-scattering measurements confirm that the volume of a nucleus is directly proportional to its mass number $A$ ($V \propto A$). Assuming a spherical nucleus of radius $R$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$R = R_0 A^{1/3} \quad \text{where } R_0 \approx 1.2 \times 10^{-15}\text{ m} = 1.2\text{ fm}$$
+        </div>
+        <p>2. Let $m$ be the average mass of a single nucleon ($m \approx 1.66 \times 10^{-27}\text{ kg}$). For a nucleus containing $A$ nucleons, the total mass of the nucleus is:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$M_{\text{nucleus}} \approx m A$$
+        </div>
+        <p>3. The volume of the spherical nucleus is:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$V = \frac{4}{3}\pi R^3 = \frac{4}{3}\pi (R_0 A^{1/3})^3 = \frac{4}{3}\pi R_0^3 A$$
+        </div>
+        <p>4. Density of the nuclear matter ($\rho = \frac{\text{Mass}}{\text{Volume}}$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\rho = \frac{m A}{\frac{4}{3}\pi R_0^3 A} = \frac{3m}{4\pi R_0^3}$$
+        </div>
+        <p>5. Substituting numerical values:</p>
+        <div class="text-center py-1 font-mono text-emerald-400 font-bold text-sm">
+          $$\rho = \frac{3 \times (1.66 \times 10^{-27}\text{ kg})}{4 \times 3.1416 \times (1.2 \times 10^{-15}\text{ m})^3} \approx 2.3 \times 10^{17}\text{ kg/m}^3 \quad (\text{Strictly Independent of } A!)$$
+        </div>
+        <p class="text-slate-400"><em>Physical Insight:</em> Whether it is Light Hydrogen ($A=1$) or Heavy Uranium ($A=238$), nucleons pack tightly with the same inter-nucleon separation, exactly like water molecules inside a droplet where density remains invariant whether it is a small dewdrop or a giant ocean.</p>
+      </div>
+
+      <!-- Derivation 2: The Binding Energy per Nucleon Curve Analysis -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">Foundational Derivation 02</span>
+          <h4 class="text-white font-semibold text-base mt-1">The $E_{bn} \text{ vs } A$ Curve & Thermonuclear Fission / Fusion Energetics</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: Binding Energy per Nucleon Curve -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 250" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-axis-nucl" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#94a3b8"/>
+              </marker>
+            </defs>
+
+            <!-- Coordinate Axes -->
+            <line x1="60" y1="210" x2="600" y2="210" stroke="#94a3b8" stroke-width="1.8" marker-end="url(#arr-axis-nucl)" />
+            <line x1="60" y1="210" x2="60" y2="25" stroke="#94a3b8" stroke-width="1.8" marker-end="url(#arr-axis-nucl)" />
+            <text x="480" y="228" fill="#94a3b8" font-size="10" font-weight="bold" font-family="monospace">Mass Number A ➔</text>
+            <text x="20" y="20" fill="#94a3b8" font-size="10" font-weight="bold" font-family="monospace">E_bn (MeV) ➔</text>
+
+            <!-- Y-Axis Ticks (0, 2, 4, 6, 8, 10 MeV) -->
+            <text x="40" y="214" fill="#64748b" font-size="9" font-family="monospace">0</text>
+            <text x="40" y="170" fill="#64748b" font-size="9" font-family="monospace">2</text>
+            <text x="40" y="126" fill="#64748b" font-size="9" font-family="monospace">4</text>
+            <text x="40" y="82" fill="#64748b" font-size="9" font-family="monospace">6</text>
+            <text x="40" y="45" fill="#64748b" font-size="9" font-family="monospace">8</text>
+
+            <!-- Binding Energy Curve Path -->
+            <!-- Initial zig-zag peaks: H-2 (1.11), He-4 (7.07), C-12 (7.68), O-16 (7.98) -->
+            <path d="M 60 210 
+                     L 72 186 
+                     L 85 65 
+                     L 95 120 
+                     L 110 52 
+                     L 125 78 
+                     L 145 44 
+                     C 180 35, 230 33, 270 33 
+                     C 350 36, 450 55, 560 68" 
+                  fill="none" stroke="#10b981" stroke-width="3" />
+
+            <!-- Marked Nuclei Points -->
+            <!-- 2H -->
+            <circle cx="72" cy="186" r="3" fill="#38bdf8" />
+            <text x="65" y="178" fill="#38bdf8" font-size="8" font-family="monospace">²H (1.1)</text>
+
+            <!-- 4He Peak -->
+            <circle cx="85" cy="65" r="3.5" fill="#38bdf8" />
+            <text x="88" y="65" fill="#38bdf8" font-size="9" font-family="monospace">⁴He (7.1)</text>
+
+            <!-- 12C -->
+            <circle cx="110" cy="52" r="3" fill="#38bdf8" />
+            <text x="114" y="52" fill="#38bdf8" font-size="8" font-family="monospace">¹²C</text>
+
+            <!-- 16O -->
+            <circle cx="145" cy="44" r="3" fill="#38bdf8" />
+            <text x="150" y="44" fill="#38bdf8" font-size="8" font-family="monospace">¹⁶O</text>
+
+            <!-- Peak Anchor: Fe-56 (8.75 MeV) -->
+            <circle cx="270" cy="33" r="5" fill="#f59e0b" stroke="#ffffff" stroke-width="1.5" />
+            <text x="245" y="20" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">⁵⁶Fe (8.75 MeV)</text>
+
+            <!-- Heavy End: U-238 (7.6 MeV) -->
+            <circle cx="560" cy="68" r="4" fill="#ef4444" />
+            <text x="535" y="85" fill="#ef4444" font-size="10" font-weight="bold" font-family="monospace">²³⁸U (7.6 MeV)</text>
+
+            <!-- Broad Plateau Highlight (30 < A < 170) -->
+            <line x1="180" y1="195" x2="450" y2="195" stroke="#38bdf8" stroke-width="1.5" />
+            <line x1="180" y1="190" x2="180" y2="200" stroke="#38bdf8" stroke-width="1.5" />
+            <line x1="450" y1="190" x2="450" y2="200" stroke="#38bdf8" stroke-width="1.5" />
+            <text x="240" y="190" fill="#38bdf8" font-size="9" font-family="monospace">Broad Saturation Plateau (E_bn ≈ 8.5 MeV)</text>
+
+            <!-- Left Fusion Arrow -->
+            <path d="M 80 140 Q 140 100 180 80" fill="none" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arr-axis-nucl)" />
+            <text x="90" y="125" fill="#38bdf8" font-size="9" font-weight="bold" font-family="monospace">Nuclear Fusion ➔</text>
+
+            <!-- Right Fission Arrow -->
+            <path d="M 540 110 Q 450 90 380 75" fill="none" stroke="#ef4444" stroke-width="1.8" marker-end="url(#arr-axis-nucl)" />
+            <text x="440" y="120" fill="#ef4444" font-size="9" font-weight="bold" font-family="monospace">⬅ Nuclear Fission</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 13.1A: Binding Energy per Nucleon ($E_{bn}$) versus Mass Number ($A$) showcasing the fusion and fission stability mechanisms.</p>
+        </div>
+
+        <p>1. <strong class="text-white">Main Characteristics of the Curve:</strong></p>
+        <p class="text-slate-400">• For intermediate nuclei with $30 < A < 170$, the curve is almost flat with a broad plateau where $E_{bn} \approx 8.5\text{ MeV/nucleon}$. The absolute maximum occurs at <strong class="text-white font-semibold">$^{56}\text{Fe}$ ($8.75\text{ MeV/nucleon}$)</strong>.</p>
+        <p class="text-slate-400">• For very light nuclei ($A < 30$), $E_{bn}$ is low (e.g. Deuteron $^{2}\text{H} \approx 1.11\text{ MeV/nucleon}$). Prominent local spikes occur at $A = 4n$ ($^{4}\text{He}, ^{12}\text{C}, ^{16}\text{O}$), showing that $\alpha$-particle substructures are exceptionally stable.</p>
+        <p class="text-slate-400">• For very heavy nuclei ($A > 170$), $E_{bn}$ drops gradually due to increasing Coulomb repulsive forces between protons, dropping to $7.6\text{ MeV/nucleon}$ for $^{238}\text{U}$.</p>
+        <p>2. <strong class="text-white">Explanation of Nuclear Fission:</strong> When a heavy nucleus ($A \sim 240, E_{bn} \sim 7.6\text{ MeV}$) breaks into two intermediate nuclei ($A \sim 120, E_{bn} \sim 8.5\text{ MeV}$), the nucleons become more tightly bound by $\Delta E_{bn} \approx 0.9\text{ MeV/nucleon}$. Total energy released per fission $\approx 240 \times 0.9 \approx \mathbf{216\text{ MeV}}$!</p>
+        <p>3. <strong class="text-white">Explanation of Nuclear Fusion:</strong> When two very light nuclei ($A \le 10, E_{bn} \sim 1.1\text{ MeV}$) fuse to form a heavier, more stable nucleus ($^{4}\text{He}, E_{bn} \approx 7.1\text{ MeV}$), the binding energy per nucleon jumps dramatically by $\approx 6.0\text{ MeV/nucleon}$, releasing tremendous kinetic energy.</p>
+      </div>
+
+      <!-- Derivation 3: Nuclear Force Properties and Potential Well -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">Fundamental Physics</span>
+          <h4 class="text-white font-semibold text-base mt-1">Properties of Nuclear Forces & The Nucleon-Nucleon Potential Energy Curve</h4>
+        </div>
+        <p>1. <strong class="text-white">Short-Range:</strong> Operates only over sub-atomic distances ($\sim 1\text{ to } 3\text{ fm}$). It vanishes completely beyond $r > 4\text{ fm}$.</p>
+        <p>2. <strong class="text-white">Strongest Interaction in Nature:</strong> Inside the nucleus, the strong nuclear force is $\approx 100$ times stronger than the electrostatic Coulomb repulsion and $\approx 10^{38}$ times stronger than gravitational attraction.</p>
+        <p>3. <strong class="text-white">Charge-Independence:</strong> The nuclear attraction between two protons ($p-p$), two neutrons ($n-n$), and a proton and neutron ($p-n$) is virtually identical, proving it is non-electromagnetic.</p>
+        <p>4. <strong class="text-white">Saturation Property:</strong> A nucleon exerts strong force only on its immediate nearest neighbors. This explains why $E_{bn}$ is roughly constant over the broad plateau ($30 < A < 170$).</p>
+        <p>5. <strong class="text-white">Repulsive Core ($r < 0.8\text{ fm}$):</strong> The potential energy curve of two nucleons shows a minimum at separation $r_0 \approx 0.8\text{ fm}$ (equilibrium separation). For $r > r_0$, the force is strongly <strong class="text-white">attractive</strong>; for $r < r_0$, it becomes violently <strong class="text-white">repulsive</strong>, which prevents the nucleus from collapsing into an infinite point density!</p>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Nuclear Density Ratio Question</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Classic Board Trap:* What is the ratio of nuclear density of $^{56}\text{Fe}$ to that of $^{238}\text{U}$?
+            <br>*Correct Answer:* <strong class="text-white font-semibold">STRICTLY 1 : 1</strong>!
+            Nuclear density is independent of mass number $A$. Do not calculate volumes using mass numbers; the ratio of nuclear densities for any pair of nuclei is always identically unity.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Stability Criterion: Total $E_b$ vs $E_{bn}$</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Exam Trap:* Uranium-238 has total binding energy $E_b \approx 1800\text{ MeV}$, while Iron-56 has total binding energy $E_b \approx 490\text{ MeV}$. Is Uranium more stable than Iron?
+            <br>*Correct Answer:* <strong class="text-white font-semibold">NO! Iron-56 is FAR MORE STABLE!</strong>
+            Stability is determined solely by <strong class="text-white font-semibold">Binding Energy per Nucleon ($E_{bn} = E_b/A$)</strong>. For $^{56}\text{Fe}$, $E_{bn} = 8.75\text{ MeV/nucleon}$; for $^{238}\text{U}$, $E_{bn} = 7.6\text{ MeV/nucleon}$.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Nuclear Force vs Distance Inversion Point</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            What happens to the nuclear force if the distance between two nucleons is decreased below $0.8\text{ fm}$?
+            <br>The force <strong class="text-white font-semibold">switches from ATTRACTIVE to STRONGLY REPULSIVE</strong>! It is this hard repulsive core at $r < 0.8\text{ fm}$ that keeps matter stable and gives nuclei a finite volume.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Nuclear Radius Ratio Calculation</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            If mass number of two nuclei are $A_1 = 27$ and $A_2 = 125$, the ratio of their radii is:
+            $$\frac{R_1}{R_2} = \left(\frac{A_1}{A_2}\right)^{1/3} = \left(\frac{27}{125}\right)^{1/3} = \mathbf{\frac{3}{5} = 0.6}$$
+            Never square or take square root; radius scales strictly with the cube root of mass number!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-mono">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: Calculate the binding energy per nucleon of an alpha particle ($^{4}_2\text{He}$) in MeV. Given: mass of proton $m_p = 1.007276\text{ u}$, mass of neutron $m_n = 1.008665\text{ u}$, and mass of helium nucleus $M_\alpha = 4.001506\text{ u}$. Take $1\text{ u} = 931.5\text{ MeV}$.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> In an $\alpha$-particle ($^{4}_2\text{He}$): Number of protons $Z = 2$, Number of neutrons $N = A - Z = 4 - 2 = 2$.</p>
+          <p>1. Mass of individual constituent nucleons:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$2 m_p = 2 \times 1.007276\text{ u} = 2.014552\text{ u}$$
+            $$2 m_n = 2 \times 1.008665\text{ u} = 2.017330\text{ u}$$
+            $$\text{Total constituent mass } = 2m_p + 2m_n = 4.031882\text{ u}$$
+          </div>
+          <p>2. Mass defect ($\Delta m = \sum m - M_\alpha$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\Delta m = 4.031882\text{ u} - 4.001506\text{ u} = 0.030376\text{ u}$$
+          </div>
+          <p>3. Total Binding Energy ($E_b = \Delta m \times 931.5\text{ MeV}$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$E_b = 0.030376 \times 931.5\text{ MeV} \approx 28.295\text{ MeV}$$
+          </div>
+          <p>4. Binding Energy per Nucleon ($E_{bn} = E_b / A$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$E_{bn} = \frac{28.295\text{ MeV}}{4} \approx 7.07\text{ MeV/nucleon}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A heavy nucleus of mass number $A = 240$ with binding energy per nucleon of $7.6\text{ MeV}$ splits into two equal fragments of mass number $A = 120$ each. The binding energy per nucleon of each fragment is $8.5\text{ MeV}$. Calculate the total energy $Q$ released in this fission reaction.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Total binding energy of parent nucleus ($A = 240$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$E_{b,\text{parent}} = 240 \times 7.6\text{ MeV} = 1824.0\text{ MeV}$$
+          </div>
+          <p>2. Total binding energy of the two daughter fragments ($2 \times 120 = 240$ nucleons):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$E_{b,\text{fragments}} = 2 \times (120 \times 8.5\text{ MeV}) = 240 \times 8.5\text{ MeV} = 2040.0\text{ MeV}$$
+          </div>
+          <p>3. Energy released in reaction ($Q = E_{b,\text{products}} - E_{b,\text{reactants}}$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$Q = 2040.0\text{ MeV} - 1824.0\text{ MeV} = 216.0\text{ MeV}$$
+          </div>
+          <p class="text-slate-400"><em>Direct Shortcut:</em> $Q = A \times \Delta E_{bn} = 240 \times (8.5 - 7.6) = 240 \times 0.9 = \mathbf{216.0\text{ MeV}}$.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 font-mono">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded font-mono">Core Relations</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Nuclear Radius</p>
+          <p class="text-xs font-bold text-white mt-1 font-mono">$R = R_0 A^{1/3}$ ($R_0 = 1.2\text{ fm}$)</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Nuclear Density</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1 font-mono">$\rho \approx 2.3 \times 10^{17}\text{ kg/m}^3$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Mass-Energy</p>
+          <p class="text-xs font-bold text-amber-300 mt-1 font-mono">$1\text{ u} = 931.5\text{ MeV}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Peak Stability</p>
+          <p class="text-xs font-bold text-rose-400 mt-1 font-mono">$^{56}\text{Fe} = 8.75\text{ MeV/nuc}$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Nuclear Simulator Script -->
+  <script>
+    let activeA = 56;
+    let activeName = 'Iron-56';
+
+    function setNucleus(a, name) {
+      document.getElementById('slider1').value = a;
+      activeA = a;
+      activeName = name;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('nucleiCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const slider1 = document.getElementById('slider1');
+      const viewToggleBtn = document.getElementById('viewToggleBtn');
+      const slider1Label = document.getElementById('slider1Label');
+      const slider1Val = document.getElementById('slider1Val');
+      const quickLabel = document.getElementById('quickLabel');
+      const processLabel = document.getElementById('processLabel');
+      const processNote = document.getElementById('processNote');
+
+      const ebnOut = document.getElementById('ebnOut');
+      const radiusOut = document.getElementById('radiusOut');
+      const ebTotalOut = document.getElementById('ebTotalOut');
+
+      // Modes: 'curve' (Binding energy vs A) or 'potential' (V(r) vs r for nucleons)
+      let activeView = 'curve';
+
+      viewToggleBtn.addEventListener('click', () => {
+        activeView = (activeView === 'curve') ? 'potential' : 'curve';
+        if (activeView === 'curve') {
+          viewToggleBtn.textContent = 'View: Binding Energy per Nucleon Curve';
+          slider1Label.textContent = 'Mass Number (A)';
+          slider1.min = 1; slider1.max = 240; slider1.step = 1; slider1.value = 56;
+        } else {
+          viewToggleBtn.textContent = 'View: Nucleon-Nucleon Potential Energy V(r)';
+          slider1Label.textContent = 'Nucleon Separation r (in fm)';
+          slider1.min = 0.3; slider1.max = 3.0; slider1.step = 0.05; slider1.value = 0.8;
+        }
+      });
+
+      // Realistic empirical approximation function for E_bn(A) in MeV
+      function calculateEbn(A) {
+        if (A === 1) return 0;
+        if (A === 2) return 1.11;
+        if (A === 3) return 2.83;
+        if (A === 4) return 7.07;
+        if (A === 12) return 7.68;
+        if (A === 16) return 7.98;
+        // Bethe-Weizsacker liquid drop formula inspired curve
+        const a_v = 15.8, a_s = 18.3, a_c = 0.714, a_a = 23.2;
+        const Z = A / (2 + 0.015 * Math.pow(A, 2/3));
+        const Eb = a_v * A - a_s * Math.pow(A, 2/3) - a_c * (Z * Z) / Math.pow(A, 1/3) - a_a * Math.pow(A - 2*Z, 2) / A;
+        let ebn = Eb / A;
+        if (A === 56) ebn = 8.75;
+        return Math.max(1.0, ebn);
+      }
+
+      function renderLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const val = parseFloat(slider1.value);
+
+        if (activeView === 'curve') {
+          const A = Math.round(val);
+          slider1Val.textContent = `A = ${A}`;
+          quickLabel.textContent = `A = ${A}`;
+
+          const ebn = calculateEbn(A);
+          const R_fm = 1.2 * Math.pow(A, 1/3);
+          const totalEb = ebn * A;
+
+          ebnOut.textContent = `${ebn.toFixed(2)} MeV/nucleon`;
+          radiusOut.textContent = `${R_fm.toFixed(2)} fm`;
+          ebTotalOut.textContent = `${totalEb.toFixed(1)} MeV`;
+
+          if (A < 20) {
+            processLabel.textContent = 'Nuclear Fusion Zone';
+            processLabel.className = 'text-cyan-400 font-mono font-bold';
+            processNote.textContent = 'Light nuclei release energy by fusing into heavier ones.';
+          } else if (A > 170) {
+            processLabel.textContent = 'Nuclear Fission Zone';
+            processLabel.className = 'text-rose-400 font-mono font-bold';
+            processNote.textContent = 'Heavy nuclei release energy by splitting into medium fragments.';
+          } else {
+            processLabel.textContent = 'Peak Stability Plateau';
+            processLabel.className = 'text-emerald-400 font-mono font-bold';
+            processNote.textContent = 'Neither fission nor fusion is spontaneously exoergic.';
+          }
+
+          renderBindingEnergyCurve(A, ebn);
+        } else {
+          const r_fm = val;
+          slider1Val.textContent = `${r_fm.toFixed(2)} fm`;
+          quickLabel.textContent = `r = ${r_fm.toFixed(2)} fm`;
+
+          // Lennard-Jones/Yukawa style potential: V(r) = -100 * (exp(-r/0.8)/r) + repulsive
+          const r0 = 0.8;
+          let V_MeV = 0;
+          if (r_fm < 0.6) {
+            V_MeV = 150 * (0.6 - r_fm) + 20;
+          } else {
+            V_MeV = -100 * Math.exp(-(r_fm - r0)) * (r0 / r_fm) + 15 * Math.exp(-2*(r_fm-r0));
+            if (r_fm >= 0.8) V_MeV = -100 * Math.exp(-(r_fm - 0.8) * 1.8);
+          }
+
+          ebnOut.textContent = `${V_MeV.toFixed(1)} MeV`;
+          radiusOut.textContent = `${r_fm.toFixed(2)} fm`;
+          ebTotalOut.textContent = V_MeV < 0 ? 'Attractive Well' : 'Repulsive Core';
+
+          if (r_fm < 0.8) {
+            processLabel.textContent = 'Strongly Repulsive';
+            processLabel.className = 'text-rose-400 font-mono font-bold';
+            processNote.textContent = 'Repulsive core prevents nuclear collapse into infinite density.';
+          } else if (Math.abs(r_fm - 0.8) < 0.08) {
+            processLabel.textContent = 'Equilibrium Separation';
+            processLabel.className = 'text-emerald-400 font-mono font-bold';
+            processNote.textContent = 'Minimum potential energy: nucleons form stable bound pair.';
+          } else {
+            processLabel.textContent = 'Strongly Attractive';
+            processLabel.className = 'text-cyan-400 font-mono font-bold';
+            processNote.textContent = 'Strong nuclear force holds nucleons together against Coulomb repulsion.';
+          }
+
+          renderPotentialWellCurve(r_fm, V_MeV);
+        }
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderBindingEnergyCurve(curA, curEbn) {
+        const originX = 90;
+        const originY = 320;
+        const graphW = 660;
+        const graphH = 260;
+
+        // Coordinate Axes
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        ctx.moveTo(originX, originY);
+        ctx.lineTo(originX + graphW, originY);
+        ctx.moveTo(originX, originY);
+        ctx.lineTo(originX, originY - graphH);
+        ctx.stroke();
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('Mass Number A ➔', originX + graphW - 140, originY + 22);
+        ctx.fillText('E_bn (MeV/nucleon) ➔', originX - 60, originY - graphH - 12);
+
+        // Y-axis ticks (0 to 10 MeV)
+        ctx.font = '10px monospace';
+        for (let e = 2; e <= 10; e += 2) {
+          const py = originY - (e / 10) * (graphH - 20);
+          ctx.beginPath();
+          ctx.moveTo(originX - 4, py); ctx.lineTo(originX + 4, py); ctx.stroke();
+          ctx.fillText(`${e}`, originX - 22, py + 4);
+        }
+
+        // X-axis ticks (0 to 240)
+        for (let a = 40; a <= 240; a += 40) {
+          const px = originX + (a / 240) * (graphW - 30);
+          ctx.beginPath();
+          ctx.moveTo(px, originY - 4); ctx.lineTo(px, originY + 4); ctx.stroke();
+          ctx.fillText(`${a}`, px - 10, originY + 18);
+        }
+
+        // Draw Continuous Curve
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 2.8;
+        ctx.beginPath();
+
+        let first = true;
+        for (let a = 1; a <= 240; a += 1) {
+          const ebnVal = calculateEbn(a);
+          const px = originX + (a / 240) * (graphW - 30);
+          const py = originY - (ebnVal / 10) * (graphH - 20);
+
+          if (first) {
+            ctx.moveTo(px, py);
+            first = false;
+          } else {
+            ctx.lineTo(px, py);
+          }
+        }
+        ctx.stroke();
+
+        // Active Marker Ball
+        const curPx = originX + (curA / 240) * (graphW - 30);
+        const curPy = originY - (curEbn / 10) * (graphH - 20);
+
+        ctx.fillStyle = '#f59e0b';
+        ctx.beginPath();
+        ctx.arc(curPx, curPy, 6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        // Dropline to axes
+        ctx.strokeStyle = 'rgba(245, 158, 11, 0.4)';
+        ctx.setLineDash([3, 3]);
+        ctx.beginPath();
+        ctx.moveTo(curPx, curPy); ctx.lineTo(curPx, originY);
+        ctx.moveTo(curPx, curPy); ctx.lineTo(originX, curPy);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`A=${curA}, E_bn=${curEbn.toFixed(2)} MeV`, curPx - 50, curPy - 14);
+
+        // Key Landmarks
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = '9px monospace';
+        ctx.fillText('⁴He (7.1)', originX + (4 / 240) * (graphW - 30) + 5, originY - (7.07 / 10) * (graphH - 20));
+        ctx.fillText('⁵⁶Fe Peak (8.75)', originX + (56 / 240) * (graphW - 30) - 20, originY - (8.75 / 10) * (graphH - 20) - 10);
+        ctx.fillText('²³⁸U (7.6)', originX + (238 / 240) * (graphW - 30) - 50, originY - (7.6 / 10) * (graphH - 20) + 15);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Binding Energy per Nucleon Curve: Peak stability at ⁵⁶Fe | Fusion on left (A < 30) | Fission on right (A > 170)`, canvas.width / 2, canvas.height - 10);
+      }
+
+      function renderPotentialWellCurve(curR, curV) {
+        const originX = 140;
+        const originY = 160; // V = 0 line
+        const graphW = 580;
+        const graphH = 240;
+
+        // Coordinate Axes
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        ctx.moveTo(originX, originY);
+        ctx.lineTo(originX + graphW, originY); // V = 0 line
+        ctx.moveTo(originX, 30);
+        ctx.lineTo(originX, canvas.height - 30);
+        ctx.stroke();
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('Nucleon Separation r (fm) ➔', originX + graphW - 180, originY + 22);
+        ctx.fillText('Potential Energy V(r) in MeV ➔', originX - 120, 45);
+        ctx.fillText('0', originX - 14, originY + 4);
+
+        // X-axis ticks (0 to 3.0 fm)
+        ctx.font = '10px monospace';
+        for (let r = 0.5; r <= 3.0; r += 0.5) {
+          const px = originX + (r / 3.0) * (graphW - 40);
+          ctx.beginPath();
+          ctx.moveTo(px, originY - 4); ctx.lineTo(px, originY + 4); ctx.stroke();
+          ctx.fillText(`${r.toFixed(1)}`, px - 10, originY + 18);
+        }
+
+        // Draw Potential Energy Curve (Attractive well below V=0, repulsive wall at r < 0.8)
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.8;
+        ctx.beginPath();
+
+        let first = true;
+        for (let r = 0.35; r <= 3.0; r += 0.02) {
+          let v = 0;
+          if (r < 0.6) {
+            v = 150 * (0.6 - r) + 20;
+          } else if (r < 0.8) {
+            v = -100 * ((r - 0.6) / 0.2);
+          } else {
+            v = -100 * Math.exp(-(r - 0.8) * 1.8);
+          }
+
+          const px = originX + (r / 3.0) * (graphW - 40);
+          const py = originY - (v / 120) * (graphH / 2 - 30);
+
+          if (first) {
+            ctx.moveTo(px, Math.max(35, py));
+            first = false;
+          } else {
+            ctx.lineTo(px, Math.min(canvas.height - 35, Math.max(35, py)));
+          }
+        }
+        ctx.stroke();
+
+        // Highlight Equilibrium Separation r0 = 0.8 fm
+        const r0_px = originX + (0.8 / 3.0) * (graphW - 40);
+        const r0_py = originY - (-100 / 120) * (graphH / 2 - 30);
+
+        ctx.strokeStyle = '#f59e0b';
+        ctx.setLineDash([3, 3]);
+        ctx.beginPath();
+        ctx.moveTo(r0_px, 35);
+        ctx.lineTo(r0_px, canvas.height - 35);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = 'bold 10px monospace';
+        ctx.fillText('r₀ = 0.8 fm (Min PE)', r0_px + 8, r0_py + 10);
+
+        // Active Marker Ball
+        const curPx = originX + (curR / 3.0) * (graphW - 40);
+        const curPy = originY - (curV / 120) * (graphH / 2 - 30);
+
+        ctx.fillStyle = curR < 0.8 ? '#ef4444' : '#10b981';
+        ctx.beginPath();
+        ctx.arc(curPx, Math.max(35, curPy), 6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        ctx.fillStyle = curR < 0.8 ? '#ef4444' : '#10b981';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`r=${curR.toFixed(2)}fm, V=${curV.toFixed(1)}MeV`, curPx - 40, Math.max(50, curPy - 12));
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Nucleon-Nucleon Potential: Attractive for r > 0.8 fm | Minimum at r₀ = 0.8 fm | Repulsive core for r < 0.8 fm`, canvas.width / 2, canvas.height - 10);
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

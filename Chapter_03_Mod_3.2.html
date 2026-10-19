@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Resistivity, Conductivity & Temperature Dependence</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 3.2</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 02: Current Electricity • Chapter 03[cite: 12, 13]</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Resistivity, Conductivity & Temperature Dependence</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Microscopic origin of $\rho = m/(ne^2\tau)$, thermal coefficient $\alpha$, comparison of metals, alloys, and semiconductors.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek hallway me log chal rahe hain aur floor par stationary pillars (ions) lage hain. Jab temperature badhta hai, toh yeh pillars apni jagah par violent vibration shuru kar dete hain. Ab kisi person (electron) ka bina takraye nikalna bohot mushkil ho jata hai—takkar ka samay interval ($\tau$) chhota ho jata hai, jisse <strong class="text-white">Metals ki Resistance badh jati hai</strong>. Lekin <strong class="text-white">Semiconductors</strong> me kahani ulati hai: wahan temperature badhne se bandhe hue log (covalent electrons) azaad hokar daudne lagte hain ($n$ exponentially badh jata hai), isliye wahan temperature badhne par <strong class="text-white">Resistance ghat jati hai</strong>!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">Resistivity ($\rho$) & Conductivity ($\sigma$)</h3>
+          <p class="text-sm text-slate-400 mb-2">Microscopic parameters determining material-specific electrical transport:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\rho = \frac{m}{n e^2 \tau}, \quad \sigma = \frac{1}{\rho} = \frac{n e^2 \tau}{m}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">SI Units: Resistivity $\rho \to \Omega\cdot\text{m}$; Conductivity $\sigma \to \Omega^{-1}\cdot\text{m}^{-1} = \text{S}\cdot\text{m}^{-1}$ (Siemens per metre).</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">Temperature Dependence Formula</h3>
+          <p class="text-sm text-slate-400 mb-2">Linear approximation for moderate temperature range ($T - T_0$):</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\rho_T = \rho_0 [1 + \alpha(T - T_0)], \quad R_T = R_0 [1 + \alpha(T - T_0)]$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Where $\alpha$ is the temperature coefficient of resistance ($\text{K}^{-1}$ or $^\circ\text{C}^{-1}$): $\alpha = \frac{\Delta R}{R_0 \Delta T}$.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Lattice Jitter & Real-Time Curve Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Lattice Vibration & $\rho\text{ vs }T$ Curve Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="materialBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Material: Metal (Copper)
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="resCanvas" width="800" height="380" class="w-full block"></canvas>
+      </div>
+
+      <!-- Controls Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Operating Temperature ($T$)</span>
+            <span id="tempReadout" class="text-amber-400 font-mono font-bold">300 K (27°C)</span>
+          </div>
+          <input id="tempSlider" type="range" min="50" max="800" step="10" value="300" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Temperature Coefficient ($\alpha$)</span>
+            <span id="alphaReadout" class="text-cyan-400 font-mono font-bold">+0.0039 /°C</span>
+          </div>
+          <div class="text-[11px] text-slate-500 mt-2 font-mono" id="alphaDesc">Positive coefficient: $\rho$ increases with $T$[cite: 13]</div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Carrier Density ($n$)</span>
+            <span id="densityReadout" class="text-emerald-400 font-mono font-bold">8.5 × 10²⁸ m⁻³</span>
+          </div>
+          <div class="text-[11px] text-slate-500 mt-2 font-mono" id="densityDesc">Constant $n$; resistance governed by $\tau$[cite: 13]</div>
+        </div>
+      </div>
+
+      <!-- Live Computational Metric Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Calculated Resistivity ($\rho_T$):</span>
+          <div id="rhoOutput" class="text-cyan-400 font-bold text-sm mt-0.5">1.70 × 10⁻⁸ Ω·m</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Mean Collision Time ($\tau$):</span>
+          <div id="tauOutput" class="text-amber-400 font-bold text-sm mt-0.5">2.45 × 10⁻¹⁴ s</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Conductivity ($\sigma = 1/\rho$):</span>
+          <div id="sigmaOutput" class="text-emerald-400 font-bold text-sm mt-0.5">5.88 × 10⁷ S/m</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint[cite: 13]</span>
+      </div>
+
+      <!-- Derivation 1: Resistivity in Terms of Electron Parameters -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation A</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Microscopic Origin of Resistivity ($\rho = \frac{m}{ne^2\tau}$)[cite: 13]</h4>
+        </div>
+        <p>1. Consider a conductor carrying current density $J = \frac{I}{A}$ under electric field $E$[cite: 13].</p>
+        <p>2. Transport current relation: $I = n e A v_d \implies J = n e v_d$[cite: 13].</p>
+        <p>3. Substitute the expression for drift speed $v_d = \frac{e E \tau}{m}$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$J = n e \left( \frac{e E \tau}{m} \right) = \left( \frac{n e^2 \tau}{m} \right) E$$
+        </div>
+        <p>4. Comparing this with microscopic Ohm's Law in vector form $\vec{J} = \sigma \vec{E}$[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\sigma = \frac{n e^2 \tau}{m}$$
+        </div>
+        <p>5. Since resistivity is reciprocal of conductivity ($\rho = \frac{1}{\sigma}$)[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\rho = \frac{m}{n e^2 \tau} \text{[cite: 13]}$$
+        </div>
+        <p class="text-slate-400"><em>Core Deduction:</em> Resistivity depends inversely on two key variables: free carrier density $n$ and relaxation time $\tau$[cite: 13]. Electron mass $m$ and charge $e$ are fundamental constants[cite: 13].</p>
+      </div>
+
+      <!-- Derivation 2: Temperature Coefficient alpha -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation B</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Derivation of Temperature Coefficient of Resistance ($\alpha$)</h4>
+        </div>
+        <p>1. Let resistance at reference temperature $T_0$ (usually $0^\circ\text{C}$ or $20^\circ\text{C}$) be $R_0$, and at temperature $T$ be $R_T$[cite: 13].</p>
+        <p>2. Experimentally, change in resistance $\Delta R = R_T - R_0$ is directly proportional to initial resistance $R_0$ and temperature rise $\Delta T = T - T_0$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\Delta R \propto R_0 \Delta T \implies \Delta R = \alpha R_0 \Delta T$$
+        </div>
+        <p>3. Where proportionality constant $\alpha$ is the fractional change in resistance per unit change in temperature:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$\alpha = \frac{\Delta R}{R_0 \Delta T} = \frac{R_T - R_0}{R_0 (T - T_0)}$$
+        </div>
+        <p>4. Rearranging gives the standard temperature variation equation[cite: 13]:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$R_T = R_0 [1 + \alpha(T - T_0)]$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap: Materials Comparison Matrix</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border border-rose-900/40">
+          <thead class="bg-rose-950/60 text-white font-semibold">
+            <tr>
+              <th class="p-2.5 border border-rose-900/40">Material Category</th>
+              <th class="p-2.5 border border-rose-900/40">Sign & Magnitude of $\alpha$</th>
+              <th class="p-2.5 border border-rose-900/40">Dominant Microscopic Factor</th>
+              <th class="p-2.5 border border-rose-900/40">Board Exam Favorite Question</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-rose-900/30 text-rose-100/90">
+            <tr>
+              <td class="p-2.5 font-bold text-white">Metals (Copper, Silver)[cite: 13]</td>
+              <td class="p-2.5 text-emerald-300 font-mono">Positive ($\alpha > 0$)[cite: 13]<br>$\approx +4 \times 10^{-3}\text{ K}^{-1}$</td>
+              <td class="p-2.5">$n$ is constant. Increasing $T$ increases thermal vibration of ions, sharply reducing $\tau$ ($\rho \propto 1/\tau$)[cite: 13].</td>
+              <td class="p-2.5 text-[11px]">Why does copper have non-linear $\rho\text{ vs }T$ near $0\text{ K}$? (Lattice quantum oscillations)[cite: 13].</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-bold text-white">Alloys (Nichrome, Manganin, Constantan)[cite: 13]</td>
+              <td class="p-2.5 text-amber-300 font-mono">Nearly ZERO ($\alpha \approx 0$)<br>$\approx 10^{-5}\text{ K}^{-1}$</td>
+              <td class="p-2.5">High disorder causes short $\tau$ even at $0\text{ K}$; heating adds almost no additional collision impedance[cite: 13].</td>
+              <td class="p-2.5 text-[11px]">Why are standard resistance coils made of Manganin/Constantan? (Resistance stays constant with temperature)[cite: 13].</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-bold text-white">Semiconductors (Silicon, Germanium)[cite: 13]</td>
+              <td class="p-2.5 text-rose-300 font-mono">NEGATIVE ($\alpha < 0$)[cite: 13]<br>Thermistor response</td>
+              <td class="p-2.5">Thermal generation of electron-hole pairs causes $n$ to increase exponentially ($n \propto e^{-E_g/2k_BT}$), completely overtaking the decrease in $\tau$[cite: 13].</td>
+              <td class="p-2.5 text-[11px]">What happens to resistance of Si and Cu when cooled from $300\text{ K}$ to $77\text{ K}$? (Cu drops; Si rises towards $\infty$)[cite: 13]!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: The resistance of a platinum wire of a platinum resistance thermometer at the ice point ($0^\circ\text{C}$) is $5.00\text{ }\Omega$ and at steam point ($100^\circ\text{C}$) is $5.39\text{ }\Omega$. When the thermometer is inserted in a hot bath, the resistance becomes $5.795\text{ }\Omega$. Calculate the temperature of the bath[cite: 13].</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Given: $R_0 = 5.00\text{ }\Omega$, $R_{100} = 5.39\text{ }\Omega$, $R_t = 5.795\text{ }\Omega$[cite: 13].</p>
+          <p>2. Find temperature coefficient $\alpha$ from steam point data[cite: 13]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$R_{100} = R_0(1 + \alpha \cdot 100) \implies \alpha = \frac{R_{100} - R_0}{100 \times R_0} = \frac{5.39 - 5.00}{100 \times 5.00} = \frac{0.39}{500} = 7.8 \times 10^{-4}\text{ }^\circ\text{C}^{-1}$$
+          </div>
+          <p>3. Formula for unknown bath temperature $t$[cite: 13]:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$t = \frac{R_t - R_0}{R_{100} - R_0} \times 100 = \frac{5.795 - 5.00}{5.39 - 5.00} \times 100$$
+          </div>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$t = \frac{0.795}{0.39} \times 100 \approx 345.65^\circ\text{C}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A carbon resistor and a nichrome wire resistor are connected in series. Find the ratio of their resistances at $0^\circ\text{C}$ such that their combined equivalent resistance remains completely independent of temperature over a small range. (Given: $\alpha_{\text{carbon}} = -0.0005\text{ }^\circ\text{C}^{-1}$, $\alpha_{\text{nichrome}} = +0.0001\text{ }^\circ\text{C}^{-1}$).</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Equivalent series resistance at temperature $t$: $R_{\text{eq}}(t) = R_1(t) + R_2(t)$[cite: 13].</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$R_{\text{eq}}(t) = R_{01}(1 + \alpha_1 t) + R_{02}(1 + \alpha_2 t) = (R_{01} + R_{02}) + (R_{01}\alpha_1 + R_{02}\alpha_2)t$$
+          </div>
+          <p>2. For $R_{\text{eq}}$ to be independent of temperature $t$, the coefficient of $t$ must vanish identically:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$R_{01}\alpha_1 + R_{02}\alpha_2 = 0 \implies \frac{R_{01}}{R_{02}} = -\frac{\alpha_2}{\alpha_1}$$
+          </div>
+          <p>3. Substitute values of $\alpha$:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\frac{R_{0,\text{carbon}}}{R_{0,\text{nichrome}}} = -\frac{+0.0001}{-0.0005} = \frac{1}{5}$$
+          </div>
+          <p class="text-slate-400"><em>Exam Trap Note:</em> This condition works strictly because carbon has a negative temperature coefficient ($\alpha < 0$)[cite: 13], which compensates the positive temperature coefficient of nichrome.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Resistivity Formula</p>
+          <p class="text-xs font-bold text-white mt-1">$\rho = \frac{m}{n e^2 \tau}$[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Metals ($T \uparrow$)[cite: 13]</p>
+          <p class="text-xs font-bold text-rose-400 mt-1">$\tau \downarrow \implies \rho \uparrow$ ($\alpha > 0$)[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Semiconductors ($T \uparrow$)[cite: 13]</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$n \uparrow\uparrow \implies \rho \downarrow$ ($\alpha < 0$)[cite: 13]</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Standard Alloys</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$\alpha \approx 0$ (Manganin)[cite: 13]</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Lattice Jitter & Graph Simulation Engine Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('resCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const tempSlider = document.getElementById('tempSlider');
+      const materialBtn = document.getElementById('materialBtn');
+      const tempReadout = document.getElementById('tempReadout');
+      const alphaReadout = document.getElementById('alphaReadout');
+      const densityReadout = document.getElementById('densityReadout');
+      const alphaDesc = document.getElementById('alphaDesc');
+      const densityDesc = document.getElementById('densityDesc');
+      const rhoOutput = document.getElementById('rhoOutput');
+      const tauOutput = document.getElementById('tauOutput');
+      const sigmaOutput = document.getElementById('sigmaOutput');
+
+      // Materials: 'metal', 'alloy', 'semiconductor'
+      const materials = ['metal', 'alloy', 'semiconductor'];
+      let currentMatIndex = 0;
+      let pulseTime = 0;
+
+      materialBtn.addEventListener('click', () => {
+        currentMatIndex = (currentMatIndex + 1) % materials.length;
+        const mat = materials[currentMatIndex];
+        if (mat === 'metal') {
+          materialBtn.textContent = 'Material: Metal (Copper)';
+          alphaReadout.textContent = '+0.0039 /°C';
+          alphaDesc.textContent = 'Positive coefficient: ρ increases with T[cite: 13]';
+          densityReadout.textContent = '8.5 × 10²⁸ m⁻³';
+          densityDesc.textContent = 'Constant n; resistance governed by τ[cite: 13]';
+        } else if (mat === 'alloy') {
+          materialBtn.textContent = 'Material: Alloy (Nichrome)';
+          alphaReadout.textContent = '+0.0001 /°C';
+          alphaDesc.textContent = 'Nearly zero coefficient: ρ stays flat[cite: 13]';
+          densityReadout.textContent = '9.0 × 10²⁸ m⁻³';
+          densityDesc.textContent = 'Lattice defects dominate; flat response[cite: 13]';
+        } else {
+          materialBtn.textContent = 'Material: Semiconductor (Silicon)';
+          alphaReadout.textContent = '-0.0700 /°C';
+          alphaDesc.textContent = 'Negative coefficient: ρ drops drastically[cite: 13]';
+          densityReadout.textContent = 'Thermal Gen (exp)';
+          densityDesc.textContent = 'n increases exponentially with T[cite: 13]';
+        }
+      });
+
+      function renderLoop() {
+        pulseTime += 0.04;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const T = parseFloat(tempSlider.value);
+        tempReadout.textContent = `${T} K (${(T - 273.15).toFixed(0)}°C)`;
+
+        const mat = materials[currentMatIndex];
+
+        // Physics Calculation according to Material Type
+        let rhoVal = 0;
+        let tauVal = 0;
+        let sigmaVal = 0;
+
+        if (mat === 'metal') {
+          // Metal: rho increases with T, non-linear at low T
+          const baseRho = 1.7e-8;
+          rhoVal = baseRho * (1 + 0.0039 * (T - 293));
+          if (T < 100) rhoVal = baseRho * Math.pow(T / 293, 2.5) + 0.1e-8;
+          tauVal = 2.5e-14 * (300 / T);
+        } else if (mat === 'alloy') {
+          // Alloy: high residual resistivity, very weak T dependence
+          rhoVal = 1.1e-6 * (1 + 0.0001 * (T - 293));
+          tauVal = 5.0e-15;
+        } else {
+          // Semiconductor: rho = rho0 * exp(Eg / 2kT)
+          const Eg_eV = 1.1; // Silicon
+          const kB = 8.617e-5; // eV/K
+          rhoVal = 0.05 * Math.exp(Eg_eV / (2 * kB * T));
+          tauVal = 1.5e-13 * (300 / T);
+        }
+
+        sigmaVal = 1 / rhoVal;
+
+        rhoOutput.textContent = rhoVal > 1e-4 ? rhoVal.toExponential(2) + ' Ω·m' : rhoVal.toExponential(2) + ' Ω·m';
+        tauOutput.textContent = tauVal.toExponential(2) + ' s';
+        sigmaOutput.textContent = sigmaVal.toExponential(2) + ' S/m';
+
+        // Split Viewport: Left = Jittering Micro-Lattice; Right = Real-Time ρ-T Curve
+        renderMicroLattice(50, 40, 310, 300, T, mat);
+        renderRhoCurveGraph(400, 40, 350, 300, T, mat);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      // SUB-RENDER 1: Microscopic Lattice Jitter Visualization
+      function renderMicroLattice(x, y, w, h, T, mat) {
+        ctx.save();
+        ctx.fillStyle = '#090d16';
+        ctx.fillRect(x, y, w, h);
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(x, y, w, h);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`LATTICE JITTER [T = ${T} K]`, x + 12, y + 22);
+
+        // Amplitude of ion vibration grows as sqrt(T)
+        const jitterAmp = Math.min(10, Math.sqrt(T / 300) * 3.8);
+
+        // Render Ions Grid
+        const rows = 5, cols = 5;
+        const stepX = (w - 40) / (cols - 1);
+        const stepY = (h - 60) / (rows - 1);
+
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const baseX = x + 20 + c * stepX;
+            const baseY = y + 45 + r * stepY;
+
+            // Phase shifted sinusoidal harmonic vibration
+            const jx = Math.sin(pulseTime * 4 + r * 2 + c) * jitterAmp;
+            const jy = Math.cos(pulseTime * 4 + c * 2 + r) * jitterAmp;
+
+            // Ion glow halo
+            const ionGrad = ctx.createRadialGradient(baseX + jx, baseY + jy, 2, baseX + jx, baseY + jy, 12);
+            ionGrad.addColorStop(0, mat === 'semiconductor' ? 'rgba(56, 189, 248, 0.4)' : 'rgba(244, 63, 94, 0.4)');
+            ionGrad.addColorStop(1, 'rgba(15, 23, 42, 0)');
+            ctx.fillStyle = ionGrad;
+            ctx.beginPath();
+            ctx.arc(baseX + jx, baseY + jy, 12, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Ion Core
+            ctx.fillStyle = mat === 'semiconductor' ? '#0284c7' : '#e11d48';
+            ctx.beginPath();
+            ctx.arc(baseX + jx, baseY + jy, 6, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+
+        // Trace of a colliding electron trying to pass through
+        ctx.fillStyle = '#fbbf24';
+        ctx.font = '10px monospace';
+        if (mat === 'metal') {
+          ctx.fillText(`τ ∝ 1/T (Collisions increase as T rises)`, x + 12, y + h - 12);
+        } else if (mat === 'alloy') {
+          ctx.fillText(`Constant scattering at impurity sites`, x + 12, y + h - 12);
+        } else {
+          ctx.fillText(`Thermal bond rupture produces e⁻/hole pairs`, x + 12, y + h - 12);
+        }
+        ctx.restore();
+      }
+
+      // SUB-RENDER 2: Precision ρ vs T Graph
+      function renderRhoCurveGraph(gx, gy, gw, gh, currentT, mat) {
+        ctx.save();
+        ctx.fillStyle = '#090d16';
+        ctx.fillRect(gx, gy, gw, gh);
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(gx, gy, gw, gh);
+
+        // Axes
+        const originX = gx + 50;
+        const originY = gy + gh - 45;
+        const plotW = gw - 70;
+        const plotH = gh - 75;
+
+        ctx.strokeStyle = '#64748b';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(originX, originY);
+        ctx.lineTo(originX + plotW, originY); // T axis
+        ctx.moveTo(originX, originY);
+        ctx.lineTo(originX, originY - plotH); // rho axis
+        ctx.stroke();
+
+        ctx.fillStyle = '#cbd5e1';
+        ctx.font = 'bold 10px monospace';
+        ctx.fillText('Temperature T (K) ➔', originX + plotW - 120, originY + 28);
+        ctx.fillText('Resistivity ρ ➔', originX - 42, originY - plotH - 10);
+
+        // Plot Curves
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+
+        let activeColor = '#38bdf8';
+        if (mat === 'metal') {
+          activeColor = '#f43f5e';
+          // Metal curve: quadratic below 100K, linear above[cite: 13]
+          for (let px = 0; px <= plotW; px += 4) {
+            const tempVal = (px / plotW) * 800;
+            let normRho = 0;
+            if (tempVal < 150) {
+              normRho = 0.05 + Math.pow(tempVal / 150, 2) * 0.2;
+            } else {
+              normRho = 0.25 + ((tempVal - 150) / 650) * 0.7;
+            }
+            const py = originY - normRho * plotH;
+            if (px === 0) ctx.moveTo(originX + px, py);
+            else ctx.lineTo(originX + px, py);
+          }
+        } else if (mat === 'alloy') {
+          activeColor = '#f59e0b';
+          // Alloy (Nichrome): High residual intercept, almost zero slope[cite: 13]
+          for (let px = 0; px <= plotW; px += 4) {
+            const tempVal = (px / plotW) * 800;
+            const normRho = 0.75 + (tempVal / 800) * 0.08;
+            const py = originY - normRho * plotH;
+            if (px === 0) ctx.moveTo(originX + px, py);
+            else ctx.lineTo(originX + px, py);
+          }
+        } else {
+          activeColor = '#34d399';
+          // Semiconductor: Exponential decay curve[cite: 13]
+          for (let px = 0; px <= plotW; px += 4) {
+            const tempVal = Math.max(50, (px / plotW) * 800);
+            const normRho = Math.min(1.0, 0.05 + 0.9 * Math.exp(-tempVal / 140));
+            const py = originY - normRho * plotH;
+            if (px === 0) ctx.moveTo(originX + px, py);
+            else ctx.lineTo(originX + px, py);
+          }
+        }
+
+        ctx.strokeStyle = activeColor;
+        ctx.stroke();
+
+        // Draw Operating Point Circle on Curve
+        const normCurrentX = (currentT / 800) * plotW;
+        let currentNormRho = 0;
+        if (mat === 'metal') {
+          currentNormRho = currentT < 150 ? (0.05 + Math.pow(currentT / 150, 2) * 0.2) : (0.25 + ((currentT - 150) / 650) * 0.7);
+        } else if (mat === 'alloy') {
+          currentNormRho = 0.75 + (currentT / 800) * 0.08;
+        } else {
+          currentNormRho = Math.min(1.0, 0.05 + 0.9 * Math.exp(-currentT / 140));
+        }
+
+        const pointX = originX + normCurrentX;
+        const pointY = originY - currentNormRho * plotH;
+
+        ctx.beginPath();
+        ctx.arc(pointX, pointY, 6, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        ctx.strokeStyle = activeColor;
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 10px monospace';
+        ctx.fillText(`(${currentT} K)`, pointX + 8, pointY - 6);
+
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

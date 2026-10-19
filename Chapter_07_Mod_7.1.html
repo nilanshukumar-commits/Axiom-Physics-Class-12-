@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Mean & RMS Values of AC</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+      svg { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 7.0</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 04: Alternating Current • Chapter 07</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Mean & RMS Values of Alternating Current and EMF</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Sinusoidal wave foundations, half-cycle mean ($0.637 I_0$), full-cycle zero identity, Joule heating equivalence ($I_{\text{rms}} = I_0/\sqrt{2}$), and hot-wire ammeter mechanics.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek carpenter ki aari (saw) ko: jab woh lakdi kaatne ke liye aari ko aage-peeche chalata hai, toh aari ka net displacement ek complete stroke ke baad zero hota hai (Full-cycle average $= 0$). Lekin kya iska matlab lakdi nahi kati? Bilkul kati! Friction ke chalte garmi dono directions ke movement se barabar generate hoti hai. <strong class="text-white">Joule Heating ($H = I^2 R t$) current ki direction par depend nahi karti</strong> kyunki $(+I)^2 = (-I)^2 = +I^2$. Isliye AC current ki real power ya effectiveness uske simple arithmetic average se nahi, balki uske <strong class="text-white">Root Mean Square (RMS)</strong> value se naapi jaati hai—yani woh equivalent constant DC current jo kisi resistor mein utne hi samay mein exactly utni hi heat generate kare!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Mean (Average) Value of AC</h3>
+          <p class="text-sm text-slate-400 mb-2">Evaluated over half and full time period $T = \frac{2\pi}{\omega}$:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$I_{\text{avg (full)}} = 0$$
+            $$I_{\text{avg (half)}} = \frac{2}{\pi} I_0 \approx 0.637 I_0, \quad V_{\text{avg (half)}} = \frac{2}{\pi} V_0 \approx 0.637 V_0$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Definition: That constant direct current which sends the same charge through a circuit in half-cycle time ($T/2$) as is sent by AC.</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. RMS (Virtual / Effective) Value</h3>
+          <p class="text-sm text-slate-400 mb-2">Root Mean Square evaluated over complete cycle $T$:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$I_{\text{rms}} = \frac{I_0}{\sqrt{2}} \approx 0.707 I_0, \quad V_{\text{rms}} = \frac{V_0}{\sqrt{2}} \approx 0.707 V_0$$
+            $$V_0 = \sqrt{2} V_{\text{rms}} \approx 1.414 V_{\text{rms}}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">All AC voltmeters, ammeters, and household domestic power ratings (e.g., $220\text{ V}, 50\text{ Hz}$) measure RMS values exclusively!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (i vs i² Curve & Thermal Equivalence Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: $i(t)$ vs $i^2(t)$ RMS Integration Bench</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="curveModeBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Show: Squared Curve i²(t) & Mean Level
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="rmsCanvas" width="800" height="380" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Peak Current ($I_0$)</span>
+            <span id="i0SliderVal" class="text-cyan-400 font-mono font-bold">10.0 A</span>
+          </div>
+          <input id="i0Slider" type="range" min="2" max="25" step="1" value="10" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Resistor ($R$)</span>
+            <span id="rSliderVal" class="text-amber-400 font-mono font-bold">5.0 Ω</span>
+          </div>
+          <input id="rSlider" type="range" min="1" max="20" step="1" value="5" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Cycle Inspection</span>
+            <span id="cycleLabel" class="text-emerald-400 font-mono font-bold">2 Full Periods</span>
+          </div>
+          <div class="text-[11px] text-slate-500 mt-2 font-mono" id="cycleDesc">Area of (+ve) equals (-ve) in i(t) ➔ Net = 0</div>
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">RMS Current ($I_{\text{rms}} = I_0/\sqrt{2}$):</span>
+          <div id="iRmsVal" class="text-cyan-400 font-bold text-sm mt-0.5">7.07 A</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Half-Cycle Mean ($I_{\text{avg}}$):</span>
+          <div id="iAvgVal" class="text-amber-400 font-bold text-sm mt-0.5">6.37 A</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Average Heat Power ($P = I^2_{\text{rms}}R$):</span>
+          <div id="heatPowerVal" class="text-emerald-400 font-bold text-sm mt-0.5">250.0 W</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Full-Cycle Mean ($\int_0^T i\,dt$):</span>
+          <div class="text-indigo-300 font-bold text-sm mt-0.5">0.00 A (Zero)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations with Embedded Vector Schematics -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-8">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Mean Value of AC over Half Cycle -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation A</span>
+          <h4 class="text-white font-semibold text-base mt-1">Mean (Average) Value of Alternating Current over Positive Half-Cycle</h4>
+        </div>
+        <p>1. Let the instantaneous alternating current be $i = I_0\sin\omega t$. The charge $dq$ flowing through the circuit in time $dt$ is:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$dq = i \, dt = (I_0\sin\omega t) dt$$
+        </div>
+        <p>2. Total charge $q$ that flows during positive half-cycle from $t = 0$ to $t = T/2$ (where $T = 2\pi/\omega$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$q = \int_0^{T/2} I_0\sin\omega t \, dt = I_0 \left[ -\frac{\cos\omega t}{\omega} \right]_0^{T/2} = -\frac{I_0}{\omega} \left[ \cos\left(\omega \frac{T}{2}\right) - \cos(0) \right]$$
+        </div>
+        <p>3. Since $\omega \frac{T}{2} = \left(\frac{2\pi}{T}\right)\left(\frac{T}{2}\right) = \pi$, and $\cos\pi = -1$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$q = -\frac{I_0}{\omega} [ -1 - 1 ] = \frac{2 I_0}{\omega} = \frac{2 I_0}{2\pi/T} = \frac{I_0 T}{\pi}$$
+        </div>
+        <p>4. If $I_{\text{avg}}$ is the mean value of current over this half cycle, by definition $q = I_{\text{avg}} \times \left(\frac{T}{2}\right)$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$I_{\text{avg}} \left(\frac{T}{2}\right) = \frac{I_0 T}{\pi} \implies I_{\text{avg}} = \frac{2}{\pi} I_0$$
+        </div>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$I_{\text{avg}} = \frac{2}{\pi} I_0 \approx 0.637 I_0, \quad V_{\text{avg}} = \frac{2}{\pi} V_0 \approx 0.637 V_0$$
+        </div>
+        <p class="text-slate-400"><em>Full Cycle Identity:</em> Over the negative half cycle, $q = -\frac{I_0 T}{\pi}$. Hence, over a complete cycle ($0$ to $T$), total charge $q_{\text{net}} = 0 \implies I_{\text{avg (full)}} = 0$.</p>
+      </div>
+
+      <!-- Derivation 2: RMS (Virtual) Value of AC over Complete Cycle -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Derivation B</span>
+          <h4 class="text-white font-semibold text-base mt-1">Root Mean Square (RMS) Value of AC over a Complete Cycle</h4>
+        </div>
+
+        <!-- Embedded Vector Schematic: i(t) vs i²(t) Area Representation -->
+        <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800/90 flex flex-col items-center">
+          <svg viewBox="0 0 650 250" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-axis-rms" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+            </defs>
+
+            <!-- Coordinate Axes -->
+            <line x1="50" y1="140" x2="600" y2="140" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-axis-rms)" />
+            <text x="590" y="130" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">Time t ➔</text>
+            <line x1="100" y1="230" x2="100" y2="30" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-axis-rms)" />
+            <text x="70" y="35" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">i, i²</text>
+
+            <!-- Time markers -->
+            <line x1="320" y1="135" x2="320" y2="145" stroke="#94a3b8" stroke-width="1.5" />
+            <text x="312" y="158" fill="#cbd5e1" font-size="10" font-family="monospace">T/2</text>
+            <line x1="540" y1="135" x2="540" y2="145" stroke="#94a3b8" stroke-width="1.5" />
+            <text x="535" y="158" fill="#cbd5e1" font-size="10" font-family="monospace">T</text>
+
+            <!-- Waveform 1: i(t) = I0 sin(wt) (Blue) -->
+            <!-- Positive half 100 to 320, Negative half 320 to 540 -->
+            <path d="M 100 140 Q 210 50, 320 140 Q 430 230, 540 140" fill="none" stroke="#38bdf8" stroke-width="2.5" />
+            <text x="210" y="70" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">+I₀</text>
+            <text x="430" y="215" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">-I₀</text>
+            <text x="235" y="125" fill="#38bdf8" font-size="10" font-family="monospace">i(t) = I₀ sinωt</text>
+
+            <!-- Waveform 2: i²(t) = I0² sin²(wt) (Amber) -->
+            <!-- Both halves stay above zero! -->
+            <path d="M 100 140 Q 210 20, 320 140 Q 430 20, 540 140" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="4,3" />
+            <text x="210" y="32" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">i²(t) [Peak = I₀²]</text>
+
+            <!-- Mean of Squared Current Line: <i²> = I0² / 2 -->
+            <line x1="100" y1="80" x2="540" y2="80" stroke="#10b981" stroke-width="2" stroke-dasharray="6,4" />
+            <text x="350" y="72" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">Mean of i²: &lt;i²&gt; = I₀² / 2</text>
+
+            <!-- RMS Level Line: I_rms = I0 / sqrt(2) -->
+            <line x1="100" y1="92" x2="300" y2="92" stroke="#ec4899" stroke-width="1.5" />
+            <text x="110" y="106" fill="#ec4899" font-size="10" font-weight="bold" font-family="monospace">I_rms = I₀ / √2 ≈ 0.707 I₀</text>
+          </svg>
+          <p class="text-slate-400 text-[11px] mt-2 font-mono">Fig 7.0A: Comparing $i(t)$ with squared current $i^2(t)$; squaring keeps the waveform strictly positive with average $\langle i^2\rangle = I_0^2/2$.</p>
+        </div>
+
+        <p>1. By Joule's law of heating, heat produced in resistor $R$ during small time $dt$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$dH = i^2 R \, dt = (I_0^2\sin^2\omega t) R \, dt$$
+        </div>
+        <p>2. Total heat produced over a complete cycle of time period $T$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$H = \int_0^T I_0^2 R \sin^2\omega t \, dt = I_0^2 R \int_0^T \left( \frac{1 - \cos 2\omega t}{2} \right) dt$$
+        </div>
+        <p>3. Splitting the integral:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$H = \frac{I_0^2 R}{2} \left[ \int_0^T dt - \int_0^T \cos 2\omega t \, dt \right]$$
+        </div>
+        <p>4. Since the integral of $\cos 2\omega t$ over a full period is zero ($\int_0^T \cos 2\omega t \, dt = 0$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$H = \frac{I_0^2 R}{2} [T - 0] = \frac{I_0^2 R T}{2}$$
+        </div>
+        <p>5. If $I_{\text{rms}}$ (effective virtual current) is that steady direct current which produces the exact same heat $H$ in identical resistor $R$ over the same time $T$ ($H = I_{\text{rms}}^2 R T$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$I_{\text{rms}}^2 R T = \frac{I_0^2 R T}{2} \implies I_{\text{rms}}^2 = \frac{I_0^2}{2}$$
+        </div>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$I_{\text{rms}} = \frac{I_0}{\sqrt{2}} \approx 0.707 I_0, \quad V_{\text{rms}} = \frac{V_0}{\sqrt{2}} \approx 0.707 V_0$$
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: The Domestic $220\text{ V}$ Shock Danger vs Peak Insulation</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Domestic mains in India is specified as $220\text{ V}, 50\text{ Hz}$.
+            <br>• $220\text{ V}$ is strictly the <strong class="text-white">RMS value</strong> ($V_{\text{rms}}$).
+            <br>• The peak voltage that cables and insulation must withstand is:
+            $$V_0 = \sqrt{2} \times 220\text{ V} \approx \mathbf{311.13\text{ Volts}}$$
+            The voltage swings continuously between $+311\text{ V}$ and $-311\text{ V}$ (total excursion of $622\text{ V}$). This is why $220\text{ V AC}$ is far more lethal and prone to insulation breakdown than $220\text{ V DC}$.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Why Moving Coil Galvanometers Read ZERO in AC</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* A standard DC moving coil ammeter is connected in an AC circuit. What will it read?
+            <br>*Correct Answer:* <strong class="text-white">ZERO!</strong>
+            A DC meter produces torque $\tau \propto I$. For AC at $50\text{ Hz}$, current reverses direction 100 times per second. Due to mechanical inertia, the heavy pointer cannot oscillate that fast and remains stationary at the zero mark ($\langle I\rangle_{\text{full}} = 0$).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Hot-Wire Ammeters & Non-Linear Calibration</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            To measure AC current, <strong class="text-white">Hot-Wire Instruments</strong> are used. They operate on heating effect where thermal expansion $\Delta l \propto H \propto I^2$.
+            <br>Consequence: Since deflection $\theta \propto I^2$, the scale divisions of an AC hot-wire meter are <strong class="text-white">NOT uniform</strong>! Graduations are cramped near zero and spread out widely at higher readings.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Frequency of Power Fluctuations in AC</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            If an alternating current has frequency $f = 50\text{ Hz}$:
+            <br>• Current $i(t)$ reaches peak twice per cycle $\implies$ current frequency is $50\text{ Hz}$.
+            <br>• Instantaneous power $p = i^2 R = I_0^2 R \sin^2\omega t = \frac{I_0^2 R}{2}(1 - \cos 2\omega t)$.
+            <br>• Therefore, power and heat fluctuate with <strong class="text-white">double frequency: $2f = 100\text{ Hz}$</strong>! A domestic incandescent bulb flickers 100 times per second.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: The electric mains in a house is rated at $220\text{ V}, 50\text{ Hz}$. Write down the mathematical equation for the instantaneous alternating voltage. If a heater of resistance $110\text{ }\Omega$ is connected to this supply, find (i) peak current, (ii) RMS current, and (iii) average power dissipated.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Given: $V_{\text{rms}} = 220\text{ V}$, $f = 50\text{ Hz} \implies \omega = 2\pi f = 100\pi \approx 314.16\text{ rad/s}$.</p>
+          <p>Peak voltage:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$V_0 = \sqrt{2} \times V_{\text{rms}} = 1.414 \times 220 \approx 311.08\text{ Volts}$$
+          </div>
+          <p>Instantaneous voltage equation:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$v(t) = 311.1 \sin(100\pi t) = 311.1 \sin(314.2 t)\text{ Volts}$$
+          </div>
+          <p>2. Resistance $R = 110\text{ }\Omega$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$I_{\text{rms}} = \frac{V_{\text{rms}}}{R} = \frac{220\text{ V}}{110\text{ }\Omega} = 2.0\text{ Amperes}$$
+            $$I_0 = \sqrt{2} \times I_{\text{rms}} = 1.414 \times 2.0 = 2.828\text{ Amperes}$$
+          </div>
+          <p>3. Average power dissipated:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$P_{\text{avg}} = I_{\text{rms}}^2 R = (2.0)^2 \times 110 = 4 \times 110 = 440\text{ Watts}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: An alternating current is given by the superposition equation $i = 3 + 4\sin(\omega t)\text{ A}$, which consists of a steady DC component ($3\text{ A}$) and a pure AC component ($4\sin\omega t\text{ A}$). Calculate the effective (RMS) value of the combined current and the heat produced in a $10\text{ }\Omega$ resistor in $1\text{ minute}$.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. By definition of RMS value, $I_{\text{rms}} = \sqrt{\langle i^2 \rangle}$ over a complete cycle:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$i^2 = [3 + 4\sin\omega t]^2 = 9 + 24\sin\omega t + 16\sin^2\omega t$$
+          </div>
+          <p>2. Evaluate the time average $\langle \dots \rangle$ of each term over a full cycle:</p>
+          <p class="text-slate-400">• $\langle 9 \rangle = 9$</p>
+          <p class="text-slate-400">• $\langle 24\sin\omega t \rangle = 0$ (linear sine averages to zero)</p>
+          <p class="text-slate-400">• $\langle 16\sin^2\omega t \rangle = 16 \times \frac{1}{2} = 8$</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\langle i^2 \rangle = 9 + 0 + 8 = 17\text{ A}^2$$
+          </div>
+          <p>3. RMS Current:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$I_{\text{rms}} = \sqrt{\langle i^2 \rangle} = \sqrt{17}\text{ A} \approx 4.123\text{ Amperes}$$
+          </div>
+          <p class="text-slate-400"><em>General Formula for Composite Current:</em> $I_{\text{rms}} = \sqrt{I_{\text{DC}}^2 + \frac{I_0^2}{2}} = \sqrt{3^2 + \frac{4^2}{2}} = \sqrt{9 + 8} = \sqrt{17}\text{ A}$.</p>
+          <p>4. Total heat produced in $R = 10\text{ }\Omega$ during $t = 60\text{ s}$:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$H = I_{\text{rms}}^2 R t = (17) \times 10 \times 60 = 10{,}200\text{ Joules} = 10.2\text{ kJ}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Half-Cycle Mean</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$I_{\text{avg}} = \frac{2}{\pi}I_0 \approx 0.637 I_0$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">RMS Current</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$I_{\text{rms}} = \frac{I_0}{\sqrt{2}} \approx 0.707 I_0$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Peak Voltage (220V)</p>
+          <p class="text-xs font-bold text-rose-400 mt-1">$V_0 = \sqrt{2}(220) = 311\text{ V}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Full-Cycle Mean</p>
+          <p class="text-xs font-bold text-white mt-1">$I_{\text{avg}} = 0$ (DC meter reads 0)</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS i vs i² Simulation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('rmsCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const curveModeBtn = document.getElementById('curveModeBtn');
+      const i0Slider = document.getElementById('i0Slider');
+      const rSlider = document.getElementById('rSlider');
+
+      const i0SliderVal = document.getElementById('i0SliderVal');
+      const rSliderVal = document.getElementById('rSliderVal');
+      const iRmsVal = document.getElementById('iRmsVal');
+      const iAvgVal = document.getElementById('iAvgVal');
+      const heatPowerVal = document.getElementById('heatPowerVal');
+
+      let showSquared = true;
+      let phaseTime = 0;
+
+      curveModeBtn.addEventListener('click', () => {
+        showSquared = !showSquared;
+        curveModeBtn.textContent = showSquared
+          ? 'Show: Squared Curve i²(t) & Mean Level'
+          : 'Show: Pure AC Waveform Only';
+      });
+
+      function renderLoop() {
+        phaseTime += 0.035;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const I0 = parseFloat(i0Slider.value);
+        const R = parseFloat(rSlider.value);
+
+        i0SliderVal.textContent = `${I0.toFixed(1)} A`;
+        rSliderVal.textContent = `${R.toFixed(1)} Ω`;
+
+        const I_rms = I0 / Math.SQRT2;
+        const I_avg = (2 / Math.PI) * I0;
+        const P_avg = I_rms * I_rms * R;
+
+        iRmsVal.textContent = `${I_rms.toFixed(2)} A`;
+        iAvgVal.textContent = `${I_avg.toFixed(2)} A`;
+        heatPowerVal.textContent = `${P_avg.toFixed(1)} W`;
+
+        // Render Graphics
+        renderWaveComparison(I0, I_rms, I_avg, showSquared, phaseTime);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderWaveComparison(I0, Irms, Iavg, showSq, phase) {
+        const leftX = 80;
+        const rightX = canvas.width - 50;
+        const plotW = rightX - leftX;
+        const cy = 200; // Zero baseline
+
+        // Screen Frame
+        ctx.fillStyle = '#090d16';
+        ctx.fillRect(leftX - 25, 40, plotW + 40, 300);
+        ctx.strokeStyle = '#1e293b';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(leftX - 25, 40, plotW + 40, 300);
+
+        // Center Baseline (0 Current)
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(leftX - 10, cy);
+        ctx.lineTo(rightX + 10, cy);
+        ctx.stroke();
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '10px monospace';
+        ctx.fillText('0 A (Baseline)', leftX - 20, cy + 14);
+
+        // Amplitude scale
+        const scaleI = 90 / (I0 || 1);
+
+        // 1. Draw i(t) = I0 sin(wt) Curve
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        for (let x = 0; x <= plotW; x++) {
+          const t = phase + (x / 45);
+          const current = I0 * Math.sin(t);
+          const py = cy - (current * scaleI);
+          if (x === 0) ctx.moveTo(leftX + x, py);
+          else ctx.lineTo(leftX + x, py);
+        }
+        ctx.stroke();
+
+        // 2. Draw i²(t) Curve if enabled
+        if (showSq) {
+          ctx.strokeStyle = '#f59e0b';
+          ctx.lineWidth = 2;
+          ctx.setLineDash([4, 3]);
+          ctx.beginPath();
+          for (let x = 0; x <= plotW; x++) {
+            const t = phase + (x / 45);
+            const current = I0 * Math.sin(t);
+            const currSq = (current * current) / I0; // scaled
+            const py = cy - (currSq * scaleI);
+            if (x === 0) ctx.moveTo(leftX + x, py);
+            else ctx.lineTo(leftX + x, py);
+          }
+          ctx.stroke();
+          ctx.setLineDash([]);
+
+          // Mean of i² line (<i²> = I0² / 2)
+          const meanSqY = cy - (0.5 * I0 * scaleI);
+          ctx.strokeStyle = '#10b981';
+          ctx.lineWidth = 2;
+          ctx.setLineDash([6, 4]);
+          ctx.beginPath();
+          ctx.moveTo(leftX, meanSqY);
+          ctx.lineTo(rightX, meanSqY);
+          ctx.stroke();
+          ctx.setLineDash([]);
+
+          ctx.fillStyle = '#10b981';
+          ctx.font = 'bold 11px monospace';
+          ctx.fillText(`Average of i²: <i²> = I₀²/2 (Joule Heating DC Equivalence)`, leftX + 15, meanSqY - 6);
+        }
+
+        // Horizontal Line for RMS Current Level
+        const rmsY = cy - (Irms * scaleI);
+        ctx.strokeStyle = '#ec4899';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(leftX + 20, rmsY);
+        ctx.lineTo(leftX + 200, rmsY);
+        ctx.stroke();
+
+        ctx.fillStyle = '#ec4899';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(`I_rms = ${(Irms).toFixed(2)} A (0.707 I₀)`, leftX + 210, rmsY + 4);
+
+        // Peak indicators
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = '10px monospace';
+        ctx.fillText(`+I₀ (+${I0.toFixed(0)}A)`, leftX + 10, cy - 95);
+        ctx.fillText(`-I₀ (-${I0.toFixed(0)}A)`, leftX + 10, cy + 105);
+
+        // Legend tags
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('— Instantaneous Current i(t)', leftX + 15, 62);
+        if (showSq) {
+          ctx.fillStyle = '#f59e0b';
+          ctx.fillText('--- Squared Current i²(t) (Always Positive)', leftX + 230, 62);
+        }
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`H = ∫ i² R dt = I_rms² R T | The RMS value represents equivalent DC current producing identical Joule heat`, canvas.width / 2, canvas.height - 12);
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

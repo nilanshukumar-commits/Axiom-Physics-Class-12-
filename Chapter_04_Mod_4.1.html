@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Biot-Savart Law & Circular Loop</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 4.1</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 03: Magnetic Effects of Current • Chapter 04</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Biot-Savart Law & Circular Current Loop Field</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Current element vector mechanics, axial derivation of circular loop, right-hand rule, and inverse-cube magnetic decay.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Electrostatics mein Coulomb's Law ek stationary point charge ($q$) ke electric field ko describe karta hai. Lekin moving charges ke paas koi "magnetic charge" ya isolated magnetic pole nahi hota! Yahan fundamental building block ek chhota wire element $I\,d\vec{l}$ hota hai. <strong class="text-white">Biot-Savart Law</strong> electrostatics ke Coulomb's law ka magnetic brother hai: farq yeh hai ki electric field source se line of sight ke along point karta hai, jabki magnetic field <strong class="text-white">cross-product ($d\vec{l} \times \hat{r}$)</strong> follow karta hai—yani yeh wire aur position vector dono ke banaye plane ke <strong class="text-white">perpendicular 3D corkscrew direction</strong> mein ghoomta hai!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">1. Vector Biot-Savart Law</h3>
+          <p class="text-sm text-slate-400 mb-2">Magnetic field $d\vec{B}$ produced by an infinitesimal current element $I\,d\vec{l}$:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$d\vec{B} = \frac{\mu_0}{4\pi} \frac{I (d\vec{l} \times \hat{r})}{r^2} = \frac{\mu_0}{4\pi} \frac{I\,dl\sin\theta}{r^2} \hat{n}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Where $\mu_0 = 4\pi \times 10^{-7}\text{ T}\cdot\text{m/A}$ (permeability of free space). SI unit of $B$: Tesla ($\text{T}$) or $\text{Wb/m}^2$.</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">2. Circular Loop Axial & Center Field</h3>
+          <p class="text-sm text-slate-400 mb-2">For a circular coil of $N$ turns, radius $R$, carrying current $I$ at axial distance $x$:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$B_{\text{axis}} = \frac{\mu_0 N I R^2}{2(R^2 + x^2)^{3/2}}, \quad B_{\text{center}} = \frac{\mu_0 N I}{2R}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">At large distances ($x \gg R$): $B_{\text{axis}} \approx \frac{\mu_0 (2M)}{4\pi x^3}$, identical to the axial field of an electric dipole!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (3D Circular Loop & Vector Resolver) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Interactive Visualizer: Circular Loop Axial Field Engine</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="toggleLinesBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Toggle: Vector Components / Closed Field Lines
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="loopCanvas" width="800" height="400" class="w-full block"></canvas>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Loop Current ($I$)</span>
+            <span id="currentVal" class="text-cyan-400 font-mono font-bold">5.0 A</span>
+          </div>
+          <input id="currentSlider" type="range" min="1" max="20" step="0.5" value="5" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Loop Radius ($R$)</span>
+            <span id="radiusVal" class="text-amber-400 font-mono font-bold">8.0 cm</span>
+          </div>
+          <input id="radiusSlider" type="range" min="4" max="14" step="0.5" value="8" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Axial Point ($x$)</span>
+            <span id="xVal" class="text-emerald-400 font-mono font-bold">10.0 cm</span>
+          </div>
+          <input id="xSlider" type="range" min="0" max="25" step="0.5" value="10" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Calculations Readouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Axial Field ($B_{\text{axis}}$):</span>
+          <div id="bAxisVal" class="text-cyan-400 font-bold text-sm mt-0.5">9.82 μT</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Field at Center ($B_{\text{center}}$):</span>
+          <div id="bCenterVal" class="text-amber-400 font-bold text-sm mt-0.5">39.27 μT</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Ratio $B_{\text{axis}} / B_{\text{center}}$:</span>
+          <div id="bRatioVal" class="text-emerald-400 font-bold text-sm mt-0.5">0.250 (25%)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation: Axial Field of Circular Current Loop -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Classic Board Derivation</span>
+          <h4 class="text-white font-semibold text-sm mt-1">Magnetic Field on the Axis of a Circular Current-Carrying Loop</h4>
+        </div>
+        <p>1. Consider a circular loop of radius $R$ carrying steady current $I$ placed in the $yz$-plane, with its center at origin $O$. Its axis lies along the $x$-axis.</p>
+        <p>2. Let $P$ be an axial point at distance $x$ from the center $O$. Distance $r$ from any current element $d\vec{l}$ on the circumference to point $P$ is:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$r = \sqrt{R^2 + x^2}$$
+        </div>
+        <p>3. The current element $d\vec{l}$ is tangential to the circle, while position vector $\vec{r}$ lies in a plane passing through the element and point $P$. Thus, $d\vec{l}$ is strictly perpendicular to $\vec{r}$ ($\theta = 90^\circ, \sin 90^\circ = 1$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$dB = \frac{\mu_0}{4\pi}\frac{I dl \sin 90^\circ}{r^2} = \frac{\mu_0}{4\pi}\frac{I dl}{R^2 + x^2}$$
+        </div>
+        <p>4. Resolve $d\vec{B}$ into orthogonal components: perpendicular to axis ($dB\cos\phi$) and along axis ($dB\sin\phi$):</p>
+        <p class="text-slate-400">• For every element $d\vec{l}$, there exists a diametrically opposite element $d\vec{l}\,'$ whose normal component $dB\cos\phi$ cancels out identically ($\int dB\cos\phi = 0$).</p>
+        <p class="text-slate-400">• Axial components $dB\sin\phi$ point in the same direction and add up constructively:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$B_{\text{net}} = \int dB\sin\phi = \int \left(\frac{\mu_0}{4\pi}\frac{I dl}{R^2 + x^2}\right) \sin\phi$$
+        </div>
+        <p>5. From the right triangle, $\sin\phi = \frac{R}{r} = \frac{R}{\sqrt{R^2 + x^2}}$. Pulling constants outside the integral:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$B_{\text{net}} = \frac{\mu_0 I R}{4\pi (R^2 + x^2)^{3/2}} \int dl = \frac{\mu_0 I R}{4\pi (R^2 + x^2)^{3/2}} (2\pi R)$$
+        </div>
+        <p>6. For a coil having $N$ tightly wound turns:</p>
+        <div class="text-center py-1 font-mono text-white text-sm font-bold">
+          $$B_{\text{axis}} = \frac{\mu_0 N I R^2}{2(R^2 + x^2)^{3/2}}$$
+        </div>
+        <p class="text-slate-400"><em>Special Cases:</em> (i) At the center ($x = 0$): $B_{\text{center}} = \frac{\mu_0 N I R^2}{2R^3} = \frac{\mu_0 N I}{2R}$. (ii) Far axial distance ($x \gg R$): $B \approx \frac{\mu_0 N I R^2}{2x^3} = \frac{\mu_0 (2M)}{4\pi x^3}$, where $M = N I A = N I (\pi R^2)$ is magnetic dipole moment[cite: 14].</p>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: The Angle $\theta$ in Biot-Savart Law for a Circular Loop</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Students often look at the diagram and plug $\theta = \phi$ into $\sin\theta$. <strong>Crucial Error!</strong> The angle $\theta$ in $d\vec{l} \times \hat{r}$ is the angle between the tangent $d\vec{l}$ and the radius vector $\vec{r}$. In a circle, a tangent is <strong>perpendicular to the plane of the radius vector</strong>; thus $\theta = 90^\circ$ and $\sin\theta = 1$ always, regardless of where point $P$ is located on the axis!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Coulomb's Law vs Biot-Savart Law Core Differences</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            • Electrostatic source: Scalar ($dq$); field $\vec{E}$ is along $\hat{r}$.
+            <br>• Magnetic source: Vector current element ($I\,d\vec{l}$); field $\vec{B}$ is <strong>perpendicular to both $d\vec{l}$ and $\vec{r}$</strong>.
+            <br>• $\vec{B} = 0$ along the axis of the current element itself ($\theta = 0^\circ$ or $180^\circ$); electric field is non-zero everywhere.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Direction Sense (Right-Hand Thumb Rule)</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Curl the fingers of the right hand along the direction of current in the loop: the outstretched thumb points directly in the direction of $\vec{B}$ along the axis.
+            <br>• Current viewed as <strong>Anticlockwise</strong> $\implies$ Field points towards observer (North Pole).
+            <br>• Current viewed as <strong>Clockwise</strong> $\implies$ Field points away from observer (South Pole).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Semi-Circular and Arc Variations</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            For an arc of angle $\theta$ (in radians): $B = \frac{\mu_0 I}{4\pi R}\theta$.
+            <br>• Complete circle ($\theta = 2\pi$): $B = \frac{\mu_0 I}{2R}$.
+            <br>• Semicircle ($\theta = \pi$): $B = \frac{\mu_0 I}{4R}$.
+            <br>• Straight straight-lead wires pointing directly toward the center contribute <strong>zero</strong> magnetic field ($\sin 0^\circ = 0$).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A circular coil of wire consisting of $100\text{ turns}$, each of radius $8.0\text{ cm}$ carries a current of $0.40\text{ A}$. What is the magnitude of the magnetic field at the center of the coil? At what distance on the axis does the magnetic field drop to $\frac{1}{8}\text{th}$ of its value at the center?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Field at the center ($B_0$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$B_0 = \frac{\mu_0 N I}{2R} = \frac{(4\pi \times 10^{-7}) \times 100 \times 0.40}{2 \times (0.08)} = \frac{1.6\pi \times 10^{-5}}{0.16} = \pi \times 10^{-4}\text{ T} \approx 3.14 \times 10^{-4}\text{ T}$$
+          </div>
+          <p>2. Ratio of axial field to center field:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\frac{B_{\text{axis}}}{B_0} = \frac{\frac{\mu_0 N I R^2}{2(R^2 + x^2)^{3/2}}}{\frac{\mu_0 N I}{2R}} = \frac{R^3}{(R^2 + x^2)^{3/2}} = \left[\frac{R^2}{R^2 + x^2}\right]^{3/2}$$
+          </div>
+          <p>3. Set ratio equal to $1/8$:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\left[\frac{R^2}{R^2 + x^2}\right]^{3/2} = \frac{1}{8} = \left(\frac{1}{2}\right)^3 \implies \left[\frac{R^2}{R^2 + x^2}\right]^{1/2} = \frac{1}{2}$$
+          </div>
+          <p>4. Square both sides:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\frac{R^2}{R^2 + x^2} = \frac{1}{4} \implies R^2 + x^2 = 4R^2 \implies x^2 = 3R^2 \implies x = \sqrt{3}R$$
+            $$x = \sqrt{3} \times 8.0\text{ cm} \approx 1.732 \times 8.0 \approx 13.86\text{ cm}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: Two identical circular coils of radius $R$ carrying equal currents $I$ are placed coaxially separated by a distance $R$. If their currents circulate in the same direction, show that the magnetic field on the axis at the midpoint between them is approximately uniform, and find its value (Helmholtz Coils Configuration).</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. The midpoint $O$ is at distance $x = R/2$ from both coils.</p>
+          <p>2. Since currents circulate in the same direction, their magnetic fields point in the same direction along the axis and add directly ($B_{\text{net}} = B_1 + B_2 = 2 B_1$):</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$B_1 = \frac{\mu_0 I R^2}{2(R^2 + x^2)^{3/2}} \quad \text{at } x = \frac{R}{2}$$
+          </div>
+          <p>3. Calculate the denominator term:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$R^2 + \left(\frac{R}{2}\right)^2 = R^2 + \frac{R^2}{4} = \frac{5}{4}R^2$$
+            $$\left( \frac{5}{4}R^2 \right)^{3/2} = \left(\frac{5}{4}\right)^{3/2} R^3 = \frac{5\sqrt{5}}{8} R^3$$
+          </div>
+          <p>4. Total field at midpoint:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$B_{\text{net}} = 2 \left[ \frac{\mu_0 I R^2}{2 \left(\frac{5\sqrt{5}}{8}\right) R^3} \right] = \frac{8 \mu_0 I}{5\sqrt{5} R} \approx 0.716 \frac{\mu_0 I}{R}$$
+          </div>
+          <p class="text-slate-400"><em>Significance:</em> At this midpoint, both $\frac{dB}{dx} = 0$ and $\frac{d^2B}{dx^2} = 0$, producing an exceptionally uniform magnetic field over a wide central region.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Biot-Savart Law</p>
+          <p class="text-xs font-bold text-white mt-1">$dB = \frac{\mu_0}{4\pi}\frac{I dl\sin\theta}{r^2}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Axial Field of Coil</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1">$B = \frac{\mu_0 NIR^2}{2(R^2+x^2)^{3/2}}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Center Field ($x=0$)</p>
+          <p class="text-xs font-bold text-white mt-1">$B_{\text{center}} = \frac{\mu_0 NI}{2R}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Far Axial ($x \gg R$)</p>
+          <p class="text-xs font-bold text-amber-300 mt-1">$B \propto \frac{1}{x^3}$ (Dipole like)[cite: 14]</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Circular Loop Simulation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('loopCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const currentSlider = document.getElementById('currentSlider');
+      const radiusSlider = document.getElementById('radiusSlider');
+      const xSlider = document.getElementById('xSlider');
+      const toggleLinesBtn = document.getElementById('toggleLinesBtn');
+
+      const currentVal = document.getElementById('currentVal');
+      const radiusVal = document.getElementById('radiusVal');
+      const xVal = document.getElementById('xVal');
+      const bAxisVal = document.getElementById('bAxisVal');
+      const bCenterVal = document.getElementById('bCenterVal');
+      const bRatioVal = document.getElementById('bRatioVal');
+
+      let viewMode = 'vectors'; // 'vectors' or 'lines'
+      let currentPhase = 0;
+
+      toggleLinesBtn.addEventListener('click', () => {
+        viewMode = (viewMode === 'vectors') ? 'lines' : 'vectors';
+        toggleLinesBtn.textContent = (viewMode === 'vectors')
+          ? 'Toggle: Vector Components / Closed Field Lines'
+          : 'Switch: Return to Vector Resolving Mode';
+      });
+
+      function renderLoop() {
+        currentPhase += 0.05;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const I = parseFloat(currentSlider.value);
+        const R_cm = parseFloat(radiusSlider.value);
+        const x_cm = parseFloat(xSlider.value);
+
+        currentVal.textContent = I.toFixed(1) + ' A';
+        radiusVal.textContent = R_cm.toFixed(1) + ' cm';
+        xVal.textContent = x_cm.toFixed(1) + ' cm';
+
+        // Physics Calculation
+        const mu0 = 4 * Math.PI * 1e-7;
+        const R_m = R_cm / 100;
+        const x_m = x_cm / 100;
+
+        const bCenter_T = (mu0 * I) / (2 * R_m);
+        const denom = Math.pow(R_m * R_m + x_m * x_m, 1.5);
+        const bAxis_T = (mu0 * I * R_m * R_m) / (2 * denom);
+        const ratio = bAxis_T / bCenter_T;
+
+        bAxisVal.textContent = (bAxis_T * 1e6).toFixed(2) + ' μT';
+        bCenterVal.textContent = (bCenter_T * 1e6).toFixed(2) + ' μT';
+        bRatioVal.textContent = ratio.toFixed(3) + ` (${(ratio * 100).toFixed(1)}%)`;
+
+        const originX = 220;
+        const originY = canvas.height / 2;
+
+        // Visual Scales: 1 cm = 14 px
+        const pxScale = 14;
+        const radiusPx = R_cm * pxScale;
+        const xDistPx = x_cm * pxScale;
+        const pointPX = originX + xDistPx;
+        const pointPY = originY;
+
+        // 1. Draw Axis Line
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([5, 4]);
+        ctx.beginPath();
+        ctx.moveTo(60, originY);
+        ctx.lineTo(canvas.width - 50, originY);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = '#64748b';
+        ctx.font = '11px monospace';
+        ctx.fillText('Central Axis (x) ➔', canvas.width - 150, originY - 10);
+
+        if (viewMode === 'vectors') {
+          renderVectorComponentsView(originX, originY, radiusPx, pointPX, pointPY, R_cm, x_cm, bAxis_T);
+        } else {
+          renderFieldLinesView(originX, originY, radiusPx, I);
+        }
+
+        // 2. Render 3D Perspective Circular Current Loop
+        renderPerspectiveCoil(originX, originY, radiusPx, I);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Biot-Savart Symmetry: Perpendicular components dB⊥ cancel pairwise; axial components dB∥ add up', canvas.width / 2, canvas.height - 12);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderPerspectiveCoil(cx, cy, rPx, I) {
+        // Oval perspective representing yz-plane coil viewed at angle
+        const rx = rPx * 0.32; // perspective foreshortening
+        const ry = rPx;
+
+        // Coil Body (Deep Metallic Ring)
+        ctx.save();
+        ctx.strokeStyle = '#0284c7';
+        ctx.lineWidth = 7;
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Circulating Current Arrows on the Ring
+        const arrowPhase = currentPhase % (Math.PI * 2);
+        const arrowY1 = cy - ry * Math.cos(arrowPhase);
+        const arrowX1 = cx + rx * Math.sin(arrowPhase);
+
+        ctx.fillStyle = '#fbbf24';
+        ctx.beginPath();
+        ctx.arc(arrowX1, arrowY1, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = 'bold 11px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Coil (I = ${I}A)`, cx, cy - ry - 14);
+
+        // Center Marker O
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(cx, cy, 3.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillText('O', cx - 12, cy + 14);
+        ctx.restore();
+      }
+
+      function renderVectorComponentsView(cx, cy, rPx, px, py, R_cm, x_cm, bAxis_T) {
+        // Top and bottom symmetric current elements
+        const topEl = { x: cx, y: cy - rPx };
+        const botEl = { x: cx, y: cy + rPx };
+
+        // Draw connecting hypotenuse r lines
+        ctx.strokeStyle = 'rgba(251, 191, 36, 0.4)';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(topEl.x, topEl.y);
+        ctx.lineTo(px, py);
+        ctx.moveTo(botEl.x, botEl.y);
+        ctx.lineTo(px, py);
+        ctx.stroke();
+
+        // Labels for r and R
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = '10px monospace';
+        ctx.fillText('r = √(R² + x²)', (topEl.x + px) / 2 - 15, (topEl.y + py) / 2 - 8);
+
+        // Target Point P
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(px, py, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('P (Observation Point)', px + 10, py + 16);
+
+        // Angle phi calculation
+        const phi = Math.atan2(rPx, px - cx);
+        const dB_len = 65;
+
+        // dB vector from top element (perpendicular to top r line)
+        // Direction of r is (px - cx, py - topEl.y) => normal is (-(py - topEl.y), px - cx)
+        const angleR_top = Math.atan2(py - topEl.y, px - topEl.x);
+        const dB_angle_top = angleR_top - Math.PI / 2;
+
+        const dB_x1 = px + Math.cos(dB_angle_top) * dB_len;
+        const dB_y1 = py + Math.sin(dB_angle_top) * dB_len;
+
+        // dB vector from bottom element
+        const angleR_bot = Math.atan2(py - botEl.y, px - botEl.x);
+        const dB_angle_bot = angleR_bot + Math.PI / 2;
+
+        const dB_x2 = px + Math.cos(dB_angle_bot) * dB_len;
+        const dB_y2 = py + Math.sin(dB_angle_bot) * dB_len;
+
+        // Render dB vectors
+        drawArrow(px, py, dB_x1, dB_y1, '#f43f5e', 'dB (top element)');
+        drawArrow(px, py, dB_x2, dB_y2, '#f43f5e', 'dB (bottom element)');
+
+        // Resolved components (canceling vertical dashed lines)
+        ctx.save();
+        ctx.strokeStyle = '#f43f5e';
+        ctx.setLineDash([3, 3]);
+        ctx.lineWidth = 1.2;
+        // Vertical cancellation lines
+        ctx.beginPath();
+        ctx.moveTo(dB_x1, dB_y1);
+        ctx.lineTo(dB_x1, py);
+        ctx.moveTo(dB_x2, dB_y2);
+        ctx.lineTo(dB_x2, py);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.fillStyle = '#f87171';
+        ctx.font = '10px monospace';
+        ctx.fillText('dB cosφ (Cancels) 🠙', px + 35, py - 45);
+        ctx.fillText('dB cosφ (Cancels) 🠛', px + 35, py + 50);
+
+        // Net axial vector resultant
+        const bNetLen = Math.min(130, Math.max(25, 2 * Math.cos(dB_angle_top) * dB_len));
+        drawArrow(px, py, px + bNetLen, py, '#10b981', 'B_net = ∫ dB sinφ ➔');
+      }
+
+      function renderFieldLinesView(cx, cy, rPx, I) {
+        // Draw closed, looped magnetic field lines surrounding the circular coil
+        ctx.save();
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.35)';
+        ctx.lineWidth = 1.5;
+
+        const loopRadii = [40, 80, 130, 200];
+        loopRadii.forEach(lr => {
+          ctx.beginPath();
+          // Closed magnetic loops enclosing upper and lower conductors
+          ctx.ellipse(cx, cy - rPx, lr * 0.4, lr * 0.6, 0, 0, Math.PI * 2);
+          ctx.ellipse(cx, cy + rPx, lr * 0.4, lr * 0.6, 0, 0, Math.PI * 2);
+          ctx.stroke();
+        });
+
+        // Axial straight through-line
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(cx - 150, cy);
+        ctx.lineTo(cx + 250, cy);
+        ctx.stroke();
+
+        // Flowing magnetic field arrows through center
+        for (let bx = cx - 120; bx < cx + 220; bx += 70) {
+          drawArrow(bx, cy, bx + 25, cy, '#10b981', '');
+        }
+
+        ctx.fillStyle = '#10b981';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText('Straight, parallel field lines near center (Homogeneous B)', cx + 40, cy - 18);
+        ctx.restore();
+      }
+
+      function drawArrow(fromX, fromY, toX, toY, color, labelText) {
+        const angle = Math.atan2(toY - fromY, toX - fromX);
+        const headlen = 8;
+
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+        ctx.moveTo(fromX, fromY);
+        ctx.lineTo(toX, toY);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(toX, toY);
+        ctx.lineTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
+        ctx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
+        ctx.closePath();
+        ctx.fill();
+
+        if (labelText) {
+          ctx.fillStyle = color;
+          ctx.font = 'bold 10px monospace';
+          ctx.fillText(labelText, toX + 8, toY + 2);
+        }
+        ctx.restore();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

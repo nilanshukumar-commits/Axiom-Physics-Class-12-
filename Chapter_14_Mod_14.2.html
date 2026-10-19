@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Rectifier Systems: Half-Wave & Full-Wave</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX for clean LaTeX rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError: false,
+      errorColor: '#cbd5e1'
+    });"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      letter-spacing: -0.011em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .font-mono, font-mono {
+      font-family: 'JetBrains Mono', monospace !important;
+    }
+
+    .katex {
+      font-size: 1.05em !important;
+      text-rendering: optimizeLegibility;
+    }
+    .katex-display {
+      margin: 0.6em 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 2px;
+    }
+
+    .math-formula-card {
+      background: radial-gradient(circle at top left, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(56, 189, 248, 0.15);
+    }
+
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; font-size: 10pt !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box, .math-formula-card { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400, .text-slate-500 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+
+  <!-- Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center shadow-lg">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2.5 py-0.5 rounded-full ml-2 font-mono">Class 12 • Unit 09</span>
+    </div>
+    <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-xl text-xs font-semibold transition shadow-md shadow-indigo-600/20 cursor-pointer">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+      <span>Print Dossier (PDF)</span>
+    </button>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Title Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-xs font-bold font-mono text-indigo-400 tracking-wider uppercase">Unit 09: Semiconductor Electronics • Section 14.3</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Rectifiers (Half-Wave & Full-Wave) & Optoelectronics</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base leading-relaxed">Complete working principles, mathematical efficiencies, ripple factors, live circuit current path animations, filter circuits, and optoelectronic junction devices.</p>
+    </div>
+
+    <!-- Section 1: Detailed Explanations of Both Systems -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-cyan-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>⚡ 01. Complete Physical & Mathematical Explanations</span>
+      </div>
+
+      <!-- Half-Wave Rectifier Card -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800/80 space-y-3">
+        <h3 class="text-lg font-bold text-white flex items-center justify-between">
+          <span>A. Half-Wave Rectifier (HWR)</span>
+          <span class="text-xs font-mono font-normal bg-slate-800 px-2.5 py-0.5 rounded text-amber-300">Single Diode Design</span>
+        </h3>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Half-wave rectifier AC voltage ki sirf ek aadhi cycle (positive half-cycle) ko load tak pahunchata hai aur doosri aadhi cycle (negative half-cycle) ko completely block kar deta hai.
+        </p>
+        <div class="grid md:grid-cols-2 gap-4 text-xs pt-1">
+          <div class="bg-slate-900/90 p-3.5 rounded-lg border border-slate-800">
+            <h4 class="font-bold text-indigo-300 mb-1">1. Positive Half-Cycle ($0 \to T/2$)</h4>
+            <p class="text-slate-400 leading-relaxed">
+              Secondary coil ka upper terminal $A$ positive $(+)$ hota hai aur lower terminal $B$ negative $(-)$ hota hai. Diode ka p-side positive se judta hai $\implies$ <strong class="text-white">Diode Forward Biased</strong> hota hai (low resistance). Current load resistor $R_L$ mein top-to-bottom flow karta hai aur output voltage develop hota hai.
+            </p>
+          </div>
+          <div class="bg-slate-900/90 p-3.5 rounded-lg border border-slate-800">
+            <h4 class="font-bold text-rose-300 mb-1">2. Negative Half-Cycle ($T/2 \to T$)</h4>
+            <p class="text-slate-400 leading-relaxed">
+              Polarity reverse hoti hai: terminal $A$ negative $(-)$ aur terminal $B$ positive $(+)$ ho jata hai. Diode ka p-side negative se judta hai $\implies$ <strong class="text-white">Diode Reverse Biased</strong> ho jata hai (infinite resistance). Circuit mein koi current flow nahi karta ($I = 0$), aur output voltage zero rehta hai.
+            </p>
+          </div>
+        </div>
+        <div class="py-2.5 px-3 rounded-xl bg-slate-900 border border-slate-800 text-cyan-300 font-mono text-xs space-y-1">
+          <div>$$\text{Average (DC) Current: } I_{\text{dc}} = \frac{I_m}{\pi}, \qquad \text{RMS Current: } I_{\text{rms}} = \frac{I_m}{2}$$</div>
+          <div>$$\text{Maximum Efficiency: } \eta = \frac{P_{\text{dc}}}{P_{\text{ac}}} = \frac{0.406 R_L}{r_f + R_L} \approx 40.6\%, \qquad \text{Ripple Factor: } \gamma = \sqrt{\left(\frac{I_{\text{rms}}}{I_{\text{dc}}}\right)^2 - 1} \approx 1.21$$</div>
+          <div>$$\text{Output Ripple Frequency: } f_{\text{out}} = f_{\text{in}} \quad (50\text{ Hz in } \to 50\text{ Hz out}), \qquad \text{Peak Inverse Voltage (PIV)} = V_m$$</div>
+        </div>
+      </div>
+
+      <!-- Full-Wave Center-Tapped Rectifier Card -->
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800/80 space-y-3">
+        <h3 class="text-lg font-bold text-white flex items-center justify-between">
+          <span>B. Full-Wave Center-Tapped Rectifier (FWR)</span>
+          <span class="text-xs font-mono font-normal bg-slate-800 px-2.5 py-0.5 rounded text-emerald-300">Dual Diode + Center-Tap Transformer</span>
+        </h3>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Full-wave rectifier AC input ki dono cycles (positive aur negative) ko utilize karke load resistor $R_L$ mein hamesha ek hi disha mein current banaye rakhta hai.
+        </p>
+        <div class="grid md:grid-cols-2 gap-4 text-xs pt-1">
+          <div class="bg-slate-900/90 p-3.5 rounded-lg border border-slate-800">
+            <h4 class="font-bold text-indigo-300 mb-1">1. Positive Half-Cycle ($0 \to T/2$)</h4>
+            <p class="text-slate-400 leading-relaxed">
+              Center-tap $T$ ($0\text{V}$) ke respect mein terminal $A$ positive $(+)$ aur terminal $B$ negative $(-)$ hota hai. 
+              <br>• <strong class="text-emerald-400">Diode $D_1$ is Forward Biased (ON)</strong>.
+              <br>• <strong class="text-rose-400">Diode $D_2$ is Reverse Biased (OFF)</strong>.
+              <br>Current path: $A \to D_1 \to X \to R_L \to Y \to T$.
+            </p>
+          </div>
+          <div class="bg-slate-900/90 p-3.5 rounded-lg border border-slate-800">
+            <h4 class="font-bold text-indigo-300 mb-1">2. Negative Half-Cycle ($T/2 \to T$)</h4>
+            <p class="text-slate-400 leading-relaxed">
+              Center-tap $T$ ($0\text{V}$) ke respect mein terminal $A$ negative $(-)$ aur terminal $B$ positive $(+)$ ban jata hai.
+              <br>• <strong class="text-rose-400">Diode $D_1$ is Reverse Biased (OFF)</strong>.
+              <br>• <strong class="text-emerald-400">Diode $D_2$ is Forward Biased (ON)</strong>.
+              <br>Current path: $B \to D_2 \to X \to R_L \to Y \to T$.
+            </p>
+          </div>
+        </div>
+        <p class="text-xs text-slate-300">
+          <strong class="text-white">Crucial Symmetry:</strong> Dono half-cycles mein load resistor $R_L$ ke andar current hamesha ek hi direction ($X \to Y$) mein behta hai. Isliye continuous pulsating DC output milta hai.
+        </p>
+        <div class="py-2.5 px-3 rounded-xl bg-slate-900 border border-slate-800 text-emerald-300 font-mono text-xs space-y-1">
+          <div>$$\text{Average (DC) Current: } I_{\text{dc}} = \frac{2I_m}{\pi}, \qquad \text{RMS Current: } I_{\text{rms}} = \frac{I_m}{\sqrt{2}}$$</div>
+          <div>$$\text{Maximum Efficiency: } \eta = \frac{0.812 R_L}{r_f + R_L} \approx 81.2\%, \qquad \text{Ripple Factor: } \gamma = \sqrt{\left(\frac{I_{\text{rms}}}{I_{\text{dc}}}\right)^2 - 1} \approx 0.482$$</div>
+          <div>$$\text{Output Ripple Frequency: } f_{\text{out}} = 2f_{\text{in}} \quad (50\text{ Hz in } \to 100\text{ Hz out}), \qquad \text{Peak Inverse Voltage (PIV)} = 2V_m$$</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Interactive 60 FPS Dual-Circuit & Oscilloscope Engine -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-xs font-bold uppercase tracking-wider font-mono">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>02. Interactive Visualizer: Live Circuit Current Path & Dual-Trace Scope</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="switchTopologyBtn" type="button" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3.5 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer">
+            Switch: Full-Wave Center-Tapped
+          </button>
+          <button id="toggleFilterBtn" type="button" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold px-3.5 py-1.5 rounded-lg border border-slate-700 transition cursor-pointer">
+            Filter Capacitor: OFF
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Viewport -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="rectifierCanvas" width="800" height="420" class="w-full block"></canvas>
+      </div>
+
+      <!-- Controls Slider -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Input AC Frequency ($f_{\text{in}}$)</span>
+            <span id="fVal" class="text-cyan-400 font-mono font-bold">50 Hz</span>
+          </div>
+          <input id="fSlider" type="range" min="20" max="80" step="5" value="50" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Peak Voltage ($V_m$)</span>
+            <span id="vVal" class="text-amber-400 font-mono font-bold">12.0 V</span>
+          </div>
+          <input id="vSlider" type="range" min="6" max="24" step="2" value="12" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Simulation Playback</span>
+            <span id="speedVal" class="text-emerald-400 font-mono font-bold">Live Flow (1.0x)</span>
+          </div>
+          <button id="pausePlayBtn" type="button" class="w-full bg-slate-800 hover:bg-slate-700 text-xs py-1.5 rounded font-semibold text-slate-200 border border-slate-700 transition cursor-pointer">
+            Pause Motion
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Parameter Matrix -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Current Circuit Mode:</span>
+          <div id="modeStatus" class="text-indigo-300 font-bold text-sm mt-0.5">Full-Wave Center-Tap</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Output Ripple Freq:</span>
+          <div id="rippleStatus" class="text-emerald-400 font-bold text-sm mt-0.5">100 Hz (2 × fin)</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Average DC Output ($V_{\text{dc}}$):</span>
+          <div id="vdcStatus" class="text-amber-400 font-bold text-sm mt-0.5">7.64 V</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Diode State:</span>
+          <div id="diodeStatus" class="text-cyan-400 font-bold text-sm mt-0.5">D1 Conducting / D2 Off</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Shunt Capacitor Filter Function -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>⚡ 03. Capacitor Filter Function & Smoothing</span>
+      </div>
+      <div class="bg-slate-950 p-5 rounded-xl border border-slate-800/80 text-xs text-slate-300 space-y-3">
+        <h4 class="text-white font-semibold text-sm">How Does a Shunt Capacitor Filter Convert Pulsating DC into Steady DC?</h4>
+        <p class="leading-relaxed">
+          1. Rectifier ka direct output pure DC nahi hota; usme bohot saara AC ripple ($50\text{ Hz}$ ya $100\text{ Hz}$) maujood hota hai. 
+        </p>
+        <p class="leading-relaxed">
+          2. Capacitor ki reactance $X_C = \frac{1}{2\pi f C}$ hoti hai. DC ke liye ($f = 0$) capacitor infinite resistance offer karta hai, jabki AC ripples ke liye low impedance path offer karta hai.
+        </p>
+        <p class="leading-relaxed">
+          3. <strong class="text-white">Charging Phase:</strong> Jab pulsating DC wave $0$ se peak $V_m$ ki taraf badhti hai, diode forward biased rehta hai aur capacitor instantaneously charge hokar maximum voltage $V_m$ store kar leta hai.
+        </p>
+        <p class="leading-relaxed">
+          4. <strong class="text-white">Discharging Phase:</strong> Jab input wave peak $V_m$ se neeche girti hai, diode reverse biased hokar switch off ho jata hai. Ab load resistor $R_L$ ko current transformer nahi balki <strong class="text-white">discharge hota hua capacitor supply karta hai</strong>. Agar time constant $\tau = C R_L \gg T/2$ ho, toh capacitor bohot dheere discharge hota hai. Agli cycle ka agla pulse aane se pehle voltage barely gir pata hai, jisse load par lagbhag <strong class="text-emerald-400 font-semibold">smooth steady DC voltage</strong> milta hai!
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 4: Optoelectronic Devices Master Matrix -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>⚡ 04. Optoelectronic Junction Devices Master Matrix</span>
+      </div>
+      <div class="rounded-xl border border-slate-800 overflow-hidden">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead class="bg-slate-950 text-slate-200 uppercase font-semibold font-mono">
+            <tr>
+              <th class="p-2.5 border-r border-slate-800">Device</th>
+              <th class="p-2.5 border-r border-slate-800 text-cyan-400">Biasing Mode</th>
+              <th class="p-2.5 border-r border-slate-800 text-amber-400">Physical Working Principle</th>
+              <th class="p-2.5 border-r border-slate-800 text-emerald-400">I-V Operating Quadrant</th>
+              <th class="p-2.5">Key Material / Condition</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-2.5 font-semibold text-white">Photodiode</td>
+              <td class="p-2.5 font-mono text-rose-400 font-bold">Reverse Bias</td>
+              <td class="p-2.5">Incident light ($h\nu \ge E_g$) generates electron-hole pairs inside depletion layer. Built-in electric field separates them, causing reverse saturation current $\Delta I \propto \text{Intensity}$.</td>
+              <td class="p-2.5 font-mono text-cyan-300">3rd Quadrant (Negative V, Negative I)</td>
+              <td class="p-2.5 text-[11px]">Operated in reverse bias because fractional change in minority carrier current ($\Delta p/p$) is vastly higher and easier to measure than in majority carriers.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white">Light Emitting Diode (LED)</td>
+              <td class="p-2.5 font-mono text-emerald-400 font-bold">Forward Bias</td>
+              <td class="p-2.5">Injected electrons and holes recombine near junction. Conduction band electrons fall into valence band holes, releasing energy as photons of frequency $\nu \approx E_g/h$.</td>
+              <td class="p-2.5 font-mono text-emerald-300">1st Quadrant (Standard diode curve)</td>
+              <td class="p-2.5 text-[11px]">Silicon/Germanium cannot be used (indirect band gap releases heat). Direct bandgap semiconductors like $\text{GaAs}_{1-x}\text{P}_x$ with $E_g > 1.8\text{ eV}$ are used for visible light.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-semibold text-white">Solar Cell</td>
+              <td class="p-2.5 font-mono text-amber-300 font-bold">Zero External Bias</td>
+              <td class="p-2.5">Three-step generation: (i) Generation of e-h pairs by light, (ii) Separation by built-in field $E_0$ (electrons to n-side, holes to p-side), (iii) Collection at metal electrodes producing photovoltage.</td>
+              <td class="p-2.5 font-mono text-amber-300">4th Quadrant (Positive V, Negative I — Delivers Power)</td>
+              <td class="p-2.5 text-[11px]">Silicon ($E_g \approx 1.1\text{ eV}$) or $\text{GaAs}$ ($1.43\text{ eV}$) preferred because their absorption spectra match the peak solar photon emission ($1.5\text{ eV}$).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 5: High-Yield Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>⚠️ 05. High-Yield "Red Alert" Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: Output Ripple Frequency for 50 Hz AC Line</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Board Question:* An input alternating current of $50\text{ Hz}$ is rectified. What is the frequency of output ripple?
+            <br>• For <strong class="text-white">Half-Wave Rectifier</strong>: $f_{\text{out}} = f_{\text{in}} = \mathbf{50\text{ Hz}}$. (One pulse per period $T$).
+            <br>• For <strong class="text-white">Full-Wave Rectifier</strong>: $f_{\text{out}} = 2f_{\text{in}} = 2 \times 50 = \mathbf{100\text{ Hz}}$. (Two pulses per period $T$).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Peak Inverse Voltage (PIV) Danger</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Exam Comparison:*
+            <br>• Half-Wave Rectifier: $\text{PIV} = V_m$.
+            <br>• Center-Tapped Full-Wave Rectifier: $\mathbf{\text{PIV} = 2V_m}$!
+            When upper diode conducts, terminal $A$ is at $+V_m$ and lower terminal $B$ is at $-V_m$. Non-conducting diode $D_2$ faces a total reverse voltage of $(+V_m) - (-V_m) = 2V_m$. Diode must be rated for at least $2V_m$ to prevent breakdown!
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Why Silicon & Germanium are Useless for LEDs</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            *Why can't Silicon ($1.1\text{ eV}$) or Germanium ($0.7\text{ eV}$) emit light?*
+            <br>1. They have <strong class="text-white">indirect band gaps</strong>; electron-hole recombination requires phonon momentum conservation, releasing energy as lattice vibration (heat), not light photons.
+            <br>2. Their band gaps are $< 1.8\text{ eV}$; even if photons were emitted, they would fall in the invisible infrared spectrum.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Direction of Current in Load Resistor</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Students often incorrectly assume current in $R_L$ reverses during the negative half-cycle of full-wave rectification.
+            <br>In reality, diode $D_1$ guides current from $X \to Y$, and diode $D_2$ ALSO guides current from $X \to Y$. The load current is strictly <strong class="text-white">unidirectional</strong>!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Handcrafted Exemplar Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-mono">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: A center-tapped full-wave rectifier uses two ideal diodes. The AC voltage across the entire secondary winding of the transformer is $50\text{ V (rms)}$ at $50\text{ Hz}$. If load resistance is $R_L = 500\text{ }\Omega$, determine: (i) Peak load voltage, (ii) DC output voltage, (iii) DC load current, and (iv) Output ripple frequency.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> The total secondary voltage is $50\text{ V (rms)}$. In a center-tapped configuration, each diode sees only half of the secondary winding:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$V_{\text{rms, half}} = \frac{50\text{ V}}{2} = 25\text{ V}$$
+          </div>
+          <p>1. Peak load voltage ($V_m$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$V_m = \sqrt{2} \times V_{\text{rms, half}} = 1.414 \times 25\text{ V} \approx 35.35\text{ V}$$
+          </div>
+          <p>2. DC output voltage ($V_{\text{dc}}$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$V_{\text{dc}} = \frac{2V_m}{\pi} = \frac{2 \times 35.35\text{ V}}{3.1416} \approx 22.51\text{ V}$$
+          </div>
+          <p>3. DC load current ($I_{\text{dc}}$):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$I_{\text{dc}} = \frac{V_{\text{dc}}}{R_L} = \frac{22.51\text{ V}}{500\text{ }\Omega} \approx 0.0450\text{ A} = 45.0\text{ mA}$$
+          </div>
+          <p>4. Output ripple frequency:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$f_{\text{out}} = 2f_{\text{in}} = 2 \times 50\text{ Hz} = 100\text{ Hz}$$
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: An LED is constructed from a $\text{GaAs}_{1-x}\text{P}_x$ semiconductor material with a bandgap of $E_g = 1.9\text{ eV}$. (a) Calculate the wavelength of light emitted by the LED. (b) Identify the color of the emitted light. (c) What minimum forward voltage is needed to turn this LED on?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong> In an LED, recombination of an electron and hole releases energy equal to the bandgap: $E = h\nu = \frac{hc}{\lambda} \approx E_g$.</p>
+          <p>1. Wavelength of emitted light:</p>
+          <div class="text-center font-mono text-indigo-300">
+            $$\lambda = \frac{hc}{E_g} = \frac{1240\text{ eV}\cdot\text{nm}}{1.9\text{ eV}} \approx 652.6\text{ nm} = 6526\text{ \AA}$$
+          </div>
+          <p>2. Color identification:</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$\lambda \approx 653\text{ nm} \implies \text{Visible Red Light}$$
+          </div>
+          <p>3. Minimum forward voltage (knee voltage):</p>
+          <div class="text-center font-mono text-emerald-400 font-bold">
+            $$V_{\text{threshold}} \approx \frac{E_g}{e} = \frac{1.9\text{ eV}}{e} = 1.9\text{ Volts}$$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 font-mono">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded font-mono">Core Relations</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">HWR Output Freq</p>
+          <p class="text-xs font-bold text-white mt-1 font-mono">$f_{\text{out}} = f_{\text{in}}$ ($\eta = 40.6\%$)</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">FWR Output Freq</p>
+          <p class="text-xs font-bold text-emerald-400 mt-1 font-mono">$f_{\text{out}} = 2f_{\text{in}}$ ($\eta = 81.2\%$)</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">FWR PIV Rating</p>
+          <p class="text-xs font-bold text-rose-400 mt-1 font-mono">$\text{PIV} = 2V_m$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400 font-mono">Filter Condition</p>
+          <p class="text-xs font-bold text-cyan-300 mt-1 font-mono">$C R_L \gg T/2$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60 FPS Dual-Circuit & Dual-Trace Scope Engine -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('rectifierCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const switchTopologyBtn = document.getElementById('switchTopologyBtn');
+      const toggleFilterBtn = document.getElementById('toggleFilterBtn');
+      const pausePlayBtn = document.getElementById('pausePlayBtn');
+      const fSlider = document.getElementById('fSlider');
+      const vSlider = document.getElementById('vSlider');
+
+      const fVal = document.getElementById('fVal');
+      const vVal = document.getElementById('vVal');
+      const speedVal = document.getElementById('speedVal');
+
+      const modeStatus = document.getElementById('modeStatus');
+      const rippleStatus = document.getElementById('rippleStatus');
+      const vdcStatus = document.getElementById('vdcStatus');
+      const diodeStatus = document.getElementById('diodeStatus');
+
+      let isFullWave = true;
+      let isFilterOn = false;
+      let isPaused = false;
+      let wavePhase = 0;
+
+      switchTopologyBtn.addEventListener('click', () => {
+        isFullWave = !isFullWave;
+        if (isFullWave) {
+          switchTopologyBtn.textContent = 'Switch: Full-Wave Center-Tapped';
+          switchTopologyBtn.className = 'text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3.5 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition border border-indigo-400/30 cursor-pointer';
+          modeStatus.textContent = 'Full-Wave Center-Tap';
+        } else {
+          switchTopologyBtn.textContent = 'Switch: Half-Wave Rectifier';
+          switchTopologyBtn.className = 'text-xs bg-amber-600 hover:bg-amber-500 text-white font-semibold px-3.5 py-1.5 rounded-lg shadow-lg shadow-amber-600/30 transition border border-amber-400/30 cursor-pointer';
+          modeStatus.textContent = 'Half-Wave (Single Diode)';
+        }
+      });
+
+      toggleFilterBtn.addEventListener('click', () => {
+        isFilterOn = !isFilterOn;
+        toggleFilterBtn.textContent = isFilterOn ? 'Filter Capacitor: ON' : 'Filter Capacitor: OFF';
+        toggleFilterBtn.className = isFilterOn 
+          ? 'text-xs bg-emerald-700 hover:bg-emerald-600 text-white font-semibold px-3.5 py-1.5 rounded-lg border border-emerald-500 transition cursor-pointer'
+          : 'text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold px-3.5 py-1.5 rounded-lg border border-slate-700 transition cursor-pointer';
+      });
+
+      pausePlayBtn.addEventListener('click', () => {
+        isPaused = !isPaused;
+        pausePlayBtn.textContent = isPaused ? 'Resume Motion' : 'Pause Motion';
+        speedVal.textContent = isPaused ? 'Paused' : 'Live Flow (1.0x)';
+      });
+
+      function renderLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const fin = parseInt(fSlider.value);
+        const Vm = parseFloat(vSlider.value);
+
+        fVal.textContent = `${fin} Hz`;
+        vVal.textContent = `${Vm.toFixed(1)} V`;
+
+        // Ripple Frequency & Vdc calculations
+        const fRipple = isFullWave ? fin * 2 : fin;
+        rippleStatus.textContent = `${fRipple} Hz (${isFullWave ? '2 × fin' : 'fin'})`;
+
+        const vdc = isFullWave ? (2 * Vm) / Math.PI : Vm / Math.PI;
+        vdcStatus.textContent = `${vdc.toFixed(2)} V`;
+
+        if (!isPaused) {
+          wavePhase += 0.04 * (fin / 50);
+        }
+
+        const normPhase = wavePhase % (Math.PI * 2);
+        const sinVal = Math.sin(normPhase);
+
+        if (isFullWave) {
+          if (sinVal >= 0) {
+            diodeStatus.textContent = 'D1 ON / D2 OFF';
+            diodeStatus.className = 'text-emerald-400 font-bold text-sm mt-0.5';
+          } else {
+            diodeStatus.textContent = 'D1 OFF / D2 ON';
+            diodeStatus.className = 'text-cyan-400 font-bold text-sm mt-0.5';
+          }
+        } else {
+          if (sinVal >= 0) {
+            diodeStatus.textContent = 'Diode D ON (Forward)';
+            diodeStatus.className = 'text-emerald-400 font-bold text-sm mt-0.5';
+          } else {
+            diodeStatus.textContent = 'Diode D OFF (Reverse)';
+            diodeStatus.className = 'text-rose-400 font-bold text-sm mt-0.5';
+          }
+        }
+
+        // Render both views: Left Side Circuit Schematic with animated electrons, Right Side Oscilloscope
+        renderLiveCircuit(isFullWave, isFilterOn, sinVal, wavePhase);
+        renderOscilloscopePane(isFullWave, isFilterOn, Vm, wavePhase);
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      function renderLiveCircuit(fullWave, filterOn, sinVal, phase) {
+        // Circuit Box: x: 30 to 420, y: 30 to 390
+        const boxX = 35;
+        const boxY = 30;
+
+        ctx.fillStyle = '#090d16';
+        ctx.fillRect(boxX, boxY, 395, 360);
+        ctx.strokeStyle = '#1e293b';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(boxX, boxY, 395, 360);
+
+        ctx.fillStyle = '#cbd5e1';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(fullWave ? 'Full-Wave Center-Tapped Circuit' : 'Half-Wave Single-Diode Circuit', boxX + 15, boxY + 22);
+
+        const d1Active = sinVal >= 0;
+        const d2Active = !d1Active && fullWave;
+
+        // Transformer Core Lines
+        const coreX = boxX + 115;
+        ctx.strokeStyle = '#64748b';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(coreX, boxY + 60); ctx.lineTo(coreX, boxY + 300);
+        ctx.moveTo(coreX + 4, boxY + 60); ctx.lineTo(coreX + 4, boxY + 300);
+        ctx.stroke();
+
+        // Primary AC Source
+        const srcX = boxX + 50;
+        const srcY = boxY + 180;
+        ctx.fillStyle = '#0f172a';
+        ctx.beginPath(); ctx.arc(srcX, srcY, 16, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 1.8; ctx.stroke();
+        ctx.fillStyle = '#38bdf8'; ctx.font = '10px monospace';
+        ctx.fillText('~', srcX - 4, srcY + 4);
+
+        // Primary Wires
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(srcX, srcY - 16); ctx.lineTo(srcX, boxY + 90); ctx.lineTo(coreX - 8, boxY + 90);
+        ctx.moveTo(srcX, srcY + 16); ctx.lineTo(srcX, boxY + 270); ctx.lineTo(coreX - 8, boxY + 270);
+        ctx.stroke();
+
+        // Secondary Wires
+        const secA_Y = boxY + 90;
+        const secB_Y = boxY + 270;
+        const secT_Y = boxY + 180;
+
+        ctx.strokeStyle = '#94a3b8';
+        ctx.beginPath();
+        // A terminal
+        ctx.moveTo(coreX + 12, secA_Y); ctx.lineTo(boxX + 220, secA_Y);
+        // B terminal
+        ctx.moveTo(coreX + 12, secB_Y); ctx.lineTo(boxX + 220, secB_Y);
+        if (fullWave) {
+          // Center Tap
+          ctx.moveTo(coreX + 12, secT_Y); ctx.lineTo(boxX + 340, secT_Y);
+        }
+        ctx.stroke();
+
+        // Terminal labels
+        ctx.font = 'bold 10px monospace';
+        ctx.fillStyle = sinVal >= 0 ? '#10b981' : '#ef4444';
+        ctx.fillText(sinVal >= 0 ? 'A(+)' : 'A(-)', coreX + 18, secA_Y - 8);
+
+        ctx.fillStyle = sinVal >= 0 ? '#ef4444' : '#10b981';
+        ctx.fillText(sinVal >= 0 ? 'B(-)' : 'B(+)', coreX + 18, secB_Y + 18);
+
+        if (fullWave) {
+          ctx.fillStyle = '#cbd5e1';
+          ctx.fillText('T(0V)', coreX + 18, secT_Y - 6);
+        }
+
+        // Draw Diode 1 at (boxX + 220, secA_Y)
+        drawDiodeIcon(boxX + 220, secA_Y, d1Active, 'D₁');
+
+        // Draw Diode 2 if full-wave at (boxX + 220, secB_Y)
+        if (fullWave) {
+          drawDiodeIcon(boxX + 220, secB_Y, d2Active, 'D₂');
+        }
+
+        // Connect Diodes to Load Resistor
+        const loadX = boxX + 340;
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+
+        if (fullWave) {
+          ctx.moveTo(boxX + 235, secA_Y); ctx.lineTo(loadX, secA_Y); ctx.lineTo(loadX, secT_Y - 35);
+          ctx.moveTo(boxX + 235, secB_Y); ctx.lineTo(loadX, secB_Y); ctx.lineTo(loadX, secT_Y + 35);
+        } else {
+          ctx.moveTo(boxX + 235, secA_Y); ctx.lineTo(loadX, secA_Y); ctx.lineTo(loadX, secT_Y - 35);
+          ctx.moveTo(coreX + 12, secB_Y); ctx.lineTo(loadX, secB_Y); ctx.lineTo(loadX, secT_Y + 35);
+        }
+        ctx.stroke();
+
+        // Load Resistor R_L between (loadX, secT_Y - 35) and (loadX, secT_Y + 35)
+        ctx.fillStyle = '#1e293b';
+        ctx.fillRect(loadX - 10, secT_Y - 35, 20, 70);
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(loadX - 10, secT_Y - 35, 20, 70);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 10px monospace';
+        ctx.fillText('R_L', loadX - 8, secT_Y + 4);
+
+        // Current flow arrow through RL (Always top to bottom)
+        const currentActive = fullWave ? true : d1Active;
+        if (currentActive) {
+          ctx.fillStyle = '#10b981';
+          ctx.beginPath();
+          ctx.moveTo(loadX + 16, secT_Y - 10);
+          ctx.lineTo(loadX + 16, secT_Y + 10);
+          ctx.stroke();
+          ctx.fillText('I ↓', loadX + 20, secT_Y + 4);
+        }
+
+        // Animated moving electron dots along active path
+        if (!isPaused && currentActive) {
+          const dotStep = (phase * 15) % 30;
+          ctx.fillStyle = '#38bdf8';
+          // Draw dots flowing through RL
+          for (let y = secT_Y - 30 + dotStep; y <= secT_Y + 30; y += 25) {
+            ctx.beginPath(); ctx.arc(loadX, y, 2.5, 0, Math.PI * 2); ctx.fill();
+          }
+        }
+      }
+
+      function drawDiodeIcon(x, y, isConducting, label) {
+        ctx.save();
+        ctx.translate(x, y);
+
+        ctx.fillStyle = isConducting ? '#10b981' : '#ef4444';
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.2;
+
+        // Triangle
+        ctx.beginPath();
+        ctx.moveTo(-15, -12);
+        ctx.lineTo(-15, 12);
+        ctx.lineTo(5, 0);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        // Vertical Bar
+        ctx.beginPath();
+        ctx.moveTo(5, -12);
+        ctx.lineTo(5, 12);
+        ctx.stroke();
+
+        ctx.fillStyle = isConducting ? '#10b981' : '#64748b';
+        ctx.font = 'bold 10px monospace';
+        ctx.fillText(`${label} (${isConducting ? 'ON' : 'OFF'})`, -20, -18);
+
+        ctx.restore();
+      }
+
+      function renderOscilloscopePane(fullWave, filterOn, Vm, phase) {
+        const paneX = 445;
+        const paneY = 30;
+        const paneW = 320;
+        const paneH = 360;
+
+        ctx.fillStyle = '#090d16';
+        ctx.fillRect(paneX, paneY, paneW, paneH);
+        ctx.strokeStyle = '#1e293b';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(paneX, paneY, paneW, paneH);
+
+        const cy1 = paneY + 95;  // Input scope line
+        const cy2 = paneY + 265; // Output scope line
+
+        // Grid lines
+        ctx.strokeStyle = '#141e33';
+        ctx.lineWidth = 1;
+        for (let x = paneX + 15; x <= paneX + paneW - 15; x += 25) {
+          ctx.beginPath(); ctx.moveTo(x, paneY + 10); ctx.lineTo(x, paneY + paneH - 10); ctx.stroke();
+        }
+        for (let y = paneY + 25; y <= paneY + paneH - 10; y += 25) {
+          ctx.beginPath(); ctx.moveTo(paneX + 10, y); ctx.lineTo(paneX + paneW - 10, y); ctx.stroke();
+        }
+
+        // Baselines
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 1.2;
+        ctx.setLineDash([3, 3]);
+        ctx.beginPath();
+        ctx.moveTo(paneX + 10, cy1); ctx.lineTo(paneX + paneW - 10, cy1);
+        ctx.moveTo(paneX + 10, cy2); ctx.lineTo(paneX + paneW - 10, cy2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Headings
+        ctx.font = 'bold 10px monospace';
+        ctx.fillStyle = '#38bdf8';
+        ctx.fillText(`CH1: Input AC (${Vm.toFixed(0)}V)`, paneX + 15, cy1 - 55);
+
+        ctx.fillStyle = filterOn ? '#10b981' : '#f59e0b';
+        ctx.fillText(`CH2: Output DC ${filterOn ? '(Filtered)' : '(Pulsating)'}`, paneX + 15, cy2 - 55);
+
+        const scaleY = (Vm / 24) * 40;
+        const kWave = 0.04;
+
+        // Trace 1: Input Sine Wave (Cyan)
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.2;
+        ctx.beginPath();
+        for (let x = 0; x <= paneW - 30; x += 2) {
+          const y = cy1 - Math.sin(kWave * x - phase * 3) * scaleY;
+          if (x === 0) ctx.moveTo(paneX + 15 + x, y);
+          else ctx.lineTo(paneX + 15 + x, y);
+        }
+        ctx.stroke();
+
+        // Trace 2: Output Rectified Wave (Amber or Filtered Emerald)
+        ctx.strokeStyle = filterOn ? '#10b981' : '#f59e0b';
+        ctx.lineWidth = 2.4;
+        ctx.beginPath();
+
+        let capLevel = 0;
+
+        for (let x = 0; x <= paneW - 30; x += 2) {
+          const raw = Math.sin(kWave * x - phase * 3);
+          let rectified = 0;
+
+          if (fullWave) {
+            rectified = Math.abs(raw) * scaleY;
+          } else {
+            rectified = Math.max(0, raw) * scaleY;
+          }
+
+          let outY = cy2 - rectified;
+
+          if (filterOn) {
+            if (rectified > capLevel) {
+              capLevel = rectified;
+            } else {
+              capLevel -= 0.18; // Exponential-like decay slope
+            }
+            outY = cy2 - Math.max(scaleY * 0.76, capLevel);
+          }
+
+          if (x === 0) ctx.moveTo(paneX + 15 + x, outY);
+          else ctx.lineTo(paneX + 15 + x, outY);
+        }
+        ctx.stroke();
+      }
+
+      renderLoop();
+    });
+  </script>
+</body>
+</html>

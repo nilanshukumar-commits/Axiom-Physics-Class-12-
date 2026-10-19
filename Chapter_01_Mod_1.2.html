@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiom Physics | Class 12 - Electric Field & Dipole</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX for crisp LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .card-box { border: 1px solid #ddd !important; box-shadow: none !important; background: #fff !important; color: #000 !important; }
+      .text-slate-300, .text-slate-400 { color: #333333 !important; }
+      .text-white { color: #000000 !important; }
+      .bg-slate-950, .bg-slate-900 { background: #fafafa !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">Ψ</div>
+      <span class="text-xl font-bold tracking-tight text-white">AXIOM <span class="text-indigo-400">PHYSICS</span></span>
+      <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-700/50 px-2 py-0.5 rounded-full ml-2">Class 12 • Module 1.2</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button onclick="window.print()" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md shadow-indigo-600/20">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>Download Dossier (PDF)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Header Block -->
+    <div class="border-b border-slate-800 pb-6">
+      <p class="text-sm font-semibold text-indigo-400 tracking-wide uppercase">Unit 01: Electrostatics • Chapter 01</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Electric Field, Field Lines & Electric Dipole</h1>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">Field mapping, axial vs equatorial derivations, torque in uniform field, and subtle exam traps.</p>
+    </div>
+
+    <!-- Step 1: The Spark (Analogy) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider mb-2">
+        <span>⚡ 01. The Spark (Analogy)</span>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Socho ek heavy bowling ball trampoline par rakhi hai—woh aas-paas ke space ko distort karti hai taaki koi dusri marble paas aate hi roll hone lage. Isi tarah ek charge vacuum ko modify karke apna <strong class="text-white">Electric Field ($\vec{E}$)</strong> banata hai. Aur jab do equal opposite charges ek strict separation par lock ho jaate hain (jaise ek water molecule $H_2O$), toh woh ek <strong class="text-white">Electric Dipole</strong> banate hain: pure system ka net charge zero hota hai, fir bhi boundary ke bahar iska electric field zero nahi hota kyunki dono charges ki locations spatially alag hoti hain!
+      </p>
+    </section>
+
+    <!-- Step 2: Core Law & Mathematical Definitions -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider mb-1">
+        <span>📐 02. The Core Law & Formulae</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">Electric Field & Dipole Moment</h3>
+          <p class="text-sm text-slate-400 mb-2">Electric field definition and dipole moment vector directed from $-q$ to $+q$:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\vec{E} = \lim_{q_0 \to 0}\frac{\vec{F}}{q_0}, \quad \vec{p} = q(2\vec{a})$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">SI unit of dipole moment: $\text{C}\cdot\text{m}$. Vector points from negative to positive charge.</p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+          <h3 class="text-white font-semibold mb-2">Dipole Fields (Short Dipole: $r \gg a$)</h3>
+          <p class="text-sm text-slate-400 mb-2">Axial (end-on) and Equatorial (broadside-on) field comparison:</p>
+          <div class="text-center py-2 text-indigo-300 font-mono text-base">
+            $$\vec{E}_{\text{axial}} \approx \frac{2\vec{p}}{4\pi\varepsilon_0 r^3}, \quad \vec{E}_{\text{eq}} \approx -\frac{\vec{p}}{4\pi\varepsilon_0 r^3}$$
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Notice: $|\vec{E}_{\text{axial}}| = 2 |\vec{E}_{\text{eq}}|$ and field drops as $1/r^3$, faster than a point charge's $1/r^2$.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Interactive Visualizer (Vibrant Particle-Flow Engine) -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl no-print">
+      <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+        <div class="flex items-center space-x-2 text-cyan-400 text-sm font-bold uppercase tracking-wider">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping mr-1"></span>
+          <span>03. Vibrant Interactive Field & Torque Visualizer</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="viewToggleBtn" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition-all border border-indigo-400/30">
+            Switch to Field Flow Simulation
+          </button>
+        </div>
+      </div>
+
+      <!-- Vibrant Canvas Container with Glow Backdrop -->
+      <div class="relative bg-slate-950 rounded-xl border border-slate-800 shadow-[inset_0_0_40px_rgba(15,23,42,0.8)] overflow-hidden flex justify-center">
+        <canvas id="dipoleCanvas" width="800" height="400" class="w-full"></canvas>
+      </div>
+
+      <!-- Real-Time Sliders -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-slate-800/80">
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Dipole Moment ($p$)</span>
+            <span id="pVal" class="text-cyan-400 font-mono font-bold">4.0 × 10⁻³⁰ C·m</span>
+          </div>
+          <input id="pSlider" type="range" min="1" max="10" value="4" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>Dipole Angle ($\theta$)</span>
+            <span id="thetaVal" class="text-amber-400 font-mono font-bold">45°</span>
+          </div>
+          <input id="thetaSlider" type="range" min="0" max="180" value="45" class="w-full accent-amber-400 cursor-pointer">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+            <span>External Field ($E$)</span>
+            <span id="eVal" class="text-emerald-400 font-mono font-bold">1000 N/C</span>
+          </div>
+          <input id="eSlider" type="range" min="200" max="2500" step="100" value="1000" class="w-full accent-emerald-400 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Live Metric Badges -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 text-xs font-mono">
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Torque ($\vec{\tau} = \vec{p} \times \vec{E}$):</span>
+          <div id="torqueVal" class="text-amber-400 font-bold text-sm mt-0.5">0.00 N·m</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Potential Energy ($U = -\vec{p}\cdot\vec{E}$):</span>
+          <div id="energyVal" class="text-cyan-400 font-bold text-sm mt-0.5">0.00 J</div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/80 p-2.5 rounded-lg text-center">
+          <span class="text-slate-400">Equilibrium State:</span>
+          <div id="stateBadge" class="text-emerald-400 font-bold text-sm mt-0.5">Active Restoring Torque</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Stepwise Derivations -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-indigo-400 text-sm font-bold uppercase tracking-wider">
+        <span>📝 04. Stepwise Derivations Blueprint</span>
+      </div>
+
+      <!-- Derivation 1: Axial Field -->
+      <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-2">
+        <h4 class="text-white font-semibold text-sm">Derivation A: Electric Field on the Axial Line</h4>
+        <p>1. Consider a dipole with charges $-q$ and $+q$ separated by $2a$. Point $P$ lies on the axis at distance $r$ from midpoint $O$.</p>
+        <p>2. Field due to $+q$: $E_1 = \frac{1}{4\pi\varepsilon_0}\frac{q}{(r-a)^2}$ (directed away from $+q$).</p>
+        <p>3. Field due to $-q$: $E_2 = \frac{1}{4\pi\varepsilon_0}\frac{q}{(r+a)^2}$ (directed towards $-q$).</p>
+        <p>4. Net axial field ($E_{\text{axial}} = E_1 - E_2$):</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$E_{\text{axial}} = \frac{q}{4\pi\varepsilon_0}\left[\frac{1}{(r-a)^2} - \frac{1}{(r+a)^2}\right] = \frac{q}{4\pi\varepsilon_0}\left[\frac{4ar}{(r^2 - a^2)^2}\right]$$
+        </div>
+        <p>5. Substitute $p = q(2a)$. For a short dipole where $r \gg a$ ($r^2 - a^2 \approx r^2$):</p>
+        <div class="text-center py-1 font-mono text-white text-sm">
+          $$\vec{E}_{\text{axial}} = \frac{1}{4\pi\varepsilon_0}\frac{2\vec{p}}{r^3} \quad \text{(along the direction of } \vec{p}\text{)}$$
+        </div>
+      </div>
+
+      <!-- Derivation 2: Equatorial Field -->
+      <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-2">
+        <h4 class="text-white font-semibold text-sm">Derivation B: Electric Field on the Equatorial Line (Broadside-on)</h4>
+        <p>1. Let point $P$ be on the perpendicular bisector at distance $r$ from center $O$. Distance to both charges is $AP = BP = \sqrt{r^2 + a^2}$.</p>
+        <p>2. Individual field magnitudes are identical: $E_+ = E_- = \frac{1}{4\pi\varepsilon_0}\frac{q}{r^2 + a^2}$.</p>
+        <p>3. Normal components ($E\sin\theta$) cancel out symmetrically, while horizontal components ($E\cos\theta$) reinforce each other antiparallel to $\vec{p}$:</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$E_{\text{net}} = 2E\cos\theta = 2\left(\frac{1}{4\pi\varepsilon_0}\frac{q}{r^2 + a^2}\right)\left(\frac{a}{\sqrt{r^2 + a^2}}\right) = \frac{1}{4\pi\varepsilon_0}\frac{q(2a)}{(r^2 + a^2)^{3/2}}$$
+        </div>
+        <p>4. Setting $p = q(2a)$ and applying the short-dipole limit ($r \gg a$):</p>
+        <div class="text-center py-1 font-mono text-white text-sm">
+          $$\vec{E}_{\text{eq}} = -\frac{1}{4\pi\varepsilon_0}\frac{\vec{p}}{r^3} \quad \left(\text{Direction is antiparallel to } \vec{p}\text{, and } |\vec{E}_{\text{axial}}| = 2|\vec{E}_{\text{eq}}|\right)$$
+        </div>
+      </div>
+
+      <!-- Derivation 3: Torque & PE -->
+      <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-2">
+        <h4 class="text-white font-semibold text-sm">Derivation C: Torque & Potential Energy of Dipole in Uniform $\vec{E}$</h4>
+        <p>1. Forces on charges: $\vec{F}_+ = +q\vec{E}$ and $\vec{F}_- = -q\vec{E}$. Total translational force $\vec{F}_{\text{net}} = \vec{F}_+ + \vec{F}_- = \vec{0}$.</p>
+        <p>2. Perpendicular distance between lines of force $= 2a\sin\theta$.</p>
+        <div class="text-center py-1 font-mono text-indigo-300">
+          $$\tau = (qE)(2a\sin\theta) = (q\cdot 2a)E\sin\theta = pE\sin\theta \implies \vec{\tau} = \vec{p} \times \vec{E}$$
+        </div>
+        <p>3. Work done in rotating dipole from $\theta_1$ to $\theta_2$: $W = \int_{\theta_1}^{\theta_2}\tau\,d\theta = -pE(\cos\theta_2 - \cos\theta_1)$.</p>
+        <p>4. Taking zero energy reference at $\theta = 90^\circ$: <strong class="text-white">$U = -\vec{p}\cdot\vec{E} = -pE\cos\theta$</strong>.</p>
+      </div>
+    </section>
+
+    <!-- Step 5: Red Alert Exam Traps -->
+    <section class="card-box bg-rose-950/20 border border-rose-800/40 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center space-x-2 text-rose-400 text-sm font-bold uppercase tracking-wider">
+        <span>⚠️ 05. Red Alert Exam Trap Zone</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 1: The Direction of $\vec{E}_{\text{eq}}$ vs $\vec{p}$</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Students consistently miss the negative vector sign in equatorial field! On the axial line, $\vec{E}_{\text{axial}}$ points in the <strong>same direction</strong> as $\vec{p}$. But on the equatorial line, $\vec{E}_{\text{eq}}$ points <strong>antiparallel (180° opposite)</strong> to $\vec{p}$.
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 2: Uniform vs Non-Uniform Field Trap</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            In a uniform field: $F_{\text{net}} = 0$ and $\tau \ne 0$ (only rotational motion). But in a <strong>non-uniform field</strong>: $F_{\text{net}} \ne 0$ and $\tau \ne 0$ (both translation and rotation occur simultaneously).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 3: Stable vs Unstable Equilibrium</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            At $\theta = 0^\circ$: $\tau = 0$ and $U = -pE$ (Minimum PE $\implies$ <strong>Stable Equilibrium</strong>). At $\theta = 180^\circ$: $\tau = 0$ but $U = +pE$ (Maximum PE $\implies$ <strong>Unstable Equilibrium</strong>).
+          </p>
+        </div>
+        <div class="bg-rose-950/30 border border-rose-900/50 p-4 rounded-xl">
+          <h4 class="text-white text-sm font-semibold">Trap 4: Electric Field Lines Never Form Closed Loops</h4>
+          <p class="text-xs text-rose-200/80 mt-1 leading-relaxed">
+            Electrostatic fields are conservative ($\oint \vec{E}\cdot d\vec{l} = 0$). Hence, field lines originate on positive charges and terminate on negative charges; they <strong>never</strong> form continuous closed paths (unlike magnetic field lines).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Handcrafted Numericals -->
+    <section class="card-box bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center space-x-2 text-amber-400 text-sm font-bold uppercase tracking-wider">
+        <span>💡 06. Handcrafted Exemplars</span>
+      </div>
+
+      <!-- Problem 1 -->
+      <div class="border-b border-slate-800 pb-5">
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Board Classic Level</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: An electric dipole of length $4\text{ cm}$ when placed with its axis at $60^\circ$ to a uniform electric field experiences a torque of $4\sqrt{3}\text{ N}\cdot\text{m}$. If the charge on dipole is $\pm 8\text{ nC}$, calculate the magnitude of the electric field and work done to rotate it to unstable equilibrium.</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Dipole moment: $p = q(2a) = (8 \times 10^{-9}\text{ C}) \times (0.04\text{ m}) = 3.2 \times 10^{-10}\text{ C}\cdot\text{m}$.</p>
+          <p>2. Torque formula: $\tau = pE\sin\theta \implies 4\sqrt{3} = (3.2 \times 10^{-10}) \cdot E \cdot \sin 60^\circ$.</p>
+          <p>Since $\sin 60^\circ = \frac{\sqrt{3}}{2}$:</p>
+          <p class="text-center font-mono text-indigo-300">$$4\sqrt{3} = (3.2 \times 10^{-10}) \cdot E \cdot \frac{\sqrt{3}}{2} \implies E = \frac{8}{3.2 \times 10^{-10}} = 2.5 \times 10^{10}\text{ N/C}$$</p>
+          <p>3. Work to rotate from $\theta_1 = 60^\circ$ to unstable equilibrium ($\theta_2 = 180^\circ$):</p>
+          <p class="text-center font-mono text-indigo-300">$$W = -pE(\cos 180^\circ - \cos 60^\circ) = -pE\left(-1 - \frac{1}{2}\right) = \frac{3}{2}pE$$</p>
+          <p>$$W = 1.5 \times (3.2 \times 10^{-10}) \times (2.5 \times 10^{10}) = 12\text{ Joules}$$</p>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">JEE/NEET Competitive Trap</span>
+        <h4 class="text-white font-medium text-sm mt-2">Problem: Two short electric dipoles of moments $p_1$ and $p_2$ are placed along the same line at a distance $r$ ($r \gg \text{length of dipoles}$). What is the mutual interaction force between them?</h4>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-3 text-xs text-slate-300 space-y-2">
+          <p><strong>Solution:</strong></p>
+          <p>1. Axial field created by dipole 1 at the location of dipole 2: $E_1 = \frac{1}{4\pi\varepsilon_0}\frac{2p_1}{r^3}$.</p>
+          <p>2. Potential energy of dipole 2 in field $E_1$: $U = -p_2 E_1 = -\frac{1}{4\pi\varepsilon_0}\frac{2p_1 p_2}{r^3}$.</p>
+          <p>3. Interaction force is the spatial gradient of potential energy ($F = -\frac{dU}{dr}$):</p>
+          <p class="text-center font-mono text-indigo-300">$$F = -\frac{d}{dr}\left(-\frac{1}{4\pi\varepsilon_0}\frac{2p_1 p_2}{r^3}\right) = -\frac{1}{4\pi\varepsilon_0}\frac{6p_1 p_2}{r^4}$$</p>
+          <p class="text-slate-400"><em>Exam Trap Note:</em> Force between two point charges scales as $1/r^2$. Force between a charge and a dipole scales as $1/r^3$. Force between two dipoles scales as <strong class="text-white">$1/r^4$</strong>!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Memory Card (Flashcard) -->
+    <section class="card-box bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🗂️ 07. Quick Revision Flashcard</span>
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-200 px-2 py-0.5 rounded">Core Formulae</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-2">
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Axial Field</p>
+          <p class="text-xs font-bold text-white mt-1">$E = \frac{2kp}{r^3}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Equatorial Field</p>
+          <p class="text-xs font-bold text-white mt-1">$E = \frac{kp}{r^3} \quad (\parallel -\vec{p})$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Torque in $\vec{E}$</p>
+          <p class="text-xs font-bold text-white mt-1">$\vec{\tau} = \vec{p} \times \vec{E}$</p>
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+          <p class="text-[11px] text-slate-400">Potential Energy</p>
+          <p class="text-xs font-bold text-white mt-1">$U = -\vec{p} \cdot \vec{E}$</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive 60FPS Vibrant Simulation Engine Script -->
+  <script>
+    const canvas = document.getElementById('dipoleCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // UI Sliders & Dynamic Output References
+    const pSlider = document.getElementById('pSlider');
+    const thetaSlider = document.getElementById('thetaSlider');
+    const eSlider = document.getElementById('eSlider');
+    const pVal = document.getElementById('pVal');
+    const thetaVal = document.getElementById('thetaVal');
+    const eVal = document.getElementById('eVal');
+    const torqueVal = document.getElementById('torqueVal');
+    const energyVal = document.getElementById('energyVal');
+    const stateBadge = document.getElementById('stateBadge');
+    const viewToggleBtn = document.getElementById('viewToggleBtn');
+
+    let currentMode = 'torque'; // 'torque' or 'lines'
+    let animFrameId = null;
+    let pulseTime = 0;
+
+    // Active Particle Flow System for Vector Field Simulation
+    const NUM_PARTICLES = 160;
+    const particles = [];
+
+    function initParticles() {
+      particles.length = 0;
+      for (let i = 0; i < NUM_PARTICLES; i++) {
+        particles.push(resetParticle({}));
+      }
+    }
+
+    function resetParticle(p) {
+      p.x = Math.random() * canvas.width;
+      p.y = Math.random() * canvas.height;
+      p.speed = 1.2 + Math.random() * 2.2;
+      p.life = Math.random() * 100;
+      p.maxLife = 80 + Math.random() * 60;
+      p.size = 1.2 + Math.random() * 1.6;
+      return p;
+    }
+
+    viewToggleBtn.addEventListener('click', () => {
+      currentMode = currentMode === 'torque' ? 'lines' : 'torque';
+      viewToggleBtn.textContent = currentMode === 'torque' 
+        ? 'Switch to Field Flow Simulation' 
+        : 'Switch to Uniform E-Field View';
+    });
+
+    initParticles();
+
+    // Vibrant Neon Glowing Charge Renderer with Radial Glow
+    function drawGlowingCharge(x, y, sign, label) {
+      const isPos = sign === '+';
+      const glowColor = isPos ? 'rgba(244, 63, 94, 0.45)' : 'rgba(56, 189, 248, 0.45)';
+
+      // Pulsating Aura
+      const pulseRadius = 22 + Math.sin(pulseTime * 4) * 3;
+      const radialGrad = ctx.createRadialGradient(x, y, 6, x, y, pulseRadius);
+      radialGrad.addColorStop(0, glowColor);
+      radialGrad.addColorStop(1, 'rgba(15, 23, 42, 0)');
+
+      ctx.fillStyle = radialGrad;
+      ctx.beginPath();
+      ctx.arc(x, y, pulseRadius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Solid Core Circle
+      ctx.beginPath();
+      ctx.arc(x, y, 16, 0, Math.PI * 2);
+      ctx.fillStyle = isPos ? '#e11d48' : '#0284c7';
+      ctx.fill();
+      ctx.lineWidth = 2.5;
+      ctx.strokeStyle = '#ffffff';
+      ctx.stroke();
+
+      // Specular Highlight
+      ctx.beginPath();
+      ctx.arc(x - 5, y - 5, 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+      ctx.fill();
+
+      // Sign Label
+      ctx.fillStyle = '#ffffff';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.font = 'bold 12px ui-monospace, SFMono-Regular, monospace';
+      ctx.fillText(label, x, y + 1);
+    }
+
+    // Glowing Vector Arrow Helper
+    function drawGlowVector(fromX, fromY, toX, toY, color, labelText, offsetSign = 1) {
+      const angle = Math.atan2(toY - fromY, toX - fromX);
+      const headlen = 11;
+
+      ctx.save();
+      ctx.strokeStyle = color;
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 10;
+      ctx.lineWidth = 3;
+
+      ctx.beginPath();
+      ctx.moveTo(fromX, fromY);
+      ctx.lineTo(toX, toY);
+      ctx.stroke();
+
+      // Arrowhead
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(toX, toY);
+      ctx.lineTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
+      ctx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
+      ctx.closePath();
+      ctx.fill();
+
+      if (labelText) {
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 11px ui-monospace, SFMono-Regular, monospace';
+        ctx.fillText(labelText, toX + 12 * Math.cos(angle), toY + 14 * offsetSign);
+      }
+      ctx.restore();
+    }
+
+    // 60FPS Continuous Render Loop
+    function renderLoop() {
+      pulseTime += 0.03;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const pFactor = parseFloat(pSlider.value);
+      const thetaDeg = parseFloat(thetaSlider.value);
+      const thetaRad = (thetaDeg * Math.PI) / 180;
+      const E = parseFloat(eSlider.value);
+
+      const pActual = pFactor * 1e-30;
+      pVal.textContent = pFactor.toFixed(1) + ' × 10⁻³⁰ C·m';
+      thetaVal.textContent = thetaDeg + '°';
+      eVal.textContent = E + ' N/C';
+
+      // Physics Equations
+      const tau = pActual * E * Math.sin(thetaRad);
+      const U = -pActual * E * Math.cos(thetaRad);
+
+      torqueVal.textContent = tau.toExponential(2) + ' N·m';
+      energyVal.textContent = U.toExponential(2) + ' J';
+
+      // Dynamic Classification Badge
+      if (thetaDeg === 0) {
+        stateBadge.textContent = 'Stable Equilibrium (U min)';
+        stateBadge.className = 'text-emerald-400 font-bold text-sm mt-0.5';
+      } else if (thetaDeg === 180) {
+        stateBadge.textContent = 'Unstable Equilibrium (U max)';
+        stateBadge.className = 'text-rose-400 font-bold text-sm mt-0.5';
+      } else if (thetaDeg === 90) {
+        stateBadge.textContent = 'Peak Torque Point (τ max)';
+        stateBadge.className = 'text-amber-400 font-bold text-sm mt-0.5';
+      } else {
+        stateBadge.textContent = 'Active Restoring Torque';
+        stateBadge.className = 'text-indigo-400 font-bold text-sm mt-0.5';
+      }
+
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
+
+      if (currentMode === 'torque') {
+        renderVibrantTorqueMode(cx, cy, thetaRad, tau);
+      } else {
+        renderVibrantParticleFlowMode(cx, cy);
+      }
+
+      animFrameId = requestAnimationFrame(renderLoop);
+    }
+
+    // MODE A: Vibrant Mechanical Torque View
+    function renderVibrantTorqueMode(cx, cy, thetaRad, tau) {
+      // Background Grid
+      ctx.strokeStyle = 'rgba(30, 41, 59, 0.4)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < canvas.width; x += 40) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+      }
+
+      // Neon Flowing Electric Field Streamlines
+      const streamYCount = 7;
+      for (let i = 1; i <= streamYCount; i++) {
+        const y = (canvas.height / (streamYCount + 1)) * i;
+        const grad = ctx.createLinearGradient(40, y, canvas.width - 40, y);
+        grad.addColorStop(0, 'rgba(56, 189, 248, 0.05)');
+        grad.addColorStop(0.5, 'rgba(56, 189, 248, 0.25)');
+        grad.addColorStop(1, 'rgba(56, 189, 248, 0.05)');
+
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(40, y);
+        ctx.lineTo(canvas.width - 40, y);
+        ctx.stroke();
+
+        // Moving Energy Stream Bead
+        const beadX = 40 + ((pulseTime * 70 + i * 90) % (canvas.width - 80));
+        ctx.fillStyle = '#38bdf8';
+        ctx.beginPath();
+        ctx.arc(beadX, y, 2.2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = 'bold 12px ui-monospace, SFMono-Regular, monospace';
+      ctx.fillText('⚡ Uniform External Field E ➔', 48, 28);
+
+      // Dipole Geometry
+      const dipoleLen = 160;
+      const dx = (dipoleLen / 2) * Math.cos(thetaRad);
+      const dy = (dipoleLen / 2) * Math.sin(thetaRad);
+
+      const posX = cx + dx;
+      const posY = cy - dy;
+      const negX = cx - dx;
+      const negY = cy + dy;
+
+      // Connecting Insulating Bond Bar
+      const rodGrad = ctx.createLinearGradient(negX, negY, posX, posY);
+      rodGrad.addColorStop(0, '#0284c7');
+      rodGrad.addColorStop(0.5, '#e2e8f0');
+      rodGrad.addColorStop(1, '#e11d48');
+
+      ctx.strokeStyle = rodGrad;
+      ctx.lineWidth = 5;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(negX, negY);
+      ctx.lineTo(posX, posY);
+      ctx.stroke();
+
+      // Center Pivot
+      ctx.beginPath();
+      ctx.arc(cx, cy, 5, 0, Math.PI * 2);
+      ctx.fillStyle = '#f8fafc';
+      ctx.fill();
+
+      // Dipole Moment Vector (Points -q to +q)
+      drawGlowVector(cx, cy, cx + Math.cos(thetaRad) * 60, cy - Math.sin(thetaRad) * 60, '#a855f7', 'p-vector');
+
+      // Force Vectors (+q pushed right, -q pushed left)
+      const forceLength = 70;
+      drawGlowVector(posX, posY, posX + forceLength, posY, '#10b981', '+qE', -1);
+      drawGlowVector(negX, negY, negX - forceLength, negY, '#10b981', '-qE', 1);
+
+      // Restoring Torque Curved Arc
+      if (Math.abs(tau) > 1e-35 && thetaRad > 0.05 && thetaRad < Math.PI - 0.05) {
+        ctx.strokeStyle = '#f59e0b';
+        ctx.shadowColor = '#f59e0b';
+        ctx.shadowBlur = 8;
+        ctx.lineWidth = 2.5;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.arc(cx, cy, 62, -thetaRad, 0);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.shadowBlur = 0;
+
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = 'bold 11px ui-monospace, SFMono-Regular, monospace';
+        ctx.fillText('Restoring Couple (τ)', cx + 70, cy - 12);
+      }
+
+      // Draw Glowing Charges
+      drawGlowingCharge(negX, negY, '-', '-q');
+      drawGlowingCharge(posX, posY, '+', '+q');
+    }
+
+    // MODE B: Vibrant 2D Electrostatic Particle Drift Simulation
+    function renderVibrantParticleFlowMode(cx, cy) {
+      const separation = 140;
+      const qPlus = { x: cx + separation / 2, y: cy };
+      const qMinus = { x: cx - separation / 2, y: cy };
+
+      // Field Lines Geometry
+      ctx.strokeStyle = 'rgba(71, 85, 105, 0.35)';
+      ctx.lineWidth = 1;
+      const numLines = 20;
+      for (let i = 0; i < numLines; i++) {
+        const angle = (i * 2 * Math.PI) / numLines;
+        let px = qPlus.x + Math.cos(angle) * 16;
+        let py = qPlus.y + Math.sin(angle) * 16;
+
+        ctx.beginPath();
+        ctx.moveTo(px, py);
+        let step = 0;
+        while (step < 90) {
+          const d1x = px - qPlus.x, d1y = py - qPlus.y;
+          const dist1 = Math.hypot(d1x, d1y);
+          const d2x = px - qMinus.x, d2y = py - qMinus.y;
+          const dist2 = Math.hypot(d2x, d2y);
+
+          if (dist2 < 14 || px < 10 || px > canvas.width - 10 || py < 10 || py > canvas.height - 10) break;
+
+          const ex = (d1x / (dist1 ** 3)) - (d2x / (dist2 ** 3));
+          const ey = (d1y / (dist1 ** 3)) - (d2y / (dist2 ** 3));
+          const emag = Math.hypot(ex, ey);
+
+          px += (ex / emag) * 5;
+          py += (ey / emag) * 5;
+          ctx.lineTo(px, py);
+          step++;
+        }
+        ctx.stroke();
+      }
+
+      // Dynamic Flowing Particles (Positive test charges tracer)
+      particles.forEach(p => {
+        const d1x = p.x - qPlus.x, d1y = p.y - qPlus.y;
+        const dist1 = Math.hypot(d1x, d1y);
+        const d2x = p.x - qMinus.x, d2y = p.y - qMinus.y;
+        const dist2 = Math.hypot(d2x, d2y);
+
+        const ex = (d1x / (dist1 ** 3)) - (d2x / (dist2 ** 3));
+        const ey = (d1y / (dist1 ** 3)) - (d2y / (dist2 ** 3));
+        const emag = Math.hypot(ex, ey) || 1;
+
+        p.x += (ex / emag) * p.speed;
+        p.y += (ey / emag) * p.speed;
+        p.life++;
+
+        const alpha = Math.sin((p.life / p.maxLife) * Math.PI);
+        ctx.fillStyle = `rgba(56, 189, 248, ${Math.max(0, alpha)})`;
+        ctx.shadowColor = '#38bdf8';
+        ctx.shadowBlur = 6;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        if (dist2 < 16 || p.life > p.maxLife || p.x < 0 || p.x > canvas.width || p.y < 0 || p.y > canvas.height) {
+          const launchAngle = Math.random() * Math.PI * 2;
+          p.x = qPlus.x + Math.cos(launchAngle) * 18;
+          p.y = qPlus.y + Math.sin(launchAngle) * 18;
+          p.life = 0;
+          p.maxLife = 70 + Math.random() * 50;
+        }
+      });
+
+      // Central Insulating Axis
+      ctx.strokeStyle = 'rgba(203, 213, 225, 0.4)';
+      ctx.setLineDash([4, 4]);
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(qMinus.x, qMinus.y);
+      ctx.lineTo(qPlus.x, qPlus.y);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Nodes
+      drawGlowingCharge(qMinus.x, qMinus.y, '-', '-q');
+      drawGlowingCharge(qPlus.x, qPlus.y, '+', '+q');
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '12px ui-monospace, SFMono-Regular, monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('Real-Time Field Vectors: Particles emanate from positive source and sink into negative drain', cx, canvas.height - 18);
+    }
+
+    // Start animation loop
+    cancelAnimationFrame(animFrameId);
+    renderLoop();
+  </script>
+</body>
+</html>
