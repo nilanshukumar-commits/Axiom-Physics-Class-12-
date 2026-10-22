@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Physics Board Exam Portal | Cambrian Public School, Ranchi</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      letter-spacing: -0.012em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .font-serif-title {
+      font-family: 'Cinzel', Georgia, serif;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace !important;
+    }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(99, 102, 241, 0.45);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 36px -12px rgba(99, 102, 241, 0.28);
+    }
+    .gold-badge {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(217, 119, 6, 0.05));
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #fbbf24;
+    }
+    .hero-radial-glow {
+      background: radial-gradient(circle at 50% 20%, rgba(79, 70, 229, 0.24) 0%, rgba(14, 165, 233, 0.12) 35%, transparent 70%);
+    }
+    .logo-container {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.35), rgba(99, 102, 241, 0.5));
+      box-shadow: 0 0 20px -3px rgba(99, 102, 241, 0.35);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white relative overflow-x-hidden">
+
+  <!-- Interactive Matrix/Particle Canvas Background -->
+  <canvas id="bgCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+  <!-- Institutional Top Header -->
+  <header class="relative z-20 border-b border-slate-800/80 bg-slate-950/85 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 py-3.5 flex flex-wrap items-center justify-between gap-4">
+      
+      <!-- School Identity with Official Crest -->
+      <div class="flex items-center space-x-3.5">
+        <!-- Logo Badge Container -->
+        <div class="logo-container p-0.5 rounded-2xl flex-shrink-0 transition-transform hover:scale-105 duration-200">
+          <div class="w-14 h-14 rounded-[14px] bg-slate-900 overflow-hidden flex items-center justify-center p-1">
+            <img 
+              src="logo.jpeg" 
+              alt="Cambrian Public School Logo" 
+              class="w-full h-full object-contain"
+              onerror="this.onerror=null; this.src='logo.png'; this.parentElement.classList.add('bg-blue-900');"
+            />
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-amber-400 font-bold">Affiliated to CBSE, New Delhi</h2>
+          <h1 class="text-base sm:text-lg font-extrabold text-white tracking-tight leading-tight">CAMBRIAN PUBLIC SCHOOL</h1>
+          <p class="text-xs text-slate-400">Kanke Road, Ranchi, Jharkhand - 834008</p>
+        </div>
+      </div>
+
+      <!-- Quick Action Badges -->
+      <div class="flex items-center space-x-3">
+        <span class="hidden sm:inline-flex items-center px-3 py-1 rounded-full text-xs font-mono gold-badge">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping mr-2"></span>
+          CBSE Board Exam 2026 Ready
+        </span>
+        <a href="index.html" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow-lg shadow-indigo-600/30 flex items-center space-x-2">
+          <span>Enter Full Lab</span>
+          <span>➔</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Presentation Section -->
+  <main class="relative z-10 flex-1">
+    <section class="hero-radial-glow py-14 sm:py-20 px-6 text-center border-b border-slate-800/60">
+      <div class="max-w-5xl mx-auto space-y-6">
+        
+        <!-- Institutional Notice Ribbon -->
+        <div class="inline-flex items-center space-x-2 bg-indigo-950/70 border border-indigo-700/50 px-4 py-1.5 rounded-full text-indigo-300 text-xs sm:text-sm font-mono shadow-inner">
+          <span class="text-amber-400">★</span>
+          <span>An initiative taken by <strong>CAMBRIAN PUBLIC SCHOOL, Kanke Rd, Ranchi</strong></span>
+        </div>
+
+        <!-- Master Title -->
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight">
+          Dedicated Board Exam<br class="hidden sm:inline" />
+          <span class="bg-gradient-to-r from-amber-300 via-indigo-300 to-cyan-400 bg-clip-text text-transparent">
+            Preparation Content for Physics
+          </span>
+        </h1>
+
+        <!-- Subtitle & Vision -->
+        <p class="text-slate-300 text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+          A dedicated digital physics repository engineered to empower students across Ranchi and CBSE Class 12 candidates nationwide with first-principles computational labs and downloadable vector dossiers.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+          <a href="index.html" class="bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white font-bold px-8 py-3.5 rounded-2xl shadow-xl shadow-indigo-600/30 transition transform hover:-translate-y-0.5 text-sm sm:text-base flex items-center space-x-3">
+            <span>Explore 61 Interactive Simulations</span>
+            <span class="text-lg">➔</span>
+          </a>
+          <a href="#directory" class="glass-card hover:bg-slate-800/80 text-slate-200 font-semibold px-6 py-3.5 rounded-2xl text-sm sm:text-base transition border border-slate-700">
+            Quick Chapter Directory ↓
+          </a>
+        </div>
+
+        <!-- Pillar Highlights -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8 text-left">
+          <div class="glass-card p-4 rounded-xl border border-slate-800">
+            <p class="text-amber-400 font-mono text-xl sm:text-2xl font-bold">14 / 14</p>
+            <p class="text-xs text-slate-400 mt-1">Full Chapters of Class 12 Rationalized CBSE Syllabus</p>
+          </div>
+          <div class="glass-card p-4 rounded-xl border border-slate-800">
+            <p class="text-cyan-400 font-mono text-xl sm:text-2xl font-bold">61 Labs</p>
+            <p class="text-xs text-slate-400 mt-1">First-Principles Interactive 60 FPS HTML5 Canvases</p>
+          </div>
+          <div class="glass-card p-4 rounded-xl border border-slate-800">
+            <p class="text-emerald-400 font-mono text-xl sm:text-2xl font-bold">14 Dossiers</p>
+            <p class="text-xs text-slate-400 mt-1">A4 Printable Vector Cheat Sheets & Derivations</p>
+          </div>
+          <div class="glass-card p-4 rounded-xl border border-slate-800">
+            <p class="text-indigo-400 font-mono text-xl sm:text-2xl font-bold">100% Free</p>
+            <p class="text-xs text-slate-400 mt-1">Ad-Free, Open-Access Public Service Initiative</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Mission Statement Section -->
+    <section class="max-w-5xl mx-auto px-6 py-10">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-indigo-900/40 relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="flex flex-col md:flex-row items-center gap-6">
+          <div class="w-16 h-16 rounded-2xl bg-indigo-950 border border-indigo-700/50 flex-shrink-0 flex items-center justify-center text-3xl">
+            🎓
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-white tracking-wide">Principal's & Academic Directorate's Vision</h3>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1.5 leading-relaxed">
+              "At Cambrian Public School, Ranchi, our mission is to eliminate passive memorization and nurture analytical mastery. This digital platform provides our students—and every aspiring engineer and medical aspirant across Jharkhand—direct access to conceptual visualizers, board derivation blueprints, and exam trap matrices."
+            </p>
+            <p class="text-xs font-mono text-amber-400 mt-2 font-semibold">
+              Department of Physics • Cambrian Public School, Kanke Road, Ranchi
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chapter Directory Section -->
+    <section id="directory" class="max-w-7xl mx-auto px-6 py-8">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-indigo-400 font-bold">Curriculum Mapping</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">All 14 Chapters Syllabus Directory</h2>
+        </div>
+        <a href="index.html" class="text-xs font-mono text-indigo-400 hover:text-indigo-300 flex items-center gap-1 font-semibold">
+          <span>Go to Interactive Laboratory View</span> ➔
+        </a>
+      </div>
+
+      <!-- Directory Grid: 14 Chapters -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- Chapter 1 -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-cyan-400 mb-1">
+              <span>UNIT 01</span>
+              <span>Chapter 01</span>
+            </div>
+            <h3 class="text-base font-bold text-white">Electric Charges and Fields</h3>
+            <p class="text-xs text-slate-400 mt-1">Coulomb's Law, Field Lines, Dipoles, and Gauss's Law Applications.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between">
+            <a href="Chapter_01.html" class="text-xs text-slate-300 hover:text-white font-mono flex items-center gap-1">
+              <span>Simulations</span> ➔
+            </a>
+            <a href="Chapter_01_Mod_1.3.html" class="text-xs font-mono bg-cyan-950/70 text-cyan-300 border border-cyan-800/50 px-2.5 py-1 rounded-lg hover:bg-cyan-900 transition">
+              Gauss Lab
+            </a>
+          </div>
+        </div>
+
+        <!-- Chapter 2 -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-cyan-400 mb-1">
+              <span>UNIT 01</span>
+              <span>Chapter 02</span>
+            </div>
+            <h3 class="text-base font-bold text-white">Electrostatic Potential & Capacitance</h3>
+            <p class="text-xs text-slate-400 mt-1">Equipotential surfaces, capacitors in series/parallel, dielectrics.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between">
+            <a href="Chapter_02_Mod_2.1.html" class="text-xs text-slate-300 hover:text-white font-mono flex items-center gap-1">
+              <span>Simulations</span> ➔
+            </a>
+            <a href="Chapter_02_Master_Dossier_Printable.html" class="text-xs font-mono bg-indigo-950/70 text-indigo-300 border border-indigo-800/50 px-2.5 py-1 rounded-lg hover:bg-indigo-900 transition">
+              A4 Dossier
+            </a>
+          </div>
+        </div>
+
+        <!-- Chapter 3 -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-cyan-400 mb-1">
+              <span>UNIT 02</span>
+              <span>Chapter 03</span>
+            </div>
+            <h3 class="text-base font-bold text-white">Current Electricity</h3>
+            <p class="text-xs text-slate-400 mt-1">Drift velocity, Ohm's law, temperature dependence, Kirchhoff's laws.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between">
+            <a href="Chapter_03_Mod_3.1.html" class="text-xs text-slate-300 hover:text-white font-mono flex items-center gap-1">
+              <span>Simulations</span> ➔
+            </a>
+            <a href="Chapter_03_Master_Dossier_Printable.html" class="text-xs font-mono bg-indigo-950/70 text-indigo-300 border border-indigo-800/50 px-2.5 py-1 rounded-lg hover:bg-indigo-900 transition">
+              A4 Dossier
+            </a>
+          </div>
+        </div>
+
+        <!-- Chapter 4 -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-teal-400 mb-1">
+              <span>UNIT 03</span>
+              <span>Chapter 04</span>
+            </div>
+            <h3 class="text-base font-bold text-white">Moving Charges and Magnetism</h3>
+            <p class="text-xs text-slate-400 mt-1">Biot-Savart Law, Ampere's circuital law, solenoid, galvanometer.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between">
+            <a href="Chapter_04_Mod_4.1.html" class="text-xs text-slate-300 hover:text-white font-mono flex items-center gap-1">
+              <span>Simulations</span> ➔
+            </a>
+            <a href="Chapter_04_Master_Dossier_Printable.html" class="text-xs font-mono bg-indigo-950/70 text-indigo-300 border border-indigo-800/50 px-2.5 py-1 rounded-lg hover:bg-indigo-900 transition">
+              A4 Dossier
+            </a>
+          </div>
+        </div>
+
+        <!-- Chapter 5 -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-teal-400 mb-1">
+              <span>UNIT 03</span>
+              <span>Chapter 05</span>
+            </div>
+            <h3 class="text-base font-bold text-white">Magnetism and Matter</h3>
+            <p class="text-xs text-slate-400 mt-1">Bar magnet, Earth's magnetic elements, dia/para/ferromagnetism.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between">
+            <a href="Chapter_05_Mod_5.1.html" class="text-xs text-slate-300 hover:text-white font-mono flex items-center gap-1">
+              <span>Simulations</span> ➔
+            </a>
+            <a href="Chapter_05_Master_Dossier_Printable.html" class="text-xs font-mono bg-indigo-950/70 text-indigo-300 border border-indigo-800/50 px-2.5 py-1 rounded-lg hover:bg-indigo-900 transition">
+              A4 Dossier
+            </a>
+          </div>
+        </div>
+
+        <!-- Chapter 6 -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-emerald-400 mb-1">
+              <span>UNIT 04</span>
+              <span>Chapter 06</span>
+            </div>
+            <h3 class="text-base font-bold text-white">Electromagnetic Induction</h3>
+            <p class="text-xs text-slate-400 mt-1">Faraday's laws, Lenz's law, motional EMF, self & mutual inductance.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between">
+            <a href="Chapter_06_Mod_6.1.html" class="text-xs text-slate-300 hover:text-white font-mono flex items-center gap-1">
+              <span>Simulations</span> ➔
+            </a>
+            <a href="Chapter_06_Master_Dossier_Printable.html" class="text-xs font-mono bg-indigo-950/70 text-indigo-300 border border-indigo-800/50 px-2.5 py-1 rounded-lg hover:bg-indigo-900 transition">
+              A4 Dossier
+            </a>
+          </div>
+        </div>
+
+        <!-- Chapter 7 -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-emerald-400 mb-1">
+              <span>UNIT 04</span>
+              <span>Chapter 07</span>
+            </div>
+            <h3 class="text-base font-bold text-white">Alternating Current</h3>
+            <p class="text-xs text-slate-400 mt-1">RMS values, phasors, series LCR resonance, power factor, transformer.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between">
+            <a href="Chapter_07_Mod_7.1.html" class="text-xs text-slate-300 hover:text-white font-mono flex items-center gap-1">
+              <span>Simulations</span> ➔
+            </a>
+            <a href="Chapter_07_Master_Dossier_Printable.html" class="text-xs font-mono bg-indigo-950/70 text-indigo-300 border border-indigo-800/50 px-2.5 py-1 rounded-lg hover:bg-indigo-900 transition">
+              A4 Dossier
+            </a>
+          </div>
+        </div>
+
+        <!-- Chapter 8 -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-violet-400 mb-1">
+              <span>UNIT 05</span>
+              <span>Chapter 08</span>
+            </div>
+            <h3 class="text-base font-bold text-white">Electromagnetic Waves</h3>
+            <p class="text-xs text-slate-400 mt-1">Displacement current, transverse nature, electromagnetic spectrum.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between">
+            <a href="Chapter_08_Mod_8.1.html" class="text-xs text-slate-300 hover:text-white font-mono flex items-center gap-1">
+              <span>Simulations</span> ➔
+            </a>
+            <a href="Chapter_08_Master_Dossier_Printable.html" class="text-xs font-mono bg-indigo-950/70 text-indigo-300 border border-indigo-800/50 px-2.5 py-1 rounded-lg hover:bg-indigo-900 transition">
+              A4 Dossier
+            </a>
+          </div>
+        </div>
+
+        <!-- Chapter 9 -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-amber-400 mb-1">
+              <span>UNIT 06</span>
+              <span>Chapter 09</span>
+            </div>
+            <h3 class="text-base font-bold text-white">Ray Optics & Optical Instruments</h3>
+            <p class="text-xs text-slate-400 mt-1">Refraction, TIR, Lens Maker's formula, prisms, microscopes, telescopes.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between">
+            <a href="Chapter_09_Mod_9.1.html" class="text-xs text-slate-300 hover:text-white font-mono flex items-center gap-1">
+              <span>Simulations</span> ➔
+            </a>
+            <a href="Chapter_09_Master_Dossier_Printable.html" class="text-xs font-mono bg-indigo-950/70 text-indigo-300 border border-indigo-800/50 px-2.5 py-1 rounded-lg hover:bg-indigo-900 transition">
+              A4 Dossier
+            </a>
+          </div>
+        </div>
+
+        <!-- Chapter 10 -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-amber-400 mb-1">
+              <span>UNIT 06</span>
+              <span>Chapter 10</span>
+            </div>
+            <h3 class="text-base font-bold text-white">Wave Optics</h3>
+            <p class="text-xs text-slate-400 mt-1">Huygens' wavefronts, Young's double slit interference, single slit.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between">
+            <a href="Chapter_10_Mod_10.1.html" class="text-xs text-slate-300 hover:text-white font-mono flex items-center gap-1">
+              <span>Simulations</span> ➔
+            </a>
+            <a href="Chapter_10_Master_Dossier_Printable.html" class="text-xs font-mono bg-indigo-950/70 text-indigo-300 border border-indigo-800/50 px-2.5 py-1 rounded-lg hover:bg-indigo-900 transition">
+              A4 Dossier
+            </a>
+          </div>
+        </div>
+
+        <!-- Chapter 11 -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-rose-400 mb-1">
+              <span>UNIT 07</span>
+              <span>Chapter 11</span>
+            </div>
+            <h3 class="text-base font-bold text-white">Dual Nature of Radiation & Matter</h3>
+            <p class="text-xs text-slate-400 mt-1">Photoelectric effect, Einstein's equation, de Broglie matter waves.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between">
+            <a href="Chapter_11_Mod_11.1.html" class="text-xs text-slate-300 hover:text-white font-mono flex items-center gap-1">
+              <span>Simulations</span> ➔
+            </a>
+            <a href="Chapter_11_Master_Dossier_Printable.html" class="text-xs font-mono bg-indigo-950/70 text-indigo-300 border border-indigo-800/50 px-2.5 py-1 rounded-lg hover:bg-indigo-900 transition">
+              A4 Dossier
+            </a>
+          </div>
+        </div>
+
+        <!-- Chapter 12 -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-fuchsia-400 mb-1">
+              <span>UNIT 08</span>
+              <span>Chapter 12</span>
+            </div>
+            <h3 class="text-base font-bold text-white">Atoms</h3>
+            <p class="text-xs text-slate-400 mt-1">Alpha scattering, Bohr's postulates, energy orbits, hydrogen lines.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between">
+            <a href="Chapter_12_Mod_12.1.html" class="text-xs text-slate-300 hover:text-white font-mono flex items-center gap-1">
+              <span>Simulations</span> ➔
+            </a>
+            <a href="Chapter_12_Master_Dossier_Printable.html" class="text-xs font-mono bg-indigo-950/70 text-indigo-300 border border-indigo-800/50 px-2.5 py-1 rounded-lg hover:bg-indigo-900 transition">
+              A4 Dossier
+            </a>
+          </div>
+        </div>
+
+        <!-- Chapter 13 -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-fuchsia-400 mb-1">
+              <span>UNIT 08</span>
+              <span>Chapter 13</span>
+            </div>
+            <h3 class="text-base font-bold text-white">Nuclei</h3>
+            <p class="text-xs text-slate-400 mt-1">Density invariant proof, mass defect, binding energy, fission & fusion.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between">
+            <a href="Chapter_13_Mod_13.1.html" class="text-xs text-slate-300 hover:text-white font-mono flex items-center gap-1">
+              <span>Simulations</span> ➔
+            </a>
+            <a href="Chapter_13_Master_Dossier_Printable.html" class="text-xs font-mono bg-indigo-950/70 text-indigo-300 border border-indigo-800/50 px-2.5 py-1 rounded-lg hover:bg-indigo-900 transition">
+              A4 Dossier
+            </a>
+          </div>
+        </div>
+
+        <!-- Chapter 14 -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center text-xs font-mono text-indigo-400 mb-1">
+              <span>UNIT 09</span>
+              <span>Chapter 14</span>
+            </div>
+            <h3 class="text-base font-bold text-white">Semiconductor Electronics</h3>
+            <p class="text-xs text-slate-400 mt-1">Energy bands, p-n junction diode, half/full-wave rectifiers, optoelectronics.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between">
+            <a href="Chapter_14_Mod_14.1.html" class="text-xs text-slate-300 hover:text-white font-mono flex items-center gap-1">
+              <span>Simulations</span> ➔
+            </a>
+            <a href="Chapter_14_Master_Dossier_Printable.html" class="text-xs font-mono bg-indigo-950/70 text-indigo-300 border border-indigo-800/50 px-2.5 py-1 rounded-lg hover:bg-indigo-900 transition">
+              A4 Dossier
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Institutional Footer -->
+  <footer class="border-t border-slate-800 bg-slate-950/90 py-10 px-6 text-xs text-slate-400 font-mono relative z-10">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+      <div>
+        <p class="text-white font-bold tracking-wider">CAMBRIAN PUBLIC SCHOOL</p>
+        <p class="text-slate-500 mt-0.5">Kanke Road, Ranchi, Jharkhand - 834008</p>
+        <p class="text-slate-500 mt-0.5">Senior Secondary Physics Academic Directorate</p>
+      </div>
+
+      <div class="flex items-center space-x-6">
+        <a href="index.html" class="hover:text-indigo-400 transition">Axiom Lab Portal</a>
+        <a href="https://github.com/nilanshukumar-commits/Axiom-Physics-Class-12-" target="_blank" class="hover:text-indigo-400 transition">GitHub Source</a>
+        <a href="mailto:contact@cambrianpublicschool.com" class="hover:text-indigo-400 transition">Faculty Contact</a>
+      </div>
+
+      <div class="text-slate-500">
+        <p>© 2026 Cambrian Public School. Public Educational Service.</p>
+        <p class="text-[10px] mt-0.5">No login required • Free and open access for all CBSE students</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Background Animated Particle Canvas Script -->
+  <script>
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let w, h;
+    let particles = [];
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.radius = Math.random() * 1.5 + 0.5;
+        this.alpha = Math.random() * 0.5 + 0.1;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > w) this.vx *= -1;
+        if (this.y < 0 || this.y > h) this.vy *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(129, 140, 248, ${this.alpha})`;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 65; i++) {
+      particles.push(new Particle());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, w, h);
+
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 100) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(99, 102, 241, ${0.12 * (1 - dist / 100)})`;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+</html>
